@@ -1,0 +1,375 @@
+/*
+ * Entry point of global application style.
+ * Component-specific style should not go here and be included directly as part of the components.
+ */
+@use "@angular/material" as mat;
+
+// Theme variables, must be included before the libraries to allow overriding defaults
+@import "theme/theme-variables";
+// 3rd party libraries
+@import "~material-design-icons-iconfont/dist/fonts/material-icons.css";
+// Angular Material custom theme
+// The mixins below must be included once so we separated them from the variables
+@import "@angular/material/theming";
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($app-theme);
+// Theme customization
+@import "theme/theme";
+body {
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Poppins;
+}
+
+// common css file
+@import "common.scss";
+
+@import "theme/dark-theme.scss";
+@import "theme/global.scss";
+@import "theme/landing.scss";
+
+
+.toaster {
+  position: absolute;
+  top: 109px;
+  right: 37px;
+  color: #fff;
+}
+
+// .success {
+//     color: green;
+// }
+@font-face {
+  // font-family: calibri-font;
+  font-family: Poppins;
+  src: url(./assets/fonts/Calibri.ttf); // src: url(./assets/fonts/calibriz.ttf);
+}
+
+* {
+  // font-family: calibri-font;
+  font-family: Poppins;
+  outline: none;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #ffffff;
+}
+mat-header-cell,
+mat-cell,
+.mat-cell {
+  display: block; // flex prevents padding from working
+  min-height: auto; // overrides the 'inherit' that set the min height of the row
+  margin: auto !important;
+}
+
+/* CSS to change Default/'Accent' color */
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: rgb(86, 248, 5) !important;
+}
+// .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+//   background-color:rgb(117, 191, 122);//Your color
+// }
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: rgb(50, 177, 92); //Your color
+}
+
+.mat-checkbox-inner-container {
+  margin-right: 5px !important;
+}
+.mat-checkbox {
+  padding-right: 10px !important;
+}
+
+.mat-select-placeholder {
+  color: #595e62;
+  top: -4px !important;
+  position: absolute !important;
+}
+
+.header .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0 0 10px 0 !important;
+}
+
+/* .content
+  div:nth-child(2)
+  form
+  .mat-form-field-appearance-outline
+  .mat-form-field-infix,
+.content
+  .m-container
+  .input-container
+  .mat-form-field-appearance-outline
+  .mat-form-field-infix {
+  padding: 2px 0px 10px 0 !important;
+} */
+
+.content
+  div:nth-child(2)
+  form
+  .mat-form-field-appearance-outline
+  .mat-form-field-infix {
+  padding: 5px 0;
+  border-top: 0.84375em solid transparent;
+}
+
+// for 2 label of mat-card
+.content
+  div:nth-child(2)
+  form
+  .mat-card:nth-child(1).mat-card:not(.childContainer)
+  .mat-form-field-appearance-outline
+  .mat-form-field-infix {
+  padding: 0.4em 0;
+  border-top: 0.84375em solid transparent;
+}
+
+.content
+  div:nth-child(2)
+  .new-mat-card
+  .mat-form-field-appearance-outline
+  .mat-form-field-infix {
+  padding: 2px 0px 10px 0 !important;
+  margin: 1px;
+}
+
+.content
+  div:nth-child(2)
+  form
+  .mat-form-field-appearance-outline
+  .mat-form-field-flex {
+  padding: 1px 0.75em 0 0.75em;
+  margin-top: 0px !important;
+  position: relative;
+}
+
+.content div:nth-child(2) form .mat-input-element {
+  // padding: 4px 0px 1px;
+  padding: 0px 0px 1px;
+}
+
+.content div:nth-child(2) form .mat-expansion-panel-header-description {
+  margin: 0px !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-prefix {
+  top: 0.2em;
+}
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  display: flex;
+  position: absolute;
+  top: 0.25em;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  height: 40px !important;
+}
+// .m-container form .mat-form-field-appearance-outline .mat-form-field-infix {
+//   padding: 10px 0px 10px 0 !important;
+// }
+
+.dateInput {
+  text-transform: uppercase;
+  display: inline-block;
+  width: 36%;
+  background: none;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 10px 5px;
+}
+
+.m-container:not(.view-profile) img.ng-star-inserted {
+  margin: 15px 14px;
+  // width: 70px;
+  width: auto;
+  height: 70px;
+}
+
+.m-container form .mat-card:nth-child(2) {
+  width: 100% !important;
+}
+
+.m-container form:not(.childContainer) > .input-container,
+.card-item-center .input-container {
+  display: flex;
+  align-items: center;
+  width: 45% !important;
+}
+
+.card-item-center .input-container .label-container {
+  width: 30% !important;
+}
+.card-item-center .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 4px 0 1em 0;
+}
+
+.m-container form .mat-card.mat-focus-indicator,
+.m-container .mat-card:not(.childContainer).mat-focus-indicator {
+  justify-content: center !important;
+}
+
+.textarea .mat-form-field-appearance-outline .mat-form-field-outline {
+  height: auto !important;
+}
+.material-icons {
+  color: #a1a6aa;
+}
+
+body.dark {
+  img.ng-star-inserted {
+    // background-color: #16191c !important;
+    color: #fff !important;
+    box-shadow: inset 0 0 1px currentColor;
+  }
+  .mat-select-panel {
+    // background-color: #16191c; /* Change the background color */
+    background-color: currentColor; /* Change the background color */
+    color: #fff;
+  }
+  // .mat-option-text {
+  //   color: #fff;
+  // }
+}
+
+body:not(.dark) img.ng-star-inserted {
+  background: currentColor;
+  box-shadow: inset 0 0 1px currentColor;
+}
+
+body:not(.dark) .mat-dialog-container {
+  img {
+    background: currentColor !important;
+  }
+}
+
+/**
+* Table width control
+**/
+// .m-table-container {
+//   width: 800px; /* Set your desired fixed width */
+//   overflow-x: auto;
+// }
+
+.mat-table {
+  overflow-x: scroll;
+  max-width: 100%;
+}
+
+.mat-header-cell {
+  word-wrap: initial;
+  display: table-cell !important;
+  padding: 5px 15px;
+  line-break: unset;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden !important;
+  vertical-align: middle;
+}
+
+.mat-cell {
+  word-wrap: initial;
+  display: table-cell;
+  padding: 10px 15px;
+  line-break: unset;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden !important;
+  vertical-align: middle;
+}
+
+// .mat-header-cell:first-of-type, mat-cell:first-of-type {
+//   padding: 6px !important;
+// }
+
+.mat-row
+// .mat-header-row
+ {
+  display: table-row;
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 1224px) {
+  mat-cell:first-of-type,
+  mat-header-cell:first-of-type,
+  mat-footer-cell:first-of-type {
+    padding-left: 4px !important;
+  }
+  .mat-cell,
+  .mat-header-cell {
+    width: 800px; /* Let them expand to fit content */
+    padding: 5px 5px;
+  }
+}
+/**
+* Table width control
+**/
+
+body.dark {
+  .theme-icon {
+    height: 2rem;
+    width: 2rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background-color: rgb(56 116 255 / 24%) !important;
+    color: #85a9ff !important;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+  .theme-icon:hover {
+    background-color: #6991d3;
+    color: #f5f8ff;
+  }
+}
+
+body:not(.dark) {
+  .theme-icon {
+    height: 2rem;
+    width: 2rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background-color: rgb(255 204 133 / 24%);
+    color: #e5780b;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+  .theme-icon:hover {
+    background-color: #e5780b;
+    color: #fff6e0;
+  }
+}

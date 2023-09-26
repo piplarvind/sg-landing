@@ -1,0 +1,1051 @@
+$color_1: var(--all-white);
+$color_2: var(--neutral-1);
+$color_3: var(--color-gray-100);
+$color_4: var(--neutrall-40);
+$color_5: var(--neutral-3);
+$color_6: var(--neutral-5);
+$color_7: var(--neutral-light-neutral-light-6);
+$color_8: var(--neutral-2);
+$font-family_1: var(--font-poppins);
+$background-color_1: #000;
+$background-color_2: var(--brand-1);
+$background-color_3: #f1f4f6;
+$background-color_4: var(--neutral-1);
+$background-color_5: var(--color-whitesmoke-100);
+$background-color_6: var(--accent-2);
+$background-color_7: #f7f7f7;
+$background-color_8: var(--all-white);
+
+.group-child {
+	position: absolute;
+	left: 0;
+	width: 1920px;
+	top: 0;
+	height: 757px;
+	object-fit: cover;
+}
+
+.group-item {
+	position: absolute;
+	left: 0;
+	width: 1920px;
+	top: 0;
+	height: 757px;
+	background-color: $background-color_1;
+	opacity: 0.85;
+
+}
+
+.header-container {
+	position: fixed;
+	z-index: 999;
+	height: 85px;
+	width: 100%;
+	transition: top 0.3s;
+}
+
+.sticky {
+	background-color: #000;
+	opacity: 0.75;
+	position: fixed;
+	top: 0;
+	z-index: 100;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	/* Add shadow when sticky */
+}
+
+.wave-1 {
+	position: absolute;
+	left: 0;
+	width: 1920px;
+	top: 573px;
+	height: 184px;
+	overflow: hidden;
+}
+
+.sportgrit-1-icon {
+	position: relative;
+	top: 20px;
+	left: 394px;
+	width: 163px;
+	height: 50px;
+	overflow: hidden;
+}
+
+.our-features {
+	position: absolute;
+	top: 10px;
+	left: 0;
+	font-weight: 600;
+	text-align: right;
+}
+
+.contact-us {
+	position: absolute;
+	top: 10px;
+	left: 135px;
+	font-weight: 600;
+	left: 390px;
+}
+
+.testimonials {
+	position: absolute;
+	top: 10px;
+	left: 135px;
+	font-weight: 600;
+	left: 423px;
+	left: 278px;
+}
+
+.watch-videos {
+	position: absolute;
+	top: 10px;
+	left: 135px;
+	font-weight: 600;
+}
+
+.sign-in {
+	position: relative;
+	font-weight: 600;
+	color: #fff;
+	text-decoration: none;
+}
+
+.hrd-menu {
+	cursor: pointer;
+}
+
+.sign-in-wrapper {
+	position: absolute;
+	top: 0;
+	left: 553px;
+	border-radius: var(--br-7xs);
+	background-color: $background-color_2;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	padding: 10px var(--padding-mini);
+}
+
+.our-features-parent {
+	position: absolute;
+	top: 23px;
+	left: 889px;
+	width: 638px;
+	height: 44px;
+}
+
+.vector-icon {
+	position: absolute;
+	top: 23px;
+	left: 889px;
+	width: 638px;
+	height: 44px;
+	height: 24.41%;
+	width: 100%;
+	top: 75.59%;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	max-width: 100%;
+	overflow: hidden;
+	max-height: 100%;
+}
+
+.welcome-to-sportgrit {
+	margin: 0;
+}
+
+.welcome-to-sportgrit-container {
+	position: absolute;
+	top: 198px;
+	left: 397px;
+	font-size: 48px;
+	font-weight: 600;
+}
+
+.lorem-ipsum-dolor {
+	position: absolute;
+	top: 362px;
+	left: 393px;
+	display: inline-block;
+	width: 455px;
+}
+
+.group-icon {
+	position: absolute;
+	height: 6.76%;
+	width: 8.54%;
+	top: 62.53%;
+	right: 70.99%;
+	bottom: 30.71%;
+	left: 20.47%;
+	max-width: 100%;
+	overflow: hidden;
+	max-height: 100%;
+}
+
+.group-icon1 {
+	position: absolute;
+	height: 6.76%;
+	width: 8.54%;
+	top: 62.53%;
+	right: 70.99%;
+	bottom: 30.71%;
+	left: 20.47%;
+	max-width: 100%;
+	overflow: hidden;
+	max-height: 100%;
+	right: 60.89%;
+	left: 30.57%;
+}
+
+.launch-iphone12black-portrait-icon {
+	position: absolute;
+	top: 59px;
+	left: 1088px;
+	width: 453px;
+	height: 765px;
+	object-fit: cover;
+}
+
+.lorem-ipsum-dolor1 {
+	position: absolute;
+	font-size: var(--font-size-base);
+	top: 952px;
+	left: 587px;
+	text-align: center;
+	display: inline-block;
+	width: 746px;
+}
+
+.wave-1-parent {
+	position: absolute;
+	font-size: var(--font-size-base);
+	top: 0;
+	left: 0;
+	width: 1920px;
+	height: 758px;
+	color: $color_1;
+}
+
+.our-features1 {
+	position: absolute;
+	top: 0;
+	left: calc(50% - 364.5px);
+	-webkit-text-stroke: 1px #d2dcde;
+}
+
+.why-choose-us {
+	position: absolute;
+	top: 48px;
+	left: calc(50% - 143.5px);
+	font-size: var(--font-size-17xl);
+	color: $color_2;
+}
+
+.group-inner {
+	position: absolute;
+	top: 133px;
+	left: calc(50% - 56.5px);
+	background-color: $background-color_2;
+	width: 113px;
+	height: 3px;
+}
+
+.our-features-group {
+	position: absolute;
+	top: 782px;
+	left: calc(50% - 364px);
+	width: 729px;
+	height: 150px;
+	text-align: center;
+	font-size: var(--font-size-81xl);
+	color: $color_3;
+}
+
+.launch-iphone12black-portrait-icon1 {
+	position: absolute;
+	top: 1010px;
+	left: calc(50% - 179px);
+	width: 358px;
+	height: 677px;
+	object-fit: cover;
+}
+
+.line-icon {
+	position: absolute;
+	top: 12.33px;
+	left: 302.33px;
+	width: 112.67px;
+	height: 5.33px;
+}
+
+.lorem-ipsum-dolor2 {
+	position: absolute;
+	top: 0;
+	left: 93px;
+	font-weight: 600;
+}
+
+.lorem-ipsum-dolor3 {
+	position: absolute;
+	top: 40px;
+	left: 0;
+	font-size: var(--font-size-sm);
+	color: $color_4;
+	display: inline-block;
+	width: 291px;
+	height: 70px;
+}
+
+.group-parent {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 415px;
+	height: 110px;
+	top: 188px;
+	top: 376px;
+	top: 1106px;
+	left: 393px;
+	height: 486px;
+	text-align: right;
+	color: $color_2;
+}
+
+.vector-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 415px;
+	height: 110px;
+	top: 188px;
+	top: 376px;
+}
+
+.vector-group {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 415px;
+	height: 110px;
+	top: 188px;
+}
+
+.vector-parent {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 415px;
+	height: 110px;
+}
+
+.landing-child {
+	position: absolute;
+	top: 1118.33px;
+	left: 1112px;
+	width: 112.67px;
+	height: 5.33px;
+}
+
+.lorem-ipsum-dolor8 {
+	position: absolute;
+	top: 1106px;
+	left: 1236px;
+	font-weight: 600;
+	color: $color_2;
+}
+
+.lorem-ipsum-dolor9 {
+	position: absolute;
+	top: 1146px;
+	left: 1236px;
+	font-size: var(--font-size-sm);
+	display: inline-block;
+	width: 291px;
+	height: 70px;
+}
+
+.landing-item {
+	position: absolute;
+	top: 1306.33px;
+	left: 1112px;
+	width: 112.67px;
+	height: 5.33px;
+}
+
+.lorem-ipsum-dolor10 {
+	position: absolute;
+	top: 1294px;
+	left: 1236px;
+	font-weight: 600;
+	color: $color_2;
+}
+
+.lorem-ipsum-dolor11 {
+	position: absolute;
+	top: 1334px;
+	left: 1236px;
+	font-size: var(--font-size-sm);
+	display: inline-block;
+	width: 291px;
+	height: 70px;
+}
+
+.landing-inner {
+	position: absolute;
+	top: 1494.33px;
+	left: 1112px;
+	width: 112.67px;
+	height: 5.33px;
+}
+
+.lorem-ipsum-dolor12 {
+	position: absolute;
+	top: 1482px;
+	left: 1236px;
+	font-weight: 600;
+	color: $color_2;
+}
+
+.lorem-ipsum-dolor13 {
+	position: absolute;
+	top: 1522px;
+	left: 1236px;
+	font-size: var(--font-size-sm);
+	display: inline-block;
+	width: 291px;
+	height: 70px;
+}
+
+.rectangle-div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: $background-color_3;
+	width: 1920px;
+	height: 662px;
+}
+
+.watch-videos1 {
+	position: absolute;
+	top: 0;
+	left: calc(50% - 389px);
+	-webkit-text-stroke: 1px #c1cdcf;
+}
+
+.how-to-get {
+	position: absolute;
+	top: 48px;
+	left: calc(50% - 175px);
+	font-size: var(--font-size-17xl);
+	color: $color_2;
+}
+
+.group-child3 {
+	position: absolute;
+	top: 133px;
+	left: calc(50% - 56px);
+	background-color: $background-color_2;
+	width: 113px;
+	height: 3px;
+}
+
+.watch-videos-parent {
+	position: absolute;
+	top: 51px;
+	left: calc(50% - 389px);
+	width: 778px;
+	height: 150px;
+	font-size: var(--font-size-81xl);
+	color: $color_3;
+}
+
+.group-child4 {
+	position: absolute;
+	top: 0;
+	width: 358px;
+	height: 201px;
+	left: 1px;
+	background-color: $background-color_4;
+	opacity: 0.7;
+}
+
+.rectangle-icon {
+	position: absolute;
+	top: 0;
+	width: 358px;
+	height: 201px;
+	left: 0;
+	object-fit: cover;
+}
+
+.play-circle-icon {
+	position: absolute;
+	top: 69px;
+	left: 147px;
+	width: 64px;
+	height: 64px;
+}
+
+.lorem-ipsum-dolor14 {
+	position: absolute;
+	top: 211px;
+	left: 1px;
+	font-weight: 600;
+	display: inline-block;
+	width: 357px;
+}
+
+.group-child9 {
+	position: absolute;
+	top: 252px;
+	left: 393px;
+	width: 359px;
+	height: 259px;
+	left: 781px;
+	left: 1169px;
+	top: 551px;
+	left: 911px;
+	width: 98px;
+	height: 41px;
+}
+
+.group-div {
+	position: absolute;
+	top: 252px;
+	left: 393px;
+	width: 359px;
+	height: 259px;
+	left: 781px;
+	left: 1169px;
+}
+
+.rectangle-container {
+	position: absolute;
+	top: 252px;
+	left: 393px;
+	width: 359px;
+	height: 259px;
+	left: 781px;
+}
+
+.rectangle-group {
+	position: absolute;
+	top: 252px;
+	left: 393px;
+	width: 359px;
+	height: 259px;
+}
+
+.rectangle-parent {
+	position: absolute;
+	top: 1747px;
+	left: 0;
+	width: 1920px;
+	height: 662px;
+	text-align: center;
+	font-size: var(--font-size-base);
+	color: $color_5;
+}
+
+.about-us {
+	position: absolute;
+	top: 0;
+	left: calc(50% - 251px);
+	-webkit-text-stroke: 1px #d2dcde;
+}
+
+.about-us-parent {
+	position: absolute;
+	top: 48px;
+	left: calc(50% - 157px);
+	font-size: var(--font-size-17xl);
+	color: $color_2;
+	top: 2459px;
+	left: calc(50% - 251px);
+	width: 502px;
+	height: 150px;
+	text-align: center;
+	font-size: var(--font-size-81xl);
+	color: $color_3;
+}
+
+.what-is-sportgrit {
+	position: absolute;
+	top: 48px;
+	left: calc(50% - 157px);
+	font-size: var(--font-size-17xl);
+	color: $color_2;
+}
+
+.group-child11 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 10px;
+	width: 552px;
+	height: 338px;
+	object-fit: cover;
+}
+
+.lorem-ipsum-dolor17 {
+	position: absolute;
+	top: 19px;
+	left: 582px;
+	line-height: 30px;
+	display: inline-block;
+	width: 552px;
+}
+
+.group-child12 {
+	position: absolute;
+	height: 15.16%;
+	width: 31.57%;
+	top: 78.99%;
+	right: 17.11%;
+	bottom: 5.84%;
+	left: 51.32%;
+	max-width: 100%;
+	overflow: hidden;
+	max-height: 100%;
+}
+
+.rectangle-parent1 {
+	position: absolute;
+	top: 2649px;
+	left: 394px;
+	width: 1134px;
+	height: 338px;
+	font-size: var(--font-size-base);
+}
+
+.group-child13 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: $background-color_4;
+	width: 1920px;
+	height: 392px;
+}
+
+.line-div {
+	position: absolute;
+	top: 313.5px;
+	left: calc(50% - 567.5px);
+	border-top: 1px solid var(--neutral-dark-neutral-dark-10);
+	box-sizing: border-box;
+	width: 1135px;
+	height: 1px;
+}
+
+.copyright-sportgrit-all {
+	position: absolute;
+	top: 344px;
+	left: calc(50% - 140px);
+	font-size: 12px;
+}
+
+.menu {
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: var(--font-size-xl);
+	font-weight: 600;
+	color: $color_1;
+}
+
+.help {
+	position: absolute;
+	top: 50px;
+	left: 0;
+}
+
+.terms-of-service {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	top: 86px;
+}
+
+.privacy-policy {
+	position: absolute;
+	top: 122px;
+	left: 0;
+}
+
+.subscriptions {
+	position: absolute;
+	top: 122px;
+	left: 0;
+	top: 158px;
+}
+
+.get-the-app {
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-weight: 600;
+}
+
+.group-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 115px;
+	height: 179px;
+}
+
+.group-icon2 {
+	position: absolute;
+	height: 26.61%;
+	width: 95.16%;
+	top: 39.29%;
+	right: 4.84%;
+	bottom: 34.1%;
+	left: 0;
+	max-width: 100%;
+	overflow: hidden;
+	max-height: 100%;
+}
+
+.group-icon3 {
+	position: absolute;
+	height: 26.61%;
+	width: 95.16%;
+	top: 39.29%;
+	right: 4.84%;
+	bottom: 34.1%;
+	left: 0;
+	max-width: 100%;
+	overflow: hidden;
+	max-height: 100%;
+	height: 26.6%;
+	top: 73.4%;
+	bottom: 0;
+}
+
+.get-the-app-parent {
+	position: absolute;
+	top: 0;
+	left: 387px;
+	width: 124px;
+	height: 134.88px;
+	font-size: var(--font-size-xl);
+	color: $color_1;
+}
+
+.facebook {
+	position: absolute;
+	top: 50px;
+	left: 28px;
+}
+
+.instagram {
+	position: absolute;
+	top: 86px;
+	left: 28px;
+}
+
+.twitter {
+	position: absolute;
+	top: 86px;
+	left: 28px;
+	top: 122px;
+}
+
+.youtube {
+	position: absolute;
+	top: 86px;
+	left: 28px;
+	top: 122px;
+	top: 158px;
+}
+
+.facebook-1-icon {
+	position: absolute;
+	top: 53px;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+}
+
+.instagram-1-icon {
+	position: absolute;
+	top: 53px;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	top: 89px;
+}
+
+.twitter-1-icon {
+	position: absolute;
+	top: 53px;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	top: 89px;
+	top: 125px;
+}
+
+.youtube-play-1-icon {
+	position: absolute;
+	top: 53px;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	top: 89px;
+	top: 125px;
+	top: 161px;
+}
+
+.group-container {
+	position: absolute;
+	top: 0;
+	left: 193px;
+	width: 101px;
+	height: 179px;
+	top: 60px;
+	left: 393px;
+	width: 511px;
+	color: $color_6;
+}
+
+.social-parent {
+	position: absolute;
+	top: 0;
+	left: 193px;
+	width: 101px;
+	height: 179px;
+}
+
+.group-child14 {
+	position: absolute;
+	top: 23.91%;
+	bottom: 54.35%;
+	border-radius: var(--br-7xs);
+	height: 21.74%;
+	width: 47.19%;
+	right: 52.81%;
+	left: 0;
+	background-color: $background-color_5;
+	border: 1px solid var(--neutral-4);
+	box-sizing: border-box;
+}
+
+.group-child15 {
+	height: 21.74%;
+	width: 47.19%;
+	right: 52.81%;
+	left: 0;
+	background-color: $background-color_5;
+	border: 1px solid var(--neutral-4);
+	box-sizing: border-box;
+	position: absolute;
+	top: 51.09%;
+	bottom: 27.17%;
+	border-radius: var(--br-7xs);
+}
+
+.group-child16 {
+	height: 21.74%;
+	width: 47.19%;
+	right: 52.81%;
+	left: 0;
+	background-color: $background-color_5;
+	border: 1px solid var(--neutral-4);
+	box-sizing: border-box;
+	top: 78.26%;
+	bottom: 0;
+	position: absolute;
+	border-radius: var(--br-7xs);
+}
+
+.group-child17 {
+	position: absolute;
+	border-radius: var(--br-7xs);
+	height: 48.91%;
+	width: 51%;
+	top: 23.91%;
+	right: 0;
+	bottom: 27.17%;
+	left: 49%;
+	background-color: $background-color_5;
+	border: 1px solid var(--neutral-4);
+	box-sizing: border-box;
+}
+
+.send-message-wrapper {
+	position: absolute;
+	border-radius: var(--br-7xs);
+	top: 144px;
+	left: 270px;
+	background-color: $background-color_6;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	padding: 8px var(--padding-mini);
+	font-size: var(--font-size-base);
+	color: $color_1;
+}
+
+.name {
+	position: absolute;
+	top: 29.35%;
+	left: 2.36%;
+}
+
+.email-address {
+	position: absolute;
+	top: 56.52%;
+	left: 2.36%;
+}
+
+.message {
+	position: absolute;
+	top: 56.52%;
+	left: 2.36%;
+	top: 83.7%;
+	top: 29.35%;
+	left: 51.36%;
+}
+
+.phone {
+	position: absolute;
+	top: 56.52%;
+	left: 2.36%;
+	top: 83.7%;
+}
+
+.get-in-touch-parent {
+	position: absolute;
+	top: 60px;
+	left: 975px;
+	width: 551px;
+	height: 184px;
+	color: $color_4;
+}
+
+.group-child18 {
+	position: absolute;
+	left: 0;
+	width: 1920px;
+	top: 0;
+	background-color: $background-color_7;
+	height: 374px;
+}
+
+.rectangle-parent2 {
+	position: absolute;
+	left: 0;
+	width: 1920px;
+	top: 3431px;
+	height: 392px;
+	font-size: var(--font-size-sm);
+	color: $color_7;
+}
+
+.if-youre-on {
+	position: absolute;
+	top: 50px;
+	left: calc(50% - 198px);
+	font-weight: 600;
+}
+
+.baseball-1-icon {
+	position: absolute;
+	top: 120px;
+	left: 475px;
+	width: 194px;
+	height: 77px;
+	object-fit: cover;
+}
+
+.basketball-1-icon {
+	position: absolute;
+	top: 120px;
+	left: 475px;
+	width: 194px;
+	height: 77px;
+	object-fit: cover;
+	top: 247px;
+	width: 191.51px;
+}
+
+.football-1-icon {
+	position: absolute;
+	top: 120px;
+	left: 475px;
+	width: 194px;
+	height: 77px;
+	object-fit: cover;
+	top: 247px;
+	width: 191.51px;
+	top: 120px;
+	left: 862px;
+	width: 194px;
+}
+
+.soccer-1-icon {
+	position: absolute;
+	top: 247px;
+	left: 1252px;
+	width: 191.3px;
+	height: 77px;
+	object-fit: cover;
+	top: 120px;
+	width: 189.75px;
+	top: 247px;
+	left: 862px;
+	width: 191.51px;
+}
+
+.softball-1-icon {
+	position: absolute;
+	top: 247px;
+	left: 1252px;
+	width: 191.3px;
+	height: 77px;
+	object-fit: cover;
+	top: 120px;
+	width: 189.75px;
+}
+
+.volleyball-1-icon {
+	position: absolute;
+	top: 247px;
+	left: 1252px;
+	width: 191.3px;
+	height: 77px;
+	object-fit: cover;
+}
+
+.rectangle-parent3 {
+	position: absolute;
+	top: 3057px;
+	left: 0;
+	width: 1920px;
+	height: 374px;
+	text-align: center;
+	color: $color_8;
+}
+
+.landing {
+	// position: relative;
+	background-color: $background-color_8;
+	width: 100%;
+	height: 3823px;
+	overflow: hidden;
+	text-align: left;
+	font-size: var(--font-size-xl);
+	color: $color_4;
+	font-family: $font-family_1;
+}

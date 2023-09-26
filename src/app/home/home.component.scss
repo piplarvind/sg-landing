@@ -1,0 +1,163 @@
+.container {
+  text-align: center;
+  padding: 1em;
+}
+.mat-card {
+  padding: 10px;
+}
+.logo {
+  width: 150px;
+  margin: 0 auto;
+}
+
+q {
+  font-style: italic;
+  quotes: "« " " »";
+}
+
+.card-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: normal;
+}
+
+.column {
+  padding: 0 10px;
+}
+.dash-heading {
+  height: 60px;
+  padding-top: 0px;
+}
+.overall-statics {
+  display: flex;
+  width: 100%;
+  padding: 15px;
+  align-items: center;
+  gap: 883px;
+  border-radius: 10px;
+  border: 1px solid var(--dashboard-grey, #e3e6e9);
+  background: var(--all-white, #fff);
+  padding: 5px 15px!important;
+  // height: 60px;
+}
+
+// .overall-statics:is(.mat-expanded) {
+//   height: 100%;
+// }
+
+.overall-statics .mat-expansion-panel-header-title {
+  color: var(--neutral-3, #303437);
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.mat-expansion-panel
+  .mat-expansion-panel-header.cdk-keyboard-focused:not([aria-disabled="true"]),
+.mat-expansion-panel
+  .mat-expansion-panel-header.cdk-program-focused:not([aria-disabled="true"]),
+.mat-expansion-panel:not(.mat-expanded)
+  .mat-expansion-panel-header:hover:not([aria-disabled="true"]) {
+  background: none;
+}
+
+// .overall-statics .mat-expansion-panel-body {
+//   padding: 0 !important;
+// }
+
+.card-item {
+  margin: 10px 10px 5px 0px;
+  cursor: pointer;
+  width: calc(33% - 7px);
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid var(--dashboard-grey, #e3e6e9);
+  background: var(--all-white, #fff);
+  box-shadow: 0px 4px 4px 0px #d9d9d9;
+}
+
+.overall-statics .mat-expansion-panel-content {
+  padding-left: 0 !important;
+}
+.overall-statics .mat-expansion-panel .mat-card.card-item {
+  background: #c3d3e7;
+  box-shadow: 0px 4px 4px 0px #d9d9d9;
+}
+.overall-statics .mat-expansion-panel .mat-card.card-item .svg-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  background: var(--accent-2, #35679d);
+  padding: 6px;
+}
+
+.main-static .svg-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  background: var(--accent-2, #35679d);
+  padding: 10px;
+}
+.svg-icon svg path {
+  color: white !important;
+}
+
+.card-label {
+  color: var(--neutral-3, #303437);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.user-count {
+  color: var(--brand-1, #ec1c37);
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+// .card-item:hover {
+//   background: linear-gradient(to left, #b7172b, #303437);
+// }
+
+.m-table-container {
+  gap: 10px;
+}
+
+/* styles.css or your component's CSS file */
+.custom-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Adjust spacing as needed */
+}
+
+.custom-icon img {
+  width: 24px; /* Set the icon's width */
+  height: 24px; /* Set the icon's height */
+  transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
+}
+
+.custom-icon img.expanded {
+  transform: rotate(180deg); /* Rotate the icon when expanded */
+}
+
+.mat-expansion-panel-header .mat-expansion-indicator {
+  border: 1px solid !important;
+  border-radius: 50% !important;
+  width: 20px !important;
+  height: 20px !important;
+  padding: 0px 5px !important;
+}
+
+::ng-deep .overall-statics .mat-expansion-panel-body {
+  padding: 0 !important;
+}
