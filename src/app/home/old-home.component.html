@@ -1,0 +1,325 @@
+<div class="landing">
+  <div class="wave-1-parent">
+    <div class="wave-1"></div>
+    <img class="group-child" alt="" src="./assets/images/group-1@2x.png" />
+
+    <div class="group-item"></div>
+    <div class="header-container" [class.sticky]="isSticky">
+      <a href="/"
+        ><img
+          class="sportgrit-1-icon"
+          alt="logo"
+          src="./assets/images/sportgrit-1.svg"
+      /></a>
+
+      <div class="our-features-parent">
+        <div
+          class="our-features hrd-menu"
+          (click)="scrollToElement('ourFeatures')"
+        >
+          Our Features
+        </div>
+        <div
+          class="watch-videos hrd-menu"
+          (click)="scrollToElement('watchVideos')"
+        >
+          Watch Videos
+        </div>
+        <div class="contact-us hrd-menu" (click)="scrollToElement('contactUs')">
+          Contact Us
+        </div>
+        <div class="testimonials hrd-menu" (click)="scrollToElement('aboutUs')">
+          About Us
+        </div>
+        <div class="sign-in-wrapper">
+          <a href="https://stage.sportgrit.com/" class="sign-in">Sign In</a>
+        </div>
+      </div>
+    </div>
+    <img class="vector-icon" alt="" src="./assets/images/vector.svg" />
+
+    <div class="welcome-to-sportgrit-container">
+      <p class="welcome-to-sportgrit">Welcome To SportGrit</p>
+      <p class="welcome-to-sportgrit">Play. Score. Connect.</p>
+    </div>
+    <div class="lorem-ipsum-dolor">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.
+    </div>
+    <img class="group-icon" alt="" src="./assets/images/group.svg" />
+
+    <img class="group-icon1" alt="" src="./assets/images/group1.svg" />
+
+    <img
+      class="launch-iphone12black-portrait-icon"
+      alt=""
+      src="./assets/images/launch-iphone12black-portrait-1@2x.png"
+    />
+  </div>
+  <div class="lorem-ipsum-dolor1">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </div>
+  <div id="ourFeatures">
+    <div class="our-features-group">
+      <b class="our-features1">OUR FEATURES</b>
+      <b class="why-choose-us">Why Choose Us</b>
+      <div class="group-inner"></div>
+    </div>
+    <img
+      class="launch-iphone12black-portrait-icon1"
+      alt=""
+      src="./assets/images/launch-iphone12black-portrait-11@2x.png"
+    />
+  </div>
+  <div class="group-parent">
+    <div class="vector-parent">
+      <img class="line-icon" alt="" src="./assets/images/line-1.svg" />
+
+      <div class="lorem-ipsum-dolor2">Lorem Ipsum Dolor</div>
+      <div class="lorem-ipsum-dolor3">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
+        luctus nec ullamcorper mattis.
+      </div>
+    </div>
+    <div class="vector-group">
+      <img class="line-icon" alt="" src="./assets/images/line-1.svg" />
+
+      <div class="lorem-ipsum-dolor2">Lorem Ipsum Dolor</div>
+      <div class="lorem-ipsum-dolor3">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
+        luctus nec ullamcorper mattis.
+      </div>
+    </div>
+    <div class="vector-container">
+      <img class="line-icon" alt="" src="./assets/images/line-1.svg" />
+
+      <div class="lorem-ipsum-dolor2">Lorem Ipsum Dolor</div>
+      <div class="lorem-ipsum-dolor3">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
+        luctus nec ullamcorper mattis.
+      </div>
+    </div>
+  </div>
+  <img class="landing-child" alt="" src="./assets/images/line-11.svg" />
+
+  <div class="lorem-ipsum-dolor8">Lorem Ipsum Dolor</div>
+  <div class="lorem-ipsum-dolor9">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
+    luctus nec ullamcorper mattis.
+  </div>
+  <img class="landing-item" alt="" src="./assets/images/line-11.svg" />
+
+  <div class="lorem-ipsum-dolor10">Lorem Ipsum Dolor</div>
+  <div class="lorem-ipsum-dolor11">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
+    luctus nec ullamcorper mattis.
+  </div>
+  <img class="landing-inner" alt="" src="./assets/images/line-11.svg" />
+
+  <div class="lorem-ipsum-dolor12">Lorem Ipsum Dolor</div>
+  <div class="lorem-ipsum-dolor13">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
+    luctus nec ullamcorper mattis.
+  </div>
+  <div class="rectangle-parent" id="watchVideos">
+    <div class="rectangle-div"></div>
+    <div class="watch-videos-parent">
+      <b class="watch-videos1">WATCH VIDEOS</b>
+      <b class="how-to-get">How To Get Started</b>
+      <div class="group-child3"></div>
+    </div>
+
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let slide of slides">
+        <ng-template carouselSlide [id]="slide.id.toString()">
+          <img [src]="slide.img" [alt]="slide.alt" [title]="slide.title" />
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+
+    <div class="rectangle-group">
+      <img
+        class="rectangle-icon"
+        alt=""
+        src="./assets/images/rectangle-5@2x.png"
+      />
+
+      <div class="group-child4"></div>
+      <img
+        class="play-circle-icon"
+        alt=""
+        src="./assets/images/play-circle.svg"
+      />
+
+      <div class="lorem-ipsum-dolor14">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      </div>
+    </div>
+    <div class="rectangle-container">
+      <img
+        class="rectangle-icon"
+        alt=""
+        src="./assets/images/rectangle-51@2x.png"
+      />
+
+      <div class="group-child4"></div>
+      <img
+        class="play-circle-icon"
+        alt=""
+        src="./assets/images/play-circle.svg"
+      />
+
+      <div class="lorem-ipsum-dolor14">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      </div>
+    </div>
+    <div class="group-div">
+      <img
+        class="rectangle-icon"
+        alt=""
+        src="./assets/images/rectangle-52@2x.png"
+      />
+
+      <div class="group-child4"></div>
+      <img
+        class="play-circle-icon"
+        alt=""
+        src="./assets/images/play-circle.svg"
+      />
+
+      <div class="lorem-ipsum-dolor14">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      </div>
+    </div>
+    <img class="group-child9" alt="" src="./assets/images/group-15.svg" />
+  </div>
+
+  <div class="about-us-parent" id="aboutUs">
+    <b class="about-us">ABOUT US</b>
+    <b class="what-is-sportgrit">What Is SportGrit</b>
+    <div class="group-child3"></div>
+  </div>
+  <div class="rectangle-parent1">
+    <img
+      class="group-child11"
+      alt=""
+      src="./assets/images/rectangle-4@2x.png"
+    />
+
+    <div class="lorem-ipsum-dolor17">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.
+    </div>
+    <img class="group-child12" alt="" src="./assets/images/group-19.svg" />
+  </div>
+
+  <div class="rectangle-parent2">
+    <div class="group-child13"></div>
+    <div class="line-div"></div>
+    <div class="copyright-sportgrit-all">
+      2023 © Copyright SportGrit. All Rights Reserved
+    </div>
+    <div class="group-container">
+      <div class="group-wrapper">
+        <div class="group-wrapper">
+          <div class="menu">Menu</div>
+          <div class="help">Help</div>
+          <div class="terms-of-service">Terms of Service</div>
+          <div class="privacy-policy">Privacy Policy</div>
+          <div class="subscriptions">Subscriptions</div>
+        </div>
+      </div>
+      <div class="get-the-app-parent">
+        <div class="get-the-app">Get The App</div>
+        <img class="group-icon2" alt="" src="./assets/images/group2.svg" />
+
+        <img class="group-icon3" alt="" src="./assets/images/group3.svg" />
+      </div>
+      <div class="social-parent">
+        <div class="menu">Social</div>
+        <div class="facebook">Facebook</div>
+        <div class="instagram">Instagram</div>
+        <div class="twitter">Twitter</div>
+        <div class="youtube">YouTube</div>
+        <img
+          class="facebook-1-icon"
+          alt=""
+          src="./assets/images/facebook-1.svg"
+        />
+
+        <img
+          class="instagram-1-icon"
+          alt=""
+          src="./assets/images/instagram-1.svg"
+        />
+
+        <img
+          class="twitter-1-icon"
+          alt=""
+          src="./assets/images/twitter-1.svg"
+        />
+
+        <img
+          class="youtube-play-1-icon"
+          alt=""
+          src="./assets/images/youtubeplay-1.svg"
+        />
+      </div>
+    </div>
+    <div class="get-in-touch-parent" id="contactUs">
+      <div class="menu">Get In Touch</div>
+      <div class="group-child14"></div>
+      <div class="group-child15"></div>
+      <div class="group-child16"></div>
+      <div class="send-message-wrapper">
+        <div class="sign-in">Send Message</div>
+      </div>
+      <div class="group-child17"></div>
+      <div class="name">Name</div>
+      <div class="email-address">Email address</div>
+      <div class="phone">Phone</div>
+      <div class="message">Message</div>
+    </div>
+  </div>
+  <div class="rectangle-parent3">
+    <div class="group-child18"></div>
+    <div class="if-youre-on">If you're on a team, you need SportGrit!</div>
+    <img
+      class="baseball-1-icon"
+      alt=""
+      src="./assets/images/baseball-1@2x.png"
+    />
+
+    <img
+      class="basketball-1-icon"
+      alt=""
+      src="./assets/images/basketball-1@2x.png"
+    />
+
+    <img
+      class="football-1-icon"
+      alt=""
+      src="./assets/images/football-1@2x.png"
+    />
+
+    <img
+      class="volleyball-1-icon"
+      alt=""
+      src="./assets/images/volleyball-1@2x.png"
+    />
+
+    <img
+      class="softball-1-icon"
+      alt=""
+      src="./assets/images/softball-1@2x.png"
+    />
+
+    <img class="soccer-1-icon" alt="" src="./assets/images/soccer-1@2x.png" />
+  </div>
+</div>

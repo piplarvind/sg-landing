@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TranslateModule } from "@ngx-translate/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "@app/material.module";
+import { NgwWowModule } from 'ngx-wow';
 import { environment } from "../environments/environment";
 import { CoreModule } from "@app/core";
 import { CarouselModule } from "ngx-owl-carousel-o";
@@ -36,6 +37,7 @@ import { ThemeService } from "theme.service";
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    NgwWowModule
   ],
   declarations: [AppComponent],
   providers: [

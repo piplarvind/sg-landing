@@ -5,6 +5,8 @@ import { TranslateService } from "@ngx-translate/core";
 import { merge } from "rxjs";
 import { filter, map, mergeMap } from "rxjs/operators";
 
+import { NgwWowService } from "ngx-wow";
+
 import { environment } from "@env/environment";
 import { Logger, I18nService } from "@app/core";
 import { MessagingService } from "../messaging.service";
@@ -26,7 +28,8 @@ export class AppComponent implements OnInit {
     private titleService: Title,
     private msgService: MessagingService,
     private translateService: TranslateService,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private wowService: NgwWowService
   ) {
     const body = document.getElementsByTagName("body")[0];
     if (themeService.isDarkTheme) {
@@ -38,6 +41,7 @@ export class AppComponent implements OnInit {
     } else {
       body.classList.add("light");
     }
+    this.wowService.init();
   }
 
   ngOnInit() {
