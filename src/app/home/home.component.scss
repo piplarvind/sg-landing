@@ -530,7 +530,7 @@ input {
 .footer-copy p {
   margin-bottom: 0px;
 }
-@media all and (max-width: 1366px) and (min-width: 768px) {
+@media screen and (min-width: 992px) and (max-width: 1366px) {
   img.group-icon2 {
     padding-bottom: 5px;
   }
@@ -576,7 +576,7 @@ input {
     text-align: justify;
   }
 }
-@media all and (max-width: 991px) {
+@media screen and (min-width: 768px) and (max-width: 991px) {
   .navbar .navbar-collapse {
     overflow: auto;
     /* background: rgb(213, 198, 221); */
@@ -770,9 +770,9 @@ input {
 }
 
 @media only screen and (max-width: 481px) and (max-width: 767px) {
-  img.group-icon2 {
-    padding-bottom: 10px !important;
-  }
+  // img.group-icon2 {
+  //   padding-bottom: 10px !important;
+  // }
   .line-icon,
   .landing-child {
     display: none;
