@@ -51,12 +51,11 @@
         <div class="row">
           <div class="col-md-8 col-sm-12">
             <div class="banner-text">
-              <h2 class="white">Welcome To SportGrit</h2>
-              <h2 class="white">Play. Score. Connect.</h2>
+              <h2 class="white">{{landingData?.banner?.banner_title || "Welcome To SportGrit"}}</h2>
+              <h2 class="white">{{landingData?.banner?.banner_sub_title || "Play. Score. Connect."}}</h2>
               <!-- <h6 class="white">This awesome template designed by <a href="http://w3Template.com" target="_blank" rel="dofollow" class="weblink">W3 Template</a>.</h6> -->
               <p class="banner-text white">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                {{landingData?.banner?.banner_description || "In today's fast-paced world, it's essential to find ways to connect with others while enjoying life to the fullest. One of the most effective ways to do this is through play, where you not only have fun but also have the opportunity to score memorable moments and connections that can last a lifetime."}}
               </p>
               <ul>
                 <li>
@@ -121,10 +120,9 @@
                   data-wow-delay="0.2s"
                 >
                   <div class="media-body text-right media-right-margin">
-                    <h5>Lorem Ipsum Dolor</h5>
+                    <h5>{{landingData?.feature?.feature_left_1_title || "User-Friendly Interface"}}</h5>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididugnt ut labore
+                      {{landingData?.feature?.feature_left_1_description || "Our platform boasts an intuitive and user-friendly interface, making it easy for both beginners and experts to navigate effortlessly."}}
                     </p>
                   </div>
                   <div class="media-right icon-border">
@@ -137,10 +135,9 @@
                   data-wow-delay="0.4s"
                 >
                   <div class="media-body text-right media-right-margin">
-                    <h5>Lorem Ipsum Dolor</h5>
+                    <h5>{{landingData?.feature?.feature_left_2_title || "Customization"}}</h5>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididugnt ut labore
+                      {{landingData?.feature?.feature_left_2_description || "Tailor your experience to your specific needs. Our customization options allow you to personalize your settings, making the platform truly yours."}}
                     </p>
                   </div>
                   <div class="media-right icon-border">
@@ -156,10 +153,9 @@
                   data-wow-delay="0.6s"
                 >
                   <div class="media-body text-right media-right-margin">
-                    <h5>Lorem Ipsum Dolor</h5>
+                    <h5>{{landingData?.feature?.feature_left_3_title || "24/7 Support"}}</h5>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididugnt ut labore
+                      {{landingData?.feature?.feature_left_3_description || "We're here for you whenever you need us. Our dedicated support team is available around the clock to assist with any inquiries or issues."}}
                     </p>
                   </div>
                   <div class="media-right icon-border">
@@ -193,10 +189,9 @@
                     />
                   </div>
                   <div class="media-body text-left">
-                    <h5>Lorem Ipsum Dolor</h5>
+                    <h5>{{landingData?.feature?.feature_right_1_title || "Cutting-Edge Technology"}}</h5>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididugnt ut labore
+                      {{landingData?.feature?.feature_right_1_description || "We leverage the latest in technology to ensure that our platform is fast, secure, and up to date with the most current trends and advancements."}}
                     </p>
                   </div>
                 </div>
@@ -213,10 +208,9 @@
                     />
                   </div>
                   <div class="media-body text-left">
-                    <h5>Lorem Ipsum Dolor</h5>
+                    <h5>{{landingData?.feature?.feature_right_2_title || "Data Security"}}</h5>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididugnt ut labore
+                      {{landingData?.feature?.feature_right_2_description || "Your privacy is our priority. We employ robust security measures to protect your data, so you can use our platform with confidence."}}
                     </p>
                   </div>
                 </div>
@@ -233,10 +227,9 @@
                     />
                   </div>
                   <div class="media-body text-left">
-                    <h5>Lorem Ipsum Dolor</h5>
+                    <h5>{{landingData?.feature?.feature_right_3_title || "Seamless Connectivity"}}</h5>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididugnt ut labore
+                      {{landingData?.feature?.feature_right_3_description || "Stay connected with ease. Our platform is designed to work across various devices, allowing you to access it anytime, anywhere."}}
                     </p>
                   </div>
                 </div>

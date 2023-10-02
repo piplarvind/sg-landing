@@ -1,5 +1,12 @@
-import { Component, ElementRef, OnInit, HostListener, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  HostListener,
+  ViewEncapsulation,
+} from "@angular/core";
 import { OwlOptions } from "ngx-owl-carousel-o";
+import { HomeService } from "./home.service";
 
 @Component({
   selector: "app-home",
@@ -9,6 +16,7 @@ import { OwlOptions } from "ngx-owl-carousel-o";
 })
 export class HomeComponent implements OnInit {
   isSticky = false;
+  landingData: any;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -94,9 +102,11 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef, private homeService: HomeService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.fetchLanding();
+  }
 
   scrollToElement(scrollTarget: string) {
     const padding = 55; // Adjust this value to set the desired padding
@@ -120,4 +130,17 @@ export class HomeComponent implements OnInit {
     document.getElementById("navbarSupportedContent").classList.remove("show");
   }
 
+  fetchLanding() {
+    this.homeService
+      .getLandingData()
+      .then((e: any) => {
+        const obj = e.data;
+        console.log("obj", obj);
+        this.landingData = obj;
+      })
+      .catch((err) => {
+        console.log(err);
+        // this.sharedService.showLoader = false;
+      });
+  }
 }
