@@ -7,6 +7,8 @@ import {
 } from "@angular/core";
 import { OwlOptions } from "ngx-owl-carousel-o";
 import { HomeService } from "./home.service";
+import { environment } from "../../environments/environment";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: "app-home",
@@ -17,12 +19,13 @@ import { HomeService } from "./home.service";
 export class HomeComponent implements OnInit {
   isSticky = false;
   landingData: any;
+  newEnv: any = environment;
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
-    dots: false,
+    dots: true,
     navSpeed: 700,
     navText: ["", ""],
     responsive: {
@@ -102,7 +105,11 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  constructor(private el: ElementRef, private homeService: HomeService) {}
+  constructor(
+    private el: ElementRef,
+    public _DomSanitizationService: DomSanitizer,
+    private homeService: HomeService
+  ) {}
 
   ngOnInit() {
     this.fetchLanding();

@@ -21,6 +21,10 @@
 @include mat.all-component-themes($app-theme);
 // Theme customization
 @import "theme/theme";
+
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
 body {
   font-size: 16px;
 }
