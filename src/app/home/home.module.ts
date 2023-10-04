@@ -15,6 +15,7 @@ import { MaterialModule } from "@app/material.module";
 import { HomeRoutingModule } from "@app/home/home-routing.module";
 import { HomeComponent } from "@app/home/home.component";
 import { HomeService } from "@app/home/home.service";
+import { ContactFormComponent } from "./contact-form/contact-form.component";
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import { HomeService } from "@app/home/home.service";
     VgOverlayPlayModule,
     VgBufferingModule,
   ],
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, ContactFormComponent],
   providers: [HomeService],
 })
 export class HomeModule {}

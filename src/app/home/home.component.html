@@ -105,7 +105,7 @@
               </p>
               <ul>
                 <li>
-                  <a href="#"
+                  <a [href]="ios_app_url" target="_blank"
                     ><img
                       src="./assets/images/appstore.png"
                       class="wow fadeInUp"
@@ -113,7 +113,7 @@
                   /></a>
                 </li>
                 <li>
-                  <a href="#"
+                  <a [href]="android_app_url" target="_blank"
                     ><img
                       src="./assets/images/playstore.png"
                       class="wow fadeInUp"
@@ -154,8 +154,10 @@
               <div class="group-inner"></div>
             </div>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              {{
+                landingData?.feature?.feature_title_description ||
+                  "Our app boasts a user-friendly interface, making it effortless to navigate and use, even for beginners."
+              }}
             </p>
           </div>
           <div class="section-content text-center">
@@ -427,22 +429,16 @@
             <div class="row pb-40">
               <div class="col-lg-6 col-md-6 col-sm-12 d-sm-block">
                 <img
-                  [src]="newEnv.imageUrl + landingData?.about.about_image || './assets/images/rectangle-4@2x.png'"
+                  [src]="
+                    newEnv.imageUrl + landingData?.about.about_image ||
+                    './assets/images/rectangle-4@2x.png'
+                  "
                   alt=""
                   class="img-fluid"
                 />
               </div>
               <div class="col-lg-6 col-md-6 col-sm-12">
-                <p class="lead text-muted mb-0">
-                  {{landingData?.about.about_content || "About test content"}}
-                  <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum. -->
+                <p class="lead text-muted mb-0" [innerHTML]="landingData?.about.about_content || 'About test content'">
                 </p>
                 <br />
                 <p class="lead text-muted">
@@ -477,34 +473,17 @@
           </div>
           <div class="section-content text-center">
             <div class="row pb-40">
-              <div class="col-md-4">
+              <div class="col-md-3" *ngFor="let sport of sports">
                 <div class="team-detail wow bounce" data-wow-delay="0.2s">
                   <img
-                    src="./assets/images/basketball-1@2x.png"
+                    [src]="
+                      newEnv.imageUrl + sport?.logo ||
+                      './assets/images/basketball-1@2x.png'
+                    "
                     class="img-fluid"
                   />
-                  <!-- <h4>Nitu Singh</h4>
-                <p>Marketing Specialist</p> -->
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="team-detail wow bounce" data-wow-delay="0.4s">
-                  <img
-                    src="./assets/images/basketball-1@2x.png"
-                    class="img-fluid"
-                  />
-                  <!-- <h4>Yogesh Singh</h4>
-                <p>CEO & Founder</p> -->
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="team-detail wow bounce" data-wow-delay="0.6s">
-                  <img
-                    src="./assets/images/basketball-1@2x.png"
-                    class="img-fluid"
-                  />
-                  <!-- <h4>Nisha Sharma</h4>
-                <p>Web Developer</p> -->
+                  <h4>{{ sport.sport_name }}</h4>
+                  <!-- <p>Marketing Specialist</p> -->
                 </div>
               </div>
             </div>
@@ -560,55 +539,18 @@
         </div>
         <div class="col-12 col-sm-4 col-md-3 col-lg-3 mb-md-0 mb-4">
           <h2 class="footer-heading">Get The App</h2>
-          <img class="group-icon2" alt="" src="./assets/images/group2.svg" />
+          <a [href]="ios_app_url" target="_blank">
+            <img class="group-icon2" alt="" src="./assets/images/group2.svg" />
+          </a>
           &nbsp;
-          <img class="group-icon3" alt="" src="./assets/images/group3.svg" />
+          <a [href]="android_app_url" target="_blank">
+            <img class="group-icon3" alt="" src="./assets/images/group3.svg" />
+          </a>
         </div>
-        <div class="col-12 col-sm-12 col-md-5 col-lg-5 mb-md-0 mb-4">
+        <div class="col-12 col-sm-12 col-md-5 col-lg-5 mb-md-0 mb-2">
           <h2 class="footer-heading">Get In Touch</h2>
 
-          <form action="#" class="subscribe-form">
-            <div class="row">
-              <div class="col-md-6">
-                <input
-                  type="text"
-                  class="form-control rounded-left"
-                  placeholder="Name"
-                />
-              </div>
-              <div class="col-md-6">
-                <textarea
-                  type="text"
-                  class="form-control rounded-left"
-                  placeholder="Message"
-                ></textarea>
-              </div>
-              <div class="col-md-6">
-                <input
-                  type="text"
-                  class="form-control rounded-left"
-                  placeholder="Email address"
-                />
-              </div>
-              <div class="col-md-6">&nbsp;</div>
-              <div class="col-md-6">
-                <input
-                  type="text"
-                  class="form-control rounded-left"
-                  placeholder="Phone"
-                />
-              </div>
-              <div class="col-md-6">
-                <button
-                  type="submit"
-                  class="btn btn-primary btn-block"
-                  placeholder="Email address"
-                >
-                  Send Message
-                </button>
-              </div>
-            </div>
-          </form>
+          <app-contact-form></app-contact-form>
         </div>
       </div>
     </div>

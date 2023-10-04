@@ -19,6 +19,9 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class HomeComponent implements OnInit {
   isSticky = false;
   landingData: any;
+  sports: any;
+  android_app_url: string;
+  ios_app_url: string;
   newEnv: any = environment;
   customOptions: OwlOptions = {
     loop: false,
@@ -113,6 +116,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.fetchLanding();
+    this.fetchSportsData();
+    this.getSettingData();
   }
 
   scrollToElement(scrollTarget: string) {
@@ -144,6 +149,44 @@ export class HomeComponent implements OnInit {
         const obj = e.data;
         console.log("obj", obj);
         this.landingData = obj;
+      })
+      .catch((err) => {
+        console.log(err);
+        // this.sharedService.showLoader = false;
+      });
+  }
+  fetchSportsData() {
+    this.homeService
+      .getSportsData()
+      .then((e: any) => {
+        const obj = e.data;
+        console.log("sports data", obj);
+        this.sports = obj;
+      })
+      .catch((err) => {
+        console.log(err);
+        // this.sharedService.showLoader = false;
+      });
+  }
+  getSettingData() {
+    this.homeService
+      .getSettingData()
+      .then((e: any) => {
+        const settingObj = e.data;
+        // console.log("setting obj", settingObj);
+        // this.settingData = obj;
+        for (const itemKey in settingObj) {
+          if (settingObj.hasOwnProperty(itemKey)) {
+            const key = settingObj[itemKey].key;
+            if (key === "android_app") {
+              this.android_app_url = settingObj[itemKey].value;
+            }
+            if (key === "ios_app") {
+              this.ios_app_url = settingObj[itemKey].value;
+            }
+            // console.log(`Key: ${key}, Value: ${value}`);
+          }
+        }
       })
       .catch((err) => {
         console.log(err);
