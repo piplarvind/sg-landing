@@ -438,8 +438,12 @@
                 />
               </div>
               <div class="col-lg-6 col-md-6 col-sm-12">
-                <p class="lead text-muted mb-0" [innerHTML]="landingData?.about.about_content || 'About test content'">
-                </p>
+                <p
+                  class="lead text-muted mb-0"
+                  [innerHTML]="
+                    landingData?.about.about_content || 'About test content'
+                  "
+                ></p>
                 <br />
                 <p class="lead text-muted">
                   <img
