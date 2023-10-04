@@ -23,6 +23,10 @@ export class HomeComponent implements OnInit {
   android_app_url: string;
   ios_app_url: string;
   newEnv: any = environment;
+
+  imageToShow: string = ""; // URL of the image to display
+  hoveredElem: string = ""; // Track which h5 tag is hovered
+
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: false,
@@ -147,8 +151,12 @@ export class HomeComponent implements OnInit {
       .getLandingData()
       .then((e: any) => {
         const obj = e.data;
-        console.log("obj", obj);
         this.landingData = obj;
+
+        // show first item by default
+        this.hoveredElem = obj?.feature?.feature_left_1_title;
+        this.imageToShow =
+          this.newEnv.imageUrl + obj?.feature?.feature_left_1_image;
       })
       .catch((err) => {
         console.log(err);

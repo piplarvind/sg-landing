@@ -166,6 +166,10 @@
                 <div
                   class="media single-feature wow fadeInUp"
                   data-wow-delay="0.2s"
+                  (mouseenter)="
+                    hoveredElem = landingData?.feature?.feature_left_1_title
+                  "
+                  (mouseleave)="hoveredElem = ''"
                 >
                   <div class="media-body text-right media-right-margin">
                     <h5>
@@ -193,6 +197,10 @@
                 <div
                   class="media single-feature wow fadeInUp"
                   data-wow-delay="0.4s"
+                  (mouseenter)="
+                    hoveredElem = landingData?.feature?.feature_left_2_title
+                  "
+                  (mouseleave)="hoveredElem = ''"
                 >
                   <div class="media-body text-right media-right-margin">
                     <h5>
@@ -223,6 +231,10 @@
                 <div
                   class="media single-feature wow fadeInUp"
                   data-wow-delay="0.6s"
+                  (mouseenter)="
+                    hoveredElem = landingData?.feature?.feature_left_3_title
+                  "
+                  (mouseleave)="hoveredElem = ''"
                 >
                   <div class="media-body text-right media-right-margin">
                     <h5>
@@ -250,8 +262,71 @@
               </div>
               <div class="col-md-4 d-none d-md-block d-lg-block feature-img">
                 <div class="feature-mobile">
-                  <img
+                  <!-- <img
                     src="./assets/images/launch-iphone12black-portrait-11@2x.png"
+                    class="img-fluid wow fadeInUp"
+                  /> -->
+                  <img
+                    *ngIf="
+                      hoveredElem === landingData?.feature?.feature_left_1_title
+                    "
+                    [src]="
+                      newEnv.imageUrl +
+                      landingData?.feature?.feature_left_1_image
+                    "
+                    class="img-fluid wow fadeInUp"
+                  />
+                  <img
+                    *ngIf="
+                      hoveredElem === landingData?.feature?.feature_left_2_title
+                    "
+                    [src]="
+                      newEnv.imageUrl +
+                      landingData?.feature?.feature_left_2_image
+                    "
+                    class="img-fluid wow fadeInUp"
+                  />
+                  <img
+                    *ngIf="
+                      hoveredElem === landingData?.feature?.feature_left_3_title
+                    "
+                    [src]="
+                      newEnv.imageUrl +
+                      landingData?.feature?.feature_left_3_image
+                    "
+                    class="img-fluid wow fadeInUp"
+                  />
+                  <img
+                    *ngIf="
+                      hoveredElem ===
+                      landingData?.feature?.feature_right_1_title
+                    "
+                    [src]="
+                      newEnv.imageUrl +
+                      landingData?.feature?.feature_right_1_image
+                    "
+                    class="img-fluid wow fadeInUp"
+                  />
+                  <img
+                    *ngIf="
+                      hoveredElem ===
+                      landingData?.feature?.feature_right_2_title
+                    "
+                    [src]="
+                      newEnv.imageUrl +
+                      landingData?.feature?.feature_right_2_image
+                    "
+                    class="img-fluid wow fadeInUp"
+                  />
+                  <img
+                    *ngIf="
+                      hoveredElem ===
+                      landingData?.feature?.feature_right_3_title
+                    "
+                    [src]="
+                      newEnv.imageUrl +
+                      landingData?.feature?.feature_right_3_image
+                    "
                     class="img-fluid wow fadeInUp"
                   />
                 </div>
@@ -260,12 +335,12 @@
                 <div
                   class="media single-feature wow fadeInUp"
                   data-wow-delay="0.2s"
+                  (mouseenter)="
+                    hoveredElem = landingData?.feature?.feature_right_1_title
+                  "
+                  (mouseleave)="hoveredElem = ''"
                 >
                   <div class="media-left icon-border media-right-margin">
-                    <!-- <span
-                    class="fa fa-check-double"
-                    aria-hidden="true"
-                  ></span> -->
                     <img
                       class="landing-child"
                       alt=""
@@ -290,6 +365,10 @@
                 <div
                   class="media single-feature wow fadeInUp"
                   data-wow-delay="0.4s"
+                  (mouseenter)="
+                    hoveredElem = landingData?.feature?.feature_right_2_title
+                  "
+                  (mouseleave)="hoveredElem = ''"
                 >
                   <div class="media-left icon-border media-right-margin">
                     <!-- <span class="fa fa-dollar-sign" aria-hidden="true"></span> -->
@@ -317,6 +396,10 @@
                 <div
                   class="media single-feature wow fadeInUp"
                   data-wow-delay="0.6s"
+                  (mouseenter)="
+                    hoveredElem = landingData?.feature?.feature_right_3_title
+                  "
+                  (mouseleave)="hoveredElem = ''"
                 >
                   <div class="media-left icon-border media-right-margin">
                     <!-- <span class="fa fa-hdd" aria-hidden="true"></span> -->
