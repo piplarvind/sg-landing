@@ -129,7 +129,7 @@ export class HomeComponent implements OnInit {
     const targetElement = this.el.nativeElement.querySelector(
       "#" + scrollTarget
     );
-    console.log(targetElement);
+    //console.log(targetElement);
     if (targetElement) {
       // Calculate the scroll position with padding
       const scrollPosition =
@@ -168,7 +168,7 @@ export class HomeComponent implements OnInit {
       .getSportsData()
       .then((e: any) => {
         const obj = e.data;
-        console.log("sports data", obj);
+        //console.log("sports data", obj);
         this.sports = obj;
       })
       .catch((err) => {

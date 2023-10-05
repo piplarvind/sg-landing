@@ -28,7 +28,7 @@
               "node_modules/font-awesome/scss/font-awesome.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/wowjs/css/libs/animate.css",
-              "node_modules/@videogular/ngx-videogular/fonts/videogular.css",
+              "node_modules/@videogular/ngx-videogular/fonts/videogular.css"
             ],
             "scripts": [
               "node_modules/intl-tel-input/build/js/intlTelInput.min.js",

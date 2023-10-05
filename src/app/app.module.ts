@@ -5,8 +5,12 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TranslateModule } from "@ngx-translate/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { VgCoreModule } from "@videogular/ngx-videogular/core";
+import { VgControlsModule } from "@videogular/ngx-videogular/controls";
+import { VgOverlayPlayModule } from "@videogular/ngx-videogular/overlay-play";
+import { VgBufferingModule } from "@videogular/ngx-videogular/buffering";
 import { MaterialModule } from "@app/material.module";
-import { NgwWowModule } from 'ngx-wow';
+import { NgwWowModule } from "ngx-wow";
 import { environment } from "../environments/environment";
 import { CoreModule } from "@app/core";
 import { CarouselModule } from "ngx-owl-carousel-o";
@@ -28,6 +32,10 @@ import { ThemeService } from "theme.service";
     CarouselModule,
     BrowserAnimationsModule,
     MaterialModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
     //
     CoreModule,
     SharedModule,
@@ -37,7 +45,7 @@ import { ThemeService } from "theme.service";
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    NgwWowModule
+    NgwWowModule,
   ],
   declarations: [AppComponent],
   providers: [
