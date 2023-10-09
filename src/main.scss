@@ -235,32 +235,6 @@ mat-cell,
   color: #a1a6aa;
 }
 
-body.dark {
-  img.ng-star-inserted {
-    // background-color: #16191c !important;
-    color: #fff !important;
-    box-shadow: inset 0 0 1px currentColor;
-  }
-  .mat-select-panel {
-    // background-color: #16191c; /* Change the background color */
-    background-color: currentColor; /* Change the background color */
-    color: #fff;
-  }
-  // .mat-option-text {
-  //   color: #fff;
-  // }
-}
-
-body:not(.dark) img.ng-star-inserted {
-  background: currentColor;
-  box-shadow: inset 0 0 1px currentColor;
-}
-
-body:not(.dark) .mat-dialog-container {
-  img {
-    background: currentColor !important;
-  }
-}
 
 /**
 * Table width control
@@ -320,60 +294,4 @@ body:not(.dark) .mat-dialog-container {
     padding: 5px 5px;
   }
 }
-/**
-* Table width control
-**/
 
-body.dark {
-  .theme-icon {
-    height: 2rem;
-    width: 2rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    background-color: rgb(56 116 255 / 24%) !important;
-    color: #85a9ff !important;
-    border-radius: 50%;
-    cursor: pointer;
-    -webkit-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-  }
-  .theme-icon:hover {
-    background-color: #6991d3;
-    color: #f5f8ff;
-  }
-}
-
-body:not(.dark) {
-  .theme-icon {
-    height: 2rem;
-    width: 2rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    background-color: rgb(255 204 133 / 24%);
-    color: #e5780b;
-    border-radius: 50%;
-    cursor: pointer;
-    -webkit-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-  }
-  .theme-icon:hover {
-    background-color: #e5780b;
-    color: #fff6e0;
-  }
-}

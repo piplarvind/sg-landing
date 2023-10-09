@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class HomeService {
   fetchLanding = "landing/";
   fetchSports = "sports/active";
-  fetchSetting = "settings/";
+  fetchSetting = "settings/landing";
   contactUrl = "feedback/";
 
   constructor(public http: HttpClient) {}

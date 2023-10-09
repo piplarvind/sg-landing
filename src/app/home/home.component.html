@@ -109,6 +109,7 @@
                       src="./assets/images/appstore.png"
                       class="wow fadeInUp"
                       data-wow-delay="0.4s"
+                      alt=""
                   /></a>
                 </li>
                 <li>
@@ -117,6 +118,7 @@
                       src="./assets/images/playstore.png"
                       class="wow fadeInUp"
                       data-wow-delay="0.7s"
+                      alt=""
                   /></a>
                 </li>
               </ul>
@@ -125,14 +127,14 @@
           <div class="col-md-4 col-sm-12">
             <img
               src="./assets/images/launch-iphone12black-portrait-1@2x.png"
-              class="img-fluid wow fadeInUp"
+              class="img-fluid wow fadeInUp" alt=""
             />
           </div>
         </div>
       </div>
     </div>
     <span class="svg-wave">
-      <img class="svg-hero" src="./assets/images/vector.svg" />
+      <img class="svg-hero" src="./assets/images/vector.svg" alt="" />
     </span>
   </section>
 
@@ -263,7 +265,7 @@
                 <div class="feature-mobile">
                   <!-- <img
                     src="./assets/images/launch-iphone12black-portrait-11@2x.png"
-                    class="img-fluid wow fadeInUp"
+                    class="img-fluid wow fadeInUp" alt=""
                   /> -->
                   <img
                     *ngIf="
@@ -273,7 +275,7 @@
                       newEnv.imageUrl +
                       landingData?.feature?.feature_left_1_image
                     "
-                    class="img-fluid wow fadeInUp"
+                    class="img-fluid wow fadeInUp" alt=""
                   />
                   <img
                     *ngIf="
@@ -283,7 +285,7 @@
                       newEnv.imageUrl +
                       landingData?.feature?.feature_left_2_image
                     "
-                    class="img-fluid wow fadeInUp"
+                    class="img-fluid wow fadeInUp" alt=""
                   />
                   <img
                     *ngIf="
@@ -293,7 +295,7 @@
                       newEnv.imageUrl +
                       landingData?.feature?.feature_left_3_image
                     "
-                    class="img-fluid wow fadeInUp"
+                    class="img-fluid wow fadeInUp" alt=""
                   />
                   <img
                     *ngIf="
@@ -304,7 +306,7 @@
                       newEnv.imageUrl +
                       landingData?.feature?.feature_right_1_image
                     "
-                    class="img-fluid wow fadeInUp"
+                    class="img-fluid wow fadeInUp" alt=""
                   />
                   <img
                     *ngIf="
@@ -315,7 +317,7 @@
                       newEnv.imageUrl +
                       landingData?.feature?.feature_right_2_image
                     "
-                    class="img-fluid wow fadeInUp"
+                    class="img-fluid wow fadeInUp" alt=""
                   />
                   <img
                     *ngIf="
@@ -326,7 +328,7 @@
                       newEnv.imageUrl +
                       landingData?.feature?.feature_right_3_image
                     "
-                    class="img-fluid wow fadeInUp"
+                    class="img-fluid wow fadeInUp" alt=""
                   />
                 </div>
               </div>
@@ -534,7 +536,7 @@
                       ><img
                         src="./assets/images/appstore.png"
                         class="wow fadeInUp"
-                        data-wow-delay="0.4s"
+                        data-wow-delay="0.4s" alt=""
                     /></a>
                   </li>
                   <li>
@@ -542,7 +544,7 @@
                       ><img
                         src="./assets/images/playstore.png"
                         class="wow fadeInUp"
-                        data-wow-delay="0.7s"
+                        data-wow-delay="0.7s" alt=""
                     /></a>
                   </li>
                 </ul>
@@ -586,7 +588,7 @@
                       newEnv.imageUrl + sport?.sg_sport_logo ||
                       './assets/images/basketball-1@2x.png'
                     "
-                    class="img-fluid"
+                    class="img-fluid" alt=""
                   />
                   <h4>{{ sport.sport_name }}</h4>
                   <!-- <p>Marketing Specialist</p> -->
@@ -615,34 +617,35 @@
         </div>
         <div class="col-6 col-sm-4 col-md-2 col-lg-2 mb-md-0 mb-4">
           <h2 class="footer-heading">Social</h2>
-          <div class="facebook">Facebook</div>
-          <div class="instagram">Instagram</div>
-          <div class="twitter">Twitter</div>
-          <div class="youtube">YouTube</div>
-          <img
-            class="facebook-1-icon"
-            alt=""
-            src="./assets/images/facebook-1.svg"
-          />
-
-          <img
-            class="instagram-1-icon"
-            alt=""
-            src="./assets/images/instagram-1.svg"
-          />
-
-          <img
-            class="twitter-1-icon"
-            alt=""
-            src="./assets/images/twitter-1.svg"
-          />
-
-          <img
-            class="youtube-play-1-icon"
-            alt=""
-            src="./assets/images/youtubeplay-1.svg"
-          />
-        </div>
+          <ul class="list-unstyled">
+            <li>
+              <a href="#" class="social-icon">
+                  <img class="icon" alt="Facebook" src="./assets/images/facebook-1.svg" />
+                  <span class="icon-label">Facebook</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-icon">
+                  <img class="icon" alt="Instagram" src="./assets/images/instagram-1.svg" />
+                  <span class="icon-label">Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-icon">
+                  <img class="icon" alt="Twitter" src="./assets/images/twitter-1.svg" />
+                  <span class="icon-label">Twitter</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-icon">
+                  <img class="icon" alt="YouTube" src="./assets/images/youtubeplay-1.svg" />
+                  <span class="icon-label">YouTube</span>
+              </a>
+            </li>
+            </ul>
+          
+      </div>
+      
         <div class="col-12 col-sm-4 col-md-3 col-lg-3 mb-md-0 mb-4">
           <h2 class="footer-heading">Get The App</h2>
           <a [href]="ios_app_url" target="_blank">

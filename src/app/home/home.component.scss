@@ -1016,7 +1016,7 @@ footer {
 }
 
 .footer-04 .footer-heading {
-  font-size: 13px;
+  font-size: 20px;
   color: #fff;
   margin-bottom: 30px;
   text-transform: uppercase;
@@ -1036,7 +1036,7 @@ footer {
 }
 
 .footer-04 a {
-  color: #f7b633;
+  color: #A1A6AA;
 }
 
 .footer-04 .ftco-footer-social li a {
@@ -1046,6 +1046,10 @@ footer {
 .footer-04 .tagcloud a {
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
+}
+
+.list-unstyled li {
+  padding: 10px 0;
 }
 
 .footer-04 .list-unstyled li a {
@@ -1195,6 +1199,16 @@ textarea {
   line-height: 30px;
 }
 
-.team-detail img{
+.team-detail img {
   border-radius: 0%;
+}
+
+.social-icon {
+  display: inline-block;
+  align-items: center;
+  width: 100%;
+}
+
+.social-icon .icon-label {
+  padding-left: 10px;
 }

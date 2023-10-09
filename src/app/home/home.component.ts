@@ -52,50 +52,6 @@ export class HomeComponent implements OnInit {
     nav: true,
   };
 
-  slides = [
-    {
-      id: 1,
-      img: "https://dummyimage.com/350x150/423b42/fff",
-      title: "1",
-      alt: "1",
-    },
-    {
-      id: 2,
-      img: "https://dummyimage.com/350x150/2a2b7a/fff",
-      title: "2",
-      alt: "2",
-    },
-    {
-      id: 3,
-      img: "https://dummyimage.com/350x150/1a2b7a/fff",
-      title: "3",
-      alt: "3",
-    },
-    {
-      id: 4,
-      img: "https://dummyimage.com/350x150/7a2b7a/fff",
-      title: "4",
-      alt: "4",
-    },
-    {
-      id: 5,
-      img: "https://dummyimage.com/350x150/9a2b7a/fff",
-      title: "5",
-      alt: "5",
-    },
-    {
-      id: 6,
-      img: "https://dummyimage.com/350x150/5a2b7a/fff",
-      title: "6",
-      alt: "6",
-    },
-    {
-      id: 6,
-      img: "https://dummyimage.com/350x150/4a2b7a/fff",
-      title: "7",
-      alt: "7",
-    },
-  ];
 
   @HostListener("window:scroll", [])
   onWindowScroll() {
