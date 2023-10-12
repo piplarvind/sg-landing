@@ -457,7 +457,7 @@
         <div class="section-content text-center pb-40">
           <owl-carousel-o [options]="customOptions">
             <ng-template carouselSlide *ngFor="let item of trustedVideoUrls">
-              <div class="embed-responsive embed-responsive-16by9">
+              <div class="embed-responsive embed-responsive-16by9" (click)="playVideo(item)">
                 <iframe
                   width="100%"
                   height="305"
@@ -465,6 +465,7 @@
                   frameborder="0"
                   allow="autoplay; encrypted-media"
                   allowfullscreen=""
+                  [attr.data-id]="item._id"
                 ></iframe>
               </div>
             </ng-template>

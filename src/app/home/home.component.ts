@@ -26,6 +26,8 @@ export class HomeComponent implements OnInit {
 
   trustedVideoUrls: { video_title: string; video_url: SafeResourceUrl }[];
 
+  currentPlayingVideo: HTMLIFrameElement | null = null;
+
   imageToShow: string = ""; // URL of the image to display
   hoveredElem: string = ""; // Track which h5 tag is hovered
 
@@ -116,11 +118,13 @@ export class HomeComponent implements OnInit {
           this.newEnv.imageUrl + obj?.feature?.feature_left_1_image;
 
         this.trustedVideoUrls = obj?.videos.map((video) => ({
+          _id: video._id,
           video_title: video.video_title,
-          video_url:
-          this.isYouTubeUrl(video.video_url) ? this.sanitizeYouTubeUrl(video.video_url) : this._DomSanitizationService.bypassSecurityTrustResourceUrl(
-              video.video_url
-            ),
+          video_url: this.isYouTubeUrl(video.video_url)
+            ? this.sanitizeYouTubeUrl(video.video_url)
+            : this._DomSanitizationService.bypassSecurityTrustResourceUrl(
+                video.video_url
+              ),
         }));
       })
       .catch((err) => {
@@ -175,7 +179,9 @@ export class HomeComponent implements OnInit {
     const embedUrl = `https://www.youtube.com/embed/${videoId}`;
 
     // Sanitize and return the embed URL
-    return this._DomSanitizationService.bypassSecurityTrustResourceUrl(embedUrl);
+    return this._DomSanitizationService.bypassSecurityTrustResourceUrl(
+      embedUrl
+    );
   }
 
   isYouTubeUrl(url: string): boolean {
@@ -191,5 +197,26 @@ export class HomeComponent implements OnInit {
       return match[1];
     }
     return "";
+  }
+
+  playVideo(video: { _id: number; video_url: string }) {
+    console.log('_id', video._id);
+    // const iframe = document.querySelector(
+    //   `iframe[data-id="${video._id}"]`
+    // ) as HTMLIFrameElement;
+
+    // if (this.currentPlayingVideo) {
+    //   this.currentPlayingVideo.contentWindow.postMessage(
+    //     '{"event":"command","func":"pauseVideo","args":""}',
+    //     "*"
+    //   );
+    // }
+
+    // iframe.contentWindow.postMessage(
+    //   '{"event":"command","func":"playVideo","args":""}',
+    //   "*"
+    // );
+
+    // this.currentPlayingVideo = iframe;
   }
 }
