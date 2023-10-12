@@ -8,7 +8,7 @@ import {
 import { OwlOptions } from "ngx-owl-carousel-o";
 import { HomeService } from "./home.service";
 import { environment } from "../../environments/environment";
-import { DomSanitizer } from "@angular/platform-browser";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 @Component({
   selector: "app-home",
@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit {
   android_app_url: string;
   ios_app_url: string;
   newEnv: any = environment;
+
+  trustedVideoUrls: { video_title: string; video_url: SafeResourceUrl }[];
 
   imageToShow: string = ""; // URL of the image to display
   hoveredElem: string = ""; // Track which h5 tag is hovered
@@ -51,7 +53,6 @@ export class HomeComponent implements OnInit {
     },
     nav: true,
   };
-
 
   @HostListener("window:scroll", [])
   onWindowScroll() {
@@ -113,6 +114,14 @@ export class HomeComponent implements OnInit {
         this.hoveredElem = obj?.feature?.feature_left_1_title;
         this.imageToShow =
           this.newEnv.imageUrl + obj?.feature?.feature_left_1_image;
+
+        this.trustedVideoUrls = obj?.videos.map((video) => ({
+          video_title: video.video_title,
+          video_url:
+          this.isYouTubeUrl(video.video_url) ? this.sanitizeYouTubeUrl(video.video_url) : this._DomSanitizationService.bypassSecurityTrustResourceUrl(
+              video.video_url
+            ),
+        }));
       })
       .catch((err) => {
         console.log(err);
@@ -156,5 +165,31 @@ export class HomeComponent implements OnInit {
         console.log(err);
         // this.sharedService.showLoader = false;
       });
+  }
+
+  sanitizeYouTubeUrl(url: string): SafeResourceUrl {
+    // Extract the video ID from the URL
+    const videoId = this.extractVideoId(url);
+
+    // Construct the YouTube embed URL
+    const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+
+    // Sanitize and return the embed URL
+    return this._DomSanitizationService.bypassSecurityTrustResourceUrl(embedUrl);
+  }
+
+  isYouTubeUrl(url: string): boolean {
+    return url.includes("youtube.com") || url.includes("youtu.be");
+  }
+
+  extractVideoId(url: string): string {
+    // Use a regular expression to extract the video ID from the URL
+    const regex =
+      /(?:\?v=|&v=|youtu\.be\/|embed\/|\/v\/|\/e\/|watch\?v=|watch\?feature=player_embedded&v=|watch\?feature=player_embedded&v=|watch\?v=)([a-zA-Z0-9_-]{11})/i;
+    const match = url.match(regex);
+    if (match && match[1]) {
+      return match[1];
+    }
+    return "";
   }
 }

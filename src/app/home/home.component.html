@@ -72,7 +72,9 @@
           </li>
         </ul>
         <div class="sign-in-wrapper">
-          &nbsp;<a class="btn btn theme-btn" href="https://stage.sportgrit.com/">Sign In</a>
+          &nbsp;<a class="btn btn theme-btn" href="https://stage.sportgrit.com/"
+            >Sign In</a
+          >
         </div>
       </div>
     </div>
@@ -92,7 +94,8 @@
               </h2>
               <h2 class="white">
                 {{
-                  landingData?.banner?.banner_sub_title || "Play. Score. Connect."
+                  landingData?.banner?.banner_sub_title ||
+                    "Play. Score. Connect."
                 }}
               </h2>
               <!-- <h6 class="white">This awesome template designed by <a href="http://w3Template.com" target="_blank" rel="dofollow" class="weblink">W3 Template</a>.</h6> -->
@@ -127,7 +130,8 @@
           <div class="col-md-4 col-sm-12">
             <img
               src="./assets/images/launch-iphone12black-portrait-1@2x.png"
-              class="img-fluid wow fadeInUp" alt=""
+              class="img-fluid wow fadeInUp"
+              alt=""
             />
           </div>
         </div>
@@ -275,7 +279,8 @@
                       newEnv.imageUrl +
                       landingData?.feature?.feature_left_1_image
                     "
-                    class="img-fluid wow fadeInUp" alt=""
+                    class="img-fluid wow fadeInUp"
+                    alt=""
                   />
                   <img
                     *ngIf="
@@ -285,7 +290,8 @@
                       newEnv.imageUrl +
                       landingData?.feature?.feature_left_2_image
                     "
-                    class="img-fluid wow fadeInUp" alt=""
+                    class="img-fluid wow fadeInUp"
+                    alt=""
                   />
                   <img
                     *ngIf="
@@ -295,7 +301,8 @@
                       newEnv.imageUrl +
                       landingData?.feature?.feature_left_3_image
                     "
-                    class="img-fluid wow fadeInUp" alt=""
+                    class="img-fluid wow fadeInUp"
+                    alt=""
                   />
                   <img
                     *ngIf="
@@ -306,7 +313,8 @@
                       newEnv.imageUrl +
                       landingData?.feature?.feature_right_1_image
                     "
-                    class="img-fluid wow fadeInUp" alt=""
+                    class="img-fluid wow fadeInUp"
+                    alt=""
                   />
                   <img
                     *ngIf="
@@ -317,7 +325,8 @@
                       newEnv.imageUrl +
                       landingData?.feature?.feature_right_2_image
                     "
-                    class="img-fluid wow fadeInUp" alt=""
+                    class="img-fluid wow fadeInUp"
+                    alt=""
                   />
                   <img
                     *ngIf="
@@ -328,7 +337,8 @@
                       newEnv.imageUrl +
                       landingData?.feature?.feature_right_3_image
                     "
-                    class="img-fluid wow fadeInUp" alt=""
+                    class="img-fluid wow fadeInUp"
+                    alt=""
                   />
                 </div>
               </div>
@@ -446,18 +456,17 @@
         </div>
         <div class="section-content text-center pb-40">
           <owl-carousel-o [options]="customOptions">
-            <ng-template carouselSlide *ngFor="let item of landingData?.videos">
-              <vg-player>
-                <video
-                  [vgMedia]="$any(media)"
-                  #media
-                  id="item._id"
-                  preload="auto"
-                  controls
-                >
-                  <source [src]="item.video_url" type="video/mp4" />
-                </video>
-              </vg-player>
+            <ng-template carouselSlide *ngFor="let item of trustedVideoUrls">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe
+                  width="100%"
+                  height="305"
+                  [src]="item.video_url"
+                  frameborder="0"
+                  allow="autoplay; encrypted-media"
+                  allowfullscreen=""
+                ></iframe>
+              </div>
             </ng-template>
           </owl-carousel-o>
           <!-- <div class="row pb-40">
@@ -530,25 +539,27 @@
                 ></p>
                 <br />
                 <div class="banner-text">
-                <ul>
-                  <li>
-                    <a [href]="ios_app_url" target="_blank"
-                      ><img
-                        src="./assets/images/appstore.png"
-                        class="wow fadeInUp"
-                        data-wow-delay="0.4s" alt=""
-                    /></a>
-                  </li>
-                  <li>
-                    <a [href]="android_app_url" target="_blank"
-                      ><img
-                        src="./assets/images/playstore.png"
-                        class="wow fadeInUp"
-                        data-wow-delay="0.7s" alt=""
-                    /></a>
-                  </li>
-                </ul>
-              </div>
+                  <ul>
+                    <li>
+                      <a [href]="ios_app_url" target="_blank"
+                        ><img
+                          src="./assets/images/appstore.png"
+                          class="wow fadeInUp"
+                          data-wow-delay="0.4s"
+                          alt=""
+                      /></a>
+                    </li>
+                    <li>
+                      <a [href]="android_app_url" target="_blank"
+                        ><img
+                          src="./assets/images/playstore.png"
+                          class="wow fadeInUp"
+                          data-wow-delay="0.7s"
+                          alt=""
+                      /></a>
+                    </li>
+                  </ul>
+                </div>
                 <!-- <p class="lead text-muted">
                   <img
                     class="group-child12"
@@ -588,7 +599,8 @@
                       newEnv.imageUrl + sport?.sg_sport_logo ||
                       './assets/images/basketball-1@2x.png'
                     "
-                    class="img-fluid" alt=""
+                    class="img-fluid"
+                    alt=""
                   />
                   <h4>{{ sport.sport_name }}</h4>
                   <!-- <p>Marketing Specialist</p> -->
@@ -610,8 +622,20 @@
           <h2 class="footer-heading">Menu</h2>
           <ul class="list-unstyled">
             <!-- <li><a href="#" class="py-1 d-block">Help</a></li> -->
-            <li><a href="https://stage.sportgrit.com/cms-page/terms-conditions" class="py-1 d-block">Terms of Service</a></li>
-            <li><a href="https://stage.sportgrit.com/cms-page/privacy-policy" class="py-1 d-block">Privacy Policy</a></li>
+            <li>
+              <a
+                href="https://stage.sportgrit.com/cms-page/terms-conditions"
+                class="py-1 d-block"
+                >Terms of Service</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://stage.sportgrit.com/cms-page/privacy-policy"
+                class="py-1 d-block"
+                >Privacy Policy</a
+              >
+            </li>
             <!-- <li><a href="#" class="py-1 d-block">Subscriptions</a></li> -->
           </ul>
         </div>
@@ -620,32 +644,47 @@
           <ul class="list-unstyled">
             <li>
               <a href="#" class="social-icon">
-                  <img class="icon" alt="Facebook" src="./assets/images/facebook-1.svg" />
-                  <span class="icon-label">Facebook</span>
+                <img
+                  class="icon"
+                  alt="Facebook"
+                  src="./assets/images/facebook-1.svg"
+                />
+                <span class="icon-label">Facebook</span>
               </a>
             </li>
             <li>
               <a href="#" class="social-icon">
-                  <img class="icon" alt="Instagram" src="./assets/images/instagram-1.svg" />
-                  <span class="icon-label">Instagram</span>
+                <img
+                  class="icon"
+                  alt="Instagram"
+                  src="./assets/images/instagram-1.svg"
+                />
+                <span class="icon-label">Instagram</span>
               </a>
             </li>
             <li>
               <a href="#" class="social-icon">
-                  <img class="icon" alt="Twitter" src="./assets/images/twitter-1.svg" />
-                  <span class="icon-label">Twitter</span>
+                <img
+                  class="icon"
+                  alt="Twitter"
+                  src="./assets/images/twitter-1.svg"
+                />
+                <span class="icon-label">Twitter</span>
               </a>
             </li>
             <li>
               <a href="#" class="social-icon">
-                  <img class="icon" alt="YouTube" src="./assets/images/youtubeplay-1.svg" />
-                  <span class="icon-label">YouTube</span>
+                <img
+                  class="icon"
+                  alt="YouTube"
+                  src="./assets/images/youtubeplay-1.svg"
+                />
+                <span class="icon-label">YouTube</span>
               </a>
             </li>
-            </ul>
-          
-      </div>
-      
+          </ul>
+        </div>
+
         <div class="col-12 col-sm-4 col-md-3 col-lg-3 mb-md-0 mb-4">
           <h2 class="footer-heading">Get The App</h2>
           <a [href]="ios_app_url" target="_blank">
