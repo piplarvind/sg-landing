@@ -32,13 +32,13 @@ export class HomeComponent implements OnInit {
   hoveredElem: string = ""; // Track which h5 tag is hovered
 
   customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
-    dots: true,
+    dots: false,
     navSpeed: 700,
-    navText: ["", ""],
+    navText: ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
     responsive: {
       0: {
         items: 1,
