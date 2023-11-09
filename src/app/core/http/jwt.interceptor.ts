@@ -14,6 +14,12 @@ export class JwtInterceptor implements HttpInterceptor {
     //   request = request.clone({ url: environment.serverUrl + request.url });
     // }
 
+    // Check if it's a GET request and has a specific header or other criteria
+    if (request.method === 'GET' && request.url.includes('vimeo')) {
+      // If it meets the criteria, pass the request through without intercepting
+      return next.handle(request);
+    }
+
     const currentUser: any = localStorage;
 
     if (currentUser && currentUser.token) {

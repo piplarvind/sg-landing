@@ -36,6 +36,7 @@ import { ThemeService } from "theme.service";
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
+    
     //
     CoreModule,
     SharedModule,

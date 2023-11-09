@@ -26,23 +26,8 @@ export const environment = {
   //Local
   serverUrl: 'http://localhost:8000/api/v2/',
   imageUrl: 'http://localhost:8000/',
-  resetpasswordurl: 'http://54.185.76.175:8000/manage/forgotPassword',
+  resetpasswordurl: 'https://prodapi.sportgrit.com/manage/forgotPassword',
   
-  
-  // dev
-  //serverUrl: 'http://staging.sportgrit.com/api/v2/vb/',
-  //imageUrl: 'http://staging.sportgrit.com/v2/vb/',
-  //resetpasswordurl: 'http://staging.sportgrit.com/manage/forgotPassword',
-  
-  
-  // production
-  // serverUrl: 'https://volleyball.sportgrit.com/api/v2/',
-  // imageUrl: 'https://volleyball.sportgrit.com/',
-  // resetpasswordurl: 'https://volleyball.sportgrit.com/manage/forgotPassword',
-
-  // serverUrl: 'http://54.185.76.175:8000/api/v2/',
-  // imageUrl: 'http://54.185.76.175:8000/',
-  // resetpasswordurl: 'http://54.185.76.175:8000/manage/forgotPassword',
 
   Platform_Admin: 'PLA',
   Family_Friends_Fans: 'FFF',

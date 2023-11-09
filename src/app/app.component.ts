@@ -50,7 +50,6 @@ export class AppComponent implements OnInit {
       Logger.enableProductionMode();
     }
 
-    log.debug("init");
     this.msgService.getPermission();
     this.msgService.receiveMessage();
     this.message = this.msgService.currentMessage;

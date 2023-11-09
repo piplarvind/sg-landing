@@ -5,10 +5,15 @@ import {
   HostListener,
   ViewEncapsulation,
 } from "@angular/core";
+import { switchMap } from "rxjs/operators";
+import { of } from "rxjs";
+import { VimeoService } from "./vimeo.service";
+
 import { OwlOptions } from "ngx-owl-carousel-o";
 import { HomeService } from "./home.service";
 import { environment } from "../../environments/environment";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { FetchThumbnailURLService } from "./fetchThumbnailURL.service";
 
 @Component({
   selector: "app-home",
@@ -17,6 +22,9 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
+  videoId = "28916465";
+  thumbnailUrl: string;
+
   isSticky = false;
   landingData: any;
   sports: any;
@@ -24,7 +32,11 @@ export class HomeComponent implements OnInit {
   ios_app_url: string;
   newEnv: any = environment;
 
-  trustedVideoUrls: { video_title: string; video_url: SafeResourceUrl }[];
+  trustedVideoUrls: {
+    video_title: string;
+    video_url: SafeResourceUrl;
+    thumbnail: string;
+  }[];
 
   currentPlayingVideo: HTMLIFrameElement | null = null;
 
@@ -38,7 +50,10 @@ export class HomeComponent implements OnInit {
     pullDrag: false,
     dots: false,
     navSpeed: 700,
-    navText: ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
+    navText: [
+      "<i class='fa fa-chevron-left'></i>",
+      "<i class='fa fa-chevron-right'></i>",
+    ],
     responsive: {
       0: {
         items: 1,
@@ -71,10 +86,18 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  selectedVideo: {
+    video_url: SafeResourceUrl;
+    video_title: string;
+    thumbnail: string;
+  } | null = null;
+
   constructor(
     private el: ElementRef,
     public _DomSanitizationService: DomSanitizer,
-    private homeService: HomeService
+    private homeService: HomeService,
+    private vimeoService: VimeoService,
+    private fetchThumbnailURLService: FetchThumbnailURLService
   ) {}
 
   ngOnInit() {
@@ -108,7 +131,7 @@ export class HomeComponent implements OnInit {
   fetchLanding() {
     this.homeService
       .getLandingData()
-      .then((e: any) => {
+      .then(async (e: any) => {
         const obj = e.data;
         this.landingData = obj;
 
@@ -117,21 +140,48 @@ export class HomeComponent implements OnInit {
         this.imageToShow =
           this.newEnv.imageUrl + obj?.feature?.feature_left_1_image;
 
-        this.trustedVideoUrls = obj?.videos.map((video) => ({
-          _id: video._id,
-          video_title: video.video_title,
-          video_url: this.isYouTubeUrl(video.video_url)
-            ? this.sanitizeYouTubeUrl(video.video_url)
-            : this._DomSanitizationService.bypassSecurityTrustResourceUrl(
-                video.video_url
-              ),
-        }));
+        this.trustedVideoUrls = await Promise.all(
+          obj?.videos.map(async (video) => {
+            const videoUrl = this.isYouTubeUrl(video.video_url)
+              ? this.sanitizeYouTubeUrl(video.video_url)
+              : this._DomSanitizationService.bypassSecurityTrustResourceUrl(
+                  video.video_url
+                );
+
+            try {
+              const thumbnailUrl = await this.fetchThumbnailURLService
+                .fetchThumbnailURL(video.video_url)
+                .toPromise();
+              return {
+                _id: video._id,
+                video_title: video.video_title,
+                video_url: videoUrl,
+                thumbnail: thumbnailUrl,
+              };
+            } catch (error) {
+              console.error("Error fetching thumbnail URL:", error);
+              return null;
+            }
+          })
+        );
+
+        // Remove any null values (thumbnails that failed to fetch)
+        this.trustedVideoUrls = this.trustedVideoUrls.filter(
+          (video) => video !== null
+        );
+
+        this.selectedVideo = {
+          video_url: this.trustedVideoUrls[0].video_url,
+          video_title: this.trustedVideoUrls[0].video_title,
+          thumbnail: this.trustedVideoUrls[0].thumbnail,
+        };
       })
       .catch((err) => {
         console.log(err);
         // this.sharedService.showLoader = false;
       });
   }
+
   fetchSportsData() {
     this.homeService
       .getSportsData()
@@ -199,24 +249,12 @@ export class HomeComponent implements OnInit {
     return "";
   }
 
-  playVideo(video: { _id: number; video_url: string }) {
-    console.log('_id', video._id);
-    // const iframe = document.querySelector(
-    //   `iframe[data-id="${video._id}"]`
-    // ) as HTMLIFrameElement;
-
-    // if (this.currentPlayingVideo) {
-    //   this.currentPlayingVideo.contentWindow.postMessage(
-    //     '{"event":"command","func":"pauseVideo","args":""}',
-    //     "*"
-    //   );
-    // }
-
-    // iframe.contentWindow.postMessage(
-    //   '{"event":"command","func":"playVideo","args":""}',
-    //   "*"
-    // );
-
-    // this.currentPlayingVideo = iframe;
+  playVideo(index: number) {
+    const video = this.trustedVideoUrls[index];
+    this.selectedVideo = {
+      video_url: video.video_url,
+      video_title: video.video_title,
+      thumbnail: video.thumbnail,
+    };
   }
 }
