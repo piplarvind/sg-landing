@@ -19,9 +19,6 @@ export const environment = {
     messagingSenderId: '42507948141'
   },
 
-  /*serverUrl: 'http://192.168.2.35:8000/api/v2/vb/',
-  imageUrl: 'http://192.168.2.35:8000/v2/vb/',
-  */
 
   //Local
   serverUrl: 'http://localhost:8000/api/v2/',

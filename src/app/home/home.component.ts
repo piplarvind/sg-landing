@@ -22,7 +22,7 @@ import { FetchThumbnailURLService } from "./fetchThumbnailURL.service";
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
-  videoId = "28916465";
+  videoId = "882742631";
   thumbnailUrl: string;
   year = new Date().getFullYear();
   isSticky = false;
@@ -136,7 +136,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.fetchLanding();
     this.fetchSportsData();
-    this.getSettingData();
+    //this.getSettingData();
   }
 
   scrollToElement(scrollTarget: string) {
@@ -144,13 +144,9 @@ export class HomeComponent implements OnInit {
     const targetElement = this.el.nativeElement.querySelector(
       "#" + scrollTarget
     );
-    //console.log(targetElement);
     if (targetElement) {
-      // Calculate the scroll position with padding
       const scrollPosition =
         targetElement.getBoundingClientRect().top + window.scrollY - padding;
-      // targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-      // Scroll to the calculated position with smooth behavior
       window.scrollTo({ top: scrollPosition, behavior: "smooth" });
     } else {
       console.warn("Element with ID '" + scrollTarget + "' not found.");
@@ -167,8 +163,6 @@ export class HomeComponent implements OnInit {
       .then(async (e: any) => {
         const obj = e.data;
         this.landingData = obj;
-
-        // show first item by default
         this.hoveredElem = obj?.feature?.feature_left_1_title;
         this.setFeatureImages =
           obj?.feature?.landing_features[0].feature_images;
