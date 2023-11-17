@@ -1,0 +1,88 @@
+<div class="full-screen-container login">
+  <!-- Video Background -->
+  <video autoplay muted loop playsinline class="video-background">
+    <source src="assets/background.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div fxLayout="row" class="sections-container login">
+    <!-- Left Section -->
+    <app-left-section></app-left-section>
+
+    <!-- Right Section -->
+    <div
+      fxFlex="50%"
+      fxFlex.xs="100%"
+      fxFlex.sm="100%"
+      fxFlex.md="100%"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      class="right-section"
+      style="background: #ffffff"
+    >
+      <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
+        <p class="main-title">Login To SportGrit</p>
+        <p class="sub-title">Corporate Super Admin Login Only</p>
+        <div class="login-error" [hidden]="!error || isLoading">
+          Username or password incorrect.
+        </div>
+        <br />
+        <div>
+          <div style="text-align: center; padding-top: 10px">
+            <div class="input-container">
+              <mat-form-field appearance="outline">
+                <mat-icon matPrefix>account_circle</mat-icon>
+                <input
+                  matInput
+                  formControlName="username"
+                  autocomplete="username"
+                  [placeholder]="'Username'"
+                  (keyup)="validateUsername($event.target.value)"
+                  type="text"
+                />
+              </mat-form-field>
+            </div>
+            <div class="input-container">
+              <mat-form-field appearance="outline">
+                <mat-icon matPrefix>lock</mat-icon>
+                <input
+                  [type]="hide ? 'password' : 'text'"
+                  matInput
+                  formControlName="password"
+                  autocomplete="current-password"
+                  [placeholder]="'Password'"
+                  required
+                />
+                <mat-icon
+                  style="cursor: pointer"
+                  matSuffix
+                  (click)="hide = !hide"
+                  >{{ hide ? "visibility" : "visibility_off" }}</mat-icon
+                >
+              </mat-form-field>
+            </div>
+          </div>
+          <br />
+          <div
+            style="display: flex; justify-content: center; padding-top: 10px"
+          >
+            <button
+              mat-raised-button
+              class="submit-btn"
+              color="primary"
+              type="submit"
+              [disabled]="loginForm.invalid || isLoading"
+            >
+              <span>Login</span>
+            </button>
+          </div>
+          <div style="margin-top: 15px; text-align: center">
+            <a class="forgot-password" routerLink="/forgot-password"
+              >Forgot Password?</a
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

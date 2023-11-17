@@ -82,12 +82,12 @@ export class AuthenticationService {
 
         this.highestRole = typelist.filter((t) => t.priority === arr[0]);
 
-        if (
-          this.highestRole[0].abbr === `${environment.Super_Admin}` ||
-          this.highestRole[0].abbr === `${environment.Platform_Admin}` ||
-          this.highestRole[0].abbr === `${environment.Club_Admin}` ||
-          this.highestRole[0].abbr === `${environment.Coach}`
-        ) {
+        // if (
+        //   this.highestRole[0].abbr === `${environment.Super_Admin}` ||
+        //   this.highestRole[0].abbr === `${environment.Platform_Admin}` ||
+        //   this.highestRole[0].abbr === `${environment.Club_Admin}` ||
+        //   this.highestRole[0].abbr === `${environment.Coach}`
+        // ) {
           loggedIn = true;
 
           data.token = res.token;
@@ -118,21 +118,21 @@ export class AuthenticationService {
             this.highestRole[0].abbr === `${environment.Club_Admin}`
           ) {
             //this.router.navigate(['/home'], { replaceUrl: true });
-            window.location.href = "/";
+            window.location.href = "/account";
             //this.router.navigateByUrl('home');
           } else {
             // if (   this.highestRole[0].abbr === ' ${ environment.Coach}') {
             //this.router.navigate(['/coach'], { replaceUrl: true });
-            window.location.href = "/coach";
+            // window.location.href = "/coach";
+            window.location.href = "/account";
           }
           // });
-        } else {
-          this.sharedService.loginDialog(
-            "You are not authorized to access this portal"
-          );
-          this.router.navigateByUrl("/login");
-          // this.router.navigate(['/NA'], { replaceUrl: true });
-        }
+        // } else {
+        //   this.sharedService.loginDialog(
+        //     "You are not authorized to access this portal"
+        //   );
+        //   this.router.navigateByUrl("/login");
+        // }
         return res;
       },
       (error) => this.sharedService.loginDialog("Invalid credentials")

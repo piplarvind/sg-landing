@@ -10,7 +10,6 @@ import { LoginComponent } from '@app/login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { PolicyComponent } from './policy/policy.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { EualIosComponent } from './eual-ios/eual-ios.component';
 import { MessageComponent } from './message/message.component';
 import { PublicCmsPageComponent } from './public-cms-page/public-cms-page.component';
 
@@ -24,6 +23,6 @@ import { PublicCmsPageComponent } from './public-cms-page/public-cms-page.compon
     MaterialModule,
     LoginRoutingModule
   ],
-  declarations: [LoginComponent, ResetPasswordComponent, PolicyComponent, EualIosComponent, PrivacyPolicyComponent, MessageComponent, PublicCmsPageComponent]
+  declarations: [LoginComponent, ResetPasswordComponent, PolicyComponent, PrivacyPolicyComponent, MessageComponent, PublicCmsPageComponent]
 })
 export class LoginModule {}

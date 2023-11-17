@@ -6,7 +6,6 @@ import { LoginComponent } from '@app/login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { PolicyComponent } from './policy/policy.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { EualIosComponent } from './eual-ios/eual-ios.component';
 import { MessageComponent} from './message/message.component';
 
 
@@ -18,7 +17,6 @@ const routes: Routes = [
   { path: 'forgotPassword_Web', component: ResetPasswordComponent, data: { title: extract('Reset Passsword') } },
   { path: 'androidPrivacyPolicy', component: PolicyComponent, data: { title: extract('Android Privacy Policy') } },
   { path: 'privacyPolicy', component: PrivacyPolicyComponent, data: { title: extract('Privacy Policy') } },
-  { path: 'eula_ios', component: EualIosComponent, data: { title: extract('End User License Agreement') } },
 
 ];
 

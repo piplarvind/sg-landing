@@ -4,6 +4,10 @@ import { Route } from "@app/core";
 
 const routes: Routes = [
   Route.withShell([
+    // {
+    //   path: 'account',
+    //   loadChildren: () => import('app/account/account.module').then(m => m.AccountModule)
+    // },
     {
       path: "about",
       loadChildren: () =>

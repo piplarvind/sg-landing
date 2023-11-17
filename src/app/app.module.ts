@@ -16,7 +16,10 @@ import { CoreModule } from "@app/core";
 import { CarouselModule } from "ngx-owl-carousel-o";
 import { SharedModule } from "@app/shared";
 import { HomeModule } from "@app/home/home.module";
-import { LoginModule } from "@app/login/login.module";
+import { AuthModule } from "@app/auth/auth.module";
+import { AccountModule } from "@app/account/account.module";
+
+// import { LoginModule } from "@app/login/login.module";
 import { AppComponent } from "@app/app.component";
 import { AppRoutingModule } from "@app/app-routing.module";
 import { MessagingService } from "../messaging.service";
@@ -41,7 +44,9 @@ import { ThemeService } from "theme.service";
     CoreModule,
     SharedModule,
     HomeModule,
-    LoginModule,
+    AuthModule,
+    AccountModule,
+    // LoginModule,
     AppRoutingModule,
     BrowserModule,
     FormsModule,
