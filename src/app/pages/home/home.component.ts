@@ -11,7 +11,7 @@ import { VimeoService } from "./vimeo.service";
 
 import { OwlOptions } from "ngx-owl-carousel-o";
 import { HomeService } from "./home.service";
-import { environment } from "../../environments/environment";
+import { environment } from "../../../environments/environment";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { FetchThumbnailURLService } from "./fetchThumbnailURL.service";
 
@@ -24,7 +24,7 @@ import { FetchThumbnailURLService } from "./fetchThumbnailURL.service";
 export class HomeComponent implements OnInit {
   videoId = "882742631";
   thumbnailUrl: string;
-  year = new Date().getFullYear();
+  
   isSticky = false;
   landingData: any;
   sports: any;
@@ -104,7 +104,7 @@ export class HomeComponent implements OnInit {
     nav: true,
   };
 
-  @HostListener("window:scroll", [])
+  /* @HostListener("window:scroll", [])
   onWindowScroll() {
     // Check the scroll position to determine if the header should be sticky
     // this.isSticky = window.scrollY > 50; // Adjust the offset value as needed
@@ -117,7 +117,7 @@ export class HomeComponent implements OnInit {
     } else {
       document.getElementById("header-navbar").classList.remove("nav-scroll");
     }
-  }
+  } */
 
   selectedVideo: {
     video_url: SafeResourceUrl;
@@ -126,7 +126,7 @@ export class HomeComponent implements OnInit {
   } | null = null;
 
   constructor(
-    private el: ElementRef,
+    
     public _DomSanitizationService: DomSanitizer,
     private homeService: HomeService,
     private vimeoService: VimeoService,
@@ -139,23 +139,7 @@ export class HomeComponent implements OnInit {
     //this.getSettingData();
   }
 
-  scrollToElement(scrollTarget: string) {
-    const padding = 55; // Adjust this value to set the desired padding
-    const targetElement = this.el.nativeElement.querySelector(
-      "#" + scrollTarget
-    );
-    if (targetElement) {
-      const scrollPosition =
-        targetElement.getBoundingClientRect().top + window.scrollY - padding;
-      window.scrollTo({ top: scrollPosition, behavior: "smooth" });
-    } else {
-      console.warn("Element with ID '" + scrollTarget + "' not found.");
-    }
-  }
-
-  handleMenuClick() {
-    document.getElementById("navbarSupportedContent").classList.remove("show");
-  }
+  
 
   fetchLanding() {
     this.homeService
@@ -165,7 +149,7 @@ export class HomeComponent implements OnInit {
         this.landingData = obj;
         this.hoveredElem = obj?.feature?.feature_left_1_title;
         this.setFeatureImages =
-          obj?.feature?.landing_features[0].feature_images;
+          obj?.feature?.landing_features[0]?.feature_images;
         this.imageToShow =
           this.newEnv.imageUrl + obj?.feature?.feature_left_1_image;
 

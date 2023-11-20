@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { extract } from '@app/core';
-import { DashboardComponent } from '@app/account/dashboard/dashboard.component';
+// Component
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
- 
-  { path: 'account', component: DashboardComponent, data: { title: extract('Dashboard') } },
-
+  {
+    path: 'onboarding', loadChildren: () => import('@app/account/onboarding/onboarding.module').then(m => m.OnboardingModule)
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-  providers: []
+  exports: [RouterModule]
 })
-export class AccountRoutingModule {}
+export class AccountRoutingModule { }

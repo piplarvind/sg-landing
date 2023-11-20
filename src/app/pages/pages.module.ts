@@ -12,10 +12,7 @@ import { VgBufferingModule } from "@videogular/ngx-videogular/buffering";
 import { CoreModule } from "@app/core";
 import { SharedModule } from "@app/shared";
 import { MaterialModule } from "@app/material.module";
-import { HomeRoutingModule } from "@app/home/home-routing.module";
-import { HomeComponent } from "@app/home/home.component";
-import { HomeService } from "@app/home/home.service";
-import { ContactFormComponent } from "./contact-form/contact-form.component";
+import { PagesRoutingModule } from "./pages-routing.module";
 
 @NgModule({
   imports: [
@@ -24,14 +21,14 @@ import { ContactFormComponent } from "./contact-form/contact-form.component";
     SharedModule,
     FlexLayoutModule,
     MaterialModule,
-    HomeRoutingModule,
+    PagesRoutingModule,
     CarouselModule,
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
   ],
-  declarations: [HomeComponent, ContactFormComponent],
-  providers: [HomeService],
+  declarations: [],
+  providers: [],
 })
-export class HomeModule {}
+export class PagesModule {}

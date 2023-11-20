@@ -1,0 +1,318 @@
+<section class="section-padding" style="margin-top: 10px">
+  <mat-horizontal-stepper [linear]="isLinear" #stepper labelPosition="bottom">
+    <!-- Step 1 -->
+    <mat-step [stepControl]="formNameGroup" label="Step 1">
+      <ng-template matStepLabel>
+        <h6>Step 1</h6>
+      </ng-template>
+      <div class="container">
+        <form [formGroup]="formNameGroup">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="text-center">
+                <h3>Heading for Step 1</h3>
+                <p>Sub-heading for Step 1</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  placeholder="First Name"
+                  required
+                  formControlName="firstName"
+                />
+                <mat-error
+                  *ngIf="
+                    formNameGroup.controls['firstName'].hasError('required')
+                  "
+                >
+                  First name is required!
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  placeholder="Last Name"
+                  required
+                  formControlName="lastName"
+                />
+                <mat-error
+                  *ngIf="
+                    formNameGroup.controls['lastName'].hasError('required')
+                  "
+                >
+                  Last name is required!
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  placeholder="Email"
+                  required
+                  formControlName="email"
+                />
+                <mat-error
+                  *ngIf="formNameGroup.controls['email'].hasError('required')"
+                >
+                  Email is required!
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  type="password"
+                  placeholder="Password"
+                  required
+                  formControlName="password"
+                />
+                <mat-error
+                  *ngIf="
+                    formNameGroup.controls['password'].hasError('required')
+                  "
+                >
+                  Password is required!
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  type="password"
+                  placeholder="Confirm Password"
+                  required
+                  formControlName="cPassword"
+                />
+                <mat-error
+                  *ngIf="
+                    formNameGroup.controls['cPassword'].hasError('required')
+                  "
+                >
+                  Confirm password is required!
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="button-container text-center mt-3">
+                <button
+                  mat-raised-button
+                  class="btn btn theme-btn"
+                  matStepperNext
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </mat-step>
+
+    <!-- Step 2 -->
+    <!-- Step 2 -->
+<mat-step [stepControl]="formPasswordGroup" label="Step 2">
+  <ng-template matStepLabel>
+    <h6>Step 2</h6>
+  </ng-template>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <h3>Select the Sport</h3>
+          <p>Select the sport you'll be playing to get started with SportGrit</p>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="formPasswordGroup">
+      <div class="row text-center">
+        <div class="col-md-6" *ngFor="let sport of sports">
+          <div class="sport-container">
+            <mat-radio-button
+              [value]="sport.value"
+              formControlName="sportSelection"
+            >
+              {{ sport.label }}
+            </mat-radio-button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-3">
+            <button
+              mat-raised-button
+              class="btn btn theme-btn"
+              matStepperNext
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</mat-step>
+
+    <!-- Add similar adjustments for Step 3 and Step 4 -->
+
+    <!-- Step 3 -->
+    <mat-step [stepControl]="formEmailGroup" label="Step 3">
+      <ng-template matStepLabel>
+        <h6>Step 3</h6>
+      </ng-template>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div>
+              <h3>Heading for Step 3</h3>
+              <p>Sub-heading for Step 3</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <form [formGroup]="formEmailGroup">
+              <mat-form-field class="example-full-width">
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Email"
+                  required
+                  formControlName="emailID"
+                />
+                <mat-error
+                  *ngIf="
+                    formEmailGroup.controls['emailID'].hasError('required')
+                  "
+                >
+                  Email is required!
+                </mat-error>
+                <mat-error
+                  *ngIf="formEmailGroup.controls['emailID'].hasError('email')"
+                >
+                  Email is not valid!
+                </mat-error>
+              </mat-form-field>
+            </form>
+          </div>
+          <!-- Add another field in the same row if needed -->
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <!-- Add another form field or content in the same row if needed -->
+          </div>
+          <div class="col-md-6">
+            <div class="button-container">
+              <button mat-raised-button color="primary" matStepperNext>
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- Step 4 -->
+    <mat-step [stepControl]="formPhoneGroup" label="Step 4">
+      <ng-template matStepLabel>
+        <h6>Step 4</h6>
+      </ng-template>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div>
+              <h3>Heading for Step 4</h3>
+              <p>Sub-heading for Step 4</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <form [formGroup]="formPhoneGroup">
+              <mat-form-field class="example-full-width">
+                <input
+                  type="tel"
+                  matInput
+                  placeholder="Mobile"
+                  required
+                  formControlName="mobile"
+                />
+                <mat-error
+                  *ngIf="formPhoneGroup.controls['mobile'].hasError('required')"
+                >
+                  Mobile is required!
+                </mat-error>
+                <mat-error
+                  *ngIf="formPhoneGroup.controls['mobile'].hasError('min')"
+                >
+                  Mobile number is wrong!
+                </mat-error>
+              </mat-form-field>
+            </form>
+          </div>
+          <!-- Add another field in the same row if needed -->
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <!-- Add another form field or content in the same row if needed -->
+          </div>
+          <div class="col-md-6">
+            <div class="button-container">
+              <button mat-raised-button color="primary" matStepperNext>
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- Step 5 -->
+    <mat-step>
+      <ng-template matStepLabel>
+        <h6>Step 5</h6>
+      </ng-template>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div>
+              <h3>Heading for Step 5</h3>
+              <p>Sub-heading for Step 5</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h5>You are now done.</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="button-container">
+              <button mat-raised-button color="primary" matStepperPrevious>
+                Back
+              </button>
+              <button mat-raised-button color="accent" type="submit">
+                Submit
+              </button>
+              <button mat-raised-button color="warn" (click)="stepper.reset()">
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</section>

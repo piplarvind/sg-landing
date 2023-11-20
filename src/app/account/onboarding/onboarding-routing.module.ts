@@ -2,8 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 import { extract } from "@app/core";
-import { LoginComponent } from "@app/auth/login/login.component";
-import { StepOneComponent } from "@app/auth/onboarding/step-one/step-one.component";
+import { StepOneComponent } from "@app/account/onboarding/step-one/step-one.component";
 
 const routes: Routes = [
   {

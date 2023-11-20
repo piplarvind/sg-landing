@@ -24,48 +24,48 @@
         <li class="nav-item">
           <a
             class="nav-link"
-            href="javascript:void(0);"
-            (click)="scrollToElement('home')"
+            routerLink="/home"
+            fragment="home"
             >Home</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
-            href="javascript:void(0);"
-            (click)="scrollToElement('features')"
+            routerLink="/home"
+            fragment="features"
             >Features</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
-            href="javascript:void(0);"
-            (click)="scrollToElement('videos')"
+            routerLink="/home"
+            fragment="videos"
             >Videos</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
-            href="javascript:void(0);"
-            (click)="scrollToElement('about-us')"
+            routerLink="/home"
+            fragment="about-us"
             >About</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
-            href="javascript:void(0);"
-            (click)="scrollToElement('sports')"
+            routerLink="/home"
+            fragment="sports"
             >Sports</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
-            href="javascript:void(0);"
-            (click)="scrollToElement('contact')"
+            routerLink="/home"
+            fragment="contact"
             >Contact</a
           >
         </li>
@@ -74,10 +74,14 @@
         &nbsp;<a class="btn btn theme-btn" routerLink="/login">Sign In</a>
       </div>
       <div class="sign-in-wrapper">
-        &nbsp;<a class="btn btn theme-btn" routerLink="/onboarding/step-one"
+        &nbsp;<a class="btn btn theme-btn" routerLink="/account/onboarding/step-one"
           >Register</a
         >
       </div>
     </div>
   </div>
 </nav>
+<div class="background-image-container">
+  <!-- Content below the header goes here -->
+</div>
+<!-- End Navbar -->

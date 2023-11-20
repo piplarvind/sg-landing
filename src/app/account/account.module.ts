@@ -6,7 +6,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 import { AccountRoutingModule } from '@app/account/account-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from '@app/account/login/login.component';
+import { AuthLeftSectionComponent } from './left-section/left-section.component';
+import { OnboardingModule } from '@app/account/onboarding/onboarding.module';
+
 
 @NgModule({
   imports: [
@@ -16,10 +19,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SharedModule,
     FlexLayoutModule,
     MaterialModule,
-    AccountRoutingModule
+    AccountRoutingModule,
+    OnboardingModule
   ],
   declarations: [
-    DashboardComponent
+    AuthLeftSectionComponent,
+    LoginComponent
   ]
 })
 export class AccountModule {}

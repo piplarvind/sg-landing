@@ -5,10 +5,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
-import { OnboardingRoutingModule } from './onboarding-routing.module';
-
-// components
-import { StepOneComponent } from '@app/auth/onboarding/step-one/step-one.component';
+import { AccountRoutingModule } from '@app/account/account-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -18,10 +16,10 @@ import { StepOneComponent } from '@app/auth/onboarding/step-one/step-one.compone
     SharedModule,
     FlexLayoutModule,
     MaterialModule,
-    OnboardingRoutingModule
+    AccountRoutingModule
   ],
   declarations: [
-    StepOneComponent
+    DashboardComponent
   ]
 })
-export class OnboardingModule {}
+export class AccountModule {}

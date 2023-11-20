@@ -11,13 +11,26 @@ export class StepOneComponent {
   formPasswordGroup: FormGroup;
   formEmailGroup: FormGroup;
   formPhoneGroup: FormGroup;
+
+  sports = [
+    { value: 'football', label: 'Football' },
+    { value: 'basketball', label: 'Basketball' },
+    { value: 'soccer', label: 'Soccer' },
+    { value: 'tennis', label: 'Tennis' },
+    { value: 'volleyball', label: 'Volleyball' },
+  ];
+  
   constructor(private fb: FormBuilder) {
     this.createForm();
   }
   ngOnit() {}
   createForm() {
     this.formNameGroup = this.fb.group({
-      userName: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      cPassword: ['', Validators.required],
     });
 
     this.formPasswordGroup = this.fb.group({

@@ -6,8 +6,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from '@app/material.module';
-import { ShellComponent } from '@app/core/shell/shell.component';
-import { HeaderComponent } from '@app/core/shell/header/header.component';
+// import { ShellComponent } from '@app/core/shell/shell.component';
+// import { HeaderComponent } from '@app/core/shell/header/header.component';
 import { RouteReusableStrategy } from '@app/core/route-reusable-strategy';
 import { AuthenticationService } from '@app/core/authentication/authentication.service';
 import { AuthenticationGuard } from '@app/core/authentication/authentication.guard';
@@ -30,8 +30,8 @@ import { CacheInterceptor } from '@app/core/http/cache.interceptor';
     RouterModule
   ],
   declarations: [
-    HeaderComponent,
-    ShellComponent
+    // HeaderComponent,
+    // ShellComponent
   ],
   providers: [
     AuthenticationService,
