@@ -8,6 +8,7 @@ import { MaterialModule } from '@app/material.module';
 import { AuthRoutingModule } from '@app/auth/auth-routing.module';
 import { LoginComponent } from '@app/auth/login/login.component';
 import { AuthLeftSectionComponent } from './left-section/left-section.component';
+import { OnboardingModule } from './onboarding/onboarding.module';
 // import { ResetPasswordComponent } from './reset-password/reset-password.component';
 // import { PolicyComponent } from './policy/policy.component';
 // import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
@@ -22,7 +23,8 @@ import { AuthLeftSectionComponent } from './left-section/left-section.component'
     SharedModule,
     FlexLayoutModule,
     MaterialModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    OnboardingModule
   ],
   declarations: [
     AuthLeftSectionComponent,

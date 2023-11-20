@@ -72,8 +72,11 @@
           </li>
         </ul>
         <div class="sign-in-wrapper">
-          &nbsp;<a class="btn btn theme-btn" href="/login"
-            >Sign In</a
+          &nbsp;<a class="btn btn theme-btn" routerLink="/login">Sign In</a>
+        </div>
+        <div class="sign-in-wrapper">
+          &nbsp;<a class="btn btn theme-btn" routerLink="/onboarding/step-one"
+            >Register</a
           >
         </div>
       </div>
@@ -176,7 +179,7 @@
                   "
                 >
                   <div
-                  *ngIf="i % 2 === 0"
+                    *ngIf="i % 2 === 0"
                     class="media single-feature wow fadeInUp"
                     data-wow-delay="0.4s"
                     (mouseenter)="
@@ -237,7 +240,7 @@
                   "
                 >
                   <div
-                  *ngIf="i % 2 !== 0"
+                    *ngIf="i % 2 !== 0"
                     class="media single-feature wow fadeInUp"
                     data-wow-delay="0.2s"
                     (mouseenter)="

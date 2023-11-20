@@ -11,7 +11,6 @@ import { MatSidenav } from "@angular/material/sidenav";
 import { filter } from "rxjs/operators";
 import { SharedService } from "../../shared/shared.service";
 import { environment } from "../../../environments/environment";
-import { SportsService } from "@app/sports/sports.service";
 
 @Component({
   selector: "app-shell",
@@ -33,8 +32,7 @@ export class ShellComponent implements OnInit {
   sportLogo = "./assets/ClubV_logo.png";
 
   constructor(
-    private sharedService: SharedService,
-    private sportService: SportsService
+    private sharedService: SharedService
   ) {
     this.user_role = localStorage.user_role;
     this.clubId = localStorage.club_id;
