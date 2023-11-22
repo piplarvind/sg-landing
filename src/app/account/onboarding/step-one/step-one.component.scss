@@ -14,6 +14,10 @@
   color: white;
 }
 
+::ng-deep .mat-step-header .material-icons {
+  color: #ffff !important;
+}
+
 .radio-container {
   display: flex;
   align-items: center;
