@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-step-one',
   templateUrl: './step-one.component.html',
@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class StepOneComponent {
   isLinear = true;
   formNameGroup: FormGroup;
-  formPasswordGroup: FormGroup;
+  formSportGroup: FormGroup;
   formEmailGroup: FormGroup;
   formPhoneGroup: FormGroup;
 
@@ -18,6 +18,15 @@ export class StepOneComponent {
     { value: 'soccer', label: 'Soccer' },
     { value: 'tennis', label: 'Tennis' },
     { value: 'volleyball', label: 'Volleyball' },
+  ];
+
+  roles = [
+    { value: 'ATH', label: 'Athlete' },
+    { value: 'PAR', label: 'Parent Of Athlete' },
+    { value: 'FFF', label: 'Family, Friends & Fan' },
+    { value: 'COA', label: 'Coach' },
+    { value: 'CAD', label: 'Club Admin' },
+    { value: 'REC', label: 'Recruiter' },
   ];
   
   constructor(private fb: FormBuilder) {
@@ -33,8 +42,8 @@ export class StepOneComponent {
       cPassword: ['', Validators.required],
     });
 
-    this.formPasswordGroup = this.fb.group({
-      passWord: ['', Validators.required],
+    this.formSportGroup = this.fb.group({
+      sportSelection: new FormControl(''),
     });
     this.formEmailGroup = this.fb.group({
       emailID: [

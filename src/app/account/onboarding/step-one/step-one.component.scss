@@ -2,13 +2,81 @@
   background: #ec1c37;
   color: #fff;
 }
+.gray-btn {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+::ng-deeep .mat-step-header .mat-step-icon-selected,
+::ng-deeep .mat-step-header .mat-step-icon-state-done,
+::ng-deeep .mat-step-header .mat-step-icon-state-edit {
+  background-color: #ec1c37 !important;
+  color: white;
+}
+
+.radio-container {
+  display: flex;
+  align-items: center;
+}
+
+.radio-button {
+  margin-right: 8px; /* Adjust the margin as needed */
+}
+
 .sport-container {
+  width: 300px;
   background-color: #f0f0f0; /* Light gray background color */
   padding: 10px;
   margin: 5px;
   border-radius: 5px;
 }
+::ng-deep .sport-container:has(.mat-radio-checked) {
+  border: 1px solid #ec1c37 !important;
+}
+
+::ng-deep label.radio-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0 !important;
+}
+
+.radio-button {
+  margin-right: 18px; /* Adjust the value to increase or decrease space */
+}
 
 .button-container {
   margin-top: 20px;
+}
+
+.role-container {
+  width: 200px;
+  background-color: #f0f0f0; /* Light gray background color */
+  padding: 10px;
+  margin: 5px;
+  border-radius: 100px;
+}
+
+::ng-deep .role-container:has(.mat-radio-checked) {
+  background-color: #35679D !important;
+  color: #fff !important;
+}
+
+::ng-deep .role-container > .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #ffffff !important;
+}
+
+::ng-deep .role-container > .mat-radio-button.mat-accent .mat-radio-inner-circle,
+::ng-deep .role-container > .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+::ng-deep .role-container > .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+::ng-deep .role-container > .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+  background-color: #ff4081 !important;
+}
+
+.radio-button {
+  margin-right: 5px; /* Adjust the margin between the radio button and label */
+  transform: scale(0.8); /* Adjust the scale to make the radio button smaller */
+}
+
+.left-col-md-6 > .sport-container, .left-col-md-6 > .role-container {
+  float: inline-end !important;
 }

@@ -1,7 +1,7 @@
 <section class="section-padding" style="margin-top: 10px">
   <mat-horizontal-stepper [linear]="isLinear" #stepper labelPosition="bottom">
     <!-- Step 1 -->
-    <mat-step [stepControl]="formNameGroup" label="Step 1">
+    <mat-step [stepControl]="formNameGroup" label="Step 1" optional>
       <ng-template matStepLabel>
         <h6>Step 1</h6>
       </ng-template>
@@ -121,48 +121,65 @@
 
     <!-- Step 2 -->
     <!-- Step 2 -->
-<mat-step [stepControl]="formPasswordGroup" label="Step 2">
-  <ng-template matStepLabel>
-    <h6>Step 2</h6>
-  </ng-template>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="text-center">
-          <h3>Select the Sport</h3>
-          <p>Select the sport you'll be playing to get started with SportGrit</p>
-        </div>
-      </div>
-    </div>
-    <form [formGroup]="formPasswordGroup">
-      <div class="row text-center">
-        <div class="col-md-6" *ngFor="let sport of sports">
-          <div class="sport-container">
-            <mat-radio-button
-              [value]="sport.value"
-              formControlName="sportSelection"
-            >
-              {{ sport.label }}
-            </mat-radio-button>
+    <mat-step [stepControl]="formSportGroup" label="Step 2">
+      <ng-template matStepLabel>
+        <h6>Step 2</h6>
+      </ng-template>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center">
+              <h3>Select the Sport</h3>
+              <p>
+                Select the sport you'll be playing to get started with SportGrit
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="button-container text-center mt-3">
-            <button
-              mat-raised-button
-              class="btn btn theme-btn"
-              matStepperNext
-            >
-              Next
-            </button>
+        <form [formGroup]="formSportGroup">
+          <div class="row text-center">
+            <ng-container>
+              <div
+                class="col-md-6 sport-option"
+                [class.left-col-md-6]="i % 2 === 0"
+                *ngFor="let sport of sports; let i = index"
+              >
+                <div class="sport-container">
+                  <label class="radio-label">
+                    <mat-radio-button
+                      [value]="sport.value"
+                      class="radio-button"
+                    ></mat-radio-button>
+                    {{ sport.label }}
+                  </label>
+                </div>
+              </div>
+            </ng-container>
           </div>
-        </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="button-container text-center mt-3">
+                <button
+                  mat-raised-button
+                  class="btn btn gray-btn"
+                  matStepperPrevious
+                >
+                  Previous
+                </button>
+                &nbsp;
+                <button
+                  mat-raised-button
+                  class="btn btn theme-btn"
+                  matStepperNext
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-    </form>
-  </div>
-</mat-step>
+    </mat-step>
 
     <!-- Add similar adjustments for Step 3 and Step 4 -->
 
@@ -174,52 +191,87 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div>
-              <h3>Heading for Step 3</h3>
-              <p>Sub-heading for Step 3</p>
+            <div class="text-center">
+              <h3>Select Your Role</h3>
+              <p>
+                Are you the Athlete signing up? Or are you a parent, coach,
+                recruiter, etc.?
+              </p>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <form [formGroup]="formEmailGroup">
-              <mat-form-field class="example-full-width">
-                <input
-                  type="text"
-                  matInput
-                  placeholder="Email"
-                  required
-                  formControlName="emailID"
-                />
-                <mat-error
-                  *ngIf="
-                    formEmailGroup.controls['emailID'].hasError('required')
-                  "
+        <form [formGroup]="formEmailGroup">
+          <ng-container>
+            <mat-radio-group name="role">
+              <div class="row">
+                <div
+                  class="col-md-6 sport-option"
+                  [class.left-col-md-6]="i % 2 === 0"
+                  *ngFor="let role of roles; let i = index"
                 >
-                  Email is required!
-                </mat-error>
-                <mat-error
-                  *ngIf="formEmailGroup.controls['emailID'].hasError('email')"
+                  <div class="sport-container">
+                    <label class="radio-label">
+                      <mat-radio-button
+                        [value]="role.value"
+                        class="radio-button"
+                      ></mat-radio-button>
+                      {{ role.label }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </mat-radio-group>
+          </ng-container>
+          <ng-container>
+            <mat-radio-group name="gender">
+              <div class="row">
+                <div class="col-md-6 left-col-md-6 role-gender">
+                  <div class="role-container">
+                    <label class="radio-label">
+                      <mat-radio-button
+                        value="Boys Teams"
+                        class="radio-button"
+                      ></mat-radio-button>
+                      Boys Teams
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-6 role-gender">
+                  <div class="role-container">
+                    <label class="radio-label">
+                      <mat-radio-button
+                        value="Girls Teams"
+                        class="radio-button"
+                      ></mat-radio-button>
+                      Girls Teams
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </mat-radio-group>
+          </ng-container>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="button-container text-center mt-3">
+                <button
+                  mat-raised-button
+                  class="btn btn gray-btn"
+                  matStepperPrevious
                 >
-                  Email is not valid!
-                </mat-error>
-              </mat-form-field>
-            </form>
-          </div>
-          <!-- Add another field in the same row if needed -->
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <!-- Add another form field or content in the same row if needed -->
-          </div>
-          <div class="col-md-6">
-            <div class="button-container">
-              <button mat-raised-button color="primary" matStepperNext>
-                Next
-              </button>
+                  Previous
+                </button>
+                &nbsp;
+                <button
+                  mat-raised-button
+                  class="btn btn theme-btn"
+                  matStepperNext
+                >
+                  Next
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </mat-step>
 
@@ -264,12 +316,21 @@
           <!-- Add another field in the same row if needed -->
         </div>
         <div class="row">
-          <div class="col-md-6">
-            <!-- Add another form field or content in the same row if needed -->
-          </div>
-          <div class="col-md-6">
-            <div class="button-container">
-              <button mat-raised-button color="primary" matStepperNext>
+          <div class="col-md-12">
+            <div class="button-container text-center mt-3">
+              <button
+                mat-raised-button
+                class="btn btn gray-btn"
+                matStepperPrevious
+              >
+                Previous
+              </button>
+              &nbsp;
+              <button
+                mat-raised-button
+                class="btn btn theme-btn"
+                matStepperNext
+              >
                 Next
               </button>
             </div>
@@ -299,13 +360,15 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="button-container">
+            <div class="button-container text-center mt-3">
               <button mat-raised-button color="primary" matStepperPrevious>
-                Back
+                Previous
               </button>
-              <button mat-raised-button color="accent" type="submit">
+              &nbsp;
+              <button mat-raised-button class="btn btn theme-btn" type="submit">
                 Submit
               </button>
+              &nbsp;
               <button mat-raised-button color="warn" (click)="stepper.reset()">
                 Reset
               </button>
