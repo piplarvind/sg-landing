@@ -7,9 +7,9 @@
   color: #fff;
 }
 
-::ng-deeep .mat-step-header .mat-step-icon-selected,
-::ng-deeep .mat-step-header .mat-step-icon-state-done,
-::ng-deeep .mat-step-header .mat-step-icon-state-edit {
+::ng-deep .mat-step-header .mat-step-icon-selected,
+::ng-deep .mat-step-header .mat-step-icon-state-done,
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
   background-color: #ec1c37 !important;
   color: white;
 }
