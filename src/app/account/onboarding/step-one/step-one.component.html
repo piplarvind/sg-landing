@@ -278,41 +278,66 @@
     </mat-step>
 
     <!-- Step 4 -->
-    <mat-step [stepControl]="formPhoneGroup" label="Step 4">
+    <mat-step [stepControl]="formClubGroup" label="Step 4">
       <ng-template matStepLabel>
         <h6>Step 4</h6>
       </ng-template>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div>
+            <div class="text-center">
               <h3>Select A Club</h3>
-              <p>Choose the club you’ll be trying out for or are already a member</p>
+              <p>
+                Choose the club you’ll be trying out for or are already a member
+              </p>
             </div>
           </div>
         </div>
-        <form [formGroup]="formPhoneGroup">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center">
+              <input type="text" placeholder="Search Club" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <form [formGroup]="formClubGroup" class="role-form">
           <ng-container>
-            <mat-radio-group name="sport" formControlName="sport">
+            <mat-radio-group name="club" formControlName="club">
               <div class="row text-center">
                 <div
-                  class="col-md-6 sport-option"
+                  class="col-md-3 sport-option"
                   [class.left-col-md-6]="i % 2 === 0"
-                  *ngFor="let sport of sports; let i = index"
+                  *ngFor="let club of clubs; let i = index"
                 >
-                  <div class="sport-container">
-                    <label class="radio-label">
-                      <mat-radio-button
-                        [value]="sport.value"
-                        class="radio-button"
-                      ></mat-radio-button>
-                      {{ sport.label }}
-                    </label>
-                  </div>
+                  <!-- [src]="sport.imageUrl" -->
+                  <mat-card class="club-card" [class.selected]="isClubSelected[i]" (click)="onCardClick(i)">
+                    <img
+                      src="./assets/images/clubv.png"
+                      alt="Club Image"
+                      class="club-image"
+                    />
+                    <mat-card-content>
+                      <label class="radio-label">
+                        <mat-radio-button
+                          [value]="club.value"
+                          class="radio-button"
+                          (click)="onRadioClick($event)"
+                        ></mat-radio-button>
+                      </label>
+                      <p>{{ club.label }}</p>
+                    </mat-card-content>
+                  </mat-card>
                 </div>
               </div>
             </mat-radio-group>
           </ng-container>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="text-center">
+                Don’t see your club listed? Make a request here. <a href="javascript:void();">Here</a>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col-md-12">
               <div class="button-container text-center mt-3">
@@ -346,17 +371,33 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div>
-              <h3>Heading for Step 5</h3>
-              <p>Sub-heading for Step 5</p>
+            <div class="text-center">
+              <h3>Select Age Category</h3>
+              <p>Select age category in which you will be competing</p>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <h5>You are now done.</h5>
-          </div>
-        </div>
+        <ng-container>
+          <mat-radio-group name="sport" formControlName="sport">
+            <div class="row text-center">
+              <div
+                class="col-md-6 sport-option"
+                [class.left-col-md-6]="i % 2 === 0"
+                *ngFor="let cat of categories; let i = index"
+              >
+                <div class="sport-container">
+                  <label class="radio-label">
+                    <mat-radio-button
+                      [value]="cat.value"
+                      class="radio-button"
+                    ></mat-radio-button>
+                    {{ cat.label }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </mat-radio-group>
+        </ng-container>
         <div class="row">
           <div class="col-md-12">
             <div class="button-container text-center mt-3">

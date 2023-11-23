@@ -66,18 +66,34 @@
 }
 
 ::ng-deep .role-container:has(.mat-radio-checked) {
-  background-color: #35679D !important;
+  background-color: #35679d !important;
   color: #fff !important;
 }
 
-::ng-deep .role-container > .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+::ng-deep
+  .role-container
+  > .mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle {
   border-color: #ffffff !important;
 }
 
-::ng-deep .role-container > .mat-radio-button.mat-accent .mat-radio-inner-circle,
-::ng-deep .role-container > .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
-::ng-deep .role-container > .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
-::ng-deep .role-container > .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+::ng-deep
+  .role-container
+  > .mat-radio-button.mat-accent
+  .mat-radio-inner-circle,
+::ng-deep
+  .role-container
+  > .mat-radio-button.mat-accent
+  .mat-radio-ripple
+  .mat-ripple-element:not(.mat-radio-persistent-ripple),
+::ng-deep
+  .role-container
+  > .mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-persistent-ripple,
+::ng-deep
+  .role-container
+  > .mat-radio-button.mat-accent:active
+  .mat-radio-persistent-ripple {
   background-color: #ff4081 !important;
 }
 
@@ -86,6 +102,47 @@
   transform: scale(0.8); /* Adjust the scale to make the radio button smaller */
 }
 
-.left-col-md-6 > .sport-container, .left-col-md-6 > .role-container {
+.left-col-md-6 > .sport-container,
+.left-col-md-6 > .role-container {
   float: inline-end !important;
+}
+
+.club-container {
+  text-align: center;
+}
+
+.role-form {
+  .club-card {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .club-card.selected {
+    border: 1px solid #ec1c37 !important;
+  }
+
+  .club-image {
+    max-width: 100%;
+    max-height: 150px; /* Adjust the max height as needed */
+    object-fit: cover;
+    margin-bottom: 5px;
+  }
+
+  .radio-label {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .radio-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .label-below {
+    margin-top: 10px;
+  }
 }
