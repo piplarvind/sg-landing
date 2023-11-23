@@ -1,12 +1,12 @@
 <section class="section-padding" style="margin-top: 10px">
   <mat-horizontal-stepper [linear]="isLinear" #stepper labelPosition="bottom">
     <!-- Step 1 -->
-    <mat-step [stepControl]="formNameGroup" label="Step 1" >
+    <mat-step [stepControl]="formStep1Group" label="Step 1">
       <ng-template matStepLabel>
         <h6>Step 1</h6>
       </ng-template>
       <div class="container">
-        <form [formGroup]="formNameGroup">
+        <form [formGroup]="formStep1Group">
           <div class="row">
             <div class="col-md-12">
               <div class="text-center">
@@ -26,7 +26,7 @@
                 />
                 <mat-error
                   *ngIf="
-                    formNameGroup.controls['firstName'].hasError('required')
+                    formStep1Group.controls['firstName'].hasError('required')
                   "
                 >
                   First name is required!
@@ -43,7 +43,7 @@
                 />
                 <mat-error
                   *ngIf="
-                    formNameGroup.controls['lastName'].hasError('required')
+                    formStep1Group.controls['lastName'].hasError('required')
                   "
                 >
                   Last name is required!
@@ -59,7 +59,7 @@
                   formControlName="email"
                 />
                 <mat-error
-                  *ngIf="formNameGroup.controls['email'].hasError('required')"
+                  *ngIf="formStep1Group.controls['email'].hasError('required')"
                 >
                   Email is required!
                 </mat-error>
@@ -76,7 +76,7 @@
                 />
                 <mat-error
                   *ngIf="
-                    formNameGroup.controls['password'].hasError('required')
+                    formStep1Group.controls['password'].hasError('required')
                   "
                 >
                   Password is required!
@@ -94,7 +94,7 @@
                 />
                 <mat-error
                   *ngIf="
-                    formNameGroup.controls['cPassword'].hasError('required')
+                    formStep1Group.controls['cPassword'].hasError('required')
                   "
                 >
                   Confirm password is required!
@@ -137,25 +137,27 @@
           </div>
         </div>
         <form [formGroup]="formSportGroup">
-          <div class="row text-center">
-            <ng-container>
-              <div
-                class="col-md-6 sport-option"
-                [class.left-col-md-6]="i % 2 === 0"
-                *ngFor="let sport of sports; let i = index"
-              >
-                <div class="sport-container">
-                  <label class="radio-label">
-                    <mat-radio-button
-                      [value]="sport.value"
-                      class="radio-button"
-                    ></mat-radio-button>
-                    {{ sport.label }}
-                  </label>
+          <ng-container>
+            <mat-radio-group name="sport" formControlName="sport">
+              <div class="row text-center">
+                <div
+                  class="col-md-6 sport-option"
+                  [class.left-col-md-6]="i % 2 === 0"
+                  *ngFor="let sport of sports; let i = index"
+                >
+                  <div class="sport-container">
+                    <label class="radio-label">
+                      <mat-radio-button
+                        [value]="sport.value"
+                        class="radio-button"
+                      ></mat-radio-button>
+                      {{ sport.label }}
+                    </label>
+                  </div>
                 </div>
               </div>
-            </ng-container>
-          </div>
+            </mat-radio-group>
+          </ng-container>
           <div class="row">
             <div class="col-md-12">
               <div class="button-container text-center mt-3">
@@ -184,7 +186,7 @@
     <!-- Add similar adjustments for Step 3 and Step 4 -->
 
     <!-- Step 3 -->
-    <mat-step [stepControl]="formEmailGroup" label="Step 3">
+    <mat-step [stepControl]="formRoleGroup" label="Step 3">
       <ng-template matStepLabel>
         <h6>Step 3</h6>
       </ng-template>
@@ -200,9 +202,9 @@
             </div>
           </div>
         </div>
-        <form [formGroup]="formEmailGroup">
+        <form [formGroup]="formRoleGroup">
           <ng-container>
-            <mat-radio-group name="role">
+            <mat-radio-group name="role" formControlName="role">
               <div class="row">
                 <div
                   class="col-md-6 sport-option"
@@ -284,58 +286,55 @@
         <div class="row">
           <div class="col-md-12">
             <div>
-              <h3>Heading for Step 4</h3>
-              <p>Sub-heading for Step 4</p>
+              <h3>Select A Club</h3>
+              <p>Choose the club you’ll be trying out for or are already a member</p>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <form [formGroup]="formPhoneGroup">
-              <mat-form-field class="example-full-width">
-                <input
-                  type="tel"
-                  matInput
-                  placeholder="Mobile"
-                  required
-                  formControlName="mobile"
-                />
-                <mat-error
-                  *ngIf="formPhoneGroup.controls['mobile'].hasError('required')"
+        <form [formGroup]="formPhoneGroup">
+          <ng-container>
+            <mat-radio-group name="sport" formControlName="sport">
+              <div class="row text-center">
+                <div
+                  class="col-md-6 sport-option"
+                  [class.left-col-md-6]="i % 2 === 0"
+                  *ngFor="let sport of sports; let i = index"
                 >
-                  Mobile is required!
-                </mat-error>
-                <mat-error
-                  *ngIf="formPhoneGroup.controls['mobile'].hasError('min')"
+                  <div class="sport-container">
+                    <label class="radio-label">
+                      <mat-radio-button
+                        [value]="sport.value"
+                        class="radio-button"
+                      ></mat-radio-button>
+                      {{ sport.label }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </mat-radio-group>
+          </ng-container>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="button-container text-center mt-3">
+                <button
+                  mat-raised-button
+                  class="btn btn gray-btn"
+                  matStepperPrevious
                 >
-                  Mobile number is wrong!
-                </mat-error>
-              </mat-form-field>
-            </form>
-          </div>
-          <!-- Add another field in the same row if needed -->
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="button-container text-center mt-3">
-              <button
-                mat-raised-button
-                class="btn btn gray-btn"
-                matStepperPrevious
-              >
-                Previous
-              </button>
-              &nbsp;
-              <button
-                mat-raised-button
-                class="btn btn theme-btn"
-                matStepperNext
-              >
-                Next
-              </button>
+                  Previous
+                </button>
+                &nbsp;
+                <button
+                  mat-raised-button
+                  class="btn btn theme-btn"
+                  matStepperNext
+                >
+                  Next
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </mat-step>
 

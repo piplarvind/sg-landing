@@ -7,9 +7,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class StepOneComponent {
   isLinear = true;
-  formNameGroup: FormGroup;
+  formStep1Group: FormGroup;
   formSportGroup: FormGroup;
-  formEmailGroup: FormGroup;
+  formRoleGroup: FormGroup;
   formPhoneGroup: FormGroup;
 
   sports = [
@@ -34,21 +34,22 @@ export class StepOneComponent {
   }
   ngOnit() {}
   createForm() {
-    this.formNameGroup = this.fb.group({
+    this.formStep1Group = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      // email: ['', Validators.required, Validators.email],
       email: ['', Validators.required],
       password: ['', Validators.required],
       cPassword: ['', Validators.required],
     });
 
     this.formSportGroup = this.fb.group({
-      sportSelection: new FormControl(''),
+      sport: new FormControl(''),
     });
-    this.formEmailGroup = this.fb.group({
-      emailID: [
+    this.formRoleGroup = this.fb.group({
+      role: [
         '',
-        Validators.compose([Validators.required, Validators.email]),
+        Validators.compose([Validators.required]),
       ],
     });
     this.formPhoneGroup = this.fb.group({
