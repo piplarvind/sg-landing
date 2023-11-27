@@ -1,0 +1,109 @@
+<section class="section-padding" style="margin-top: 10px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <h5>Select Your Role</h5>
+          <p>
+            Are you the Athlete signing up? Or are you a parent, coach,
+            recruiter, etc.?
+          </p>
+        </div>
+      </div>
+    </div>
+    <form id="accountForm" [formGroup]="step3Form" (ngSubmit)="onSubmit()">
+      <ng-container>
+        <mat-radio-group name="role" formControlName="role">
+          <div class="row">
+            <div
+              class="col-md-6 sport-option"
+              [class.left-col-md-6]="i % 2 === 0"
+              *ngFor="let role of roles; let i = index"
+            >
+              <div class="sport-container">
+                <label class="radio-label">
+                  <mat-radio-button
+                    [value]="role.value"
+                    class="radio-button"
+                  ></mat-radio-button>
+                  {{ role.label }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </mat-radio-group>
+      </ng-container>
+      <ng-container>
+        <mat-radio-group name="gender">
+          <div class="row">
+            <div class="col-md-6 left-col-md-6 role-gender">
+              <div class="role-container">
+                <label class="radio-label">
+                  <mat-radio-button
+                    value="Boys Teams"
+                    class="radio-button"
+                  ></mat-radio-button>
+                  Boys Teams
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6 role-gender">
+              <div class="role-container">
+                <label class="radio-label">
+                  <mat-radio-button
+                    value="Girls Teams"
+                    class="radio-button"
+                  ></mat-radio-button>
+                  Girls Teams
+                </label>
+              </div>
+            </div>
+          </div>
+        </mat-radio-group>
+      </ng-container>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-1">
+          <mat-error
+            *ngIf="
+              (step3Form.get('role')?.touched || nextButtonClicked) &&
+              step3Form.get('role')?.hasError('required')
+            "
+          >
+            Role is required
+          </mat-error>
+          <!-- <mat-error
+            *ngIf="
+              (step3Form.get('role')?.touched || nextButtonClicked) &&
+              step3Form.get('role')?.hasError('required')
+            "
+          >
+            Role is required
+          </mat-error> -->
+        </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-3">
+            <button
+              mat-raised-button
+              class="btn btn gray-btn"
+              routerLink="/account/onboarding/step2"
+            >
+              Previous
+            </button>
+            &nbsp;
+            <button
+              mat-raised-button
+              class="btn btn theme-btn"
+              type="submit"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>    
+  </div>
+</section>

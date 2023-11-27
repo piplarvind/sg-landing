@@ -1,0 +1,79 @@
+<section class="section-padding" style="margin-top: 10px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <h5>Select Age Category</h5>
+          <p>Select age category in which you will be competing</p>
+        </div>
+      </div>
+    </div>
+    <form id="step5Form" [formGroup]="step5Form" (ngSubmit)="onSubmit()">
+      <ng-container>
+        <mat-radio-group name="age" formControlName="age">
+          <div class="row text-center">
+            <div
+              class="col-md-6 sport-option"
+              [class.left-col-md-6]="i % 2 === 0"
+              *ngFor="let cat of categories; let i = index"
+            >
+              <div class="sport-container">
+                <label class="radio-label">
+                  <mat-radio-button
+                    [value]="cat.value"
+                    class="radio-button"
+                  ></mat-radio-button>
+                  {{ cat.label }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </mat-radio-group>
+      </ng-container>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-1">
+          <mat-error
+            *ngIf="
+              (step5Form.get('age')?.touched || nextButtonClicked) &&
+              step5Form.get('age')?.hasError('required')
+            "
+          >
+            Age category is required
+          </mat-error>
+        </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-3">
+            <button
+              mat-raised-button
+              class="btn btn gray-btn"
+              routerLink="/account/onboarding/step4"
+            >
+              Previous
+            </button>
+            &nbsp;
+            <button mat-raised-button class="btn btn theme-btn" type="submit">
+              Submit
+            </button>
+            &nbsp;
+            <!-- <button mat-raised-button color="warn" (click)="stepper.reset()">
+              Reset
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- <div class="navigation">
+      <button type="button" routerLink="/account/onboarding/step1">
+        Previous
+      </button>
+      <button form="step5Form" type="submit" (click)="nextButtonClick()">
+        Next
+      </button>
+    </div> -->
+  </div>
+</section>

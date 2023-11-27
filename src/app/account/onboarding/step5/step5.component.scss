@@ -1,0 +1,39 @@
+.theme-btn {
+  background: #ec1c37;
+  color: #fff;
+}
+.radio-container {
+  display: flex;
+  align-items: center;
+}
+
+.radio-button {
+  margin-right: 8px; /* Adjust the margin as needed */
+}
+
+.sport-container {
+  width: 300px;
+  background-color: #f0f0f0; /* Light gray background color */
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+::ng-deep .sport-container:has(.mat-radio-checked) {
+  border: 1px solid #ec1c37 !important;
+}
+
+::ng-deep label.radio-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0 !important;
+}
+
+::ng-deep .radio-label label {
+  display: inline-block;
+  margin-bottom: -7px !important;
+}
+
+.left-col-md-6 > .sport-container,
+.left-col-md-6 > .role-container {
+  float: inline-end !important;
+}

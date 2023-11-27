@@ -1,0 +1,86 @@
+<section class="section-padding" style="margin-top: 10px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <h3>Select A Club</h3>
+          <p>
+            Choose the club you’ll be trying out for or are already a member
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <input type="text" placeholder="Search Club" class="form-control" />
+        </div>
+      </div>
+    </div>
+    <form id="clubForm" [formGroup]="step4Form" (ngSubmit)="onSubmit()" class="role-form">
+      <ng-container>
+        <mat-radio-group name="role" formControlName="club">
+          <div class="row">
+            <div
+              class="col-md-3 club-option"
+              [class.left-col-md-6]="i % 2 === 0"
+              *ngFor="let clb of clubs; let i = index"
+            >
+              <mat-card class="club-card">
+                <mat-radio-button [value]="clb.value" class="hidden-radio"></mat-radio-button>
+                <div class="club-container" (click)="selectClub(clb)">
+                  <img src="./assets/images/clubv.png" alt="{{ clb.label }}" class="club-image" />
+                  <label class="radio-label">
+                    {{ clb.label }}
+                  </label>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </mat-radio-group>
+      </ng-container>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-1">
+          <mat-error
+            *ngIf="
+              (step4Form.get('club')?.touched || nextButtonClicked) &&
+              step4Form.get('club')?.hasError('required')
+            "
+          >
+            Club is required
+          </mat-error>
+        </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            Don’t see your club listed? Make a request here. <a href="javascript:void();">Here</a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-3">
+            <button
+              mat-raised-button
+              class="btn btn gray-btn"
+              routerLink="/account/onboarding/step3"
+            >
+              Previous
+            </button>
+            &nbsp;
+            <button
+              mat-raised-button
+              class="btn btn theme-btn"
+              type="submit"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>    
+  </div>
+</section>

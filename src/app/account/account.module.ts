@@ -9,6 +9,9 @@ import { AccountRoutingModule } from '@app/account/account-routing.module';
 import { LoginComponent } from '@app/account/login/login.component';
 import { AuthLeftSectionComponent } from './left-section/left-section.component';
 import { OnboardingModule } from '@app/account/onboarding/onboarding.module';
+import { OnboardingComponent } from './onboarding/onboarding.component';
+import { StepperModule } from '@app/stepper/stepper.module';
+import { OnboardingGuard } from './onboarding/onboarding.gaurd';
 
 
 @NgModule({
@@ -20,11 +23,14 @@ import { OnboardingModule } from '@app/account/onboarding/onboarding.module';
     FlexLayoutModule,
     MaterialModule,
     AccountRoutingModule,
-    OnboardingModule
+    OnboardingModule,
+    StepperModule
   ],
   declarations: [
+    OnboardingComponent,
     AuthLeftSectionComponent,
     LoginComponent
-  ]
+  ],
+  providers: [OnboardingGuard]
 })
 export class AccountModule {}
