@@ -23,38 +23,10 @@
               <div class="sport-container">
                 <label class="radio-label">
                   <mat-radio-button
-                    [value]="role.value"
+                    [value]="role._id"
                     class="radio-button"
                   ></mat-radio-button>
-                  {{ role.label }}
-                </label>
-              </div>
-            </div>
-          </div>
-        </mat-radio-group>
-      </ng-container>
-      <ng-container>
-        <mat-radio-group name="gender">
-          <div class="row">
-            <div class="col-md-6 left-col-md-6 role-gender">
-              <div class="role-container">
-                <label class="radio-label">
-                  <mat-radio-button
-                    value="Boys Teams"
-                    class="radio-button"
-                  ></mat-radio-button>
-                  Boys Teams
-                </label>
-              </div>
-            </div>
-            <div class="col-md-6 role-gender">
-              <div class="role-container">
-                <label class="radio-label">
-                  <mat-radio-button
-                    value="Girls Teams"
-                    class="radio-button"
-                  ></mat-radio-button>
-                  Girls Teams
+                  {{ role.name }}
                 </label>
               </div>
             </div>
@@ -64,23 +36,50 @@
       <div class="row">
         <div class="col-md-12">
           <div class="button-container text-center mt-1">
-          <mat-error
-            *ngIf="
-              (step3Form.get('role')?.touched || nextButtonClicked) &&
-              step3Form.get('role')?.hasError('required')
-            "
-          >
-            Role is required
-          </mat-error>
-          <!-- <mat-error
-            *ngIf="
-              (step3Form.get('role')?.touched || nextButtonClicked) &&
-              step3Form.get('role')?.hasError('required')
-            "
-          >
-            Role is required
-          </mat-error> -->
+            <mat-error
+              *ngIf="
+                (step3Form.get('role')?.touched || nextButtonClicked) &&
+                step3Form.get('role')?.hasError('required')
+              "
+            >
+              Role is required
+            </mat-error>
+          </div>
         </div>
+      </div>
+      <ng-container>
+        <mat-radio-group name="gender" formControlName="gender">
+          <div class="row">
+            <div
+              class="col-md-6 role-gender"
+              [class.left-col-md-6]="i % 2 === 0"
+              *ngFor="let genderItem of genders; let i = index"
+            >
+              <div class="role-container">
+                <label class="radio-label">
+                  <mat-radio-button
+                    [value]="genderItem._id"
+                    class="radio-button"
+                  ></mat-radio-button>
+                  {{ genderItem.name }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </mat-radio-group>
+      </ng-container>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-1">
+            <mat-error
+              *ngIf="
+                (step3Form.get('gender')?.touched || nextButtonClicked) &&
+                step3Form.get('gender')?.hasError('required')
+              "
+            >
+              Gender is required
+            </mat-error>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -94,16 +93,12 @@
               Previous
             </button>
             &nbsp;
-            <button
-              mat-raised-button
-              class="btn btn theme-btn"
-              type="submit"
-            >
+            <button mat-raised-button class="btn btn theme-btn" type="submit">
               Next
             </button>
           </div>
         </div>
       </div>
-    </form>    
+    </form>
   </div>
 </section>

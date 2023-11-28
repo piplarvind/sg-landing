@@ -15,12 +15,12 @@
             <div
               class="col-md-6 sport-option"
               [class.left-col-md-6]="i % 2 === 0"
-              *ngFor="let cat of categories; let i = index"
+              *ngFor="let cat of ages; let i = index"
             >
               <div class="sport-container">
                 <label class="radio-label">
                   <mat-radio-button
-                    [value]="cat.value"
+                    [value]="cat._id"
                     class="radio-button"
                   ></mat-radio-button>
                   {{ cat.label }}

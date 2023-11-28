@@ -27,11 +27,12 @@
               *ngFor="let clb of clubs; let i = index"
             >
               <mat-card class="club-card">
-                <mat-radio-button [value]="clb.value" class="hidden-radio"></mat-radio-button>
+                <mat-radio-button [value]="clb._id" class="hidden-radio"></mat-radio-button>
                 <div class="club-container" (click)="selectClub(clb)">
-                  <img src="./assets/images/clubv.png" alt="{{ clb.label }}" class="club-image" />
+                  <img [src]="env.imageUrl + clb.logo || './assets/images/clubv.png'" alt="{{ clb.club_name }}" class="club-image" />
+                  <br/>
                   <label class="radio-label">
-                    {{ clb.label }}
+                    {{ clb.club_name }}
                   </label>
                 </div>
               </mat-card>
