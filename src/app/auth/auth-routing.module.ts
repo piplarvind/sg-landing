@@ -10,18 +10,8 @@ import { OnboardingComponent } from './onboarding/onboarding.component';
 
 const routes: Routes = [
   {
-    path: 'onboarding', component: OnboardingComponent, loadChildren: () => import('@app/account/onboarding/onboarding.module').then(m => m.OnboardingModule)
+    path: 'onboarding', component: OnboardingComponent, loadChildren: () => import('@app/auth/onboarding/onboarding.module').then(m => m.OnboardingModule)
   },
-  // {
-  //   path: 'onboarding',
-  //   component: OnboardingComponent,
-  //   children: [
-  //     { path: 'step1', component: Step1Component },
-  //     { path: 'step2', component: Step2Component },
-  //     { path: 'step3', component: Step3Component },
-  //     { path: '', redirectTo: 'step1', pathMatch: 'full' },
-  //   ],
-  // },
   {
     path: 'login',
     component: LoginComponent
@@ -32,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AccountRoutingModule { }
+export class AuthRoutingModule { }

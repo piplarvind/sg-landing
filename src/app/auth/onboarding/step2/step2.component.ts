@@ -59,11 +59,11 @@ export class Step2Component implements OnInit {
         (response) => {
           console.log("Sport data saved successfully:", response.data);
           // Navigate to the next step
-          this.router.navigate(["/account/onboarding/step3"]);
+          this.router.navigate(["/auth/onboarding/step3"]);
         },
         (error) => {
           console.error("Error saving user data:", error);
-          this.router.navigate(["/account/onboarding/step2"]);
+          this.router.navigate(["/auth/onboarding/step2"]);
         }
       );
     } else {

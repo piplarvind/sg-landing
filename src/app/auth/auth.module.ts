@@ -5,10 +5,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
-import { AccountRoutingModule } from '@app/account/account-routing.module';
-import { LoginComponent } from '@app/account/login/login.component';
+import { AuthRoutingModule } from '@app/auth/auth-routing.module';
+import { LoginComponent } from '@app/auth/login/login.component';
 import { AuthLeftSectionComponent } from './left-section/left-section.component';
-import { OnboardingModule } from '@app/account/onboarding/onboarding.module';
+import { OnboardingModule } from '@app/auth/onboarding/onboarding.module';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { StepperModule } from '@app/stepper/stepper.module';
 import { OnboardingGuard } from './onboarding/onboarding.gaurd';
@@ -22,7 +22,7 @@ import { OnboardingGuard } from './onboarding/onboarding.gaurd';
     SharedModule,
     FlexLayoutModule,
     MaterialModule,
-    AccountRoutingModule,
+    AuthRoutingModule,
     OnboardingModule,
     StepperModule
   ],
@@ -33,4 +33,4 @@ import { OnboardingGuard } from './onboarding/onboarding.gaurd';
   ],
   providers: [OnboardingGuard]
 })
-export class AccountModule {}
+export class AuthModule {}

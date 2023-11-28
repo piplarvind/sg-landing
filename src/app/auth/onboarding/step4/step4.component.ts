@@ -57,11 +57,11 @@ export class Step4Component implements OnInit {
         (response) => {
           console.log("Club data saved successfully:", response.data);
           // Navigate to the next step
-          this.router.navigate(["/account/onboarding/step5"]);
+          this.router.navigate(["/auth/onboarding/step5"]);
         },
         (error) => {
           console.error("Error saving club data:", error);
-          this.router.navigate(["/account/onboarding/step4"]);
+          this.router.navigate(["/auth/onboarding/step4"]);
         }
       );
     } else {

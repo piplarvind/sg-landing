@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { extract } from '@app/core';
-import { DashboardComponent } from '@app/account/dashboard/dashboard.component';
+import { DashboardComponent } from '@app/pages/account/dashboard/dashboard.component';
 
 const routes: Routes = [
  

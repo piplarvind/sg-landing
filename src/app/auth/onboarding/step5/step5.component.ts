@@ -56,17 +56,17 @@ export class Step5Component {
 
       this.onboardingService.saveAgeData(ageData).subscribe(
         (response) => {
-          localStorage.removeItem('userId');
-          localStorage.removeItem('sportId');
-          localStorage.removeItem('genderId');
-          localStorage.removeItem('clubId');
+          // localStorage.removeItem('userId');
+          // localStorage.removeItem('sportId');
+          // localStorage.removeItem('genderId');
+          // localStorage.removeItem('clubId');
           console.log("Age data saved successfully:", response.data);
           // Navigate to the next step
           this.router.navigate(["/login"]);
         },
         (error) => {
           console.error("Error saving age data:", error);
-          this.router.navigate(["/account/onboarding/step5"]);
+          this.router.navigate(["/auth/onboarding/step5"]);
         }
       );
       //
