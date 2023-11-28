@@ -73,11 +73,11 @@ export class Step3Component implements OnInit {
         (response) => {
           console.log("Role data saved successfully:", response.data);
           // Navigate to the next step
-          this.router.navigate(["/account/onboarding/step4"]);
+          this.router.navigate(["/auth/onboarding/step4"]);
         },
         (error) => {
           console.error("Error saving role data:", error);
-          this.router.navigate(["/account/onboarding/step3"]);
+          this.router.navigate(["/auth/onboarding/step3"]);
         }
       );
     } else {

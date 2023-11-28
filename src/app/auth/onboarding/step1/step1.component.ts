@@ -47,30 +47,42 @@ export class Step1Component implements OnInit {
     if (this.onboardingProcessService.userForm.valid) {
       const userData = this.onboardingProcessService.userForm.value;
       const convertedData = this.convertData(userData);
-      
+
       this.onboardingService.saveStep1Data(convertedData).subscribe(
         (response) => {
           console.log("User data saved successfully:", response);
-          localStorage.setItem('userId', response?.data?._id);
+          localStorage.setItem("userId", response?.data?._id);
           // Navigate to the next step
           if (response?.data?.completed_steps === 1) {
-            this.router.navigate(["/account/onboarding/step2"]);
+            this.router.navigate(["/auth/onboarding/step2"]);
           } else if (response?.data?.completed_steps === 2) {
-            this.router.navigate(["/account/onboarding/step3"]);
+            this.router.navigate(["/auth/onboarding/step3"]);
           }
         },
         (error) => {
           console.error("Error saving user data:", error);
           if (error.status === 409) {
-            localStorage.setItem('userId', error?.error?.data[0]?._id);
-            this.router.navigate(["/account/onboarding/step2"]);
+            localStorage.setItem("userId", error?.error?.data[0]?._id);
+            if (error?.error?.data[0]?.completed_steps === 1) {
+              this.router.navigate(["/auth/onboarding/step2"]);
+            } else if (error?.error?.data[0]?.completed_steps === 2) {
+              this.router.navigate(["/auth/onboarding/step3"]);
+            } else if (error?.error?.data[0]?.completed_steps === 3) {
+              this.router.navigate(["/auth/onboarding/step4"]);
+            } else if (error?.error?.data[0]?.completed_steps === 4) {
+              this.router.navigate(["/auth/onboarding/step5"]);
+            } else {
+              console.error("User already exist:", error);
+              this.router.navigate(["/auth/onboarding/step1"]);
+            }
           } else {
-            this.router.navigate(["/account/onboarding/step1"]);
+            console.error("User already exist:", error);
+            this.router.navigate(["/auth/onboarding/step1"]);
           }
         }
       );
 
-      // this.router.navigate(["/account/onboarding/step2"]);
+      // this.router.navigate(["/auth/onboarding/step2"]);
     } else {
       // If the form is invalid, show an error or handle it accordingly
       console.log("Please fill in all required fields in Step 1.");

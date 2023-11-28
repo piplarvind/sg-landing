@@ -2,7 +2,7 @@ import { NgModule, inject } from "@angular/core";
 import { Router, Routes, RouterModule } from "@angular/router";
 
 import { extract } from "@app/core";
-import { Step1Component } from "@app/account/onboarding/step1/step1.component";
+import { Step1Component } from "@app/auth/onboarding/step1/step1.component";
 import { Step2Component } from "./step2/step2.component";
 import { OnboardingGuard } from "./onboarding.gaurd";
 import { Step3Component } from "./step3/step3.component";
@@ -41,7 +41,7 @@ const routes: Routes = [
     data: { title: extract("Onboarding Step 5") },
     // canActivate: [OnboardingGuard],
   },
-  // { path: 'account/onboarding', redirectTo: 'account/onboarding/step1', pathMatch: 'full' },
+  // { path: 'account/onboarding', redirectTo: 'auth/onboarding/step1', pathMatch: 'full' },
 ];
 
 @NgModule({

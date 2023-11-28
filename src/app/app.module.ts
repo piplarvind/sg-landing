@@ -13,14 +13,16 @@ import { NgwWowModule } from "ngx-wow";
 import { CoreModule } from "@app/core";
 import { CarouselModule } from "ngx-owl-carousel-o";
 import { SharedModule } from "@app/shared";
-import { AccountModule } from "@app/account/account.module";
+import { AuthModule } from "@app/auth/auth.module";
 
 import { AppComponent } from "@app/app.component";
 import { AppRoutingModule } from "@app/app-routing.module";
 import { MessagingService } from "../messaging.service";
 import { JwtInterceptor } from "./core/http/jwt.interceptor";
 import { ThemeService } from "theme.service";
-import { LayoutModule } from "./layout/layout.module";
+import { LayoutModule } from "@app/layout/layout.module";
+// import { AuthLayoutModule } from "@app/authlayout/authlayout.module";
+import { DashlayoutModule } from "@app/dashlayout/dashlayout.module";
 
 @NgModule({
   imports: [
@@ -35,17 +37,18 @@ import { LayoutModule } from "./layout/layout.module";
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    
+
     //
     CoreModule,
     SharedModule,
-    AccountModule,
+    AuthModule,
     AppRoutingModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
     NgwWowModule,
-    LayoutModule
+    LayoutModule,
+    DashlayoutModule,
   ],
   declarations: [AppComponent],
   providers: [

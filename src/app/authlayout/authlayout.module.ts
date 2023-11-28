@@ -14,7 +14,7 @@ import { CommonModule } from "@angular/common";
     CommonModule,
     ReactiveFormsModule
   ],
-  declarations: [],
+  declarations: [AuthlayoutComponent],
   providers: [],
 })
 export class AuthLayoutModule {}

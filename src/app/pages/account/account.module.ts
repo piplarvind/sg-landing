@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
-import { AccountRoutingModule } from '@app/account/account-routing.module';
+import { AccountRoutingModule } from '@app/pages/account/account-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
