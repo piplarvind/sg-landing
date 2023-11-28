@@ -2,13 +2,14 @@
       fxHide.xs
       fxHide.sm
       fxHide.md
-      fxFlex="50%"
+      fxFlex="100%"
       fxLayout="column"
       fxLayoutAlign="start stretch"
       class="left-section"
     >
       <!-- SVG Logo -->
       <div class="logo-container">
+        <a class="navbar-brand navbar-logo" routerLink="/home">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="176"
@@ -88,6 +89,7 @@
             </clipPath>
           </defs>
         </svg>
+      </a>
       </div>
 
       <!-- Additional Content -->
@@ -104,9 +106,9 @@
       <div class="links-container">
         <div class="copyright">Copyright © 2023.</div>
         <div class="right-link">
-          <a href="/cms-page/terms-conditions">Terms of Use</a>
+          <a routerLink="/cms-page/terms-conditions">Terms of Use</a>
           &nbsp;&nbsp;
-          <a href="/cms-page/privacy-policy">Privacy Policy</a>
+          <a routerLink="/cms-page/privacy-policy">Privacy Policy</a>
         </div>
       </div>
     </div>

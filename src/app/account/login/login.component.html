@@ -22,7 +22,6 @@
     >
       <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
         <p class="main-title">Login To SportGrit</p>
-        <p class="sub-title">Corporate Super Admin Login Only</p>
         <div class="login-error" [hidden]="!error || isLoading">
           Username or password incorrect.
         </div>
