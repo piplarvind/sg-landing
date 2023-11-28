@@ -23,6 +23,9 @@ import { ThemeService } from "theme.service";
 import { LayoutModule } from "@app/layout/layout.module";
 // import { AuthLayoutModule } from "@app/authlayout/authlayout.module";
 import { DashlayoutModule } from "@app/dashlayout/dashlayout.module";
+import { CmsPageModule } from "./cms-page/cms-page.module";
+import { LoginModule } from "@app/login/login.module";
+
 
 @NgModule({
   imports: [
@@ -42,6 +45,8 @@ import { DashlayoutModule } from "@app/dashlayout/dashlayout.module";
     CoreModule,
     SharedModule,
     AuthModule,
+    LoginModule,
+    CmsPageModule,
     AppRoutingModule,
     BrowserModule,
     FormsModule,

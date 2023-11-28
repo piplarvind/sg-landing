@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CmsPageService } from '@app/cms-page/cms-page.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,6 +14,7 @@ export class PublicCmsPageComponent implements OnInit {
   htmlContent: any;
   constructor(
     private route: ActivatedRoute,
+    private cmsPageService: CmsPageService,
     private sanitizer: DomSanitizer
   ) { }
 
@@ -23,7 +24,13 @@ export class PublicCmsPageComponent implements OnInit {
   }
 
   getCMSPageBySlug(slug: string) {
-    
+    this.cmsPageService.getOneCMSPageBySlug(slug).then((res: any) => {
+     
+      this.cmsData = res['data'];
+      this.htmlContent = this.sanitizer.bypassSecurityTrustHtml(this.cmsData.content);
+      console.log('res', this.cmsData );
+    })
+    .catch((err: any) => {});
   }
 
 }

@@ -11,6 +11,7 @@ import { environment } from '@env/environment';
 export class LoginService {
   passwordForgot = 'forget/';
   resetEmail = 'password/';
+  resetPassword = 'reset-password/';
 
   constructor(public http: HttpClient) {}
 
@@ -27,9 +28,10 @@ export class LoginService {
     });
   }
 
-  changePassword(data: any) {
+  changePassword(token: string, data: any) {
     return new Promise((resolve, reject) => {
-      this.http.put(this.resetEmail, data).subscribe(
+      let resetUrl = this.resetPassword + token;
+      this.http.post(resetUrl, data).subscribe(
         (res: any) => {
           resolve(res);
         },

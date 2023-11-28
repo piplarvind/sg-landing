@@ -3,19 +3,20 @@ import { LoginService } from '@app/login/login.service';
 import { SharedService } from '@app/shared/shared.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'environments/environment';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
+  newPassword: string = '';
+  reNewPassword: string = '';
+  passwordMismatch: boolean = false;
   hide = true;
-  newPassword: any;
-  reNewPassword: any;
   reqObj: any;
-  passwordMismatch: Boolean;
   activeRouteSubscriber: any;
-  userId: any;
+  token: any;
   req: any;
   pathurl: any;
   constructor(
@@ -26,10 +27,9 @@ export class ResetPasswordComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //  this.req=false;
-    this.activeRouteSubscriber = this.activateRoute.queryParams.subscribe(
-      param => {
-        this.userId = param.user;
+    this.activeRouteSubscriber = this.activateRoute.params.subscribe(
+      params => {
+        this.token = params.token;
         this.getPath();
       }
     );
@@ -40,23 +40,28 @@ export class ResetPasswordComponent implements OnInit {
     this.pathurl = path.split('?');
   }
 
+  
+
   updatepassword() {
     this.reqObj = {
-      password: this.newPassword,
-      user_id: this.userId
+      newPassword: this.newPassword
     };
+    let token = this.token; 
     this.loginService
-      .changePassword(this.reqObj)
+      .changePassword(token, this.reqObj)
       .then((res: any) => {
-        this.sharedService.showMessage('Password Updated successfully');
-        if (this.pathurl[0] === `${environment.resetpasswordurl}`) {
-          this.router.navigateByUrl('/login');
-        } else {
-          this.router.navigateByUrl('/message');
-        }
+        console.log('res', res);
+        this.sharedService.showMessage('Password updated successfully');
+        // if (this.pathurl[0] === `${environment.resetpasswordurl}`) {
+        //   this.router.navigateByUrl('/login');
+        // } else {
+        //   this.router.navigateByUrl('/message');
+        // }
+        this.router.navigateByUrl('/login');
       })
       .catch((err: any) => {
         console.log(err);
+        this.sharedService.showMessage(err?.error?.message || "Something went wrong, please try again");
       });
   }
   // }
@@ -74,10 +79,6 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   matchPassword() {
-    if (this.newPassword !== this.reNewPassword) {
-      this.passwordMismatch = true;
-    } else {
-      this.passwordMismatch = false;
-    }
+    this.passwordMismatch = this.newPassword !== this.reNewPassword;
   }
 }

@@ -383,3 +383,8 @@ mat-card.new-mat-card {
     background: #000;
   }
 }
+
+.mat-raised-button[disabled] {
+  background-color: #9a9797 !important; /* Set your desired gray color */
+  color: #ffffff !important; /* Set your desired text color */
+}

@@ -12,17 +12,22 @@ import { PolicyComponent } from './policy/policy.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { MessageComponent } from './message/message.component';
 import { PublicCmsPageComponent } from './public-cms-page/public-cms-page.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { LoginService } from './login.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     TranslateModule,
     SharedModule,
     FlexLayoutModule,
     MaterialModule,
     LoginRoutingModule
   ],
-  declarations: [LoginComponent, ResetPasswordComponent, PolicyComponent, PrivacyPolicyComponent, MessageComponent, PublicCmsPageComponent]
+  declarations: [LoginComponent, ForgotPasswordComponent, ResetPasswordComponent, PolicyComponent, PrivacyPolicyComponent, MessageComponent, PublicCmsPageComponent],
+  providers: [LoginService]
 })
 export class LoginModule {}

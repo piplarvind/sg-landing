@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { extract } from '@app/core';
 // Component
 import { LoginComponent } from './login/login.component';
+
 import { OnboardingComponent } from './onboarding/onboarding.component';
 // import { Step1Component } from './onboarding/step1/step1.component';
 // import { Step2Component } from './onboarding/step2/step2.component';
@@ -14,8 +15,9 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent , data: { title: extract('Login')}
   }
+  
 ];
 
 @NgModule({

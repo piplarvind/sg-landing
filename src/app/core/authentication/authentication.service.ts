@@ -26,6 +26,7 @@ const credentialsKey = "credentials";
 export class AuthenticationService {
   message: any;
   highestRole: any;
+  passwordForgotUrl = 'forgot-password/';
   private _credentials: Credentials | null;
 
   constructor(
@@ -139,6 +140,21 @@ export class AuthenticationService {
     );
     this.setCredentials(data, context.remember);
     return of(data);
+  }
+
+
+  
+  forgotPassword(username: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.passwordForgotUrl, username).subscribe(
+        (res: any) => {
+          resolve(res);
+        },
+        err => {
+          reject(err);
+        }
+      );
+    });
   }
 
   // getUserRole(role: any) {
