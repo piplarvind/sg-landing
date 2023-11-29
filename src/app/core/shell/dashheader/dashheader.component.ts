@@ -1,8 +1,19 @@
-// home.component.ts
-import { Component, ElementRef, OnInit } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { ScrollService } from "@app/core/scroll.service";
-import { filter } from "rxjs/operators";
+import { Title } from "@angular/platform-browser";
+import { Component, OnInit, Input, AfterViewInit } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+import { MatSidenav } from "@angular/material/sidenav";
+
+import { AuthenticationService } from "@app/core/authentication/authentication.service";
+import { I18nService } from "@app/core/i18n.service";
+// import { SportsService } from "@app/sports/sports.service";
+// import { ClubsService } from "@app/clubs/clubs.service";
+import { SharedService } from "@app/shared/shared.service";
+
+import { environment } from "../../../../environments/environment";
+// import { GenderService } from "@app/gender/gender.service";
+import { ThemeService } from "theme.service";
+
+let ref = null;
 
 @Component({
   selector: "app-dashheader",
@@ -10,44 +21,129 @@ import { filter } from "rxjs/operators";
   styleUrls: ["./dashheader.component.scss"],
 })
 export class DashheaderComponent implements OnInit {
-  constructor(
-    private el: ElementRef,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private scrollService: ScrollService
-  ) {}
+  user_role: any;
+  storedVal: any;
+  apiUrl: string;
+  id: any;
+  @Input()
+  sidenav: MatSidenav;
+  coachClubId: any;
+  quote: string;
+  clubLogo = "./assets/ClubV_logo.png";
+  sportLogo = "./assets/ClubV_logo.png";
+  isLoading: boolean;
+  isSuperAdmin = false;
+  sportsList: Array<any>;
+  clubsList: Array<any>;
+  seasonsList: Array<any>;
+  genderList: Array<any>;
+  selectedClub = "";
+  selectedSport = "";
+  selectedSeason = "";
+  selectedGender = "";
+  // selectedClub = localStorage.super_cur_clubName ? localStorage.super_cur_clubName : '';
 
-  ngOnInit(): void {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.handleScroll();
+  constructor(
+    private router: Router,
+    public themeService: ThemeService,
+    private titleService: Title,
+    private authenticationService: AuthenticationService,
+    private i18nService: I18nService,
+    private sharedService: SharedService
+  ) {
+    // ref = this;
+  }
+
+  ngOnInit() {
+    const obj = JSON.parse(localStorage.userDetails);
+    this.id = obj._id;
+    ref = this;
+    
+    this.apiUrl = environment.imageUrl;
+  }
+
+  public changeLogo(logo: string, club_id) {
+    if (club_id === localStorage.super_cur_clubId) {
+      this.clubLogo = `${environment.imageUrl}${logo}`;
+    }
+  }
+
+  setLanguage(language: string) {
+    this.i18nService.language = language;
+  }
+
+  logout() {
+    this.sharedService
+      .showDialog("Are you sure you want to logout?")
+      .subscribe((res: any) => {
+        if (res) {
+          this.authenticationService.logout().subscribe(() => {
+            localStorage.setItem(
+              "app_theme",
+              this.themeService.isDarkTheme ? "dark" : "light"
+            );
+            this.router.navigate(["/login"], { replaceUrl: true });
+          });
+        }
       });
   }
-
-  private handleScroll(): void {
-    this.activatedRoute.fragment.subscribe(fragment => {
-      if (fragment) {
-        this.scrollService.scrollToElement(fragment);
-      }
+  UpdatePassword() {
+    this.router.navigate(["/forgotPassword_Web"], {
+      queryParams: { user: this.id },
     });
+    // this.router.navigate(['/forgotPassword', { id: this.id }]);
+  }
+  get currentLanguage(): string {
+    return this.i18nService.language;
   }
 
-  // scrollToElement(scrollTarget: string) {
-  //   const padding = 55; // Adjust this value to set the desired padding
-  //   const targetElement = this.el.nativeElement.querySelector(
-  //     "#" + scrollTarget
-  //   );
-  //   if (targetElement) {
-  //     const scrollPosition =
-  //       targetElement.getBoundingClientRect().top + window.scrollY - padding;
-  //     window.scrollTo({ top: scrollPosition, behavior: "smooth" });
-  //   } else {
-  //     console.warn("Element with ID '" + scrollTarget + "' not found.");
-  //   }
-  // }
-
-  handleMenuClick() {
-    document.getElementById("navbarSupportedContent").classList.remove("show");
+  get languages(): string[] {
+    return this.i18nService.supportedLanguages;
   }
+
+  get username(): string {
+    const credentials = this.authenticationService.credentials;
+    return credentials ? credentials.username : null;
+  }
+
+  get title(): string {
+    return this.titleService.getTitle();
+  }
+
+  showDropdown() {
+    const dom: any = document.querySelector(".dropdown");
+    const status: any = dom.style.display;
+    if (status === "block") {
+      dom.style.display = "none";
+    } else {
+      dom.style.display = "block";
+    }
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
+    const body = document.getElementsByTagName("body")[0];
+    if (body.classList.contains("dark")) {
+      body.classList.remove("dark");
+    } else {
+      body.classList.add("dark");
+    }
+    /* this.sharedService
+      .showDialog("Are you sure you want to switch the theme?")
+      .subscribe((response) => {
+        if (response !== "") {
+          this.themeService.toggleTheme();
+          const body = document.getElementsByTagName("body")[0];
+          if (body.classList.contains("dark")) {
+            body.classList.remove("dark");
+          } else {
+            body.classList.add("dark");
+          }
+        }
+      }); */
+  }
+}
+
+export function headerCompRef() {
+  return ref;
 }

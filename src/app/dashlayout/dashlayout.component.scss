@@ -1,0 +1,91 @@
+@import "src/theme/theme-variables";
+@import "src/variables";
+
+:host {
+  display: flex;
+  flex: 1;
+}
+
+.faded {
+  background: $primary;
+}
+
+#regions-nav {
+  padding-left: 35px;
+}
+
+.logo-container {
+  max-width: 40% !important;
+  display: flex;
+}
+
+.web-logo {
+  // width: 222px;
+  height: 69px;
+  flex-shrink: 0;
+  background: var(--neutral-1, #16191c);
+}
+
+.main-logo {
+  margin: 14px 0 2px 0px;
+}
+
+// NAV DESIGN
+.sg-nav {
+  background: var(--all-white, #fff);
+  // width: 221px;
+}
+
+.nav-container {
+  padding: 10px;
+  // width: 221px;
+}
+
+
+.content
+  div:nth-child(2)
+  form
+  .mat-form-field-appearance-outline
+  .mat-form-field-infix {
+  padding: 5px 0;
+  border-top: 0.84375em solid transparent;
+}
+
+// for 2 label of mat-card
+.content
+  div:nth-child(2)
+  form
+  .mat-card:nth-child(1).mat-card:not(.childContainer)
+  .mat-form-field-appearance-outline
+  .mat-form-field-infix {
+  padding: 0.4em 0;
+  border-top: 0.84375em solid transparent;
+}
+
+.content
+  div:nth-child(2)
+  .new-mat-card
+  .mat-form-field-appearance-outline
+  .mat-form-field-infix {
+  padding: 2px 0px 10px 0 !important;
+  margin: 1px;
+}
+
+.content
+  div:nth-child(2)
+  form
+  .mat-form-field-appearance-outline
+  .mat-form-field-flex {
+  padding: 1px 0.75em 0 0.75em;
+  margin-top: 0px !important;
+  position: relative;
+}
+
+.content div:nth-child(2) form .mat-input-element {
+  // padding: 4px 0px 1px;
+  padding: 0px 0px 1px;
+}
+
+.content div:nth-child(2) form .mat-expansion-panel-header-description {
+  margin: 0px !important;
+}

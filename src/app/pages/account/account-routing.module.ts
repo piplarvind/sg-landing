@@ -6,7 +6,7 @@ import { DashboardComponent } from '@app/pages/account/dashboard/dashboard.compo
 
 const routes: Routes = [
  
-  { path: 'account', component: DashboardComponent, data: { title: extract('Dashboard') } },
+  { path: '', component: DashboardComponent, data: { title: extract('Dashboard') } },
 
 ];
 

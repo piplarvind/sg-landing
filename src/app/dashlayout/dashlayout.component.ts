@@ -27,5 +27,10 @@ export class DashlayoutComponent {
       document.getElementById("header-navbar").classList.remove("nav-scroll");
     }
   }
+
+  top(t) {
+    t.scrollTo(0, 0);
+    window.scroll(0, 0);
+  }
   
 }

@@ -76,8 +76,5 @@ export class ShellComponent implements OnInit {
     });
   }
 
-  top(t) {
-    t.scrollTo(0, 0);
-    window.scroll(0, 0);
-  }
+  
 }
