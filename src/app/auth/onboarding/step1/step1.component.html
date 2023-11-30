@@ -4,8 +4,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="text-center">
-            <h5>Heading for Step 1</h5>
-            <p>Sub-heading for Step 1</p>
+            <h5>Personal information</h5>
           </div>
         </div>
       </div>
@@ -14,7 +13,7 @@
           <mat-form-field class="example-full-width">
             <input
               matInput
-              placeholder="First Name"
+              placeholder="First name"
               required
               formControlName="first_name"
             />
@@ -24,7 +23,7 @@
                 userForm.get('first_name')?.hasError('required')
               "
             >
-              First Name is required
+              First name is required
             </mat-error>
           </mat-form-field>
         </div>
@@ -32,7 +31,7 @@
           <mat-form-field class="example-full-width">
             <input
               matInput
-              placeholder="Last Name"
+              placeholder="Last name"
               required
               formControlName="last_name"
             />
@@ -42,7 +41,7 @@
                 userForm.get('last_name')?.hasError('required')
               "
             >
-              Last Name is required
+              Last name is required
             </mat-error>
           </mat-form-field>
         </div>
@@ -166,7 +165,7 @@
               formControlName="acceptTerms"
             >
             &nbsp; I agree to the SportGrit LLC.
-            <a href="javascript:void();">Terms of Use</a> and <a href="javascript:void();">Privacy Policy</a>
+            <a routerLink="/cms-page/terms-conditions" target="_blank">Terms of Use</a> and <a routerLink="/cms-page/privacy-policy" target="_blank">Privacy Policy</a>
             </mat-slide-toggle>
             <mat-error
               *ngIf="

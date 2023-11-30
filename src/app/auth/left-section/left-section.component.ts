@@ -20,6 +20,7 @@ export class AuthLeftSectionComponent implements OnInit {
   hide = true;
   invalidUsername = false;
   message: any;
+  currentYear= new Date().getFullYear();
 
   constructor(
     public sharedService: SharedService,

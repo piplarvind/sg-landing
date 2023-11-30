@@ -21,7 +21,6 @@ import { MessagingService } from "../messaging.service";
 import { JwtInterceptor } from "./core/http/jwt.interceptor";
 import { ThemeService } from "theme.service";
 import { LayoutModule } from "@app/layout/layout.module";
-// import { AuthLayoutModule } from "@app/authlayout/authlayout.module";
 import { DashlayoutModule } from "@app/dashlayout/dashlayout.module";
 import { CmsPageModule } from "./cms-page/cms-page.module";
 import { LoginModule } from "@app/login/login.module";
