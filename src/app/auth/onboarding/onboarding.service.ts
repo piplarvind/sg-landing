@@ -17,6 +17,7 @@ export class OnboardingService {
   private saveClubUrl = "onboard/save-club";
   private getGenderAgesUrl = "lookup/age";
   private saveAgeUrl = "onboard/save-age";
+  private saveClubNotHereUrl = "leads";
 
   constructor(private http: HttpClient) {}
 
@@ -60,4 +61,7 @@ export class OnboardingService {
     return this.http.post(`${this.saveAgeUrl}`, ageData);
   }
 
+  saveClubNotHereData(userData: any): Observable<any> {
+    return this.http.post(`${this.saveClubNotHereUrl}`, userData);
+  }
 }
