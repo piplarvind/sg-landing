@@ -1,389 +1,4 @@
 <div class="m-container">
-  <!-- <mat-accordion class="overall-statics" *ngIf="isSuperAdmin">
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Overall Statistics </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="card-container">
-        <mat-card class="card-item">
-          <mat-card-content>
-            <div fxLayout="row" fxLayoutAlign="space-between">
-              <div fxLayout="column" fxLayoutAlign="start start">
-                <div class="user-count">{{ overallStaticsData?.totalSports }}</div>
-                <div class="card-label">Sports</div>
-              </div>
-              <div class="image-container">
-                <div class="svg-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <mask
-                      id="mask0_942_1736"
-                      style="mask-type: alpha"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="24"
-                      height="24"
-                    >
-                      <rect width="24" height="24" fill="#D9D9D9" />
-                    </mask>
-                    <g mask="url(#mask0_942_1736)">
-                      <path
-                        d="M12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22ZM17 9.5L18.35 9.05L18.75 7.7C18.2167 6.9 17.575 6.2125 16.825 5.6375C16.075 5.0625 15.25 4.63333 14.35 4.35L13 5.3V6.7L17 9.5ZM7 9.5L11 6.7V5.3L9.65 4.35C8.75 4.63333 7.925 5.0625 7.175 5.6375C6.425 6.2125 5.78333 6.9 5.25 7.7L5.65 9.05L7 9.5ZM5.95 17.2L7.1 17.1L7.85 15.75L6.4 11.4L5 10.9L4 11.65C4 12.7333 4.15 13.7208 4.45 14.6125C4.75 15.5042 5.25 16.3667 5.95 17.2ZM12 20C12.4333 20 12.8583 19.9667 13.275 19.9C13.6917 19.8333 14.1 19.7333 14.5 19.6L15.2 18.1L14.55 17H9.45L8.8 18.1L9.5 19.6C9.9 19.7333 10.3083 19.8333 10.725 19.9C11.1417 19.9667 11.5667 20 12 20ZM9.75 15H14.25L15.65 11L12 8.45L8.4 11L9.75 15ZM18.05 17.2C18.75 16.3667 19.25 15.5042 19.55 14.6125C19.85 13.7208 20 12.7333 20 11.65L19 10.95L17.6 11.4L16.15 15.75L16.9 17.1L18.05 17.2Z"
-                        fill="#ffffff"
-                      />
-                    </g>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="card-item">
-          <mat-card-content>
-            <div fxLayout="row" fxLayoutAlign="space-between">
-              <div fxLayout="column" fxLayoutAlign="start start">
-                <div class="user-count">{{ overallStaticsData?.totalClubs }}</div>
-                <div class="card-label">Clubs</div>
-              </div>
-              <div class="image-container">
-                <div class="svg-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <mask
-                      id="mask0_942_1742"
-                      style="mask-type: alpha"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="24"
-                      height="24"
-                    >
-                      <rect width="24" height="24" fill="#D9D9D9" />
-                    </mask>
-                    <g mask="url(#mask0_942_1742)">
-                      <path
-                        d="M3 7V3L7 5L3 7ZM18 7V3L22 5L18 7ZM11 6V2L15 4L11 6ZM11 22C9.73333 21.9667 8.55417 21.8625 7.4625 21.6875C6.37083 21.5125 5.42083 21.2917 4.6125 21.025C3.80417 20.7583 3.16667 20.45 2.7 20.1C2.23333 19.75 2 19.3833 2 19V10C2 9.58333 2.2625 9.19583 2.7875 8.8375C3.3125 8.47917 4.025 8.1625 4.925 7.8875C5.825 7.6125 6.88333 7.39583 8.1 7.2375C9.31667 7.07917 10.6167 7 12 7C13.3833 7 14.6833 7.07917 15.9 7.2375C17.1167 7.39583 18.175 7.6125 19.075 7.8875C19.975 8.1625 20.6875 8.47917 21.2125 8.8375C21.7375 9.19583 22 9.58333 22 10V19C22 19.3833 21.7667 19.75 21.3 20.1C20.8333 20.45 20.1958 20.7583 19.3875 21.025C18.5792 21.2917 17.6292 21.5125 16.5375 21.6875C15.4458 21.8625 14.2667 21.9667 13 22V18H11V22ZM12 11C13.6167 11 15.0125 10.9042 16.1875 10.7125C17.3625 10.5208 18.3 10.3 19 10.05C19 9.96667 18.3667 9.77083 17.1 9.4625C15.8333 9.15417 14.1333 9 12 9C9.86667 9 8.16667 9.15417 6.9 9.4625C5.63333 9.77083 5 9.96667 5 10.05C5.7 10.3 6.6375 10.5208 7.8125 10.7125C8.9875 10.9042 10.3833 11 12 11ZM9 19.85V16H15V19.85C16.3333 19.7167 17.425 19.5208 18.275 19.2625C19.125 19.0042 19.7 18.775 20 18.575V11.8C19.0833 12.1667 17.9333 12.4583 16.55 12.675C15.1667 12.8917 13.65 13 12 13C10.35 13 8.83333 12.8917 7.45 12.675C6.06667 12.4583 4.91667 12.1667 4 11.8V18.575C4.3 18.775 4.875 19.0042 5.725 19.2625C6.575 19.5208 7.66667 19.7167 9 19.85Z"
-                        fill="#ffffff"
-                      />
-                    </g>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="card-item">
-          <mat-card-content>
-            <div fxLayout="row" fxLayoutAlign="space-between">
-              <div fxLayout="column" fxLayoutAlign="start start">
-                <div class="user-count">{{ overallStaticsData?.totalTeams }}</div>
-                <div class="card-label">Teams</div>
-              </div>
-              <div class="image-container">
-                <div class="svg-icon">
-                  <svg
-                    _ngcontent-umx-c492=""
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <mask
-                      _ngcontent-umx-c492=""
-                      id="mask0_903_1806"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="24"
-                      height="24"
-                      style="mask-type: alpha"
-                    >
-                      <rect
-                        _ngcontent-umx-c492=""
-                        width="24"
-                        height="24"
-                        fill="#A1A6AA"
-                      ></rect>
-                    </mask>
-                    <g _ngcontent-umx-c492="" mask="url(#mask0_903_1806)">
-                      <path
-                        _ngcontent-umx-c492=""
-                        d="M0 18V16.425C0 15.7083 0.366667 15.125 1.1 14.675C1.83333 14.225 2.8 14 4 14C4.21667 14 4.425 14.0042 4.625 14.0125C4.825 14.0208 5.01667 14.0417 5.2 14.075C4.96667 14.425 4.79167 14.7917 4.675 15.175C4.55833 15.5583 4.5 15.9583 4.5 16.375V18H0ZM6 18V16.375C6 15.8417 6.14583 15.3542 6.4375 14.9125C6.72917 14.4708 7.14167 14.0833 7.675 13.75C8.20833 13.4167 8.84583 13.1667 9.5875 13C10.3292 12.8333 11.1333 12.75 12 12.75C12.8833 12.75 13.6958 12.8333 14.4375 13C15.1792 13.1667 15.8167 13.4167 16.35 13.75C16.8833 14.0833 17.2917 14.4708 17.575 14.9125C17.8583 15.3542 18 15.8417 18 16.375V18H6ZM19.5 18V16.375C19.5 15.9417 19.4458 15.5333 19.3375 15.15C19.2292 14.7667 19.0667 14.4083 18.85 14.075C19.0333 14.0417 19.2208 14.0208 19.4125 14.0125C19.6042 14.0042 19.8 14 20 14C21.2 14 22.1667 14.2208 22.9 14.6625C23.6333 15.1042 24 15.6917 24 16.425V18H19.5ZM8.125 16H15.9C15.7333 15.6667 15.2708 15.375 14.5125 15.125C13.7542 14.875 12.9167 14.75 12 14.75C11.0833 14.75 10.2458 14.875 9.4875 15.125C8.72917 15.375 8.275 15.6667 8.125 16ZM4 13C3.45 13 2.97917 12.8042 2.5875 12.4125C2.19583 12.0208 2 11.55 2 11C2 10.4333 2.19583 9.95833 2.5875 9.575C2.97917 9.19167 3.45 9 4 9C4.56667 9 5.04167 9.19167 5.425 9.575C5.80833 9.95833 6 10.4333 6 11C6 11.55 5.80833 12.0208 5.425 12.4125C5.04167 12.8042 4.56667 13 4 13ZM20 13C19.45 13 18.9792 12.8042 18.5875 12.4125C18.1958 12.0208 18 11.55 18 11C18 10.4333 18.1958 9.95833 18.5875 9.575C18.9792 9.19167 19.45 9 20 9C20.5667 9 21.0417 9.19167 21.425 9.575C21.8083 9.95833 22 10.4333 22 11C22 11.55 21.8083 12.0208 21.425 12.4125C21.0417 12.8042 20.5667 13 20 13ZM12 12C11.1667 12 10.4583 11.7083 9.875 11.125C9.29167 10.5417 9 9.83333 9 9C9 8.15 9.29167 7.4375 9.875 6.8625C10.4583 6.2875 11.1667 6 12 6C12.85 6 13.5625 6.2875 14.1375 6.8625C14.7125 7.4375 15 8.15 15 9C15 9.83333 14.7125 10.5417 14.1375 11.125C13.5625 11.7083 12.85 12 12 12ZM12 10C12.2833 10 12.5208 9.90417 12.7125 9.7125C12.9042 9.52083 13 9.28333 13 9C13 8.71667 12.9042 8.47917 12.7125 8.2875C12.5208 8.09583 12.2833 8 12 8C11.7167 8 11.4792 8.09583 11.2875 8.2875C11.0958 8.47917 11 8.71667 11 9C11 9.28333 11.0958 9.52083 11.2875 9.7125C11.4792 9.90417 11.7167 10 12 10Z"
-                        fill="#ffffff"
-                      ></path>
-                    </g>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="card-item">
-          <mat-card-content>
-            <div fxLayout="row" fxLayoutAlign="space-between">
-              <div fxLayout="column" fxLayoutAlign="start start">
-                <div class="user-count">{{ overallStaticsData?.totalSubscribers }}</div>
-                <div class="card-label">Subscribers</div>
-              </div>
-              <div class="image-container">
-                <div class="svg-icon">
-                  <svg
-                    _ngcontent-umx-c492=""
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <mask
-                      _ngcontent-umx-c492=""
-                      id="mask0_903_1806"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="24"
-                      height="24"
-                      style="mask-type: alpha"
-                    >
-                      <rect
-                        _ngcontent-umx-c492=""
-                        width="24"
-                        height="24"
-                        fill="#A1A6AA"
-                      ></rect>
-                    </mask>
-                    <g _ngcontent-umx-c492="" mask="url(#mask0_903_1806)">
-                      <path
-                        _ngcontent-umx-c492=""
-                        d="M0 18V16.425C0 15.7083 0.366667 15.125 1.1 14.675C1.83333 14.225 2.8 14 4 14C4.21667 14 4.425 14.0042 4.625 14.0125C4.825 14.0208 5.01667 14.0417 5.2 14.075C4.96667 14.425 4.79167 14.7917 4.675 15.175C4.55833 15.5583 4.5 15.9583 4.5 16.375V18H0ZM6 18V16.375C6 15.8417 6.14583 15.3542 6.4375 14.9125C6.72917 14.4708 7.14167 14.0833 7.675 13.75C8.20833 13.4167 8.84583 13.1667 9.5875 13C10.3292 12.8333 11.1333 12.75 12 12.75C12.8833 12.75 13.6958 12.8333 14.4375 13C15.1792 13.1667 15.8167 13.4167 16.35 13.75C16.8833 14.0833 17.2917 14.4708 17.575 14.9125C17.8583 15.3542 18 15.8417 18 16.375V18H6ZM19.5 18V16.375C19.5 15.9417 19.4458 15.5333 19.3375 15.15C19.2292 14.7667 19.0667 14.4083 18.85 14.075C19.0333 14.0417 19.2208 14.0208 19.4125 14.0125C19.6042 14.0042 19.8 14 20 14C21.2 14 22.1667 14.2208 22.9 14.6625C23.6333 15.1042 24 15.6917 24 16.425V18H19.5ZM8.125 16H15.9C15.7333 15.6667 15.2708 15.375 14.5125 15.125C13.7542 14.875 12.9167 14.75 12 14.75C11.0833 14.75 10.2458 14.875 9.4875 15.125C8.72917 15.375 8.275 15.6667 8.125 16ZM4 13C3.45 13 2.97917 12.8042 2.5875 12.4125C2.19583 12.0208 2 11.55 2 11C2 10.4333 2.19583 9.95833 2.5875 9.575C2.97917 9.19167 3.45 9 4 9C4.56667 9 5.04167 9.19167 5.425 9.575C5.80833 9.95833 6 10.4333 6 11C6 11.55 5.80833 12.0208 5.425 12.4125C5.04167 12.8042 4.56667 13 4 13ZM20 13C19.45 13 18.9792 12.8042 18.5875 12.4125C18.1958 12.0208 18 11.55 18 11C18 10.4333 18.1958 9.95833 18.5875 9.575C18.9792 9.19167 19.45 9 20 9C20.5667 9 21.0417 9.19167 21.425 9.575C21.8083 9.95833 22 10.4333 22 11C22 11.55 21.8083 12.0208 21.425 12.4125C21.0417 12.8042 20.5667 13 20 13ZM12 12C11.1667 12 10.4583 11.7083 9.875 11.125C9.29167 10.5417 9 9.83333 9 9C9 8.15 9.29167 7.4375 9.875 6.8625C10.4583 6.2875 11.1667 6 12 6C12.85 6 13.5625 6.2875 14.1375 6.8625C14.7125 7.4375 15 8.15 15 9C15 9.83333 14.7125 10.5417 14.1375 11.125C13.5625 11.7083 12.85 12 12 12ZM12 10C12.2833 10 12.5208 9.90417 12.7125 9.7125C12.9042 9.52083 13 9.28333 13 9C13 8.71667 12.9042 8.47917 12.7125 8.2875C12.5208 8.09583 12.2833 8 12 8C11.7167 8 11.4792 8.09583 11.2875 8.2875C11.0958 8.47917 11 8.71667 11 9C11 9.28333 11.0958 9.52083 11.2875 9.7125C11.4792 9.90417 11.7167 10 12 10Z"
-                        fill="#ffffff"
-                      ></path>
-                    </g>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="card-item">
-          <mat-card-content>
-            <div fxLayout="row" fxLayoutAlign="space-between">
-              <div fxLayout="column" fxLayoutAlign="start start">
-                <div class="user-count">{{ overallStaticsData?.totalAppUsers }}</div>
-                <div class="card-label">App Users</div>
-              </div>
-              <div class="image-container">
-                <div class="svg-icon">
-                  <svg
-                    _ngcontent-umx-c492=""
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <mask
-                      _ngcontent-umx-c492=""
-                      id="mask0_903_1806"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="24"
-                      height="24"
-                      style="mask-type: alpha"
-                    >
-                      <rect
-                        _ngcontent-umx-c492=""
-                        width="24"
-                        height="24"
-                        fill="#A1A6AA"
-                      ></rect>
-                    </mask>
-                    <g _ngcontent-umx-c492="" mask="url(#mask0_903_1806)">
-                      <path
-                        _ngcontent-umx-c492=""
-                        d="M0 18V16.425C0 15.7083 0.366667 15.125 1.1 14.675C1.83333 14.225 2.8 14 4 14C4.21667 14 4.425 14.0042 4.625 14.0125C4.825 14.0208 5.01667 14.0417 5.2 14.075C4.96667 14.425 4.79167 14.7917 4.675 15.175C4.55833 15.5583 4.5 15.9583 4.5 16.375V18H0ZM6 18V16.375C6 15.8417 6.14583 15.3542 6.4375 14.9125C6.72917 14.4708 7.14167 14.0833 7.675 13.75C8.20833 13.4167 8.84583 13.1667 9.5875 13C10.3292 12.8333 11.1333 12.75 12 12.75C12.8833 12.75 13.6958 12.8333 14.4375 13C15.1792 13.1667 15.8167 13.4167 16.35 13.75C16.8833 14.0833 17.2917 14.4708 17.575 14.9125C17.8583 15.3542 18 15.8417 18 16.375V18H6ZM19.5 18V16.375C19.5 15.9417 19.4458 15.5333 19.3375 15.15C19.2292 14.7667 19.0667 14.4083 18.85 14.075C19.0333 14.0417 19.2208 14.0208 19.4125 14.0125C19.6042 14.0042 19.8 14 20 14C21.2 14 22.1667 14.2208 22.9 14.6625C23.6333 15.1042 24 15.6917 24 16.425V18H19.5ZM8.125 16H15.9C15.7333 15.6667 15.2708 15.375 14.5125 15.125C13.7542 14.875 12.9167 14.75 12 14.75C11.0833 14.75 10.2458 14.875 9.4875 15.125C8.72917 15.375 8.275 15.6667 8.125 16ZM4 13C3.45 13 2.97917 12.8042 2.5875 12.4125C2.19583 12.0208 2 11.55 2 11C2 10.4333 2.19583 9.95833 2.5875 9.575C2.97917 9.19167 3.45 9 4 9C4.56667 9 5.04167 9.19167 5.425 9.575C5.80833 9.95833 6 10.4333 6 11C6 11.55 5.80833 12.0208 5.425 12.4125C5.04167 12.8042 4.56667 13 4 13ZM20 13C19.45 13 18.9792 12.8042 18.5875 12.4125C18.1958 12.0208 18 11.55 18 11C18 10.4333 18.1958 9.95833 18.5875 9.575C18.9792 9.19167 19.45 9 20 9C20.5667 9 21.0417 9.19167 21.425 9.575C21.8083 9.95833 22 10.4333 22 11C22 11.55 21.8083 12.0208 21.425 12.4125C21.0417 12.8042 20.5667 13 20 13ZM12 12C11.1667 12 10.4583 11.7083 9.875 11.125C9.29167 10.5417 9 9.83333 9 9C9 8.15 9.29167 7.4375 9.875 6.8625C10.4583 6.2875 11.1667 6 12 6C12.85 6 13.5625 6.2875 14.1375 6.8625C14.7125 7.4375 15 8.15 15 9C15 9.83333 14.7125 10.5417 14.1375 11.125C13.5625 11.7083 12.85 12 12 12ZM12 10C12.2833 10 12.5208 9.90417 12.7125 9.7125C12.9042 9.52083 13 9.28333 13 9C13 8.71667 12.9042 8.47917 12.7125 8.2875C12.5208 8.09583 12.2833 8 12 8C11.7167 8 11.4792 8.09583 11.2875 8.2875C11.0958 8.47917 11 8.71667 11 9C11 9.28333 11.0958 9.52083 11.2875 9.7125C11.4792 9.90417 11.7167 10 12 10Z"
-                        fill="#ffffff"
-                      ></path>
-                    </g>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="card-item">
-          <mat-card-content>
-            <div fxLayout="row" fxLayoutAlign="space-between">
-              <div fxLayout="column" fxLayoutAlign="start start">
-                <div class="user-count">{{ overallStaticsData?.totalRecruiters }}</div>
-                <div class="card-label">Recruiters</div>
-              </div>
-              <div class="image-container">
-                <div class="svg-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <mask
-                      id="mask0_945_2045"
-                      style="mask-type: alpha"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="16"
-                      height="16"
-                    >
-                      <rect width="16" height="16" fill="#D9D9D9" />
-                    </mask>
-                    <g mask="url(#mask0_945_2045)">
-                      <path
-                        d="M7.33333 7.99996C6.6 7.99996 5.97222 7.73885 5.45 7.21663C4.92778 6.6944 4.66667 6.06663 4.66667 5.33329C4.66667 4.59996 4.92778 3.97218 5.45 3.44996C5.97222 2.92774 6.6 2.66663 7.33333 2.66663C8.06667 2.66663 8.69444 2.92774 9.21667 3.44996C9.73889 3.97218 10 4.59996 10 5.33329C10 6.06663 9.73889 6.6944 9.21667 7.21663C8.69444 7.73885 8.06667 7.99996 7.33333 7.99996ZM14.7333 15.6666L12.6 13.5333C12.3667 13.6666 12.1167 13.7777 11.85 13.8666C11.5833 13.9555 11.3 14 11 14C10.1667 14 9.45833 13.7083 8.875 13.125C8.29167 12.5416 8 11.8333 8 11C8 10.1666 8.29167 9.45829 8.875 8.87496C9.45833 8.29163 10.1667 7.99996 11 7.99996C11.8333 7.99996 12.5417 8.29163 13.125 8.87496C13.7083 9.45829 14 10.1666 14 11C14 11.3 13.9556 11.5833 13.8667 11.85C13.7778 12.1166 13.6667 12.3666 13.5333 12.6L15.6667 14.7333L14.7333 15.6666ZM11 12.6666C11.4667 12.6666 11.8611 12.5055 12.1833 12.1833C12.5056 11.8611 12.6667 11.4666 12.6667 11C12.6667 10.5333 12.5056 10.1388 12.1833 9.81663C11.8611 9.4944 11.4667 9.33329 11 9.33329C10.5333 9.33329 10.1389 9.4944 9.81667 9.81663C9.49444 10.1388 9.33333 10.5333 9.33333 11C9.33333 11.4666 9.49444 11.8611 9.81667 12.1833C10.1389 12.5055 10.5333 12.6666 11 12.6666ZM7.35 8.66663C6.88333 9.35552 6.65 10.1333 6.65 11C6.65 11.8666 6.88333 12.6444 7.35 13.3333H2V11.4833C2 11.1055 2.09444 10.7555 2.28333 10.4333C2.47222 10.1111 2.73333 9.86663 3.06667 9.69996C3.63333 9.41107 4.27222 9.16663 4.98333 8.96663C5.69444 8.76663 6.48333 8.66663 7.35 8.66663Z"
-                        fill="white"
-                      />
-                    </g>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="card-item">
-          <mat-card-content>
-            <div fxLayout="row" fxLayoutAlign="space-between">
-              <div fxLayout="column" fxLayoutAlign="start start">
-                <div class="user-count">${{ overallStaticsData?.subsRevenue }}</div>
-                <div class="card-label">Subs Revenue</div>
-              </div>
-              <div class="image-container">
-                <div class="svg-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <mask
-                      id="mask0_945_2045"
-                      style="mask-type: alpha"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="16"
-                      height="16"
-                    >
-                      <rect width="16" height="16" fill="#D9D9D9" />
-                    </mask>
-                    <g mask="url(#mask0_945_2045)">
-                      <path
-                        d="M7.33333 7.99996C6.6 7.99996 5.97222 7.73885 5.45 7.21663C4.92778 6.6944 4.66667 6.06663 4.66667 5.33329C4.66667 4.59996 4.92778 3.97218 5.45 3.44996C5.97222 2.92774 6.6 2.66663 7.33333 2.66663C8.06667 2.66663 8.69444 2.92774 9.21667 3.44996C9.73889 3.97218 10 4.59996 10 5.33329C10 6.06663 9.73889 6.6944 9.21667 7.21663C8.69444 7.73885 8.06667 7.99996 7.33333 7.99996ZM14.7333 15.6666L12.6 13.5333C12.3667 13.6666 12.1167 13.7777 11.85 13.8666C11.5833 13.9555 11.3 14 11 14C10.1667 14 9.45833 13.7083 8.875 13.125C8.29167 12.5416 8 11.8333 8 11C8 10.1666 8.29167 9.45829 8.875 8.87496C9.45833 8.29163 10.1667 7.99996 11 7.99996C11.8333 7.99996 12.5417 8.29163 13.125 8.87496C13.7083 9.45829 14 10.1666 14 11C14 11.3 13.9556 11.5833 13.8667 11.85C13.7778 12.1166 13.6667 12.3666 13.5333 12.6L15.6667 14.7333L14.7333 15.6666ZM11 12.6666C11.4667 12.6666 11.8611 12.5055 12.1833 12.1833C12.5056 11.8611 12.6667 11.4666 12.6667 11C12.6667 10.5333 12.5056 10.1388 12.1833 9.81663C11.8611 9.4944 11.4667 9.33329 11 9.33329C10.5333 9.33329 10.1389 9.4944 9.81667 9.81663C9.49444 10.1388 9.33333 10.5333 9.33333 11C9.33333 11.4666 9.49444 11.8611 9.81667 12.1833C10.1389 12.5055 10.5333 12.6666 11 12.6666ZM7.35 8.66663C6.88333 9.35552 6.65 10.1333 6.65 11C6.65 11.8666 6.88333 12.6444 7.35 13.3333H2V11.4833C2 11.1055 2.09444 10.7555 2.28333 10.4333C2.47222 10.1111 2.73333 9.86663 3.06667 9.69996C3.63333 9.41107 4.27222 9.16663 4.98333 8.96663C5.69444 8.76663 6.48333 8.66663 7.35 8.66663Z"
-                        fill="white"
-                      />
-                    </g>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="card-item">
-          <mat-card-content>
-            <div fxLayout="row" fxLayoutAlign="space-between">
-              <div fxLayout="column" fxLayoutAlign="start start">
-                <div class="user-count">${{ overallStaticsData?.eventsRevenue }}</div>
-                <div class="card-label">Events Revenue</div>
-              </div>
-              <div class="image-container">
-                <div class="svg-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <mask
-                      id="mask0_945_2045"
-                      style="mask-type: alpha"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="16"
-                      height="16"
-                    >
-                      <rect width="16" height="16" fill="#D9D9D9" />
-                    </mask>
-                    <g mask="url(#mask0_945_2045)">
-                      <path
-                        d="M7.33333 7.99996C6.6 7.99996 5.97222 7.73885 5.45 7.21663C4.92778 6.6944 4.66667 6.06663 4.66667 5.33329C4.66667 4.59996 4.92778 3.97218 5.45 3.44996C5.97222 2.92774 6.6 2.66663 7.33333 2.66663C8.06667 2.66663 8.69444 2.92774 9.21667 3.44996C9.73889 3.97218 10 4.59996 10 5.33329C10 6.06663 9.73889 6.6944 9.21667 7.21663C8.69444 7.73885 8.06667 7.99996 7.33333 7.99996ZM14.7333 15.6666L12.6 13.5333C12.3667 13.6666 12.1167 13.7777 11.85 13.8666C11.5833 13.9555 11.3 14 11 14C10.1667 14 9.45833 13.7083 8.875 13.125C8.29167 12.5416 8 11.8333 8 11C8 10.1666 8.29167 9.45829 8.875 8.87496C9.45833 8.29163 10.1667 7.99996 11 7.99996C11.8333 7.99996 12.5417 8.29163 13.125 8.87496C13.7083 9.45829 14 10.1666 14 11C14 11.3 13.9556 11.5833 13.8667 11.85C13.7778 12.1166 13.6667 12.3666 13.5333 12.6L15.6667 14.7333L14.7333 15.6666ZM11 12.6666C11.4667 12.6666 11.8611 12.5055 12.1833 12.1833C12.5056 11.8611 12.6667 11.4666 12.6667 11C12.6667 10.5333 12.5056 10.1388 12.1833 9.81663C11.8611 9.4944 11.4667 9.33329 11 9.33329C10.5333 9.33329 10.1389 9.4944 9.81667 9.81663C9.49444 10.1388 9.33333 10.5333 9.33333 11C9.33333 11.4666 9.49444 11.8611 9.81667 12.1833C10.1389 12.5055 10.5333 12.6666 11 12.6666ZM7.35 8.66663C6.88333 9.35552 6.65 10.1333 6.65 11C6.65 11.8666 6.88333 12.6444 7.35 13.3333H2V11.4833C2 11.1055 2.09444 10.7555 2.28333 10.4333C2.47222 10.1111 2.73333 9.86663 3.06667 9.69996C3.63333 9.41107 4.27222 9.16663 4.98333 8.96663C5.69444 8.76663 6.48333 8.66663 7.35 8.66663Z"
-                        fill="white"
-                      />
-                    </g>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="card-item">
-          <mat-card-content>
-            <div fxLayout="row" fxLayoutAlign="space-between">
-              <div fxLayout="column" fxLayoutAlign="start start">
-                <div class="user-count">${{ overallStaticsData?.storeRevenue }}</div>
-                <div class="card-label">Store Revenue</div>
-              </div>
-              <div class="image-container">
-                <div class="svg-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <mask
-                      id="mask0_945_2045"
-                      style="mask-type: alpha"
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="16"
-                      height="16"
-                    >
-                      <rect width="16" height="16" fill="#D9D9D9" />
-                    </mask>
-                    <g mask="url(#mask0_945_2045)">
-                      <path
-                        d="M7.33333 7.99996C6.6 7.99996 5.97222 7.73885 5.45 7.21663C4.92778 6.6944 4.66667 6.06663 4.66667 5.33329C4.66667 4.59996 4.92778 3.97218 5.45 3.44996C5.97222 2.92774 6.6 2.66663 7.33333 2.66663C8.06667 2.66663 8.69444 2.92774 9.21667 3.44996C9.73889 3.97218 10 4.59996 10 5.33329C10 6.06663 9.73889 6.6944 9.21667 7.21663C8.69444 7.73885 8.06667 7.99996 7.33333 7.99996ZM14.7333 15.6666L12.6 13.5333C12.3667 13.6666 12.1167 13.7777 11.85 13.8666C11.5833 13.9555 11.3 14 11 14C10.1667 14 9.45833 13.7083 8.875 13.125C8.29167 12.5416 8 11.8333 8 11C8 10.1666 8.29167 9.45829 8.875 8.87496C9.45833 8.29163 10.1667 7.99996 11 7.99996C11.8333 7.99996 12.5417 8.29163 13.125 8.87496C13.7083 9.45829 14 10.1666 14 11C14 11.3 13.9556 11.5833 13.8667 11.85C13.7778 12.1166 13.6667 12.3666 13.5333 12.6L15.6667 14.7333L14.7333 15.6666ZM11 12.6666C11.4667 12.6666 11.8611 12.5055 12.1833 12.1833C12.5056 11.8611 12.6667 11.4666 12.6667 11C12.6667 10.5333 12.5056 10.1388 12.1833 9.81663C11.8611 9.4944 11.4667 9.33329 11 9.33329C10.5333 9.33329 10.1389 9.4944 9.81667 9.81663C9.49444 10.1388 9.33333 10.5333 9.33333 11C9.33333 11.4666 9.49444 11.8611 9.81667 12.1833C10.1389 12.5055 10.5333 12.6666 11 12.6666ZM7.35 8.66663C6.88333 9.35552 6.65 10.1333 6.65 11C6.65 11.8666 6.88333 12.6444 7.35 13.3333H2V11.4833C2 11.1055 2.09444 10.7555 2.28333 10.4333C2.47222 10.1111 2.73333 9.86663 3.06667 9.69996C3.63333 9.41107 4.27222 9.16663 4.98333 8.96663C5.69444 8.76663 6.48333 8.66663 7.35 8.66663Z"
-                        fill="white"
-                      />
-                    </g>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion> -->
-  
   <div class="card-container main-static">
     <mat-card class="card-item">
       <mat-card-content>
@@ -440,4 +55,133 @@
     </mat-card> -->
   </div>
 
+  <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="16px">
+    <mat-card fxFlex="60%" class="new-mat-card">
+      <mat-card-title
+        fxLayout="row"
+        fxLayoutGap="8px"
+        fxLayoutAlign="start center"
+      >
+        <span style="flex: 1">My Athletes</span>
+
+        <div class="m-title" fxLayout="row" fxLayoutAlign="end">
+          <div class="head-right-div">
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-icon matPrefix>search</mat-icon>
+                <input
+                  matInput
+                  formControlName="username"
+                  type="text"
+                  [placeholder]="
+                    keyup ? 'Please Press Enter key' : 'Search by name'
+                  "
+                />
+              </mat-form-field>
+              
+            </div>
+          </div>
+        </div>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="m-table-container">
+          <mat-table #table [dataSource]="dataSourceAthletes" matSort>
+            <!-- (matSortChange)="namesort($event)" -->
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> Name </span>
+              </mat-header-cell>
+              <mat-cell
+                *matCellDef="let element"
+                class="light-red m-pointer"
+                (click)="editClub(element)"
+              >
+                {{ element.name }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> Email </span>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{ element.email }} </mat-cell>
+            </ng-container>
+
+            <mat-header-row
+              *matHeaderRowDef="displayedColumns"
+            ></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          </mat-table>
+          <!-- <mat-paginator [length]="100" [pageSize]="100" [pageSizeOptions]="[10,25, 50, 75, 100]">
+        </mat-paginator> -->
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card fxFlex="40%" class="new-mat-card">
+      <mat-card-title
+        fxLayout="row"
+        fxLayoutGap="8px"
+        fxLayoutAlign="start center"
+      >
+        <span style="flex: 1">Recent Payments</span>
+        <div class="m-title" fxLayout="row" fxLayoutAlign="end">
+          <div class="head-right-div">
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-icon matPrefix>search</mat-icon>
+                <input
+                  matInput
+                  formControlName="username"
+                  type="text"
+                  [placeholder]="
+                    keyup ? 'Please Press Enter key' : 'Search by name'
+                  "
+                />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="m-table-container">
+          <mat-table #table [dataSource]="dataSourcePayments" matSort>
+            <!-- (matSortChange)="namesort($event)" -->
+            <ng-container matColumnDef="payments">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> Payments </span>
+              </mat-header-cell>
+              <mat-cell
+                *matCellDef="let element"
+                class="light-red m-pointer"
+                (click)="editClub(element)"
+              >
+                {{ element.payments }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> Date </span>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{ element.date }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="time">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> Time </span>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{ element.time }} </mat-cell>
+            </ng-container>
+
+            <mat-header-row
+              *matHeaderRowDef="displayedPaymentColumns"
+            ></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedPaymentColumns"></mat-row>
+          </mat-table>
+          <!-- <mat-paginator [length]="100" [pageSize]="100" [pageSizeOptions]="[10,25, 50, 75, 100]">
+        </mat-paginator> -->
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

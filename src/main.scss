@@ -171,21 +171,18 @@ mat-cell,
   margin: 0px !important;
 }
 
-.mat-form-field-appearance-outline .mat-form-field-prefix {
-  top: 0.2em;
-}
-.mat-form-field-appearance-outline .mat-form-field-outline {
-  display: flex;
-  position: absolute;
-  top: 0.25em;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  height: 40px !important;
-}
-// .m-container form .mat-form-field-appearance-outline .mat-form-field-infix {
-//   padding: 10px 0px 10px 0 !important;
+// .mat-form-field-appearance-outline .mat-form-field-prefix {
+//   top: 0.2em;
+// }
+// .mat-form-field-appearance-outline .mat-form-field-outline {
+//   display: flex;
+//   position: absolute;
+//   top: 0.25em;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   pointer-events: none;
+//   height: 40px !important;
 // }
 
 .dateInput {
@@ -275,12 +272,6 @@ mat-cell,
 //   padding: 6px !important;
 // }
 
-.mat-row
-// .mat-header-row
- {
-  display: table-row;
-}
-
 /* Media query for smaller screens */
 @media only screen and (max-width: 1224px) {
   mat-cell:first-of-type,
@@ -295,3 +286,7 @@ mat-cell,
   }
 }
 
+.mat-card-title {
+  font-size: 18px !important;
+  font-weight: 500;
+}

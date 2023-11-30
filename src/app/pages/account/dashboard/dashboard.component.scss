@@ -161,3 +161,27 @@ q {
 ::ng-deep .overall-statics .mat-expansion-panel-body {
   padding: 0 !important;
 }
+
+// field empty
+::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-input.mat-form-field-appearance-fill.mat-form-field-hide-placeholder {
+  .mat-mdc-form-field-text-prefix {
+    place-self: center;
+  }
+}
+
+// field filled
+::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-input.mat-form-field-appearance-fill {
+  .mat-mdc-form-field-text-prefix {
+    place-self: baseline;
+  }
+}
+
+::ng-deep .mat-form-field-label {
+  font-size: 12px !important;
+}
+
+::ng-deep mat-table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}

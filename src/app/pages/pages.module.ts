@@ -9,7 +9,6 @@ import { VgCoreModule } from "@videogular/ngx-videogular/core";
 import { VgControlsModule } from "@videogular/ngx-videogular/controls";
 import { VgOverlayPlayModule } from "@videogular/ngx-videogular/overlay-play";
 import { VgBufferingModule } from "@videogular/ngx-videogular/buffering";
-import { CoreModule } from "@app/core";
 import { SharedModule } from "@app/shared";
 import { MaterialModule } from "@app/material.module";
 import { PagesRoutingModule } from "./pages-routing.module";
