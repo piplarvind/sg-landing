@@ -32,25 +32,6 @@ import {
     private activationStart$ = this.router.events.pipe(
       filter((event): event is ActivationEnd => event instanceof ActivationEnd)
     );
-  
-    /* private stepIndex$ = this.contentInit$.pipe(
-      switchMap(() => this.activationStart$),
-      map((event) => {
-        const path = event.snapshot.routeConfig?.path;
-        const labels = this.labelsQueryList.toArray();
-    
-        return labels.findIndex((label) => label.routerPath === path);
-      }),
-      startWith(-1), // Default value before the first value is emitted
-      distinctUntilChanged() // Emit only if the value changes
-    );
-    private labels$ = this.contentInit$.pipe(
-      switchMap(() =>
-        combineLatest([this.labelsQueryList.changes, this.activationStart$])
-      ),
-      startWith(void 0),
-      map(() => this.labelsQueryList.toArray().map((el) => el.templateRef))
-    ); */
 
     private stepIndex$ = this.contentInit$.pipe(
       switchMap(() => this.activationStart$),

@@ -3,7 +3,10 @@
   <ng-template appStepLabel="step2"> Step 2 </ng-template>
   <ng-template appStepLabel="step3"> Step 3 </ng-template>
   <ng-template appStepLabel="step4"> Step 4 </ng-template>
-  <ng-template appStepLabel="step5"> Step 5 </ng-template>
+  <!-- <ng-template *ngIf="roleType !== 'ATH'" appStepLabel="step5"> Step 5 </ng-template> -->
+  <ng-container *ngIf="roleType !== 'ATH'">
+    <div *appStepLabel="'step5'"> Step 5 </div>
+  </ng-container>
 
   <div class="steps">
     <router-outlet></router-outlet>

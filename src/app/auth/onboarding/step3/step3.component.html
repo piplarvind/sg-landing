@@ -25,6 +25,7 @@
                   <mat-radio-button
                     [value]="role._id"
                     class="radio-button"
+                    (change)="onRoleChange($event, role)"
                   ></mat-radio-button>
                   {{ role.name }}
                 </label>
@@ -47,7 +48,7 @@
           </div>
         </div>
       </div>
-      <ng-container>
+      <ng-container *ngIf="selectedrole !== 'ATH'">
         <mat-radio-group name="gender" formControlName="gender">
           <div class="row">
             <div
