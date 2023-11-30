@@ -208,6 +208,14 @@
   padding: 15px 0 1em 0 !important;
 }
 
+::ng-deep .login .mat-form-field-flex {
+  display: inline-flex;
+  align-items: baseline;
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px !important;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
