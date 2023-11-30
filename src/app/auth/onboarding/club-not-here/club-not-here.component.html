@@ -1,0 +1,137 @@
+<section class="section-padding" style="margin-top: 10px">
+  <div class="container">
+    <form id="clubForm" [formGroup]="clubForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h5>Club Is Not Here?</h5>
+            <p>Tell us about your club and how to contact you so we can get your club added to our app.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="Club name"
+              required
+              formControlName="club_name"
+            />
+            <mat-error
+              *ngIf="
+                (clubForm.get('club_name')?.touched || nextButtonClicked) &&
+                clubForm.get('club_name')?.hasError('required')
+              "
+            >
+              Club name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="Street address"
+              required
+              formControlName="club_address"
+            />
+            <mat-error
+              *ngIf="
+                (clubForm.get('club_address')?.touched || nextButtonClicked) &&
+                clubForm.get('club_address')?.hasError('required')
+              "
+            >
+              Street address is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="City"
+              required
+              formControlName="city"
+            />
+            <mat-error
+              *ngIf="
+                (clubForm.get('city')?.touched || nextButtonClicked) &&
+                clubForm.get('city')?.hasError('required')
+              "
+            >
+              City is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="State"
+              required
+              formControlName="state"
+            />
+            <mat-error
+              *ngIf="
+                (clubForm.get('state')?.touched || nextButtonClicked) &&
+                clubForm.get('state')?.hasError('required')
+              "
+            >
+              Stage is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              type="tel"
+              placeholder="Zip code"
+              required
+              formControlName="zip"
+            />
+            <mat-error
+              *ngIf="
+                (clubForm.get('zip')?.touched || nextButtonClicked) &&
+                clubForm.get('zip')?.hasError('required')
+              "
+            >
+            Zip code is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              type="tel"
+              placeholder="Mobile no"
+              required
+              formControlName="mobile_no"
+            />
+            <mat-error
+              *ngIf="
+                (clubForm.get('mobile_no')?.touched || nextButtonClicked) &&
+                clubForm.get('mobile_no')?.hasError('required')
+              "
+            >
+              Mobile no is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-3">
+            <button mat-raised-button type="submit" class="btn btn theme-btn">
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

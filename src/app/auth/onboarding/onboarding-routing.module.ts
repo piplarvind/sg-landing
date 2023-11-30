@@ -8,6 +8,8 @@ import { OnboardingGuard } from "./onboarding.gaurd";
 import { Step3Component } from "./step3/step3.component";
 import { Step4Component } from "./step4/step4.component";
 import { Step5Component } from "./step5/step5.component";
+import { ClubNotHereComponent } from "./club-not-here/club-not-here.component";
+import { SuccessReponseScreenComponent } from "./success-reponse-screen/success-reponse-screen.component";
 
 const routes: Routes = [
   {
@@ -40,6 +42,16 @@ const routes: Routes = [
     component: Step5Component,
     data: { title: extract("Onboarding Step 5") },
     // canActivate: [OnboardingGuard],
+  },
+  {
+    path: "club-not-here",
+    component: ClubNotHereComponent,
+    data: { title: extract("Club Not Here") },
+  },
+  {
+    path: "success-screen",
+    component: SuccessReponseScreenComponent,
+    data: { title: extract("Club Not Here") },
   },
   // { path: 'account/onboarding', redirectTo: 'auth/onboarding/step1', pathMatch: 'full' },
 ];
