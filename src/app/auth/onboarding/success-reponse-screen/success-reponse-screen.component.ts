@@ -9,7 +9,12 @@ import { Router } from "@angular/router";
 export class SuccessReponseScreenComponent implements OnInit {
   constructor(private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    localStorage.removeItem("userId");
+    localStorage.removeItem("sportId");
+    localStorage.removeItem("genderId");
+    localStorage.removeItem("clubId");
+  }
 
   goToLogin(): void {
     this.router.navigateByUrl("/login");

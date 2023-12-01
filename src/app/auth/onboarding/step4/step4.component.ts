@@ -3,6 +3,7 @@ import { OnboardingProcessService } from "../onboarding.process.service";
 import { Router } from "@angular/router";
 import { OnboardingService } from "../onboarding.service";
 import { environment } from "@env/environment";
+import { SharedService } from "@app/shared/shared.service";
 @Component({
   selector: "app-step4",
   templateUrl: "./step4.component.html",
@@ -20,7 +21,8 @@ export class Step4Component implements OnInit {
   constructor(
     private router: Router,
     private onboardingProcessService: OnboardingProcessService,
-    private onboardingService: OnboardingService
+    private onboardingService: OnboardingService,
+    public sharedService: SharedService
   ) {}
 
   ngOnInit() {
@@ -37,7 +39,8 @@ export class Step4Component implements OnInit {
         this.clubs = response.data;
       },
       (error) => {
-        console.error("Error getting gender data:", error);
+        //console.error("Error getting gender data:", error);
+        this.sharedService.showMessage(error.error.message);
       }
     );
   }
@@ -56,21 +59,27 @@ export class Step4Component implements OnInit {
       this.onboardingService.saveClubData(clubData).subscribe(
         (response) => {
           // console.log("Club data saved successfully:", response.data);
+          this.sharedService.showMessage(response.message);
           if (localStorage.getItem("userType") === "ATH") {
             // Navigate to the next step
             this.router.navigate(["/auth/onboarding/step5"]);
+          } else if (localStorage.getItem("userType") === "REC") {
+            // Navigate to the next step to verify the mobile number
+            this.router.navigate(["/auth/onboarding/university-detail"]);
           } else {
             this.router.navigate(["/login"]);
           }
         },
         (error) => {
-          console.error("Error saving club data:", error);
+          //console.error("Error saving club data:", error);
+          this.sharedService.showMessage(error.error.message);
           this.router.navigate(["/auth/onboarding/step4"]);
         }
       );
     } else {
       // If the form is invalid, show an error or handle it accordingly
-      console.log("Please fill in all required fields in Step 4.");
+      //console.log("Please fill in all required fields in Step 4.");
+      this.sharedService.showMessage("Please fill all required fields");
     }
   }
 

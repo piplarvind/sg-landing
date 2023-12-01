@@ -10,6 +10,8 @@ import { Step4Component } from "./step4/step4.component";
 import { Step5Component } from "./step5/step5.component";
 import { ClubNotHereComponent } from "./club-not-here/club-not-here.component";
 import { SuccessReponseScreenComponent } from "./success-reponse-screen/success-reponse-screen.component";
+import { UniversityDetailComponent } from "./university-detail/university-detail.component";
+import { OTPComponent } from "./otp/otp.component";
 
 const routes: Routes = [
   {
@@ -47,6 +49,16 @@ const routes: Routes = [
     path: "club-not-here",
     component: ClubNotHereComponent,
     data: { title: extract("Club Not Here") },
+  },
+  {
+    path: "university-detail",
+    component: UniversityDetailComponent,
+    data: { title: extract("University Detail") },
+  },
+  {
+    path: "otp",
+    component: OTPComponent,
+    data: { title: extract("OTP") },
   },
   {
     path: "success-screen",

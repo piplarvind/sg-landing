@@ -35,10 +35,12 @@ export class Step1Component implements OnInit {
   getGenders() {
     this.onboardingService.getGenders().subscribe(
       (response) => {
-        console.log("gender data:", response);
+        //console.log("gender data:", response);
+        this.sharedService.showMessage(response);
       },
       (error) => {
-        console.error("Error getting gender data:", error);
+        //console.error("Error getting gender data:", error);
+        this.sharedService.showMessage(error.error.message);
       }
     );
   }
@@ -63,6 +65,10 @@ export class Step1Component implements OnInit {
         },
         (error) => {
           if (error.status === 409) {
+            if (error?.error?.data[0]?.is_onboarding_done) {
+              this.sharedService.showMessage("You have already registered, please login");
+              this.router.navigate(["/home"]);
+            }
             localStorage.setItem("userId", error?.error?.data[0]?._id);
             if (error?.error?.data[0]?.completed_steps === 1) {
               this.router.navigate(["/auth/onboarding/step2"]);
@@ -75,13 +81,20 @@ export class Step1Component implements OnInit {
               this.router.navigate(["/auth/onboarding/step5"]);
             } else {
               //console.error("User already exist:", error);
-              this.sharedService
-                .showDialog(`${error?.error?.message}`)
-                .subscribe((response) => {
-                  if (response === "") {
-                    this.router.navigateByUrl("/auth/onboarding/step1");
-                  }
-                });
+              //console.log('error?.error?.data[0]?.types.abbr', error?.error?.data[0]?.types[0].abbr);
+              if (error?.error?.data[0]?.types[0].abbr === "REC") {
+                if(error?.error?.data[0]?.is_mobile_verified === false){
+                  this.router.navigate(["/auth/onboarding/university-detail"]);
+                }
+              } else {
+                this.sharedService
+                  .showDialog(`${error?.error?.message}`)
+                  .subscribe((response) => {
+                    if (response === "") {
+                      this.router.navigateByUrl("/auth/onboarding/step1");
+                    }
+                  });
+              }
             }
           } else {
             //console.error("User already exist:", error);
@@ -99,7 +112,7 @@ export class Step1Component implements OnInit {
     } else {
       // If the form is invalid, show an error or handle it accordingly
       //console.log("Please fill in all required fields in Step 1.");
-      this.sharedService.showMessage("Please fill in all required fields");
+      this.sharedService.showMessage("Please fill all required fields");
     }
   }
 

@@ -33,6 +33,15 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  hardRefresh(url:string) {
+    // Navigate to the same route to trigger a hard refresh
+    //this.router.navigate([this.router.url]);
+    this.router.navigate([url]).then(() => {
+      // After navigation, perform a hard refresh
+      window.location.reload();
+    });
+  }
+
   // scrollToElement(scrollTarget: string) {
   //   const padding = 55; // Adjust this value to set the desired padding
   //   const targetElement = this.el.nativeElement.querySelector(

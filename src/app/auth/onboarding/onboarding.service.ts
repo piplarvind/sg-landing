@@ -18,6 +18,9 @@ export class OnboardingService {
   private getGenderAgesUrl = "lookup/age";
   private saveAgeUrl = "onboard/save-age";
   private saveClubNotHereUrl = "leads";
+  private saveUniversityUrl = "onboard/enter-university-detail";
+  private verifyOTPUrl = "onboard/verify-phone";
+  private resendOTPUrl = "onboard/resend-otp";
 
   constructor(private http: HttpClient) {}
 
@@ -61,7 +64,18 @@ export class OnboardingService {
     return this.http.post(`${this.saveAgeUrl}`, ageData);
   }
 
-  saveClubNotHereData(userData: any): Observable<any> {
-    return this.http.post(`${this.saveClubNotHereUrl}`, userData);
+  saveClubNotHereData(clubData: any): Observable<any> {
+    return this.http.post(`${this.saveClubNotHereUrl}`, clubData);
+  }
+
+  saveUniversityData(universityData: any): Observable<any> {
+    return this.http.post(`${this.saveUniversityUrl}`, universityData);
+  }
+
+  verifyOTPData(otpData: any): Observable<any> {
+    return this.http.post(`${this.verifyOTPUrl}`, otpData);
+  }
+  resendOTPData(otpData: any): Observable<any> {
+    return this.http.post(`${this.resendOTPUrl}`, otpData);
   }
 }

@@ -6,6 +6,7 @@ import { Subscription } from "rxjs";
 // component
 import { OnboardingService } from "../onboarding.service";
 import { DataService } from "@app/core/data.service";
+import { SharedService } from "@app/shared/shared.service";
 
 @Component({
   selector: "app-step3",
@@ -27,7 +28,8 @@ export class Step3Component implements OnInit {
     private router: Router,
     private dataService: DataService,
     private onboardingProcessService: OnboardingProcessService,
-    private onboardingService: OnboardingService
+    private onboardingService: OnboardingService,
+    public sharedService: SharedService
   ) {}
 
   ngOnInit() {
@@ -56,7 +58,8 @@ export class Step3Component implements OnInit {
         this.roles = response.data;
       },
       (error) => {
-        console.error("Error getting roles data:", error);
+        //console.error("Error getting roles data:", error);
+        this.sharedService.showMessage(error.error.message);
       }
     );
   }
@@ -68,7 +71,8 @@ export class Step3Component implements OnInit {
         this.genders = response.data;
       },
       (error) => {
-        console.error("Error getting gender data:", error);
+        //console.error("Error getting gender data:", error);
+        this.sharedService.showMessage(error.error.message);
       }
     );
   }
@@ -95,18 +99,21 @@ export class Step3Component implements OnInit {
       };
       this.onboardingService.saveRoleData(roleData).subscribe(
         (response) => {
-          console.log("Role data saved successfully:", response.data);
+          //console.log("Role data saved successfully:", response.data);
+          this.sharedService.showMessage(response.message);
           // Navigate to the next step
           this.router.navigate(["/auth/onboarding/step4"]);
         },
         (error) => {
-          console.error("Error saving role data:", error);
+          //console.error("Error saving role data:", error);
+          this.sharedService.showMessage(error.error.message);
           this.router.navigate(["/auth/onboarding/step3"]);
         }
       );
     } else {
       // If the form is invalid, show an error or handle it accordingly
-      console.log("Please fill in all required fields in Step 3.");
+      //console.log("Please fill in all required fields in Step 3.");
+      this.sharedService.showMessage("Please fill all required fields");
     }
   }
 }

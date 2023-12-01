@@ -1,0 +1,70 @@
+<section class="section-padding" style="margin-top: 10px">
+  <div class="container">
+    <form
+      id="otpForm"
+      [formGroup]="otpForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h5>Enter The Code</h5>
+            <p>
+              Enter the authentication code which you have received via message
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">OTP: {{ otp }}</div>
+        <div class="col-md-3"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input hidden matInput formControlName="profile_id" [(ngModel)]="profile_id" />
+            <input hidden matInput formControlName="country_code" [(ngModel)]="country_code" />
+            <input hidden matInput formControlName="phone_number" [(ngModel)]="phone_number" />
+            
+            <input matInput placeholder="Enter OTP" required formControlName="otp" />
+            <mat-error
+              *ngIf="
+                (otpForm.get('otp')?.touched || nextButtonClicked) &&
+                otpForm.get('otp')?.hasError('required')
+              "
+            >
+              OTP is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p class="txt">
+            Didn't get the code?
+            <button
+              mat-raised-button
+              (click)="resndOTP()"
+              type="button"
+              class="btn btn theme-btn resend"
+            >
+              Resend
+            </button>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-3">
+            <button mat-raised-button type="submit" class="btn btn theme-btn">
+              Verify Code
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

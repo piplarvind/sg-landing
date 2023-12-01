@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { OnboardingProcessService } from "../onboarding.process.service";
 import { Router } from "@angular/router";
 import { OnboardingService } from "../onboarding.service";
+import { SharedService } from "@app/shared/shared.service";
 @Component({
   selector: "app-step5",
   templateUrl: "./step5.component.html",
@@ -18,7 +19,8 @@ export class Step5Component {
   constructor(
     private router: Router,
     private onboardingProcessService: OnboardingProcessService,
-    private onboardingService: OnboardingService
+    private onboardingService: OnboardingService,
+    public sharedService: SharedService
   ) {}
 
   ngOnInit() {
@@ -29,11 +31,12 @@ export class Step5Component {
     let gender = localStorage.getItem("genderId");
     this.onboardingService.getGenderAges(gender).subscribe(
       (response) => {
-        console.log("ages data:", response);
+        //console.log("ages data:", response);
         this.ages = response.data;
       },
       (error) => {
-        console.error("Error getting ages data:", error);
+        //console.error("Error getting ages data:", error);
+        this.sharedService.showMessage(error.error.message);
       }
     );
   }
@@ -60,19 +63,22 @@ export class Step5Component {
           // localStorage.removeItem('sportId');
           // localStorage.removeItem('genderId');
           // localStorage.removeItem('clubId');
-          console.log("Age data saved successfully:", response.data);
+          //console.log("Age data saved successfully:", response.data);
+          this.sharedService.showMessage(response.message);
           // Navigate to the next step
           this.router.navigate(["/login"]);
         },
         (error) => {
-          console.error("Error saving age data:", error);
+          //console.error("Error saving age data:", error);
+          this.sharedService.showMessage(error.error.message);
           this.router.navigate(["/auth/onboarding/step5"]);
         }
       );
       //
     } else {
       // If the form is invalid, show an error or handle it accordingly
-      console.log("Please fill in all required fields in Step 5.");
+      //console.log("Please fill in all required fields in Step 5.");
+      this.sharedService.showMessage("Please fill all required fields");
     }
   }
 }

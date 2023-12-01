@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { ThemePalette } from "@angular/material/core";
 import { ClubnothereProcessService } from "../clubnothere.process.service";
 import { OnboardingService } from "../onboarding.service";
+import { SharedService } from "@app/shared/shared.service";
 
 @Component({
   selector: "app-club-not-here",
@@ -21,7 +22,8 @@ export class ClubNotHereComponent implements OnInit {
   constructor(
     private router: Router,
     private clubnothereProcessService: ClubnothereProcessService,
-    private onboardingService: OnboardingService
+    private onboardingService: OnboardingService,
+    public sharedService: SharedService
   ) {}
 
   ngOnInit() {
@@ -38,7 +40,7 @@ export class ClubNotHereComponent implements OnInit {
       clubData.profile_id = localStorage.getItem('userId');
       this.onboardingService.saveClubNotHereData(clubData).subscribe(
         (response) => {
-          console.log("Club data saved successfully:", response);
+          //console.log("Club data saved successfully:", response);
           localStorage.setItem("userId", response?.data?._id);
           // Navigate to the next step
           if (response?.status === "Success") {
@@ -46,7 +48,7 @@ export class ClubNotHereComponent implements OnInit {
           } 
         },
         (error) => {
-          console.error("Error saving user data:", error);
+          //console.error("Error saving user data:", error);
           if (error.status === 409) {
             localStorage.setItem("userId", error?.error?.data[0]?._id);
             if (error?.error?.data[0]?.completed_steps === 1) {
@@ -58,11 +60,12 @@ export class ClubNotHereComponent implements OnInit {
             } else if (error?.error?.data[0]?.completed_steps === 4) {
               this.router.navigate(["/auth/onboarding/step5"]);
             } else {
-              console.error("User already exist:", error);
+              //console.error("User already exist:", error);
               this.router.navigate(["/auth/onboarding/step1"]);
             }
           } else {
-            console.error("User already exist:", error);
+            //console.error("User already exist:", error);
+            this.sharedService.showMessage("Please fill in all required fields");
             this.router.navigate(["/auth/onboarding/step1"]);
           }
         }
@@ -71,7 +74,7 @@ export class ClubNotHereComponent implements OnInit {
       // this.router.navigate(["/auth/onboarding/step2"]);
     } else {
       // If the form is invalid, show an error or handle it accordingly
-      console.log("Please fill in all required fields.");
+      this.sharedService.showMessage("Please fill in all required fields");
     }
   }
 

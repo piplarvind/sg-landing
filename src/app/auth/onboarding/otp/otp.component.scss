@@ -1,0 +1,23 @@
+.theme-btn {
+  background: #ec1c37;
+  color: #fff;
+}
+
+.txt {
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 100px;
+}
+
+.resend {
+  flex-shrink: 0;
+  border-radius: 28px;
+  background: var(--Accent-2, #35679D);
+  text-align: center;
+}
+

@@ -38,6 +38,7 @@
                   [placeholder]="'Username'"
                   (keyup)="validateUsername($event.target.value)"
                   type="text"
+                  autocomplete="off"
                 />
               </mat-form-field>
             </div>
@@ -50,6 +51,7 @@
                   formControlName="password"
                   autocomplete="current-password"
                   [placeholder]="'Password'"
+                  autocomplete="off"
                   required
                 />
                 <mat-icon

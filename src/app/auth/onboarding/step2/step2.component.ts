@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { OnboardingProcessService } from "../onboarding.process.service";
 import { Router } from "@angular/router";
 import { OnboardingService } from "../onboarding.service";
+import { SharedService } from "@app/shared/shared.service";
 @Component({
   selector: "app-step2",
   templateUrl: "./step2.component.html",
@@ -25,7 +26,8 @@ export class Step2Component implements OnInit {
   constructor(
     private router: Router,
     private onboardingProcessService: OnboardingProcessService,
-    private onboardingService: OnboardingService
+    private onboardingService: OnboardingService,
+    public sharedService: SharedService
   ) {}
 
   ngOnInit() {
@@ -39,7 +41,8 @@ export class Step2Component implements OnInit {
         this.sports = response.data;
       },
       (error) => {
-        console.error("Error getting sport data:", error);
+        //console.error("Error getting sport data:", error);
+        this.sharedService.showMessage(error.error.message);
       }
     );
   }
@@ -57,18 +60,21 @@ export class Step2Component implements OnInit {
       
       this.onboardingService.saveSportData(sportData).subscribe(
         (response) => {
-          console.log("Sport data saved successfully:", response.data);
+          //console.log("Sport data saved successfully:", response.data);
+          this.sharedService.showMessage(response.message);
           // Navigate to the next step
           this.router.navigate(["/auth/onboarding/step3"]);
         },
         (error) => {
-          console.error("Error saving user data:", error);
+          //console.error("Error saving user data:", error);
+          this.sharedService.showMessage(error.error.message);
           this.router.navigate(["/auth/onboarding/step2"]);
         }
       );
     } else {
       // If the form is invalid, show an error or handle it accordingly
-      console.log("Please fill in all required fields in Step 2.");
+      //console.log("Please fill in all required fields in Step 2.");
+      this.sharedService.showMessage("Please fill all required fields");
     }
   }
 }
