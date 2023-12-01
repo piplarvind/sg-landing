@@ -33,7 +33,7 @@ export class Step4Component implements OnInit {
     };
     this.onboardingService.getClubsBySport(sport).subscribe(
       (response) => {
-        console.log("club data:", response);
+        //console.log("club data:", response);
         this.clubs = response.data;
       },
       (error) => {
@@ -56,7 +56,7 @@ export class Step4Component implements OnInit {
       this.onboardingService.saveClubData(clubData).subscribe(
         (response) => {
           // console.log("Club data saved successfully:", response.data);
-          if (localStorage.getItem("userType") !== "ATH") {
+          if (localStorage.getItem("userType") === "ATH") {
             // Navigate to the next step
             this.router.navigate(["/auth/onboarding/step5"]);
           } else {

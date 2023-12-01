@@ -50,7 +50,7 @@ export class ResetPasswordComponent implements OnInit {
     this.loginService
       .changePassword(token, this.reqObj)
       .then((res: any) => {
-        console.log('res', res);
+        //console.log('res', res);
         this.sharedService.showMessage('Password updated successfully');
         // if (this.pathurl[0] === `${environment.resetpasswordurl}`) {
         //   this.router.navigateByUrl('/login');

@@ -35,7 +35,7 @@ export class Step2Component implements OnInit {
   getSports() {
     this.onboardingService.getSports().subscribe(
       (response) => {
-        console.log("sport data:", response);
+        //console.log("sport data:", response);
         this.sports = response.data;
       },
       (error) => {

@@ -21,7 +21,7 @@
       style="background: #ffffff"
     >
       <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
-        <p class="main-title">Login To SportGrit</p>
+        <a routerLink="/home"><p class="main-title">Login To SportGrit</p></a>
         <div class="login-error" [hidden]="!error || isLoading">
           Username or password incorrect.
         </div>

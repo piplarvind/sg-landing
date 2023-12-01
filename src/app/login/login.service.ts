@@ -11,7 +11,7 @@ import { environment } from '@env/environment';
 export class LoginService {
   passwordForgot = 'forget/';
   resetEmail = 'password/';
-  resetPassword = 'reset-password/';
+  resetPassword = 'change-password/';
 
   constructor(public http: HttpClient) {}
 

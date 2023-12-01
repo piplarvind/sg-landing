@@ -82,7 +82,7 @@ export class OnboardingProcessService {
   // Update the step3Form when the role changes
   updateStep3Form(role: string): void {
     // You may need to adjust the condition based on your specific logic
-    const isGenderRequired = role !== 'ATH';
+    const isGenderRequired = role === 'ATH';
 
     // Set validators for the gender field based on the role
     this.setGenderValidators(isGenderRequired);

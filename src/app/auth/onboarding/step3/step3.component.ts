@@ -52,7 +52,7 @@ export class Step3Component implements OnInit {
   getRoles() {
     this.onboardingService.getRoles().subscribe(
       (response) => {
-        console.log("roles data:", response);
+        //console.log("roles data:", response);
         this.roles = response.data;
       },
       (error) => {
@@ -64,7 +64,7 @@ export class Step3Component implements OnInit {
   getGenders() {
     this.onboardingService.getGenders().subscribe(
       (response) => {
-        console.log("gender data:", response);
+        //console.log("gender data:", response);
         this.genders = response.data;
       },
       (error) => {

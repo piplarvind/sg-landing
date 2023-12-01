@@ -69,6 +69,7 @@ export class Step1Component implements OnInit {
             } else if (error?.error?.data[0]?.completed_steps === 2) {
               this.router.navigate(["/auth/onboarding/step3"]);
             } else if (error?.error?.data[0]?.completed_steps === 3) {
+              localStorage.setItem("sportId", error?.error?.data[0]?.sport);
               this.router.navigate(["/auth/onboarding/step4"]);
             } else if (error?.error?.data[0]?.completed_steps === 4) {
               this.router.navigate(["/auth/onboarding/step5"]);
