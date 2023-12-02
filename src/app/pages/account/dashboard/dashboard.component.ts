@@ -85,6 +85,7 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private sanitizer: DomSanitizer
   ) {
+    // console.log('localStorage.user_role', localStorage.user_role);
   }
 
   get remainingDays(): number {

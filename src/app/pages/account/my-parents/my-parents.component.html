@@ -1,0 +1,99 @@
+<div class="m-container">
+  <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="16px">
+    <mat-card fxFlex class="new-mat-card">
+      <mat-card-title
+        fxLayout="row"
+        fxLayoutGap="8px"
+        fxLayoutAlign="start center"
+      >
+        <span style="flex: 1">My Parents</span>
+
+        <div class="m-title" fxLayout="row" fxLayoutAlign="end">
+          <div class="head-right-div">
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-icon matPrefix>search</mat-icon>
+                <input
+                  matInput
+                  type="text"
+                  (keyup)="doFilter($event)"
+                  [placeholder]="
+                    keyup ? 'Please Press Enter key' : 'Search by name'
+                  "
+                />
+              </mat-form-field>
+              
+            </div>
+          </div>
+        </div>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="m-table-container">
+          <mat-table #table [dataSource]="dataSource" matSort>
+            <!-- (matSortChange)="namesort($event)" -->
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> Name </span>
+              </mat-header-cell>
+              <mat-cell
+                *matCellDef="let element"
+                class="light-red m-pointer"
+                (click)="editClub(element)"
+              >
+                {{ element.name }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> Email </span>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.email }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="mobile">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> Mobile </span>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{
+                  (element.phone_code ? "+" + element.phone_code : "") +
+                    (element.mobile_phone
+                      ? inputChanged(element.mobile_phone)
+                      : "-")
+                }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="accepted">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> Status </span>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.accepted | titlecase }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="accepted_at">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> Date/Time </span>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ (element.accepted_at)? (element.accepted_at | date : "MM-dd-yyyy  H:mm:ss"):"-"}}
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row
+              *matHeaderRowDef="displayedColumns"
+            ></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          </mat-table>
+          <!-- <mat-paginator [length]="100" [pageSize]="100" [pageSizeOptions]="[10,25, 50, 75, 100]">
+        </mat-paginator> -->
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

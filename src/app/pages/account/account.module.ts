@@ -6,7 +6,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 import { AccountRoutingModule } from '@app/pages/account/account-routing.module';
+
+// components
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MyAthletesComponent } from './my-athletes/my-athletes.component';
+import { MyParentsComponent } from './my-parents/my-parents.component';
 
 @NgModule({
   imports: [
@@ -19,7 +23,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AccountRoutingModule
   ],
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    MyAthletesComponent,
+    MyParentsComponent
   ]
 })
 export class AccountModule {}
