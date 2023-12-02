@@ -43,7 +43,7 @@ export class SharedService {
   showMessage(message: string, type: string = "success") {
     return this.snackBar
       .open(message, "", {
-        duration: 2000,
+        duration: 7000,
         panelClass: ["toaster", type],
       })
       .afterDismissed();

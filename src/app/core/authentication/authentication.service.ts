@@ -136,7 +136,7 @@ export class AuthenticationService {
         // }
         return res;
       },
-      (error) => this.sharedService.loginDialog("Invalid credentials")
+      (error) => this.sharedService.loginDialog(error?.error?.message)
     );
     this.setCredentials(data, context.remember);
     return of(data);

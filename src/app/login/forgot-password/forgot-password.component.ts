@@ -69,7 +69,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.authenticationService
       .forgotPassword(this.fpForm.value)
       .then((res: any) => {
-        this.sharedService.showMessage("Forgot password submitted successfully");
+        this.sharedService.showMessage(res.message);
         this.router.navigateByUrl("/login");
       })
       .catch((err: any) => {

@@ -1,0 +1,56 @@
+<div class="m-container">
+  <div class="card-container main-static">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h5>Pro Subscription</h5>
+            <p>Select the subscription</p>
+          </div>
+        </div>
+      </div>
+
+      <form id="subscriptionForm" [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+        <mat-card class="card-item" *ngFor="let subscription of subscriptionList?.data; let i = index">
+          <mat-card-content>
+            <ng-container>
+              <mat-radio-group name="plan" formControlName="plan">
+                <div class="row subscription-div">
+                  <div>
+                    <label class="radio-label">
+                      <mat-radio-button [value]="subscription._id" class="radio-button"></mat-radio-button>
+                      {{ subscription.name }}
+                    </label>
+                  </div>
+                  <div class="price">${{ subscription.package_amount }}/Season</div>
+                  <div class="sub-dsc" [innerHTML]="subscription.description"></div>
+                </div>
+              </mat-radio-group>
+            </ng-container>
+            <mat-error *ngIf="(subscriptionForm.get('plan')?.touched || nextButtonClicked) && subscriptionForm.get('plan')?.hasError('required')">
+              Subscription is required
+            </mat-error>
+          </mat-card-content>
+        </mat-card>
+        <div class="row" *ngIf="subscriptionList?.data.length">
+          <div class="col-md-12">
+            <div class="button-container text-center mt-3">
+              <button
+                mat-raised-button
+                class="btn btn gray-btn"
+                (click)="testBeta(subscription)"
+              >
+                Test Beta
+              </button>
+              &nbsp;
+              <button mat-raised-button class="btn btn theme-btn" type="submit">
+                Subscrube
+              </button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!subscriptionList?.data.length">No Subscription</div>
+      </form>
+    </div>
+  </div>
+</div>

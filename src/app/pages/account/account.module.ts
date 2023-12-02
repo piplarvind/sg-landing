@@ -7,6 +7,8 @@ import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 import { AccountRoutingModule } from '@app/pages/account/account-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
+import { MakePaymentComponent } from './make-payment/make-payment.component';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AccountRoutingModule
   ],
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    SubscriptionComponent,
+    MakePaymentComponent
   ]
 })
 export class AccountModule {}
