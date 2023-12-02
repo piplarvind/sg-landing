@@ -3,14 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { extract } from '@app/core';
 import { DashboardComponent } from '@app/pages/account/dashboard/dashboard.component';
-<<<<<<< HEAD
 import { MyAthletesComponent } from './my-athletes/my-athletes.component';
 import { MyParentsComponent } from './my-parents/my-parents.component';
-=======
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { SubscriptionService } from './subscription/subscription.service';
 import { MakePaymentComponent } from './make-payment/make-payment.component';
->>>>>>> efe871522db780da2dcde8dbd6129c24cc147043
 
 const routes: Routes = [
  
