@@ -1,0 +1,108 @@
+<div class="m-container">
+  <div class="card-container main-static">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h5>Make A Payment</h5>
+            <p>Add you card card detail to complete the payment</p>
+          </div>
+        </div>
+      </div>
+      <form id="paymentForm" [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center">
+              <h5>${{ package_amount }}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Card number"
+                required
+                formControlName="ccnum"
+              />
+              <mat-error
+                *ngIf="
+                  (paymentForm.get('ccnum')?.touched || nextButtonClicked) &&
+                  paymentForm.get('ccnum')?.hasError('required')
+                "
+              >
+                Card number is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="CVV"
+                required
+                formControlName="cvv"
+              />
+              <mat-error
+                *ngIf="
+                  (paymentForm.get('cvv')?.touched || nextButtonClicked) &&
+                  paymentForm.get('cvv')?.hasError('required')
+                "
+              >
+                CVV is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Exp month"
+                required
+                formControlName="exp_month"
+              />
+              <mat-error
+                *ngIf="
+                  (paymentForm.get('exp_month')?.touched ||
+                    nextButtonClicked) &&
+                  paymentForm.get('exp_month')?.hasError('required')
+                "
+              >
+                Expiry month is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Expiry year"
+                required
+                formControlName="exp_year"
+              />
+              <mat-error
+                *ngIf="
+                  (paymentForm.get('exp_year')?.touched || nextButtonClicked) &&
+                  paymentForm.get('exp_year')?.hasError('required')
+                "
+              >
+                Expiry year is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="button-container text-center mt-3">
+              <button mat-raised-button type="submit" class="btn btn theme-btn">
+                Pay Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

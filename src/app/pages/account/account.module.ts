@@ -11,6 +11,8 @@ import { AccountRoutingModule } from '@app/pages/account/account-routing.module'
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MyAthletesComponent } from './my-athletes/my-athletes.component';
 import { MyParentsComponent } from './my-parents/my-parents.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
+import { MakePaymentComponent } from './make-payment/make-payment.component';
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import { MyParentsComponent } from './my-parents/my-parents.component';
   declarations: [
     DashboardComponent,
     MyAthletesComponent,
-    MyParentsComponent
+    MyParentsComponent,
+    SubscriptionComponent,
+    MakePaymentComponent
   ]
 })
 export class AccountModule {}

@@ -10,6 +10,7 @@ import { filter } from "rxjs/operators";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
+  userId:any;
   constructor(
     private el: ElementRef,
     private router: Router,
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem('user_id') || localStorage.getItem('userId');
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {

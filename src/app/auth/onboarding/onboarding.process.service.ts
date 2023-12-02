@@ -68,6 +68,12 @@ export class OnboardingProcessService {
     }),
   });
 
+  subscriptionForm = new FormGroup({
+    plan: new FormControl("", {
+      validators: [Validators.required],
+    }),
+  });
+
   canDeactivate(): boolean {
     return this.userForm.valid && this.step2Form.valid;
   }
