@@ -1,0 +1,96 @@
+<div class="m-container">
+  <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="16px">
+    <mat-card fxFlex class="new-mat-card">
+      <mat-card-title
+        fxLayout="row"
+        fxLayoutGap="8px"
+        fxLayoutAlign="start center"
+      >
+      <span style="flex: 1; padding-top: 10px;">Payment Histories</span>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="m-table-container" *ngIf="tabledataloaded">
+          <mat-table
+            #table
+            [dataSource]="dataSource"
+            matSort
+            (matSortChange)="namesort($event)"
+          >
+            <ng-container matColumnDef="date">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header">Date</span>
+              </mat-header-cell>
+              <mat-cell
+                *matCellDef="let element"
+                class="light-red m-pointer textCenter"
+                style="text-transform: capitalize"
+              >
+                {{ element.date | date : "MM-dd-yyyy  H:mm:ss" }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="payer">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header">Paid By</span>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.payer }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="amount">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> Amount </span>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                $ {{ element.amount ? element.amount : "" }}</mat-cell
+              >
+            </ng-container>
+
+            <ng-container matColumnDef="card">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> Card# </span>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element" class="textCenter">
+                {{ element.card }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="paymentmethod">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> Payment Method</span>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"
+                >{{ element.type.label }}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="transacationId">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header"> TransactionID </span>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.transactionId ? element.transactionId : "" }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Description">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <span class="m-table-header">Description</span>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"> </mat-cell>
+            </ng-container>
+            <mat-header-row
+              *matHeaderRowDef="displayedColumns"
+            ></mat-header-row>
+            <mat-row
+              *matRowDef="let row; columns: displayedColumns"
+              style="cursor: pointer"
+            ></mat-row>
+          </mat-table>
+          <!-- <mat-paginator [length]="100" [pageSize]="100" [pageSizeOptions]="[25, 50, 75, 100]">
+          </mat-paginator> -->
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

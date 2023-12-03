@@ -12,7 +12,13 @@ import {
 export class PaymentProcessService {
   paymentForm = new FormGroup({
     payer: new FormControl(""),
+    behalf: new FormControl(""),
     planId: new FormControl(""),
+    sportId: new FormControl(""),
+    clubId: new FormControl(""),
+    transaction_for: new FormControl(),
+    is_event_transaction: new FormControl(),
+    is_web_trans: new FormControl(true),
     ccnum: new FormControl("", {
       validators: [Validators.required],
     }),
@@ -22,6 +28,7 @@ export class PaymentProcessService {
     exp_year: new FormControl("", {
       validators: [Validators.required],
     }),
+    ccexp: new FormControl(),
     cvv: new FormControl("", {
       validators: [Validators.required],
     })

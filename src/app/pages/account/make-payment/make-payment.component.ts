@@ -25,7 +25,8 @@ export class MakePaymentComponent implements OnInit {
     private router: Router,
     public _DomSanitizationService: DomSanitizer,
     private paymentProcessService: PaymentProcessService,
-    public sharedService: SharedService
+    public sharedService: SharedService,
+    private paymentService: PaymentService
   ) {}
 
   ngOnInit() {
@@ -37,10 +38,27 @@ export class MakePaymentComponent implements OnInit {
 
   onSubmit() {
     if (this.paymentProcessService.paymentForm.valid) {
-      const paymentFormData =
-        this.paymentProcessService.paymentForm.value;
+      const paymentFormData = this.paymentProcessService.paymentForm.value;
+      paymentFormData.planId = localStorage.getItem("selectedPlan");
+      paymentFormData.payer = localStorage.getItem("user_id");
+      paymentFormData.clubId = localStorage.getItem("club_id");
+      paymentFormData.sportId = localStorage.getItem("sport_id");
+      paymentFormData.is_event_transaction = false;
+      paymentFormData.transaction_for = "subscription";
+      paymentFormData.ccexp =
+        paymentFormData.exp_month + paymentFormData.exp_year;
       console.log("paymentFormData", paymentFormData);
-      
+      this.paymentService
+        .makeAPayment(paymentFormData)
+        .then((res: any) => {
+          const resData = res.data;
+          this.sharedService.showMessage(res?.message);
+          this.router.navigate(["account"]);
+        })
+        .catch((error) => {
+          console.log(error);
+          this.sharedService.showMessage(error?.error.message);
+        });
     } else {
       this.sharedService.showMessage("Please fill all required fields");
     }

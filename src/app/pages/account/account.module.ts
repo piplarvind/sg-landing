@@ -13,6 +13,7 @@ import { MyAthletesComponent } from './my-athletes/my-athletes.component';
 import { MyParentsComponent } from './my-parents/my-parents.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { MakePaymentComponent } from './make-payment/make-payment.component';
+import { PaymentHistoriesComponent } from './payment-histories/payment-histories.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { MakePaymentComponent } from './make-payment/make-payment.component';
     MyAthletesComponent,
     MyParentsComponent,
     SubscriptionComponent,
-    MakePaymentComponent
+    MakePaymentComponent,
+    PaymentHistoriesComponent
   ]
 })
 export class AccountModule {}

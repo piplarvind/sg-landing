@@ -2,16 +2,18 @@ import { Injectable } from "@angular/core";
 
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PaymentService {
-  fetchPlans = "plans/api-subscribtions";
-
+  makeAPaymentURL = "payments";
+  getPaymentHistoriesURL = "payments/user-payment";
   constructor(public http: HttpClient) {}
 
-  getPlans(data:any) {
+  makeAPayment(data:any) {
     return new Promise((resolve, reject) => {
       this.http
-        .post(this.fetchPlans, data)
+        .post(this.makeAPaymentURL, data)
         .subscribe(
           (res: any) => {
             resolve(res);
@@ -23,5 +25,21 @@ export class PaymentService {
     });
   }
 
-  
+  /**
+   * Get payment histories for the specified user
+   */
+  getPaymentHistories(data:any) {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(`${this.getPaymentHistoriesURL}`, data)
+        .subscribe(
+          (res: any) => {
+            resolve(res);
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
+  }
 }
