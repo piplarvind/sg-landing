@@ -25,6 +25,7 @@ export class ForgotPasswordComponent implements OnInit {
   userId: any;
   req: any;
   pathurl: any;
+  currentYear= new Date().getFullYear();
   constructor(
     private formBuilder: UntypedFormBuilder,
     private loginService: LoginService,

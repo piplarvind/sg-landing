@@ -5,7 +5,7 @@
         <div class="col-md-12">
           <div class="text-center">
             <h5>Make A Payment</h5>
-            <p>Add you card card detail to complete the payment</p>
+            <p>Add you card detail to complete the payment</p>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
               />
               <mat-error
                 *ngIf="
-                  (paymentForm.get('ccnum')?.touched || nextButtonClicked) &&
+                  (paymentForm.get('ccnum')?.touched) &&
                   paymentForm.get('ccnum')?.hasError('required')
                 "
               >
@@ -46,7 +46,7 @@
               />
               <mat-error
                 *ngIf="
-                  (paymentForm.get('cvv')?.touched || nextButtonClicked) &&
+                  (paymentForm.get('cvv')?.touched) &&
                   paymentForm.get('cvv')?.hasError('required')
                 "
               >
@@ -64,8 +64,7 @@
               />
               <mat-error
                 *ngIf="
-                  (paymentForm.get('exp_month')?.touched ||
-                    nextButtonClicked) &&
+                  (paymentForm.get('exp_month')?.touched) &&
                   paymentForm.get('exp_month')?.hasError('required')
                 "
               >
@@ -83,7 +82,7 @@
               />
               <mat-error
                 *ngIf="
-                  (paymentForm.get('exp_year')?.touched || nextButtonClicked) &&
+                  (paymentForm.get('exp_year')?.touched) &&
                   paymentForm.get('exp_year')?.hasError('required')
                 "
               >

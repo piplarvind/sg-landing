@@ -19,6 +19,7 @@ export class ResetPasswordComponent implements OnInit {
   token: any;
   req: any;
   pathurl: any;
+  currentYear= new Date().getFullYear();
   constructor(
     private loginService: LoginService,
     public sharedService: SharedService,
