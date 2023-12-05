@@ -3,6 +3,7 @@ import { finalize, map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MatTableDataSource } from "@angular/material/table";
+import { AccountService } from "../account.service";
 
 const MY_ATHLETES = [
   {
@@ -43,6 +44,7 @@ const RECENT_PAYMENTS = [
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
+  user_role: any;
   keyup: boolean = false;
   tabledataloaded: boolean = false;
   limit: number = 100;
@@ -55,6 +57,7 @@ export class DashboardComponent implements OnInit {
   // dataSource = new MatTableDataSource();
   // Define data sources for each table
   dataSourceAthletes = new MatTableDataSource<any>();
+  dataSourceParents = new MatTableDataSource<any>();
   dataSourcePayments = new MatTableDataSource<any>();
   displayedColumns: any = [
     'name',
@@ -83,28 +86,59 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private accountService: AccountService
   ) {
-    // console.log('localStorage.user_role', localStorage.user_role);
-  }
-
-  get remainingDays(): number {
-    const currentTime = new Date().getTime();
-    this.endDate = new Date(localStorage.getItem("super_cur_seasonEndDate"));
-
-    const timeDifference = this.endDate.getTime() - currentTime;
-    // Calculate remaining days by dividing milliseconds by (milliseconds in a day)
-    const remainingDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-    return remainingDays >= 0 ? remainingDays : 0; // Ensure the result is non-negative
-  }
-
-  get seasonName(): string {
-    return localStorage.getItem("super_cur_seasonName");
+    this.user_role = localStorage.user_role;
   }
 
   ngOnInit() {
-    this.dataSourceAthletes.data = MY_ATHLETES;
-    this.dataSourcePayments.data = RECENT_PAYMENTS;
+    // this.dataSourceAthletes.data = MY_ATHLETES;
+    // this.dataSourcePayments.data = RECENT_PAYMENTS;
+    this.fetchMyParents();
+  }
+
+  fetchMyParents() {
+    let userId = localStorage.user_id;
+    let url = `${userId}?limit=${5}`;
+    this.accountService
+      .getAthleteParents(url)
+      .then((e: any) => {
+        const res = e.data;
+
+        const newresult = res?.parents.map((prof) => {
+          const prop = prof?.profile_id;
+          let name: any = {
+              fname: "",
+              lname: "",
+            },
+            email: string = "";
+
+          for (let i = 0; i < prop?.profile_fields.length; i++) {
+            if (prop?.profile_fields[i].field) {
+              if (prop?.profile_fields[i].field.name === "first_name") {
+                name.fname = prop?.profile_fields[i].value;
+              }
+              if (prop?.profile_fields[i].field.name === "last_name") {
+                name.lname = prop?.profile_fields[i].value;
+              }
+              if (prop?.profile_fields[i].field.name === "email") {
+                email = prop?.profile_fields[i].value;
+              }
+            }
+          }
+          return {
+            ...prop,
+            name: name.fname + " " + name.lname,
+            email: email
+          };
+        });
+        this.dataSourceParents.data = newresult;
+      })
+      .catch((err) => {
+        console.log(err);
+        // this.sharedService.showLoader = false;
+      });
   }
 
   // namesort(event) {

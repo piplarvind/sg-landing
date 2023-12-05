@@ -1,20 +1,32 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ThemePalette } from "@angular/material/core";
-import { OnboardingProcessService } from "../onboarding.process.service";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 import { ConfirmPasswordValidator } from "@app/validators/confirm-password.validator";
-import { OnboardingService } from "../onboarding.service";
 import { SharedService } from "@app/shared/shared.service";
+import { RegisterService } from "./register.service";
 
 @Component({
-  selector: "app-step1",
-  templateUrl: "./step1.component.html",
-  styleUrls: ["./step1.component.scss"],
+  selector: "app-register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.scss"],
 })
-export class Step1Component implements OnInit {
-  nextButtonClicked = false;
-  userForm = this.onboardingProcessService.userForm;
+export class RegisterComponent implements OnInit {
+  submitButtonClicked = false;
+  registerForm: FormGroup = new FormGroup({
+    first_name: new FormControl(""),
+    last_name: new FormControl(""),
+    user_name: new FormControl(""),
+    email: new FormControl(""),
+    password: new FormControl(""),
+    cPassword: new FormControl(""),
+    acceptTerms: new FormControl(""),
+  });
   genders: any;
 
   color: ThemePalette = "accent";
@@ -23,36 +35,36 @@ export class Step1Component implements OnInit {
 
   constructor(
     private router: Router,
-    private onboardingProcessService: OnboardingProcessService,
-    private onboardingService: OnboardingService,
+    private formBuilder: FormBuilder,
+    private registerService: RegisterService,
     public sharedService: SharedService
-  ) {}
-
-  ngOnInit() {
-    // this.getGenders();
-  }
-
-  getGenders() {
-    this.onboardingService.getGenders().subscribe(
-      (response) => {
-        //console.log("gender data:", response);
-        this.sharedService.showMessage(response);
+  ) {
+    this.registerForm = this.formBuilder.group(
+      {
+        first_name: ["", Validators.required],
+        last_name: ["", Validators.required],
+        user_name: ["", Validators.required],
+        email: ["", Validators.required],
+        password: ["", Validators.required],
+        cPassword: ["", Validators.required],
+        acceptTerms: ["", Validators.required],
       },
-      (error) => {
-        //console.error("Error getting gender data:", error);
-        this.sharedService.showMessage(error.error.message);
+      {
+        validator: ConfirmPasswordValidator("password", "cPassword"),
       }
     );
   }
 
+  ngOnInit() {}
+
   onSubmit(): void {
-    this.nextButtonClicked = true;
+    this.submitButtonClicked = true;
     // Perform form validation
-    if (this.onboardingProcessService.userForm.valid) {
-      const userData = this.onboardingProcessService.userForm.value;
+    if (this.registerForm.valid) {
+      const userData = this.registerForm.value;
       const convertedData = this.convertData(userData);
 
-      this.onboardingService.saveStep1Data(convertedData).subscribe(
+      this.registerService.saveUserData(convertedData).subscribe(
         (response) => {
           //console.log("User data saved successfully:", response);
           localStorage.setItem("userId", response?.data?._id);
@@ -115,13 +127,13 @@ export class Step1Component implements OnInit {
       // If the form is invalid, show an error or handle it accordingly
       //console.log("Please fill in all required fields in Step 1.");
       if (
-        this.userForm.get("first_name")?.hasError("required") ||
-        this.userForm.get("last_name")?.hasError("required") ||
-        this.userForm.get("user_name")?.hasError("required") ||
-        this.userForm.get("email")?.hasError("required") ||
-        this.userForm.get("email")?.hasError("email") ||
-        this.userForm.get("password")?.hasError("required") ||
-        this.userForm.get("cPassword")?.hasError("required")
+        this.registerForm.get("first_name")?.hasError("required") ||
+        this.registerForm.get("last_name")?.hasError("required") ||
+        this.registerForm.get("user_name")?.hasError("required") ||
+        this.registerForm.get("email")?.hasError("required") ||
+        this.registerForm.get("email")?.hasError("email") ||
+        this.registerForm.get("password")?.hasError("required") ||
+        this.registerForm.get("cPassword")?.hasError("required")
       ) {
         this.sharedService.showMessage("Please fill all required fields");
       } else {
@@ -131,12 +143,6 @@ export class Step1Component implements OnInit {
   }
 
   convertData(inputData) {
-    const genderLookup = {
-      male: "649d571a64477e1b40ca6e22",
-      female: "647f68e91ce4530223e85d03",
-      // Add more genders if needed
-    };
-
     const profileFieldsData = [
       { field: "first_name", value: inputData.first_name },
       { field: "last_name", value: inputData.last_name },

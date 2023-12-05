@@ -12,6 +12,7 @@ import { OnboardingModule } from '@app/auth/onboarding/onboarding.module';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { StepperModule } from '@app/stepper/stepper.module';
 import { OnboardingGuard } from './onboarding/onboarding.gaurd';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { OnboardingGuard } from './onboarding/onboarding.gaurd';
     StepperModule
   ],
   declarations: [
+    RegisterComponent,
     OnboardingComponent,
     AuthLeftSectionComponent,
     LoginComponent
