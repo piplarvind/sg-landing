@@ -11,6 +11,9 @@ import { MatSidenav } from "@angular/material/sidenav";
 import { filter } from "rxjs/operators";
 import { SharedService } from "../../shared/shared.service";
 import { environment } from "../../../environments/environment";
+import { AuthenticationService } from "../authentication/authentication.service";
+import { ThemeService } from "theme.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-shell",
@@ -32,7 +35,10 @@ export class ShellComponent implements OnInit {
   sportLogo = "./assets/ClubV_logo.png";
 
   constructor(
-    private sharedService: SharedService
+    private router: Router,
+    private sharedService: SharedService,
+    private authenticationService: AuthenticationService,
+    public themeService: ThemeService
   ) {
     this.user_role = localStorage.user_role;
     this.clubId = localStorage.club_id;
@@ -76,5 +82,20 @@ export class ShellComponent implements OnInit {
     });
   }
 
+  logout() {
+    this.sharedService
+      .showDialog("Are you sure you want to logout?")
+      .subscribe((res: any) => {
+        if (res) {
+          this.authenticationService.logout().subscribe(() => {
+            localStorage.setItem(
+              "app_theme",
+              this.themeService.isDarkTheme ? "dark" : "light"
+            );
+            this.router.navigate(["/login"], { replaceUrl: true });
+          });
+        }
+      });
+  }
   
 }

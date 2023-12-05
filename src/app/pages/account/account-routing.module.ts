@@ -9,6 +9,7 @@ import { SubscriptionComponent } from './subscription/subscription.component';
 import { SubscriptionService } from './subscription/subscription.service';
 import { MakePaymentComponent } from './make-payment/make-payment.component';
 import { PaymentHistoriesComponent } from './payment-histories/payment-histories.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
  
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'payment-histories', component: PaymentHistoriesComponent, data: { title: extract('Payment Histories') } },
   { path: 'subscriptions', component: SubscriptionComponent, data: { title: extract('Subscriptions') } },
   { path: 'make-payment', component: MakePaymentComponent, data: { title: extract('Make Payment') } },
+  { path: 'change-password', component: ChangePasswordComponent, data: { title: extract('Change Password') } },
 
 ];
 

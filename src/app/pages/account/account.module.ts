@@ -14,6 +14,7 @@ import { MyParentsComponent } from './my-parents/my-parents.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { MakePaymentComponent } from './make-payment/make-payment.component';
 import { PaymentHistoriesComponent } from './payment-histories/payment-histories.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { PaymentHistoriesComponent } from './payment-histories/payment-histories
     MyParentsComponent,
     SubscriptionComponent,
     MakePaymentComponent,
-    PaymentHistoriesComponent
+    PaymentHistoriesComponent,
+    ChangePasswordComponent
   ]
 })
 export class AccountModule {}
