@@ -20,7 +20,7 @@ export class PaymentProcessService {
     is_event_transaction: new FormControl(),
     is_web_trans: new FormControl(true),
     ccnum: new FormControl("", {
-      validators: [Validators.required],
+      validators: [Validators.required, this.creditCardNumberValidator],
     }),
     exp_month: new FormControl("", {
       validators: [Validators.required],
@@ -30,7 +30,24 @@ export class PaymentProcessService {
     }),
     ccexp: new FormControl(),
     cvv: new FormControl("", {
-      validators: [Validators.required],
+      validators: [Validators.required, this.cvvValidator],
     })
   });
+
+  // Custom validator function for credit card number
+  creditCardNumberValidator(control: FormControl) {
+    const value = control.value;
+
+    // Perform your credit card number validation logic here
+    // For simplicity, let's assume a basic validation for a 16-digit number
+    const isValid = /^\d{16}$/.test(value);
+
+    return isValid ? null : { invalidCreditCardNumber: true };
+  }
+
+  cvvValidator(control: FormControl) {
+    const value = control.value;
+    const isValid = /^\d{3,4}$/.test(value);
+    return isValid ? null : { invalidCvv: true };
+  }
 }

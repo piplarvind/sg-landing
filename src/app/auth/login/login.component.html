@@ -63,6 +63,11 @@
               </mat-form-field>
             </div>
           </div>
+          <div style="text-align: right;">
+            <a class="forgot-password" routerLink="/forgot-password"
+              >Forgot Password?</a
+            >
+          </div>
           <br />
           <div
             style="display: flex; justify-content: center; padding-top: 10px"
@@ -77,10 +82,18 @@
               <span>Login</span>
             </button>
           </div>
+          
           <div style="margin-top: 15px; text-align: center">
-            <a class="forgot-password" routerLink="/forgot-password"
-              >Forgot Password?</a
+            <p>Don't have an account yet?</p>
+            <button
+              mat-raised-button
+              class="submit-btn"
+              color="primary"
+              type="button"
+              (click)="register()"
             >
+              <span>Create Account</span>
+            </button>
           </div>
         </div>
       </form>

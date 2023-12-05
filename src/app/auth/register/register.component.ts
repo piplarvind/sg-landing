@@ -33,6 +33,9 @@ export class RegisterComponent implements OnInit {
   checked = false;
   disabled = false;
 
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -56,6 +59,14 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  togglePasswordVisibility(controlName: string): void {
+    if (controlName === "password") {
+      this.showPassword = !this.showPassword;
+    } else if (controlName === "cPassword") {
+      this.showConfirmPassword = !this.showConfirmPassword;
+    }
+  }
 
   onSubmit(): void {
     this.submitButtonClicked = true;
@@ -81,7 +92,7 @@ export class RegisterComponent implements OnInit {
               this.sharedService.showMessage(
                 "You have already registered, please login"
               );
-              this.router.navigate(["/home"]);
+              this.router.navigate(["/login"]);
             }
             localStorage.setItem("userId", error?.error?.data[0]?._id);
             if (error?.error?.data[0]?.completed_steps === 1) {
@@ -137,7 +148,9 @@ export class RegisterComponent implements OnInit {
       ) {
         this.sharedService.showMessage("Please fill all required fields");
       } else {
-        this.sharedService.showMessage("Please accept terms of usage.");
+        this.sharedService.showMessage(
+          "Please agree to the terms of usage & privacy policy"
+        );
       }
     }
   }

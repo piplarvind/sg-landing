@@ -21,6 +21,9 @@ export class Step1Component implements OnInit {
   checked = false;
   disabled = false;
 
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+
   constructor(
     private router: Router,
     private onboardingProcessService: OnboardingProcessService,
@@ -30,6 +33,14 @@ export class Step1Component implements OnInit {
 
   ngOnInit() {
     // this.getGenders();
+  }
+
+  togglePasswordVisibility(controlName: string): void {
+    if (controlName === 'password') {
+      this.showPassword = !this.showPassword;
+    } else if (controlName === 'confirm_password') {
+      this.showConfirmPassword = !this.showConfirmPassword;
+    }
   }
 
   getGenders() {

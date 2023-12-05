@@ -14,6 +14,9 @@ import { AccountService } from "../account.service";
   styleUrls: ["./change-password.component.scss"],
 })
 export class ChangePasswordComponent implements OnInit {
+  showOldPassword: boolean = false;
+  showNewPassword: boolean = false;
+  showConfirmPassword: boolean = false;
   changePasswordForm = this.changePasswordProcessService.changePasswordForm;
 
   constructor(
@@ -26,6 +29,16 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit() {}
 
+  togglePasswordVisibility(controlName: string): void {
+    if (controlName === 'old_password') {
+      this.showOldPassword = !this.showOldPassword;
+    } else if (controlName === 'new_password') {
+      this.showNewPassword = !this.showNewPassword;
+    } else if (controlName === 'confirm_password') {
+      this.showConfirmPassword = !this.showConfirmPassword;
+    }
+  }
+
   onSubmit() {
     if (this.changePasswordProcessService.changePasswordForm.valid) {
       const passwordFormData =
@@ -35,19 +48,19 @@ export class ChangePasswordComponent implements OnInit {
         this.sharedService.showMessage(
           "New password and confirm password don't match"
         );
+      } else {
+        this.accountService
+          .changePassword(passwordFormData)
+          .then((res: any) => {
+            this.sharedService.showMessage(res.message);
+          })
+          .catch((err) => {
+            console.log(err);
+            this.sharedService.showMessage(err.message);
+          });
       }
-      this.accountService
-        .changePassword(passwordFormData)
-        .then((res: any) => {
-          this.sharedService.showMessage(res.message);
-        })
-        .catch((err) => {
-          console.log(err);
-          this.sharedService.showMessage(err.message);
-        });
     } else {
       this.sharedService.showMessage("Please fill all required fields");
     }
-    console.log("onSubmit");
   }
 }

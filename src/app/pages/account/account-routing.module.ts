@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'my-parents', component: MyParentsComponent, data: { title: extract('My Parents') } },
   { path: 'payment-histories', component: PaymentHistoriesComponent, data: { title: extract('Payment Histories') } },
   { path: 'subscriptions', component: SubscriptionComponent, data: { title: extract('Subscriptions') } },
-  { path: 'make-payment', component: MakePaymentComponent, data: { title: extract('Make Payment') } },
+  { path: 'make-payment/:plan', component: MakePaymentComponent, data: { title: extract('Make Payment') } },
   { path: 'change-password', component: ChangePasswordComponent, data: { title: extract('Change Password') } },
 
 ];

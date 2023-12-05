@@ -24,7 +24,7 @@ import { LayoutModule } from "@app/layout/layout.module";
 import { DashlayoutModule } from "@app/dashlayout/dashlayout.module";
 import { CmsPageModule } from "./cms-page/cms-page.module";
 import { LoginModule } from "@app/login/login.module";
-
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -39,7 +39,7 @@ import { LoginModule } from "@app/login/login.module";
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-
+    MatIconModule,
     //
     CoreModule,
     SharedModule,

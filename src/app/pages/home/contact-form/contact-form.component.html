@@ -58,6 +58,9 @@
         placeholder="Phone"
         formControlName="mobile_no"
       />
+      <div *ngIf="submitted && contactForm.get('mobile_no').invalid || contactForm.get('mobile_no').touched" class="text-danger">
+        <div *ngIf="contactForm.get('mobile_no').hasError('required')">Phone is required.</div>
+      </div>
     </div>
     <div class="col-md-6">
       <br />

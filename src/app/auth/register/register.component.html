@@ -114,11 +114,20 @@
           <mat-form-field class="example-full-width">
             <input
               matInput
-              type="password"
+              type="{{ showPassword ? 'text' : 'password' }}"
               placeholder="Password"
               required
               formControlName="password"
             />
+            <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="togglePasswordVisibility('password')"
+                [attr.aria-label]="'Toggle ' + (showPassword ? 'Hide' : 'Show') + ' password'"
+              >
+                <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
             <mat-error
               *ngIf="
                 (registerForm.get('password')?.touched ||
@@ -134,11 +143,20 @@
           <mat-form-field class="example-full-width">
             <input
               matInput
-              type="password"
-              placeholder="Confirm Password"
+              type="{{ showConfirmPassword ? 'text' : 'password' }}"
+              placeholder="Confirm password"
               required
               formControlName="cPassword"
             />
+            <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="togglePasswordVisibility('cPassword')"
+                [attr.aria-label]="'Toggle ' + (showConfirmPassword ? 'Hide' : 'Show') + ' password'"
+              >
+                <mat-icon>{{ showConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
             <mat-error
               *ngIf="
                 (registerForm.get('cPassword')?.touched ||
@@ -146,8 +164,8 @@
                 registerForm.get('cPassword')?.hasError('required')
               "
             >
-              Confirm password is required!
-            </mat-error>
+              Confirm password is required
+            </mat-error>            
             <mat-error
               *ngIf="
                 (registerForm.get('cPassword')?.touched ||
@@ -155,11 +173,12 @@
                 registerForm?.get('cPassword')?.errors?.confirmPasswordValidator
               "
             >
-              Passsword and Confirm Password didn't match.
+              Passsword and confirm dassword don't match
             </mat-error>
           </mat-form-field>
         </div>
       </div>
+      <div>&nbsp;</div>
       <div class="row">
         <div class="col-md-12">
           <div class="text-center mt-2">
@@ -170,7 +189,7 @@
               [disabled]="disabled"
               formControlName="acceptTerms"
             >
-              &nbsp; I agree to the SportGrit LLC.
+              &nbsp; I agree to the SportGrit, LLC
               <a routerLink="/cms-page/terms-conditions" target="_blank"
                 >Terms of Use</a
               >
@@ -186,7 +205,7 @@
                 registerForm.get('acceptTerms')?.hasError('required')
               "
             >
-              Please accept the terms and conditions.
+            Please agree to the terms of usage & privacy policy
             </mat-error>
           </div>
         </div>

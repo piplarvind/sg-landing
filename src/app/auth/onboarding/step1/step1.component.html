@@ -111,11 +111,20 @@
           <mat-form-field class="example-full-width">
             <input
               matInput
-              type="password"
+              type="{{ showPassword ? 'text' : 'password' }}"
               placeholder="Password"
               required
               formControlName="password"
             />
+            <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="togglePasswordVisibility('password')"
+                [attr.aria-label]="'Toggle ' + (showPassword ? 'Hide' : 'Show') + ' password'"
+              >
+                <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
             <mat-error
               *ngIf="
                 (userForm.get('password')?.touched || nextButtonClicked) &&
@@ -130,11 +139,20 @@
           <mat-form-field class="example-full-width">
             <input
               matInput
-              type="password"
-              placeholder="Confirm Password"
+              type="{{ showConfirmPassword ? 'text' : 'password' }}"
+              placeholder="Confirm password"
               required
               formControlName="cPassword"
             />
+            <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="togglePasswordVisibility('cPassword')"
+                [attr.aria-label]="'Toggle ' + (showConfirmPassword ? 'Hide' : 'Show') + ' password'"
+              >
+                <mat-icon>{{ showConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
             <mat-error
               *ngIf="
                 (userForm.get('cPassword')?.touched || nextButtonClicked) &&
@@ -164,7 +182,7 @@
               [disabled]="disabled"
               formControlName="acceptTerms"
             >
-            &nbsp; I agree to the SportGrit LLC.
+            &nbsp; I agree to the SportGrit, LLC
             <a routerLink="/cms-page/terms-conditions" target="_blank">Terms of Use</a> and <a routerLink="/cms-page/privacy-policy" target="_blank">Privacy Policy</a>
             </mat-slide-toggle>
             <mat-error

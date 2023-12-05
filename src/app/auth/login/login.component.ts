@@ -69,7 +69,9 @@ export class LoginComponent implements OnInit {
       this.invalidUsername = true;
     }
   }
-
+  register(){
+    this.router.navigateByUrl('/auth/register');
+  }
   // forgorPassword() {
   //   this.router.navigateByUrl('/forgot');
   // }

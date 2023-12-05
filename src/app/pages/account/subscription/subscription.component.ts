@@ -43,9 +43,9 @@ export class SubscriptionComponent implements OnInit {
     if (this.onboardingProcessService.subscriptionForm.valid) {
       const subscriptionFormData =
         this.onboardingProcessService.subscriptionForm.value;
-      console.log("subscriptionFormData", subscriptionFormData);
+      //console.log("subscriptionFormData", subscriptionFormData);
       localStorage.setItem('selectedPlan', subscriptionFormData.plan);
-      this.router.navigate(["account/make-payment"]);
+      this.router.navigate(["account/make-payment/"+subscriptionFormData.plan]);
     } else {
       this.sharedService.showMessage("Please select subscription");
     }
