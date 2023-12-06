@@ -2,30 +2,14 @@
   background: #ec1c37;
   color: #fff;
 }
-.gray-btn {
-  background-color: #6c757d;
-  color: #fff;
-}
-
-::ng-deep .mat-step-header .mat-step-icon-selected,
-::ng-deep .mat-step-header .mat-step-icon-state-done,
-::ng-deep .mat-step-header .mat-step-icon-state-edit {
-  background-color: #ec1c37 !important;
-  color: white;
-}
-
-::ng-deep .mat-step-header .material-icons {
-  color: #ffff !important;
-}
-
 .radio-container {
   display: flex;
   align-items: center;
 }
 
-// .radio-button {
-//   margin-right: 8px; /* Adjust the margin as needed */
-// }
+.radio-button {
+  margin-right: 8px; /* Adjust the margin as needed */
+}
 
 .sport-container {
   width: 300px;
@@ -49,116 +33,7 @@
   margin-bottom: -7px !important;
 }
 
-// .radio-button {
-//   margin-right: 18px; /* Adjust the value to increase or decrease space */
-// }
-
-.button-container {
-  margin-top: 20px;
-}
-
-.role-container {
-  width: 200px;
-  background-color: #f0f0f0; /* Light gray background color */
-  padding: 10px;
-  margin: 5px;
-  border-radius: 100px;
-}
-
-::ng-deep .role-container:has(.mat-radio-checked) {
-  background-color: #35679d !important;
-  color: #fff !important;
-}
-
-::ng-deep
-  .role-container
-  > .mat-radio-button.mat-accent.mat-radio-checked
-  .mat-radio-outer-circle {
-  border-color: #ffffff !important;
-}
-
-::ng-deep
-  .role-container
-  > .mat-radio-button.mat-accent
-  .mat-radio-inner-circle,
-::ng-deep
-  .role-container
-  > .mat-radio-button.mat-accent
-  .mat-radio-ripple
-  .mat-ripple-element:not(.mat-radio-persistent-ripple),
-::ng-deep
-  .role-container
-  > .mat-radio-button.mat-accent.mat-radio-checked
-  .mat-radio-persistent-ripple,
-::ng-deep
-  .role-container
-  > .mat-radio-button.mat-accent:active
-  .mat-radio-persistent-ripple {
-  background-color: #ff4081 !important;
-}
-
-// .radio-button {
-//   margin-right: 5px; /* Adjust the margin between the radio button and label */
-//   transform: scale(0.8); /* Adjust the scale to make the radio button smaller */
-// }
-
 .left-col-md-6 > .sport-container,
 .left-col-md-6 > .role-container {
   float: inline-end !important;
-}
-
-.club-container {
-  text-align: center;
-}
-
-.role-form {
-  .club-card {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
-  .club-card.selected {
-    border: 1px solid #ec1c37 !important;
-  }
-
-  .club-image {
-    // max-width: 100%;
-    width: 100px !important;
-    max-height: 150px !important; /* Adjust the max height as needed */
-    object-fit: cover;
-    margin-bottom: 5px;
-  }
-
-  .radio-label {
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-  }
-
-  // .radio-button {
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   opacity: 0;
-  //   cursor: pointer;
-  // }
-
-  .label-below {
-    margin-top: 10px;
-  }
-}
-
-
-.hidden-radio {
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-::ng-deep .club-card:has(.mat-radio-checked) {
-  border: 1px solid #ec1c37 !important;
 }

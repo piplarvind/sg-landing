@@ -1,206 +1,63 @@
 <section class="section-padding" style="margin-top: 10px">
   <div class="container">
-    <form id="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="text-center">
-            <h5>Personal information</h5>
-          </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <h5>Select the Sport</h5>
+          <p>
+            Select the sport you'll be playing to get started with SportGrit
+          </p>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          <mat-form-field class="example-full-width">
-            <input
-              matInput
-              placeholder="First name"
-              required
-              formControlName="first_name"
-            />
-            <mat-error
-              *ngIf="
-                (userForm.get('first_name')?.touched || nextButtonClicked) &&
-                userForm.get('first_name')?.hasError('required')
-              "
+    </div>
+    <form id="addressForm" [formGroup]="step1Form" (ngSubmit)="onSubmit()">
+      <ng-container>
+        <mat-radio-group name="sport" formControlName="sport">
+          <div class="row text-center">
+            <div
+              class="col-md-6 sport-option"
+              [class.left-col-md-6]="i % 2 === 0"
+              *ngFor="let sport of sports; let i = index"
             >
-              First name is required
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <mat-form-field class="example-full-width">
-            <input
-              matInput
-              placeholder="Last name"
-              required
-              formControlName="last_name"
-            />
-            <mat-error
-              *ngIf="
-                (userForm.get('last_name')?.touched || nextButtonClicked) &&
-                userForm.get('last_name')?.hasError('required')
-              "
-            >
-              Last name is required
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <mat-form-field class="example-full-width">
-            <input
-              matInput
-              placeholder="Username"
-              required
-              formControlName="user_name"
-            />
-            <mat-error
-              *ngIf="
-                (userForm.get('user_name')?.touched || nextButtonClicked) &&
-                userForm.get('user_name')?.hasError('required')
-              "
-            >
-              Username is required
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <!-- <div class="col-md-6">
-          <mat-form-field class="example-full-width">
-            <input
-              matInput
-              placeholder="Mobile"
-              required
-              formControlName="mobile_phone"
-            />
-            <mat-error
-              *ngIf="
-                (userForm.get('mobile_phone')?.touched || nextButtonClicked) &&
-                userForm.get('mobile_phone')?.hasError('required')
-              "
-            >
-              Mobile number is required
-            </mat-error>
-          </mat-form-field>
-        </div> -->
-        <div class="col-md-6">
-          <mat-form-field class="example-full-width">
-            <input
-              matInput
-              placeholder="Email"
-              required
-              formControlName="email"
-            />
-            <mat-error
-              *ngIf="
-                (userForm.get('email')?.touched || nextButtonClicked) &&
-                userForm.get('email')?.hasError('required')
-              "
-            >
-              Email is required
-            </mat-error>
-            <mat-error
-              *ngIf="
-                (userForm.get('email')?.touched || nextButtonClicked) &&
-                userForm.get('email')?.hasError('email')
-              "
-            >
-              Email must be a valid email address
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <mat-form-field class="example-full-width">
-            <input
-              matInput
-              type="{{ showPassword ? 'text' : 'password' }}"
-              placeholder="Password"
-              required
-              formControlName="password"
-            />
-            <button
-                mat-icon-button
-                matSuffix
-                type="button"
-                (click)="togglePasswordVisibility('password')"
-                [attr.aria-label]="'Toggle ' + (showPassword ? 'Hide' : 'Show') + ' password'"
-              >
-                <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-              </button>
-            <mat-error
-              *ngIf="
-                (userForm.get('password')?.touched || nextButtonClicked) &&
-                userForm.get('password')?.hasError('required')
-              "
-            >
-              Password is required
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <mat-form-field class="example-full-width">
-            <input
-              matInput
-              type="{{ showConfirmPassword ? 'text' : 'password' }}"
-              placeholder="Confirm password"
-              required
-              formControlName="cPassword"
-            />
-            <button
-                mat-icon-button
-                matSuffix
-                type="button"
-                (click)="togglePasswordVisibility('cPassword')"
-                [attr.aria-label]="'Toggle ' + (showConfirmPassword ? 'Hide' : 'Show') + ' password'"
-              >
-                <mat-icon>{{ showConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-              </button>
-            <mat-error
-              *ngIf="
-                (userForm.get('cPassword')?.touched || nextButtonClicked) &&
-                userForm.get('cPassword')?.hasError('required')
-              "
-            >
-              Confirm password is required!
-            </mat-error>
-            <mat-error
-              *ngIf="
-                (userForm.get('cPassword')?.touched || nextButtonClicked) &&
-                userForm.get('cPassword')?.hasError('passwordMismatch')
-              "
-            >
-              Passsword and Confirm Password didn't match.
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
+              <div class="sport-container">
+                <label class="radio-label">
+                  <mat-radio-button
+                    [value]="sport._id"
+                    class="radio-button"
+                  ></mat-radio-button>
+                  {{ sport.sport_name }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </mat-radio-group>
+      </ng-container>
       <div class="row">
         <div class="col-md-12">
-          <div class="text-center mt-2">
-            <mat-slide-toggle
-              class="terms-service"
-              [color]="color"
-              [checked]="checked"
-              [disabled]="disabled"
-              formControlName="acceptTerms"
-            >
-            &nbsp; I agree to the SportGrit, LLC
-            <a routerLink="/cms-page/terms-conditions" target="_blank">Terms of Use</a> and <a routerLink="/cms-page/privacy-policy" target="_blank">Privacy Policy</a>
-            </mat-slide-toggle>
-            <mat-error
-              *ngIf="
-                (userForm.get('acceptTerms')?.touched || nextButtonClicked) &&
-                userForm.get('acceptTerms')?.hasError('required')
-              "
-            >
-              Please accept the terms and conditions.
-            </mat-error>
-          </div>
+          <div class="button-container text-center mt-1">
+          <mat-error
+            *ngIf="
+              (step1Form.get('sport')?.touched || nextButtonClicked) &&
+              step1Form.get('sport')?.hasError('required')
+            "
+          >
+            Sport is required
+          </mat-error>
+        </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <div class="button-container text-center mt-3">
-            <button mat-raised-button type="submit" class="btn btn theme-btn">
-              <!-- (click)="nextButtonClick()" -->
+            <button
+              mat-raised-button
+              class="btn btn gray-btn"
+              routerLink="/auth/onboarding/step1"
+            >
+              Previous
+            </button>
+            &nbsp;
+            <button mat-raised-button class="btn btn theme-btn" type="submit">
               Next
             </button>
           </div>
@@ -209,7 +66,12 @@
     </form>
 
     <!-- <div class="navigation">
-      <button type="button" (click)="nextButtonClick()">Next</button>
+      <button type="button" routerLink="/auth/onboarding/step1">
+        Previous
+      </button>
+      <button form="addressForm" type="submit" (click)="nextButtonClick()">
+        Next
+      </button>
     </div> -->
   </div>
 </section>

@@ -11,7 +11,6 @@ import { AuthLeftSectionComponent } from './left-section/left-section.component'
 import { OnboardingModule } from '@app/auth/onboarding/onboarding.module';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { StepperModule } from '@app/stepper/stepper.module';
-import { OnboardingGuard } from './onboarding/onboarding.gaurd';
 import { RegisterComponent } from './register/register.component';
 
 
@@ -32,7 +31,6 @@ import { RegisterComponent } from './register/register.component';
     OnboardingComponent,
     AuthLeftSectionComponent,
     LoginComponent
-  ],
-  providers: [OnboardingGuard]
+  ]
 })
 export class AuthModule {}

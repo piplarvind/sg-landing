@@ -3,68 +3,39 @@
     <div class="row">
       <div class="col-md-12">
         <div class="text-center">
-          <h5>Select Your Role</h5>
+          <h3>Select A Club</h3>
           <p>
-            Are you the Athlete signing up? Or are you a parent, coach,
-            recruiter, etc.?
+            Choose the club you'll be trying out for or are already a member
           </p>
         </div>
       </div>
     </div>
-    <form id="accountForm" [formGroup]="step3Form" (ngSubmit)="onSubmit()">
-      <ng-container>
-        <mat-radio-group name="role" formControlName="role">
-          <div class="row">
-            <div
-              class="col-md-6 sport-option"
-              [class.left-col-md-6]="i % 2 === 0"
-              *ngFor="let role of roles; let i = index"
-            >
-              <div class="sport-container">
-                <label class="radio-label">
-                  <mat-radio-button
-                    [value]="role._id"
-                    class="radio-button"
-                    (change)="onRoleChange($event, role)"
-                  ></mat-radio-button>
-                  {{ role.name }}
-                </label>
-              </div>
-            </div>
-          </div>
-        </mat-radio-group>
-      </ng-container>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="button-container text-center mt-1">
-            <mat-error
-              *ngIf="
-                (step3Form.get('role')?.touched || nextButtonClicked) &&
-                step3Form.get('role')?.hasError('required')
-              "
-            >
-              Role is required
-            </mat-error>
-          </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <input type="text" placeholder="Search Club" class="form-control" />
         </div>
       </div>
-      <ng-container *ngIf="selectedrole === 'ATH'">
-        <mat-radio-group name="gender" formControlName="gender">
+    </div>
+    <form id="clubForm" [formGroup]="step3Form" (ngSubmit)="onSubmit()" class="role-form">
+      <ng-container>
+        <mat-radio-group name="role" formControlName="club">
           <div class="row">
             <div
-              class="col-md-6 role-gender"
+              class="col-md-3 club-option"
               [class.left-col-md-6]="i % 2 === 0"
-              *ngFor="let genderItem of genders; let i = index"
+              *ngFor="let clb of clubs; let i = index"
             >
-              <div class="role-container">
-                <label class="radio-label">
-                  <mat-radio-button
-                    [value]="genderItem._id"
-                    class="radio-button"
-                  ></mat-radio-button>
-                  {{ genderItem.name }}
-                </label>
-              </div>
+              <mat-card class="club-card">
+                <mat-radio-button [value]="clb._id" class="hidden-radio"></mat-radio-button>
+                <div class="club-container" (click)="selectClub(clb)">
+                  <img [src]="env.imageUrl + clb.logo || './assets/images/clubv.png'" alt="{{ clb.club_name }}" class="club-image" />
+                  <br/>
+                  <label class="radio-label">
+                    {{ clb.club_name }}
+                  </label>
+                </div>
+              </mat-card>
             </div>
           </div>
         </mat-radio-group>
@@ -72,14 +43,21 @@
       <div class="row">
         <div class="col-md-12">
           <div class="button-container text-center mt-1">
-            <mat-error
-              *ngIf="
-                (step3Form.get('gender')?.touched || nextButtonClicked) &&
-                step3Form.get('gender')?.hasError('required')
-              "
-            >
-              Gender is required
-            </mat-error>
+          <mat-error
+            *ngIf="
+              (step3Form.get('club')?.touched || nextButtonClicked) &&
+              step3Form.get('club')?.hasError('required')
+            "
+          >
+            Club is required
+          </mat-error>
+        </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            Don't see your club listed? Make a request here. <a routerLink="/auth/onboarding/club-not-here">Here</a>
           </div>
         </div>
       </div>
@@ -94,12 +72,16 @@
               Previous
             </button>
             &nbsp;
-            <button mat-raised-button class="btn btn theme-btn" type="submit">
+            <button
+              mat-raised-button
+              class="btn btn theme-btn"
+              type="submit"
+            >
               Next
             </button>
           </div>
         </div>
       </div>
-    </form>
+    </form>    
   </div>
 </section>

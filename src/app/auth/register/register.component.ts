@@ -122,7 +122,7 @@ export class RegisterComponent implements OnInit {
               }
             }
           } else {
-            //console.error("User already exist:", error);
+            // console.error("User already exist:", error?.error?.message);
             this.sharedService
               .showDialog(`${error?.error?.message}`)
               .subscribe((response) => {
@@ -144,7 +144,8 @@ export class RegisterComponent implements OnInit {
         this.registerForm.get("email")?.hasError("required") ||
         this.registerForm.get("email")?.hasError("email") ||
         this.registerForm.get("password")?.hasError("required") ||
-        this.registerForm.get("cPassword")?.hasError("required")
+        this.registerForm.get("cPassword")?.hasError("required") ||
+        this.registerForm.get("cPassword")?.errors?.confirmPasswordValidator
       ) {
         this.sharedService.showMessage("Please fill all required fields");
       } else {

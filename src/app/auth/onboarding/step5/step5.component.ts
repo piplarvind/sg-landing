@@ -1,20 +1,26 @@
 import { Component, OnInit } from "@angular/core";
-
-import { OnboardingProcessService } from "../onboarding.process.service";
 import { Router } from "@angular/router";
+import { ThemePalette } from "@angular/material/core";
+import { OnboardingProcessService } from "../onboarding.process.service";
 import { OnboardingService } from "../onboarding.service";
 import { SharedService } from "@app/shared/shared.service";
+
 @Component({
   selector: "app-step5",
   templateUrl: "./step5.component.html",
   styleUrls: ["./step5.component.scss"],
 })
-export class Step5Component {
+export class Step5Component implements OnInit {
   nextButtonClicked = false;
+  subscriptionForm = this.onboardingProcessService.subscriptionForm;
+  genders: any;
 
-  step5Form = this.onboardingProcessService.step5Form;
+  color: ThemePalette = "accent";
+  checked = false;
+  disabled = false;
 
-  ages: any = [];
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
 
   constructor(
     private router: Router,
@@ -24,18 +30,25 @@ export class Step5Component {
   ) {}
 
   ngOnInit() {
-    this.getSportClubs();
+    // this.getGenders();
   }
 
-  getSportClubs() {
-    let gender = localStorage.getItem("genderId");
-    this.onboardingService.getGenderAges(gender).subscribe(
+  togglePasswordVisibility(controlName: string): void {
+    if (controlName === 'password') {
+      this.showPassword = !this.showPassword;
+    } else if (controlName === 'confirm_password') {
+      this.showConfirmPassword = !this.showConfirmPassword;
+    }
+  }
+
+  getGenders() {
+    this.onboardingService.getGenders().subscribe(
       (response) => {
-        //console.log("ages data:", response);
-        this.ages = response.data;
+        //console.log("gender data:", response);
+        this.sharedService.showMessage(response);
       },
       (error) => {
-        //console.error("Error getting ages data:", error);
+        //console.error("Error getting gender data:", error);
         this.sharedService.showMessage(error.error.message);
       }
     );
@@ -44,40 +57,25 @@ export class Step5Component {
   onSubmit(): void {
     this.nextButtonClicked = true;
     // Perform form validation
-    if (this.onboardingProcessService.step5Form.valid) {
-      const ageFormData = this.onboardingProcessService.step5Form.value;
+    if (this.onboardingProcessService.subscriptionForm.valid) {
+      const subData = this.onboardingProcessService.subscriptionForm.value;
 
-      let ageData = {
-        profile_id: localStorage.getItem("userId"),
-        profile_fields_data: [
-          {
-            field: "age",
-            value: ageFormData.age,
-          },
-        ],
-      };
-
-      this.onboardingService.saveAgeData(ageData).subscribe(
+      this.onboardingService.saveStep1Data(subData).subscribe(
         (response) => {
-          // localStorage.removeItem('userId');
-          // localStorage.removeItem('sportId');
-          // localStorage.removeItem('genderId');
-          // localStorage.removeItem('clubId');
-          //console.log("Age data saved successfully:", response.data);
-          this.sharedService.showMessage(response.message);
+          //console.log("User data saved successfully:", response);
+          localStorage.setItem("userId", response?.data?._id);
           // Navigate to the next step
-          this.router.navigate(["/login"]);
+          this.router.navigateByUrl("/login");
         },
         (error) => {
-          //console.error("Error saving age data:", error);
-          this.sharedService.showMessage(error.error.message);
+          
           this.router.navigate(["/auth/onboarding/step5"]);
         }
       );
-      //
+      // this.router.navigate(["/auth/onboarding/step2"]);
     } else {
       // If the form is invalid, show an error or handle it accordingly
-      //console.log("Please fill in all required fields in Step 5.");
+      //console.log("Please fill in all required fields in Step 1.");
       this.sharedService.showMessage("Please fill all required fields");
     }
   }

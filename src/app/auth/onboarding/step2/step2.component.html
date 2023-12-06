@@ -3,29 +3,31 @@
     <div class="row">
       <div class="col-md-12">
         <div class="text-center">
-          <h5>Select the Sport</h5>
+          <h5>Select Your Role</h5>
           <p>
-            Select the sport you'll be playing to get started with SportGrit
+            Are you the Athlete signing up? Or are you a parent, coach,
+            recruiter, etc.?
           </p>
         </div>
       </div>
     </div>
-    <form id="addressForm" [formGroup]="step2Form" (ngSubmit)="onSubmit()">
+    <form id="accountForm" [formGroup]="step2Form" (ngSubmit)="onSubmit()">
       <ng-container>
-        <mat-radio-group name="sport" formControlName="sport">
-          <div class="row text-center">
+        <mat-radio-group name="role" formControlName="role">
+          <div class="row">
             <div
               class="col-md-6 sport-option"
               [class.left-col-md-6]="i % 2 === 0"
-              *ngFor="let sport of sports; let i = index"
+              *ngFor="let role of roles; let i = index"
             >
               <div class="sport-container">
                 <label class="radio-label">
                   <mat-radio-button
-                    [value]="sport._id"
+                    [value]="role._id"
                     class="radio-button"
+                    (change)="onRoleChange($event, role)"
                   ></mat-radio-button>
-                  {{ sport.sport_name }}
+                  {{ role.name }}
                 </label>
               </div>
             </div>
@@ -35,15 +37,50 @@
       <div class="row">
         <div class="col-md-12">
           <div class="button-container text-center mt-1">
-          <mat-error
-            *ngIf="
-              (step2Form.get('sport')?.touched || nextButtonClicked) &&
-              step2Form.get('sport')?.hasError('required')
-            "
-          >
-            Sport is required
-          </mat-error>
+            <mat-error
+              *ngIf="
+                (step2Form.get('role')?.touched || nextButtonClicked) &&
+                step2Form.get('role')?.hasError('required')
+              "
+            >
+              Role is required
+            </mat-error>
+          </div>
         </div>
+      </div>
+      <ng-container *ngIf="selectedrole === 'ATH'">
+        <mat-radio-group name="gender" formControlName="gender">
+          <div class="row">
+            <div
+              class="col-md-6 role-gender"
+              [class.left-col-md-6]="i % 2 === 0"
+              *ngFor="let genderItem of genders; let i = index"
+            >
+              <div class="role-container">
+                <label class="radio-label">
+                  <mat-radio-button
+                    [value]="genderItem._id"
+                    class="radio-button"
+                  ></mat-radio-button>
+                  {{ genderItem.name }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </mat-radio-group>
+      </ng-container>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-1">
+            <mat-error
+              *ngIf="
+                (step2Form.get('gender')?.touched || nextButtonClicked) &&
+                step2Form.get('gender')?.hasError('required')
+              "
+            >
+              Gender is required
+            </mat-error>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -64,14 +101,5 @@
         </div>
       </div>
     </form>
-
-    <!-- <div class="navigation">
-      <button type="button" routerLink="/auth/onboarding/step1">
-        Previous
-      </button>
-      <button form="addressForm" type="submit" (click)="nextButtonClick()">
-        Next
-      </button>
-    </div> -->
   </div>
 </section>
