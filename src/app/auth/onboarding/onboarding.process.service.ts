@@ -47,12 +47,12 @@ export class OnboardingProcessService {
   // Add a method to set validators for the gender field dynamically
   setGenderValidators(required: boolean): void {
     const validators = required ? [Validators.required] : [];
-    this.step3Form.get('gender')?.setValidators(validators);
-    this.step3Form.get('gender')?.updateValueAndValidity();
+    this.step2Form.get('gender')?.setValidators(validators);
+    this.step2Form.get('gender')?.updateValueAndValidity();
   }
 
   // Update the step3Form when the role changes
-  updateStep3Form(role: string): void {
+  updateStep2Form(role: string): void {
     // You may need to adjust the condition based on your specific logic
     const isGenderRequired = role === 'ATH';
 

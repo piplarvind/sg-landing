@@ -39,8 +39,8 @@ export class Step2Component implements OnInit {
     // Subscribe to changes in the 'role' control
     this.roleSubscription = this.step2Form.get('role')?.valueChanges.subscribe((role) => {
       // Update the step2Form based on the selected role
-      // this.onboardingProcessService.updateStep3Form(role);
-      this.onboardingProcessService.updateStep3Form(this.selectedrole);
+      // this.onboardingProcessService.updateStep2Form(role);
+      this.onboardingProcessService.updateStep2Form(this.selectedrole);
     });
   }
 
