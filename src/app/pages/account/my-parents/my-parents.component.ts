@@ -53,7 +53,7 @@ export class MyParentsComponent implements OnInit {
       .then((e: any) => {
         const res = e.data;
 
-        const newresult = res?.parents.map((prof) => {
+        const newresult = res[0]?.parents.map((prof) => {
           const prop = prof?.profile_id;
           let name: any = {
               fname: "",

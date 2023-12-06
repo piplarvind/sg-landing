@@ -199,8 +199,8 @@ export class DashboardComponent implements OnInit {
       .getAthleteParents(url)
       .then((e: any) => {
         const res = e.data;
-        this.parentCount = res?.parents?.length;
-        const newresult = res?.parents.map((prof) => {
+        this.parentCount = res[0]?.parents?.length;
+        const newresult = res[0]?.parents?.map((prof) => {
           const prop = prof?.profile_id;
           let name: any = {
               fname: "",

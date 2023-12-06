@@ -1,5 +1,18 @@
 <div class="m-container">
   <div class="card-container main-static">
+    <mat-card class="card-item" *ngIf="user_role === 'ATH'">
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div fxLayout="column" fxLayoutAlign="start start">
+            <div class="user-count">{{ parentCount }}</div>
+            <div class="card-label">Parents</div>
+          </div>
+          <!-- <div class="image-container">
+            <div [innerHTML]="state.icon" class="svg-icon"></div>
+          </div> -->
+        </div>
+      </mat-card-content>
+    </mat-card>
     <mat-card class="card-item" *ngIf="user_role === 'PAR' || user_role === 'FFF'">
       <mat-card-content>
         <div fxLayout="row" fxLayoutAlign="space-between">
