@@ -17,7 +17,7 @@
       <mat-card-content>
         <div fxLayout="row" fxLayoutAlign="space-between">
           <div fxLayout="column" fxLayoutAlign="start start">
-            <div class="user-count">03</div>
+            <div class="user-count">{{successfullPayment}}</div>
             <div class="card-label">Unsuccessfull Payments</div>
           </div>
           <!-- <div class="image-container">
@@ -30,7 +30,7 @@
       <mat-card-content>
         <div fxLayout="row" fxLayoutAlign="space-between">
           <div fxLayout="column" fxLayoutAlign="start start">
-            <div class="user-count">06</div>
+            <div class="user-count">{{ unSuccessfullPayment }}</div>
             <div class="card-label">Successfull Payments</div>
           </div>
           <!-- <div class="image-container">
@@ -216,34 +216,25 @@
         <div class="m-table-container">
           <mat-table #table [dataSource]="dataSourcePayments" matSort>
            
-            <ng-container matColumnDef="payments">
+            <ng-container matColumnDef="amount">
               <mat-header-cell *matHeaderCellDef mat-sort-header>
-                <span class="m-table-header"> Payments </span>
+                <span class="m-table-header"> Amount </span>
               </mat-header-cell>
               <mat-cell
                 *matCellDef="let element"
                 class="light-red m-pointer"
                 (click)="editClub(element)"
               >
-                {{ element.payments }}
+                $ {{ element.amount }}
               </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="date">
+            <ng-container matColumnDef="created_on">
               <mat-header-cell *matHeaderCellDef mat-sort-header>
                 <span class="m-table-header"> Date </span>
               </mat-header-cell>
               <mat-cell *matCellDef="let element">
-                {{ element.date }}
-              </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="time">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>
-                <span class="m-table-header"> Time </span>
-              </mat-header-cell>
-              <mat-cell *matCellDef="let element">
-                {{ element.time }}
+                {{ element.created_on | date : "MM-dd-yyyy H:mm:ss" }}
               </mat-cell>
             </ng-container>
 

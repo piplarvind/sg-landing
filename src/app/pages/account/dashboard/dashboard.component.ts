@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
   dataSourcePayments = new MatTableDataSource<any>();
   displayedColumns: any = ["name", "email"];
 
-  displayedPaymentColumns: string[] = ["payments", "date", "time"];
+  displayedPaymentColumns: string[] = ["amount", "created_on"];
 
   startDate: Date; // Initialize this with the start date
   endDate: Date; // Initialize this with the end date
@@ -120,6 +120,7 @@ export class DashboardComponent implements OnInit {
       .then((e: any) => {
         const res = e.data;
         this.successfullPayment = res?.length;
+        console.log('this.successfullPayment', this.successfullPayment);
         this.dataSourcePayments.data = res;
       })
       .catch((err) => {
@@ -139,7 +140,6 @@ export class DashboardComponent implements OnInit {
       .then((e: any) => {
         const res = e.data;
         this.unSuccessfullPayment = res?.length;
-        this.dataSourcePayments.data = res;
       })
       .catch((err) => {
         console.log(err);
