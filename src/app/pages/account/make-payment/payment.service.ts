@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class PaymentService {
   makeAPaymentURL = "payments";
   getPaymentHistoriesURL = "payments/user-payment";
+  getFailedPaymentHistoriesURL = "payments/user-failed-payment";
   getOnePlanURL = "plans";
   constructor(public http: HttpClient) {}
 
@@ -43,6 +44,21 @@ export class PaymentService {
   getPaymentHistories(data: any) {
     return new Promise((resolve, reject) => {
       this.http.post(`${this.getPaymentHistoriesURL}`, data).subscribe(
+        (res: any) => {
+          resolve(res);
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    });
+  }
+  /**
+   * Get failed Payment History for the specified user
+   */
+  getFailedPaymentHistories(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${this.getFailedPaymentHistoriesURL}`, data).subscribe(
         (res: any) => {
           resolve(res);
         },
