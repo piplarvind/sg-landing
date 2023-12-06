@@ -38,7 +38,7 @@ export class PaymentService {
   }
 
   /**
-   * Get payment histories for the specified user
+   * Get Payment History for the specified user
    */
   getPaymentHistories(data: any) {
     return new Promise((resolve, reject) => {
