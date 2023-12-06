@@ -1,11 +1,24 @@
 <div class="m-container">
   <div class="card-container main-static">
-    <mat-card class="card-item">
+    <mat-card class="card-item" *ngIf="user_role === 'PAR'">
       <mat-card-content>
         <div fxLayout="row" fxLayoutAlign="space-between">
           <div fxLayout="column" fxLayoutAlign="start start">
             <div class="user-count">02</div>
             <div class="card-label">Athletes</div>
+          </div>
+          <!-- <div class="image-container">
+            <div [innerHTML]="state.icon" class="svg-icon"></div>
+          </div> -->
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="card-item" *ngIf="user_role === 'ATH'">
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div fxLayout="column" fxLayoutAlign="start start">
+            <div class="user-count">02</div>
+            <div class="card-label">Parents</div>
           </div>
           <!-- <div class="image-container">
             <div [innerHTML]="state.icon" class="svg-icon"></div>
@@ -56,7 +69,7 @@
   </div>
 
   <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="16px">
-    <mat-card fxFlex="60%" class="new-mat-card">
+    <mat-card fxFlex="60%" class="new-mat-card" *ngIf="user_role === 'PAR'">
       <mat-card-title
         fxLayout="row"
         fxLayoutGap="8px"
@@ -258,5 +271,5 @@
         </div>
       </mat-card-content>
     </mat-card>
-  </div> -->
+  </div>
 </div>
