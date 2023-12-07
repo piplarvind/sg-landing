@@ -103,7 +103,18 @@ export class RegisterComponent implements OnInit {
               localStorage.setItem("sportId", error?.error?.data[0]?.sport);
               this.router.navigate(["/auth/onboarding/step3"]);
             } else if (error?.error?.data[0]?.completed_steps === 4) {
-              this.router.navigate(["/auth/onboarding/step4"]);
+              //this.router.navigate(["/auth/onboarding/step4"]);
+              if(localStorage.getItem("userType") === 'ATH'){
+                this.router.navigate(["/auth/onboarding/step4"]);
+              }else if(localStorage.getItem("userType") === 'REC'){
+                this.router.navigate(["/auth/onboarding/university-detail"]);
+              }else if(localStorage.getItem("userType") === 'PAR'){
+                this.router.navigate(["/auth/onboarding/select-athletes"]);
+              }else if(localStorage.getItem("userType") === 'FFF'){
+                this.router.navigate(["/auth/onboarding/success-screen"]); // need to change this once page is ready
+              }else{
+                this.router.navigate(["/auth/onboarding/success-screen"]);
+              }
             } else {
               //console.error("User already exist:", error);
               //console.log('error?.error?.data[0]?.types.abbr', error?.error?.data[0]?.types[0].abbr);

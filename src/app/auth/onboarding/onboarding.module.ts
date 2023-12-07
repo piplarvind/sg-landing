@@ -20,6 +20,7 @@ import { OTPComponent } from "./otp/otp.component";
 import { SelectSubscriptionComponent } from "./select-subscription/select-subscription.component";
 import { DoPaymentComponent } from "./do-payment/do-payment.component";
 import { SelectAthletesComponent } from "./select-athletes/select-athletes.component";
+import { Ng2TelInputModule } from "ng2-tel-input";
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { SelectAthletesComponent } from "./select-athletes/select-athletes.compo
     FlexLayoutModule,
     MaterialModule,
     OnboardingRoutingModule,
+    Ng2TelInputModule
   ],
   declarations: [
     Step1Component,

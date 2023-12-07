@@ -1,11 +1,18 @@
 <section class="section-padding" style="margin-top: 10px">
   <div class="container">
-    <form id="universityForm" [formGroup]="universityForm" (ngSubmit)="onSubmit()">
+    <form
+      id="universityForm"
+      [formGroup]="universityForm"
+      (ngSubmit)="onSubmit()"
+    >
       <div class="row">
         <div class="col-md-12">
           <div class="text-center">
             <h5>Enter Details</h5>
-            <p>Enter University details and add your phone number to receive the authentication code</p>
+            <p>
+              Enter University details and add your phone number to receive the
+              authentication code
+            </p>
           </div>
         </div>
       </div>
@@ -20,19 +27,21 @@
             />
             <mat-error
               *ngIf="
-                (universityForm.get('official_email')?.touched || nextButtonClicked) &&
+                (universityForm.get('official_email')?.touched ||
+                  nextButtonClicked) &&
                 universityForm.get('official_email')?.hasError('required')
               "
             >
-            Official email is required
+              Official email is required
             </mat-error>
             <mat-error
               *ngIf="
-                (universityForm.get('official_email')?.touched || nextButtonClicked) &&
+                (universityForm.get('official_email')?.touched ||
+                  nextButtonClicked) &&
                 universityForm.get('official_email')?.hasError('official_email')
               "
             >
-            Official email must be a valid email address
+              Official email must be a valid email address
             </mat-error>
           </mat-form-field>
         </div>
@@ -46,11 +55,12 @@
             />
             <mat-error
               *ngIf="
-                (universityForm.get('recruiter_title')?.touched || nextButtonClicked) &&
+                (universityForm.get('recruiter_title')?.touched ||
+                  nextButtonClicked) &&
                 universityForm.get('recruiter_title')?.hasError('required')
               "
             >
-            Recruiter title is required
+              Recruiter title is required
             </mat-error>
           </mat-form-field>
         </div>
@@ -64,11 +74,12 @@
             />
             <mat-error
               *ngIf="
-                (universityForm.get('program_website_url')?.touched || nextButtonClicked) &&
+                (universityForm.get('program_website_url')?.touched ||
+                  nextButtonClicked) &&
                 universityForm.get('program_website_url')?.hasError('required')
               "
             >
-            Program website URL is required
+              Program website URL is required
             </mat-error>
           </mat-form-field>
         </div>
@@ -83,15 +94,16 @@
             />
             <mat-error
               *ngIf="
-                (universityForm.get('university_name')?.touched || nextButtonClicked) &&
+                (universityForm.get('university_name')?.touched ||
+                  nextButtonClicked) &&
                 universityForm.get('university_name')?.hasError('required')
               "
             >
-            University name is required
+              University name is required
             </mat-error>
           </mat-form-field>
         </div>
-        
+
         <div class="col-md-6">
           <mat-form-field class="example-full-width">
             <input
@@ -102,7 +114,8 @@
             />
             <mat-error
               *ngIf="
-                (universityForm.get('street_address')?.touched || nextButtonClicked) &&
+                (universityForm.get('street_address')?.touched ||
+                  nextButtonClicked) &&
                 universityForm.get('street_address')?.hasError('required')
               "
             >
@@ -128,7 +141,7 @@
             </mat-error>
           </mat-form-field>
         </div>
-        
+
         <div class="col-md-6">
           <mat-form-field class="example-full-width">
             <input
@@ -162,22 +175,36 @@
                 universityForm.get('zip')?.hasError('required')
               "
             >
-            Zip code is required
+              Zip code is required
             </mat-error>
           </mat-form-field>
         </div>
         <div class="col-md-6">
           <mat-form-field class="example-full-width">
             <input
-              matInput
-              type="tel"
-              placeholder="Mobile no"
-              required
               formControlName="mobile_phone"
+              required
+              #ng2TelInput
+              type="tel"
+              matInput
+              ng2TelInput
+              [ng2TelInputOptions]="{
+                initialCountry: initialCountry,
+                autoHideDialCode: false,
+                separateDialCode: true,
+                formatOnDisplay: true,
+                excludeCountries: true
+              }"
+              (hasError)="hasTelError($event)"
+              (ng2TelOutput)="getNumber($event)"
+              (countryChange)="telCountryChange($event)"
+              [value]="mobile_phone"
+              (keyup)="formatMobile($event.target.value)"
             />
             <mat-error
               *ngIf="
-                (universityForm.get('mobile_phone')?.touched || nextButtonClicked) &&
+                (universityForm.get('mobile_phone')?.touched ||
+                  nextButtonClicked) &&
                 universityForm.get('mobile_phone')?.hasError('required')
               "
             >
@@ -185,8 +212,9 @@
             </mat-error>
           </mat-form-field>
         </div>
+        
       </div>
-      
+
       <div class="row">
         <div class="col-md-12">
           <div class="button-container text-center mt-3">
