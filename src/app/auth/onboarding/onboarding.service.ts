@@ -21,6 +21,8 @@ export class OnboardingService {
   private saveUniversityUrl = "onboard/enter-university-detail";
   private verifyOTPUrl = "onboard/verify-phone";
   private resendOTPUrl = "onboard/resend-otp";
+  // get athlets
+  private getClubAthletesUrl = "onboard/parent/get-athlete";
 
   constructor(private http: HttpClient) {}
 
@@ -77,5 +79,9 @@ export class OnboardingService {
   }
   resendOTPData(otpData: any): Observable<any> {
     return this.http.post(`${this.resendOTPUrl}`, otpData);
+  }
+
+  getClubAthletes(payload: any): Observable<any> {
+    return this.http.post(`${this.getClubAthletesUrl}`, payload);
   }
 }

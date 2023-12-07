@@ -1,0 +1,81 @@
+<section class="section-padding" style="margin-top: 10px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <h5>Select Athletes</h5>
+          <p>Select one or multiple athletes if you have more than Athlete playing at this club</p>
+        </div>
+      </div>
+    </div>
+    <form id="accountForm" [formGroup]="athletesForm" (ngSubmit)="onSubmit()">
+      <ng-container>
+        <mat-radio-group name="role" formControlName="role">
+          <div class="row">
+            <div
+              class="col-md-6 sport-option"
+              [class.left-col-md-6]="i % 2 === 0"
+              *ngFor="let role of roles; let i = index"
+            >
+              <div class="sport-container">
+                <label class="radio-label">
+                  <mat-radio-button
+                    [value]="role._id"
+                    class="radio-button"
+                    (change)="onRoleChange($event, role)"
+                  ></mat-radio-button>
+                  {{ role.name }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </mat-radio-group>
+      </ng-container>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-1">
+            <mat-error
+              *ngIf="
+                (athletesForm.get('role')?.touched || nextButtonClicked) &&
+                athletesForm.get('role')?.hasError('required')
+              "
+            >
+              Role is required
+            </mat-error>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-1">
+            <mat-error
+              *ngIf="
+                (athletesForm.get('gender')?.touched || nextButtonClicked) &&
+                athletesForm.get('gender')?.hasError('required')
+              "
+            >
+              Team type is required
+            </mat-error>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-3">
+            <button
+              mat-raised-button
+              class="btn btn gray-btn"
+              routerLink="/auth/onboarding/step1"
+            >
+              Previous
+            </button>
+            &nbsp;
+            <button mat-raised-button class="btn btn theme-btn" type="submit">
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

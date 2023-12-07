@@ -15,6 +15,7 @@ import { SelectSubscriptionComponent } from "./select-subscription/select-subscr
 import { SubscriptionService } from "@app/pages/account/subscription/subscription.service";
 import { DoPaymentComponent } from "./do-payment/do-payment.component";
 import { PaymentService } from "@app/pages/account/make-payment/payment.service";
+import { SelectAthletesComponent } from "./select-athletes/select-athletes.component";
 
 const routes: Routes = [
   {
@@ -41,6 +42,11 @@ const routes: Routes = [
     path: "step5",
     component: Step5Component,
     data: { title: extract("Onboarding Step 5") },
+  },
+  {
+    path: "select-athletes",
+    component: SelectAthletesComponent,
+    data: { title: extract("Select Athlete") },
   },
   {
     path: "select-subscription",
