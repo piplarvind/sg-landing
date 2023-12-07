@@ -56,6 +56,9 @@
               [class.left-col-md-6]="i % 2 === 0"
               *ngFor="let genderItem of genders; let i = index"
             >
+            <div>
+              Please select Team Type
+            </div>
               <div class="role-container">
                 <label class="radio-label">
                   <mat-radio-button
@@ -78,7 +81,7 @@
                 step2Form.get('gender')?.hasError('required')
               "
             >
-              Gender is required
+              Team type is required
             </mat-error>
           </div>
         </div>

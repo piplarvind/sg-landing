@@ -110,7 +110,7 @@
   <a
     *ngIf="user_role === 'ATH' || user_role === 'PAR' || user_role === 'FFF'"
     mat-list-item
-    routerLink="/account/payment-histories"
+    routerLink="/account/payments"
     routerLinkActive="active"
     (click)="panelClose(null)"
   >
@@ -140,7 +140,7 @@
       </g>
     </svg>
     &nbsp;&nbsp;
-    <span>Payment History</span>
+    <span>Payments</span>
   </a>
   <a
     *ngIf="user_role === 'ATH' || user_role === 'PAR' || user_role === 'FFF'"

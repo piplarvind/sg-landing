@@ -62,9 +62,9 @@ export class Step4Component {
           //console.log("Age data saved successfully:", response.data);
           this.sharedService.showMessage(response.message);
           // Navigate to the next step
-          if (localStorage.getItem("userType") === "ATH") {
+          if (localStorage.getItem("userType") === "ATH" || localStorage.getItem("userType") === "FFF") {
             // Navigate to the next step
-            this.router.navigate(["/auth/onboarding/step4"]);
+            this.router.navigate(["/auth/onboarding/select-subscription"]);
           } else if (localStorage.getItem("userType") === "REC") {
             // Navigate to the next step to verify the mobile number
             this.router.navigate(["/auth/onboarding/university-detail"]);
@@ -82,7 +82,7 @@ export class Step4Component {
     } else {
       // If the form is invalid, show an error or handle it accordingly
       //console.log("Please fill in all required fields in Step 5.");
-      this.sharedService.showMessage("Please fill all required fields");
+      this.sharedService.showMessage("Please select required field");
     }
   }
 }
