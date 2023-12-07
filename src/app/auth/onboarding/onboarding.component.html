@@ -1,12 +1,15 @@
 <app-stepper>
-  <ng-template appStepLabel="step1"> Step 1 </ng-template>
-  <ng-template appStepLabel="step2"> Step 2 </ng-template>
-  <ng-template appStepLabel="step3"> Step 3 </ng-template>
-  <ng-template appStepLabel="step4"> Step 4 </ng-template>
-  <!-- <ng-template *ngIf="roleType !== 'ATH'" appStepLabel="step5"> Step 5 </ng-template> -->
-  <ng-container *ngIf="roleType === 'ATH'">
-    <div *appStepLabel="'step5'"> Step 5 </div>
+  <ng-template appStepLabel="step1"> Sport </ng-template>
+  <ng-template appStepLabel="step2"> Role </ng-template>
+  <ng-template appStepLabel="step3"> Club </ng-template>
+  <!-- <ng-template appStepLabel="step4"> Step 4 </ng-template> -->
+  <ng-container *ngIf="roleType === 'PAR'">
+    <div *appStepLabel="'step4'"> Age Category </div>
   </ng-container>
+  <!-- <ng-container *ngIf="roleType === 'ATH'">
+    <div *appStepLabel="'step5'"> Step 5 </div>
+  </ng-container> -->
+  <ng-template appStepLabel="step5"> Subscriptions </ng-template>
 
   <div class="steps">
     <router-outlet></router-outlet>
