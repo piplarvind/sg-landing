@@ -108,7 +108,10 @@
 }
 
 .club-container {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center children horizontally */
+  text-align: center; /* Center text horizontally */
 }
 
 .role-form {
@@ -117,6 +120,21 @@
     margin-bottom: 10px;
   }
 
+  .row {
+    display: flex;
+  }
+  
+  .club-option {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .club-card {
+    flex: 1;
+    cursor: pointer;
+  }
+  
+
   .club-card.selected {
     border: 1px solid #ec1c37 !important;
   }
@@ -124,9 +142,10 @@
   .club-image {
     // max-width: 100%;
     width: 100px !important;
-    max-height: 150px !important; /* Adjust the max height as needed */
+    max-height: 150px !important; 
     object-fit: cover;
     margin-bottom: 5px;
+    
   }
 
   .radio-label {

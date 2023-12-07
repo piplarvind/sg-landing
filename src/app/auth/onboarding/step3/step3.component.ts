@@ -60,7 +60,17 @@ export class Step3Component implements OnInit {
         (response) => {
           // console.log("Club data saved successfully:", response.data);
           this.sharedService.showMessage(response.message);
-          this.router.navigate(["/auth/onboarding/step4"]);
+          if(localStorage.getItem("userType") === 'ATH'){
+            this.router.navigate(["/auth/onboarding/step4"]);
+          }else if(localStorage.getItem("userType") === 'REC'){
+            this.router.navigate(["/auth/onboarding/university-detail"]);
+          }else if(localStorage.getItem("userType") === 'PAR'){
+            this.router.navigate(["/auth/onboarding/select-athletes"]);
+          }else if(localStorage.getItem("userType") === 'FFF'){
+            this.router.navigate(["/auth/onboarding/success-screen"]); // need to change this once page is ready
+          }else{
+            this.router.navigate(["/auth/onboarding/success-screen"]);
+          }
         },
         (error) => {
           //console.error("Error saving club data:", error);

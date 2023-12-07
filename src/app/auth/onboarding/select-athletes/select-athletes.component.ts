@@ -22,7 +22,7 @@ export class SelectAthletesComponent {
   nextButtonClicked = false;
 
   athleteList: any;
-
+  roles:any;
   constructor(
     private router: Router,
     private fb: FormBuilder,

@@ -21,6 +21,7 @@ import { SelectSubscriptionComponent } from "./select-subscription/select-subscr
 import { DoPaymentComponent } from "./do-payment/do-payment.component";
 import { SelectAthletesComponent } from "./select-athletes/select-athletes.component";
 import { SelectAthleteCoachComponent } from "./select-athlete-coach/select-athlete-coach.component";
+import { Ng2TelInputModule } from "ng2-tel-input";
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { SelectAthleteCoachComponent } from "./select-athlete-coach/select-athle
     FlexLayoutModule,
     MaterialModule,
     OnboardingRoutingModule,
+    Ng2TelInputModule
   ],
   declarations: [
     Step1Component,
