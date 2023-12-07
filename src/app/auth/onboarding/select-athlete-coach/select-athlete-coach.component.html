@@ -3,11 +3,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="text-center">
-          <h5>Select Athletes</h5>
-          <p>
-            Select one or multiple athletes if you have more than Athlete
-            playing at this club
-          </p>
+          <h5>Select Athlete Or Coach</h5>
+          <p>Select the athletes or coaches you are fan of and get started</p>
         </div>
       </div>
     </div>
@@ -26,55 +23,44 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="selected-items">
-          <div *ngFor="let selectedId of athleteFormArray.value" class="tag">
-            {{ getAthleteNameById(selectedId) }}
-            <span class="remove-icon" (click)="removeAthlete(selectedId)"
-              >X</span
-            >
-          </div>
-        </div>
-      </div>
-    </div>
     <form id="accountForm" [formGroup]="athleteForm" (ngSubmit)="onSubmit()">
       <ng-container>
-        <mat-radio-group name="athlete" formControlName="athlete">
+        <div formArrayName="selectedAthletes">
           <div class="row athlete-row">
             <div
               class="col-md-6 sport-option"
               [class.left-col-md-6]="i % 2 === 0"
-              *ngFor="let ath of filteredAthleteList; let i = index"
+              *ngFor="let athlete of athleteList; let i = index"
+              (click)="onSportOptionClick(athlete._id)"
             >
               <div class="sport-container">
-                <label class="radio-label">
-                  <mat-radio-button
-                    [value]="ath._id"
-                    class="radio-button"
-                    (change)="onRadioChange(ath._id)"
-                  ></mat-radio-button>
-                  {{ ath?.profile_fields[0]?.value }}
-                  {{ ath?.profile_fields[1]?.value }}
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    [formControlName]="athlete._id"
+                    class="checkbox-button"
+                    (click)="onSportOptionClick(athlete._id)"
+                  />
+                  {{ athlete?.profile_fields[0]?.value }}
+                  {{ athlete?.profile_fields[1]?.value }}
                 </label>
               </div>
             </div>
           </div>
-          <mat-error *ngIf="athleteForm.hasError('atLeastOneAthlete')">
-            At least one athlete must be selected.
-          </mat-error>
-        </mat-radio-group>
+        </div>
       </ng-container>
-      <div class="row mt-2">
-        <div class="col-md-12 text-center">
-          <button
-            mat-raised-button
-            type="button"
-            (click)="addSelectedAthlete()"
-            color="accent"
-          >
-            Add Another Athlete
-          </button>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="button-container text-center mt-1">
+            <div
+              *ngIf="
+                athleteForm?.get('selectedAthletes')?.hasError('required') &&
+                athleteForm?.touched
+              "
+            >
+              At least one athlete must be selected.
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -82,11 +68,11 @@
           <div class="button-container text-center mt-1">
             <mat-error
               *ngIf="
-                (athleteForm.get('athlete')?.touched || nextButtonClicked) &&
-                athleteForm.get('athlete')?.hasError('atLeastOneAthlete')
+                (athleteForm.get('gender')?.touched || nextButtonClicked) &&
+                athleteForm.get('gender')?.hasError('required')
               "
             >
-              Athlete is required
+              Team type is required
             </mat-error>
           </div>
         </div>

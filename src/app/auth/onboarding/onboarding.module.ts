@@ -20,6 +20,7 @@ import { OTPComponent } from "./otp/otp.component";
 import { SelectSubscriptionComponent } from "./select-subscription/select-subscription.component";
 import { DoPaymentComponent } from "./do-payment/do-payment.component";
 import { SelectAthletesComponent } from "./select-athletes/select-athletes.component";
+import { SelectAthleteCoachComponent } from "./select-athlete-coach/select-athlete-coach.component";
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { SelectAthletesComponent } from "./select-athletes/select-athletes.compo
     UniversityDetailComponent,
     OTPComponent,
     SuccessReponseScreenComponent,
-    SelectAthletesComponent
+    SelectAthletesComponent,
+    SelectAthleteCoachComponent
   ],
 })
 export class OnboardingModule {}

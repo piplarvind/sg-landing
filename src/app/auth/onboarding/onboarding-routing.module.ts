@@ -16,6 +16,8 @@ import { SubscriptionService } from "@app/pages/account/subscription/subscriptio
 import { DoPaymentComponent } from "./do-payment/do-payment.component";
 import { PaymentService } from "@app/pages/account/make-payment/payment.service";
 import { SelectAthletesComponent } from "./select-athletes/select-athletes.component";
+import { RequestSentComponent } from "./request-sent/request-sent.component";
+import { SelectAthleteCoachComponent } from "./select-athlete-coach/select-athlete-coach.component";
 
 const routes: Routes = [
   {
@@ -47,6 +49,16 @@ const routes: Routes = [
     path: "select-athletes",
     component: SelectAthletesComponent,
     data: { title: extract("Select Athlete") },
+  },
+  {
+    path: "request-sent",
+    component: RequestSentComponent,
+    data: { title: extract("Athlete Request Sent") },
+  },
+  {
+    path: "select-athlete-coach",
+    component: SelectAthleteCoachComponent,
+    data: { title: extract("Select Athlete Or Coach") },
   },
   {
     path: "select-subscription",

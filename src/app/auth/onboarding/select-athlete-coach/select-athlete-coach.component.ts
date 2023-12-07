@@ -1,5 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 import { Router } from "@angular/router";
 import { SharedService } from "@app/shared/shared.service";
 import { DomSanitizer } from "@angular/platform-browser";
@@ -10,14 +16,14 @@ import { OnboardingProcessService } from "../onboarding.process.service";
 import { OnboardingService } from "./../onboarding.service";
 
 @Component({
-  selector: "app-select-athletes",
-  templateUrl: "./select-athletes.component.html",
-  styleUrls: ["./select-athletes.component.scss"],
+  selector: "app-select-athlete-coach",
+  templateUrl: "./select-athlete-coach.component.html",
+  styleUrls: ["./select-athlete-coach.component.scss"],
 })
-export class SelectAthletesComponent {
-  athleteForm: FormGroup;
+export class SelectAthleteCoachComponent {
   searchText: string = "";
-  selectedAthlete: string | null = null;
+  athleteForm: FormGroup;
+  filteredAthleteList: any[] = [];
 
   nextButtonClicked = false;
 
@@ -27,17 +33,12 @@ export class SelectAthletesComponent {
     private router: Router,
     private fb: FormBuilder,
     public _DomSanitizationService: DomSanitizer,
-    private onboardingProcessService: OnboardingProcessService,
     private onboardingService: OnboardingService,
-    private subscriptionService: SubscriptionService,
     public sharedService: SharedService
-  ) {
-    this.athleteForm = this.fb.group({
-      athlete: this.fb.array([], [this.atLeastOneAthleteValidator()]),
-    });
-  }
+  ) {}
 
   ngOnInit() {
+    this.initForm();
     let clubPayload = {
       club: localStorage.getItem("clubId"),
     };
@@ -53,53 +54,33 @@ export class SelectAthletesComponent {
     );
   }
 
-  atLeastOneAthleteValidator() {
-    return (formArray: FormArray) => {
-      return formArray.length > 0 ? null : { atLeastOneAthlete: true };
-    };
+  initForm(): void {
+    this.athleteForm = this.fb.group({
+      selectedAthletes: this.fb.array([], [Validators.required]),
+    });
+  
+    // Initialize form controls dynamically based on athlete IDs
+    this.filteredAthleteList.forEach((athlete) => {
+      this.addAthleteControl(athlete._id);
+    });
+  }
+  
+  addAthleteControl(athleteId: string): void {
+    const formArray = this.athleteForm?.get('selectedAthletes') as FormArray;
+    formArray.push(this.fb.control({ value: false, athleteId }, Validators.required));
   }
 
-  get athleteFormArray() {
-    return this.athleteForm.get("athlete") as FormArray;
+  getAthleteControl(athleteId: string): FormControl {
+    return (this.athleteForm?.get('selectedAthletes') as FormArray).controls.find(
+      (control) => control.value === athleteId
+    ) as FormControl;
   }
 
-  get filteredAthleteList() {
-    return this.athleteList.filter(
-      (athlete) =>
-        athlete.profile_fields[0].value
-          .toLowerCase()
-          .includes(this.searchText.toLowerCase()) ||
-        athlete.profile_fields[1].value
-          .toLowerCase()
-          .includes(this.searchText.toLowerCase())
-    );
-  }
-
-  onRadioChange(athleteId: string) {
-    this.selectedAthlete = athleteId;
-  }
-
-  addSelectedAthlete() {
-    if (
-      this.selectedAthlete &&
-      !this.athleteFormArray.value.includes(this.selectedAthlete)
-    ) {
-      this.athleteFormArray.push(this.fb.control(this.selectedAthlete));
+  onSportOptionClick(athleteId: string): void {
+    const control = this.getAthleteControl(athleteId);
+    if (control) {
+      control.setValue(!control.value);
     }
-  }
-
-  removeAthlete(athleteId: string) {
-    const index = this.athleteFormArray.value.indexOf(athleteId);
-    if (index !== -1) {
-      this.athleteFormArray.removeAt(index);
-    }
-  }
-
-  getAthleteNameById(athleteId: string): string {
-    const athlete = this.athleteList.find((a) => a._id === athleteId);
-    return athlete
-      ? `${athlete.profile_fields[0].value} ${athlete.profile_fields[1].value}`
-      : "";
   }
 
   onSubmit() {
