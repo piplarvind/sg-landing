@@ -81,9 +81,9 @@ export class RegisterComponent implements OnInit {
           localStorage.setItem("userId", response?.data?._id);
           // Navigate to the next step
           if (response?.data?.completed_steps === 1) {
-            this.router.navigate(["/auth/onboarding/step2"]);
+            this.router.navigate(["/auth/onboarding/step1"]);
           } else if (response?.data?.completed_steps === 2) {
-            this.router.navigate(["/auth/onboarding/step3"]);
+            this.router.navigate(["/auth/onboarding/step2"]);
           }
         },
         (error) => {
@@ -96,14 +96,14 @@ export class RegisterComponent implements OnInit {
             }
             localStorage.setItem("userId", error?.error?.data[0]?._id);
             if (error?.error?.data[0]?.completed_steps === 1) {
-              this.router.navigate(["/auth/onboarding/step2"]);
+              this.router.navigate(["/auth/onboarding/step1"]);
             } else if (error?.error?.data[0]?.completed_steps === 2) {
-              this.router.navigate(["/auth/onboarding/step3"]);
+              this.router.navigate(["/auth/onboarding/step2"]);
             } else if (error?.error?.data[0]?.completed_steps === 3) {
               localStorage.setItem("sportId", error?.error?.data[0]?.sport);
-              this.router.navigate(["/auth/onboarding/step4"]);
+              this.router.navigate(["/auth/onboarding/step3"]);
             } else if (error?.error?.data[0]?.completed_steps === 4) {
-              this.router.navigate(["/auth/onboarding/step5"]);
+              this.router.navigate(["/auth/onboarding/step4"]);
             } else {
               //console.error("User already exist:", error);
               //console.log('error?.error?.data[0]?.types.abbr', error?.error?.data[0]?.types[0].abbr);

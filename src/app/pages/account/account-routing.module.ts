@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: '', component: DashboardComponent, data: { title: extract('Dashboard') } },
   { path: 'my-athletes', component: MyAthletesComponent, data: { title: extract('My Athletes') } },
   { path: 'my-parents', component: MyParentsComponent, data: { title: extract('My Parents') } },
-  { path: 'payment-histories', component: PaymentHistoriesComponent, data: { title: extract('Payment History') } },
+  { path: 'payments', component: PaymentHistoriesComponent, data: { title: extract('Payments') } },
   { path: 'subscriptions', component: SubscriptionComponent, data: { title: extract('Subscriptions') } },
   { path: 'make-payment/:plan', component: MakePaymentComponent, data: { title: extract('Make Payment') } },
   { path: 'change-password', component: ChangePasswordComponent, data: { title: extract('Change Password') } },

@@ -11,6 +11,10 @@ import { ClubNotHereComponent } from "./club-not-here/club-not-here.component";
 import { SuccessReponseScreenComponent } from "./success-reponse-screen/success-reponse-screen.component";
 import { UniversityDetailComponent } from "./university-detail/university-detail.component";
 import { OTPComponent } from "./otp/otp.component";
+import { SelectSubscriptionComponent } from "./select-subscription/select-subscription.component";
+import { SubscriptionService } from "@app/pages/account/subscription/subscription.service";
+import { DoPaymentComponent } from "./do-payment/do-payment.component";
+import { PaymentService } from "@app/pages/account/make-payment/payment.service";
 
 const routes: Routes = [
   {
@@ -39,6 +43,16 @@ const routes: Routes = [
     data: { title: extract("Onboarding Step 5") },
   },
   {
+    path: "select-subscription",
+    component: SelectSubscriptionComponent,
+    data: { title: extract("Select Subscription") },
+  },
+  {
+    path: "do-payment/:plan",
+    component: DoPaymentComponent,
+    data: { title: extract("Make A Payment") },
+  },
+  {
     path: "club-not-here",
     component: ClubNotHereComponent,
     data: { title: extract("Club Not Here") },
@@ -56,7 +70,7 @@ const routes: Routes = [
   {
     path: "success-screen",
     component: SuccessReponseScreenComponent,
-    data: { title: extract("Club Not Here") },
+    data: { title: extract("Onboaring Done") },
   },
   // { path: 'account/onboarding', redirectTo: 'auth/onboarding/step1', pathMatch: 'full' },
 ];
@@ -64,6 +78,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [],
+  providers: [SubscriptionService, PaymentService]
 })
 export class OnboardingRoutingModule {}

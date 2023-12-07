@@ -67,7 +67,7 @@ export class Step1Component implements OnInit {
     } else {
       // If the form is invalid, show an error or handle it accordingly
       //console.log("Please fill in all required fields in Step 2.");
-      this.sharedService.showMessage("Please fill all required fields");
+      this.sharedService.showMessage("Please select required field");
     }
   }
 }

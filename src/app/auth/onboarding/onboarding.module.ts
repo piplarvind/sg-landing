@@ -17,6 +17,7 @@ import { ClubNotHereComponent } from "./club-not-here/club-not-here.component";
 import { SuccessReponseScreenComponent } from "./success-reponse-screen/success-reponse-screen.component";
 import { UniversityDetailComponent } from "./university-detail/university-detail.component";
 import { OTPComponent } from "./otp/otp.component";
+import { SelectSubscriptionComponent } from "./select-subscription/select-subscription.component";
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { OTPComponent } from "./otp/otp.component";
     Step3Component,
     Step4Component,
     Step5Component,
+    SelectSubscriptionComponent,
     ClubNotHereComponent,
     UniversityDetailComponent,
     OTPComponent,

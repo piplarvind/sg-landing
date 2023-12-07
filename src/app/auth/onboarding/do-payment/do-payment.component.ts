@@ -1,18 +1,18 @@
 import { Component, OnInit } from "@angular/core";
-import { finalize, map } from "rxjs/operators";
-import { ActivatedRoute, Router } from "@angular/router";
-import { DomSanitizer } from "@angular/platform-browser";
-import { MatTableDataSource } from "@angular/material/table";
-import { PaymentService } from "./payment.service";
-import { SharedService } from "@app/shared/shared.service";
-import { PaymentProcessService } from "@app/auth/onboarding/payment.process.service";
 
+import { OnboardingProcessService } from "../onboarding.process.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { SharedService } from "@app/shared/shared.service";
+import { DomSanitizer } from "@angular/platform-browser";
+import { SubscriptionService } from "@app/pages/account/subscription/subscription.service";
+import { PaymentProcessService } from "../payment.process.service";
+import { PaymentService } from "@app/pages/account/make-payment/payment.service";
 @Component({
-  selector: "app-make-payment",
-  templateUrl: "./make-payment.component.html",
-  styleUrls: ["./make-payment.component.scss"],
+  selector: "app-do-payment",
+  templateUrl: "./do-payment.component.html",
+  styleUrls: ["./do-payment.component.scss"],
 })
-export class MakePaymentComponent implements OnInit {
+export class DoPaymentComponent {
   paymentForm = this.paymentProcessService.paymentForm;
   subscriptionList: any;
   package_amount = 49.99;
@@ -101,5 +101,6 @@ export class MakePaymentComponent implements OnInit {
     } else {
       this.sharedService.showMessage("Please fill all required fields");
     }
+    console.log("onSubmit");
   }
 }
