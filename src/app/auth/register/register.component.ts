@@ -127,7 +127,7 @@ export class RegisterComponent implements OnInit {
                   .showDialog(`${error?.error?.message}`)
                   .subscribe((response) => {
                     if (response === "") {
-                      this.router.navigateByUrl("/auth/onboarding/step1");
+                      this.router.navigateByUrl("/auth/register");
                     }
                   });
               }
@@ -138,7 +138,7 @@ export class RegisterComponent implements OnInit {
               .showDialog(`${error?.error?.message}`)
               .subscribe((response) => {
                 if (response === "") {
-                  this.router.navigateByUrl("/auth/onboarding/step1");
+                  this.router.navigateByUrl("/auth/register");
                 }
               });
           }
@@ -167,7 +167,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  convertData(inputData) {
+  convertData(inputData:any) {
     const profileFieldsData = [
       { field: "first_name", value: inputData.first_name },
       { field: "last_name", value: inputData.last_name },

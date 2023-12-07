@@ -26,9 +26,9 @@
               [class.left-col-md-6]="i % 2 === 0"
               *ngFor="let clb of clubs; let i = index"
             >
-              <mat-card class="club-card">
+              <mat-card class="club-card" (click)="selectClub(clb)">
                 <mat-radio-button [value]="clb._id" class="hidden-radio"></mat-radio-button>
-                <div class="club-container" (click)="selectClub(clb)">
+                <div class="club-container">
                   <img [src]="env.imageUrl + clb.logo || './assets/images/clubv.png'" alt="{{ clb.club_name }}" class="club-image" />
                   <br/>
                   <label class="radio-label">

@@ -21,7 +21,7 @@ export class SelectAthletesComponent {
   nextButtonClicked = false;
 
   athleteList: any;
-
+  roles:any;
   constructor(
     private router: Router,
     public _DomSanitizationService: DomSanitizer,

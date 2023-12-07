@@ -40,6 +40,7 @@ export class DoPaymentComponent {
   ];
 
   currentYear = new Date().getFullYear();
+  year = this.currentYear +1;
   years = Array.from({ length: 10 }, (_, index) => this.currentYear + index);
 
   

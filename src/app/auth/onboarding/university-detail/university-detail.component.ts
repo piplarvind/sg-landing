@@ -38,6 +38,7 @@ export class UniversityDetailComponent implements OnInit {
   color: ThemePalette = "accent";
   checked = false;
   disabled = false;
+  initialCountry: string = "us";
   phone_code: string = "1";
   mobile_phone: any = "";
 
