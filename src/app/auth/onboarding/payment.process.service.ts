@@ -19,17 +19,17 @@ export class PaymentProcessService {
     transaction_for: new FormControl(),
     is_event_transaction: new FormControl(),
     is_web_trans: new FormControl(true),
-    ccnum: new FormControl("", {
+    ccnum: new FormControl("5431111111111111", {
       validators: [Validators.required, this.creditCardNumberValidator],
     }),
-    exp_month: new FormControl("", {
+    exp_month: new FormControl("12", {
       validators: [Validators.required],
     }),
-    exp_year: new FormControl("", {
+    exp_year: new FormControl("25", {
       validators: [Validators.required],
     }),
     ccexp: new FormControl(),
-    cvv: new FormControl("", {
+    cvv: new FormControl("125", {
       validators: [Validators.required, this.cvvValidator],
     })
   });

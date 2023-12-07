@@ -73,7 +73,7 @@ export class MakePaymentComponent implements OnInit {
       .catch((err: any) => {});
   }
 
-  testBeta(subscription: any) {}
+  
 
   onSubmit() {
     if (this.paymentProcessService.paymentForm.valid) {
@@ -86,7 +86,7 @@ export class MakePaymentComponent implements OnInit {
       paymentFormData.transaction_for = "subscription";
       paymentFormData.ccexp =
         paymentFormData.exp_month + paymentFormData.exp_year;
-      console.log("paymentFormData", paymentFormData);
+      //console.log("paymentFormData", paymentFormData);
       this.paymentService
         .makeAPayment(paymentFormData)
         .then((res: any) => {

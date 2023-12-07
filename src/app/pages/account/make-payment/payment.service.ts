@@ -7,6 +7,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class PaymentService {
   makeAPaymentURL = "payments";
+  makeAGusetPaymentURL = "payments/guest";
+  subscribeBetaURL = "payments/beta-testing";
   getPaymentHistoriesURL = "payments/user-payment";
   getFailedPaymentHistoriesURL = "payments/user-failed-payment";
   getOnePlanURL = "plans";
@@ -15,6 +17,32 @@ export class PaymentService {
   makeAPayment(data: any) {
     return new Promise((resolve, reject) => {
       this.http.post(this.makeAPaymentURL, data).subscribe(
+        (res: any) => {
+          resolve(res);
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    });
+  }
+
+  makeAUestPayment(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.makeAGusetPaymentURL, data).subscribe(
+        (res: any) => {
+          resolve(res);
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    });
+  }
+
+  subscribeBeta(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.subscribeBetaURL, data).subscribe(
         (res: any) => {
           resolve(res);
         },

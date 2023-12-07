@@ -53,8 +53,8 @@ export class DoPaymentComponent {
   ) {}
 
   ngOnInit() {
-    this.requstData.profile_id = localStorage.getItem("user_id");
-    this.requstData.profile_type = localStorage.getItem("role_id");
+    this.requstData.profile_id = localStorage.getItem("userId");
+    this.requstData.profile_type = localStorage.getItem("selectedRoleValue");
     this.activatedRoute.params.subscribe(params => {
       this.planId = params['plan'];
     });
@@ -73,26 +73,27 @@ export class DoPaymentComponent {
       .catch((err: any) => {});
   }
 
-  testBeta(subscription: any) {}
+
 
   onSubmit() {
     if (this.paymentProcessService.paymentForm.valid) {
       const paymentFormData = this.paymentProcessService.paymentForm.value;
       paymentFormData.planId = localStorage.getItem("selectedPlan");
-      paymentFormData.payer = localStorage.getItem("user_id");
-      paymentFormData.clubId = localStorage.getItem("club_id");
-      paymentFormData.sportId = localStorage.getItem("sport_id");
+      paymentFormData.payer = localStorage.getItem("userId");
+      paymentFormData.clubId = localStorage.getItem("clubId");
+      paymentFormData.sportId = localStorage.getItem("sportId");
       paymentFormData.is_event_transaction = false;
       paymentFormData.transaction_for = "subscription";
       paymentFormData.ccexp =
         paymentFormData.exp_month + paymentFormData.exp_year;
-      console.log("paymentFormData", paymentFormData);
+      //console.log("paymentFormData", paymentFormData);
       this.paymentService
-        .makeAPayment(paymentFormData)
+        .makeAUestPayment(paymentFormData)
         .then((res: any) => {
           const resData = res.data;
           this.sharedService.showMessage(res?.message);
-          this.router.navigate(["account"]);
+          //this.router.navigate(["account"]);
+          this.router.navigate(["/success-screen"]);
         })
         .catch((error) => {
           console.log(error);

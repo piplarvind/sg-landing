@@ -26,7 +26,7 @@ export class ShellComponent implements OnInit {
   @ViewChildren(MatExpansionPanel)
   expansionPanels: QueryList<MatExpansionPanel>;
   // panelOpenState = false;
-
+  userDetails:any;
   user_role: any;
   clubId: any;
   ClubSelected: any;
@@ -45,28 +45,10 @@ export class ShellComponent implements OnInit {
   }
 
   ngOnInit() {
-    const obj = JSON.parse(localStorage.userDetails);
-    if (obj.club) {
-      if (
-        localStorage.user_role === "COA" ||
-        localStorage.user_role === "CAD"
-      ) {
-        this.sportSelected(obj?.sport);
-      }
-    }
+    this.userDetails = JSON.parse(localStorage.userDetails);
   }
 
-  sportSelected(sport: any) {
-    localStorage.super_cur_sportId = sport?._id;
-    localStorage.super_cur_sport = sport?.db_name;
-    localStorage.super_cur_sportName = sport?.sport_name;
-    localStorage.super_cur_sportLogo = sport?.logo;
-    if (sport.logo !== "") {
-      this.sportLogo = `${environment.imageUrl}${sport?.logo}`;
-    } else {
-      this.sportLogo = "assets/no_logo.png";
-    }
-  }
+  
 
   // panelClose(panel1: any, panel2: any) {
   //   panel1.close();

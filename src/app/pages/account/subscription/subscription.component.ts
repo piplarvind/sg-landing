@@ -6,6 +6,8 @@ import { MatTableDataSource } from "@angular/material/table";
 import { SubscriptionService } from "./subscription.service";
 import { OnboardingProcessService } from "@app/auth/onboarding/onboarding.process.service";
 import { SharedService } from "@app/shared/shared.service";
+import { PaymentService } from "../make-payment/payment.service";
+import { PaymentProcessService } from "@app/auth/onboarding/payment.process.service";
 
 @Component({
   selector: "app-subscription",
@@ -14,6 +16,7 @@ import { SharedService } from "@app/shared/shared.service";
 })
 export class SubscriptionComponent implements OnInit {
   subscriptionForm = this.onboardingProcessService.subscriptionForm;
+  paymentForm = this.paymentProcessService.paymentForm;
   subscriptionList: any;
   requstData: {
     profile_id: any;
@@ -24,7 +27,9 @@ export class SubscriptionComponent implements OnInit {
     private router: Router,
     public _DomSanitizationService: DomSanitizer,
     private onboardingProcessService: OnboardingProcessService,
+    private paymentProcessService: PaymentProcessService,
     private subscriptionService: SubscriptionService,
+    private paymentService: PaymentService,
     public sharedService: SharedService
   ) {}
 
@@ -37,7 +42,34 @@ export class SubscriptionComponent implements OnInit {
     });
   }
 
-  testBeta(subscription: any) {}
+  betaTesting() {
+
+    if (this.paymentProcessService.paymentForm.valid) {
+      const paymentFormData = this.paymentProcessService.paymentForm.value;
+      paymentFormData.planId = localStorage.getItem("selectedPlan");
+      paymentFormData.payer = localStorage.getItem("user_id");
+      paymentFormData.clubId = localStorage.getItem("club_id");
+      paymentFormData.sportId = localStorage.getItem("sport_id");
+      paymentFormData.is_event_transaction = false;
+      paymentFormData.transaction_for = "subscription";
+      paymentFormData.ccexp =
+        paymentFormData.exp_month + paymentFormData.exp_year;
+      //console.log("paymentFormData", paymentFormData);
+      this.paymentService
+        .subscribeBeta(paymentFormData)
+        .then((res: any) => {
+          const resData = res.data;
+          this.sharedService.showMessage(res?.message);
+          this.router.navigate(["account"]);
+        })
+        .catch((error) => {
+          console.log(error);
+          this.sharedService.showMessage(error?.error.message);
+        });
+    } else {
+      this.sharedService.showMessage("Please select subscription");
+    }
+  }
 
   onSubmit() {
     if (this.onboardingProcessService.subscriptionForm.valid) {

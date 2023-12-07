@@ -6,39 +6,6 @@ import { MatTableDataSource } from "@angular/material/table";
 import { AccountService } from "../account.service";
 import { PaymentService } from "../make-payment/payment.service";
 
-const MY_ATHLETES = [
-  {
-    name: "Athlete 1",
-    email: "ath1@gmail.com",
-  },
-  {
-    name: "Athlete 2",
-    email: "ath2@gmail.com",
-  },
-  {
-    name: "Athlete 3",
-    email: "ath3@gmail.com",
-  },
-];
-
-const RECENT_PAYMENTS = [
-  {
-    payments: "Tryouts",
-    date: "07 Nov 2023",
-    time: "10:30 AM",
-  },
-  {
-    payments: "Events",
-    date: "09 Nov 2023",
-    time: "11:10 AM",
-  },
-  {
-    payments: "John Doe",
-    date: "10 Nov 2023",
-    time: "01:30 PM",
-  },
-];
-
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -55,7 +22,7 @@ export class DashboardComponent implements OnInit {
   pageIndex: number = 0;
   pageLimit: number[] = [5, 10, 25, 50, 100];
   tabledata: any = [];
-  
+
   athleteCount: number = 0;
   parentCount: number = 0;
   successfullPayment: number = 0;
@@ -97,8 +64,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.dataSourceAthletes.data = MY_ATHLETES;
-    // this.dataSourcePayments.data = RECENT_PAYMENTS;
+  
     if (this.user_role === "PAR" || this.user_role === "FFF") {
       this.fetchMyAthletes();
     }
@@ -113,14 +79,14 @@ export class DashboardComponent implements OnInit {
     let userId = localStorage.user_id;
     // let url = `${userId}?limit=${5}`;
     let payload = {
-      payer: userId
+      payer: userId,
     };
     this.paymentService
       .getPaymentHistories(payload)
       .then((e: any) => {
         const res = e.data;
         this.successfullPayment = res?.length;
-        console.log('this.successfullPayment', this.successfullPayment);
+        //console.log("this.successfullPayment", this.successfullPayment);
         this.dataSourcePayments.data = res;
       })
       .catch((err) => {
@@ -133,7 +99,7 @@ export class DashboardComponent implements OnInit {
     let userId = localStorage.user_id;
     // let url = `${userId}?limit=${5}`;
     let payload = {
-      payer: userId
+      payer: userId,
     };
     this.paymentService
       .getFailedPaymentHistories(payload)

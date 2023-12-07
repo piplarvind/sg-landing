@@ -5,6 +5,8 @@ import { Router } from "@angular/router";
 import { SharedService } from "@app/shared/shared.service";
 import { DomSanitizer } from "@angular/platform-browser";
 import { SubscriptionService } from "@app/pages/account/subscription/subscription.service";
+import { PaymentProcessService } from "../payment.process.service";
+import { PaymentService } from "@app/pages/account/make-payment/payment.service";
 @Component({
   selector: "app-select-subscription",
   templateUrl: "./select-subscription.component.html",
@@ -12,6 +14,7 @@ import { SubscriptionService } from "@app/pages/account/subscription/subscriptio
 })
 export class SelectSubscriptionComponent {
   subscriptionForm = this.onboardingProcessService.subscriptionForm;
+  paymentForm = this.paymentProcessService.paymentForm;
   subscriptionList: any;
   requstData: {
     profile_id: any;
@@ -22,20 +25,49 @@ export class SelectSubscriptionComponent {
     private router: Router,
     public _DomSanitizationService: DomSanitizer,
     private onboardingProcessService: OnboardingProcessService,
+    private paymentProcessService: PaymentProcessService,
     private subscriptionService: SubscriptionService,
-    public sharedService: SharedService
+    public sharedService: SharedService,
+    private paymentService: PaymentService
   ) {}
 
   ngOnInit() {
-    this.requstData.profile_id = localStorage.getItem("user_id");
-    this.requstData.profile_type = localStorage.getItem("role_id");
+    this.requstData.profile_id = localStorage.getItem("userId");
+    this.requstData.profile_type = localStorage.getItem("selectedRoleValue");
     this.subscriptionService.getPlans(this.requstData).then((res) => {
       this.subscriptionList = res;
       //console.log('this.subscriptionList', this.subscriptionList);
     });
   }
 
-  testBeta(subscription: any) {}
+  betaTesting() {
+
+    if (this.paymentProcessService.paymentForm.valid) {
+      const paymentFormData = this.paymentProcessService.paymentForm.value;
+      paymentFormData.planId = localStorage.getItem("selectedPlan");
+      paymentFormData.payer = localStorage.getItem("user_id");
+      paymentFormData.clubId = localStorage.getItem("club_id");
+      paymentFormData.sportId = localStorage.getItem("sport_id");
+      paymentFormData.is_event_transaction = false;
+      paymentFormData.transaction_for = "subscription";
+      paymentFormData.ccexp =
+        paymentFormData.exp_month + paymentFormData.exp_year;
+      //console.log("paymentFormData", paymentFormData);
+      this.paymentService
+        .subscribeBeta(paymentFormData)
+        .then((res: any) => {
+          const resData = res.data;
+          this.sharedService.showMessage(res?.message);
+          this.router.navigate(["account"]);
+        })
+        .catch((error) => {
+          console.log(error);
+          this.sharedService.showMessage(error?.error.message);
+        });
+    } else {
+      this.sharedService.showMessage("Please select subscription");
+    }
+  }
 
   onSubmit() {
     if (this.onboardingProcessService.subscriptionForm.valid) {

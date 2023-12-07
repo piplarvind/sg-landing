@@ -86,6 +86,7 @@ export class Step2Component implements OnInit {
       const roleFormData = this.onboardingProcessService.step2Form.value;
       // set gender to local storage
       localStorage.setItem("genderId", roleFormData.gender);
+      localStorage.setItem("selectedRoleValue", roleFormData.role);
       let roleData = {
         profile_id: localStorage.getItem("userId"),
         roles: [roleFormData.role],

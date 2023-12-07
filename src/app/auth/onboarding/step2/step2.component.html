@@ -50,15 +50,18 @@
       </div>
       <ng-container *ngIf="selectedrole === 'ATH'">
         <mat-radio-group name="gender" formControlName="gender">
-          <div class="row">
+          <div class="row team-type">
+            <div class="col-md-12">
+              <div class="text-center">
+                <h5>Please Select Team Type</h5>                
+              </div>              
+            </div>
             <div
               class="col-md-6 role-gender"
               [class.left-col-md-6]="i % 2 === 0"
               *ngFor="let genderItem of genders; let i = index"
             >
-            <div>
-              Please select Team Type
-            </div>
+            
               <div class="role-container">
                 <label class="radio-label">
                   <mat-radio-button
