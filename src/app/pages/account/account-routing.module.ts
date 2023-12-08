@@ -10,12 +10,14 @@ import { SubscriptionService } from './subscription/subscription.service';
 import { MakePaymentComponent } from './make-payment/make-payment.component';
 import { PaymentHistoriesComponent } from './payment-histories/payment-histories.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { FFFComponent } from './my-fff/my-fff.component';
 
 const routes: Routes = [
  
   { path: '', component: DashboardComponent, data: { title: extract('Dashboard') } },
   { path: 'my-athletes', component: MyAthletesComponent, data: { title: extract('My Athletes') } },
   { path: 'my-parents', component: MyParentsComponent, data: { title: extract('My Parents') } },
+  { path: 'my-fff', component: FFFComponent, data: { title: extract('My Friends Family & Fans') } },
   { path: 'payments', component: PaymentHistoriesComponent, data: { title: extract('Payments') } },
   { path: 'subscriptions', component: SubscriptionComponent, data: { title: extract('Subscriptions') } },
   { path: 'make-payment/:plan', component: MakePaymentComponent, data: { title: extract('Make Payment') } },

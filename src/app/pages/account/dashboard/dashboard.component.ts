@@ -25,12 +25,14 @@ export class DashboardComponent implements OnInit {
 
   athleteCount: number = 0;
   parentCount: number = 0;
+  fffCount: number = 0;
   successfullPayment: number = 0;
   unSuccessfullPayment: number = 0;
 
   // Define data sources for each table
   dataSourceAthletes = new MatTableDataSource<any>();
   dataSourceParents = new MatTableDataSource<any>();
+  dataSourceFFF = new MatTableDataSource<any>();
   dataSourcePayments = new MatTableDataSource<any>();
   displayedColumns: any = ["name", "email"];
 
@@ -70,6 +72,9 @@ export class DashboardComponent implements OnInit {
     }
     if (this.user_role === "ATH") {
       this.fetchMyParents();
+    }
+    if (this.user_role === "FFF") {
+      this.fetchMyFFF();
     }
     this.fetchSuccessfullPayments();
     this.fetchUnSuccessfullPayments();
@@ -194,6 +199,50 @@ export class DashboardComponent implements OnInit {
           };
         });
         this.dataSourceParents.data = newresult;
+      })
+      .catch((err) => {
+        console.log(err);
+        // this.sharedService.showLoader = false;
+      });
+  }
+
+  fetchMyFFF() {
+    let userId = localStorage.user_id;
+    // let url = `${userId}?limit=${5}`;
+    let url = `${userId}`;
+    this.accountService
+      .getAthleteFFF(url)
+      .then((e: any) => {
+        const res = e.data;
+        this.fffCount = res[0]?.fan_of?.length;
+        const newresult = res[0]?.fan_of?.map((prof) => {
+          const prop = prof;
+          let name: any = {
+              fname: "",
+              lname: "",
+            },
+            email: string = "";
+
+          for (let i = 0; i < prop?.profile_fields.length; i++) {
+            if (prop?.profile_fields[i].field) {
+              if (prop?.profile_fields[i].field.name === "first_name") {
+                name.fname = prop?.profile_fields[i].value;
+              }
+              if (prop?.profile_fields[i].field.name === "last_name") {
+                name.lname = prop?.profile_fields[i].value;
+              }
+              if (prop?.profile_fields[i].field.name === "email") {
+                email = prop?.profile_fields[i].value;
+              }
+            }
+          }
+          return {
+            ...prop,
+            name: name.fname + " " + name.lname,
+            email: email,
+          };
+        });
+        this.dataSourceFFF.data = newresult;
       })
       .catch((err) => {
         console.log(err);
