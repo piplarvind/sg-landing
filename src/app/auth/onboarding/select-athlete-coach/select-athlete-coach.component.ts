@@ -25,7 +25,7 @@ export class SelectAthleteCoachComponent {
   searchText: string = "";
   athleteCoachForm: FormGroup;
   athleteList: any[] = [];
-  filteredAthleteList: any[] = [];
+  
 
   nextButtonClicked = false;
 
@@ -45,13 +45,25 @@ export class SelectAthleteCoachComponent {
     this.onboardingService.getAthleteCoaches(clubPayload).subscribe(
       (response) => {
         this.athleteList = response.data;
-        this.applySearchFilter();
+       
         //console.log("athleteList", this.athleteList);
       },
       (error) => {
         //console.error("Error saving club data:", error);
         this.sharedService.showMessage(error.error.message);
       }
+    );
+  }
+
+  get filteredAthleteList() {
+    return this.athleteList.filter(
+      (athlete) =>
+        athlete.profile_fields[0].value
+          .toLowerCase()
+          .includes(this.searchText.toLowerCase()) ||
+        athlete.profile_fields[1].value
+          .toLowerCase()
+          .includes(this.searchText.toLowerCase())
     );
   }
 
@@ -102,13 +114,9 @@ export class SelectAthleteCoachComponent {
     }
   }
 
-  applySearchFilter(): void {
-    this.filteredAthleteList = this.athleteList.filter(
-      (athlete) =>
-        athlete?.profile_fields[0]?.value.toLowerCase().includes(this.searchText.toLowerCase()) ||
-        athlete?.profile_fields[1]?.value.toLowerCase().includes(this.searchText.toLowerCase())
-    );
-  }
+ 
+
+  
 
   onSubmit() {
     this.nextButtonClicked = true;

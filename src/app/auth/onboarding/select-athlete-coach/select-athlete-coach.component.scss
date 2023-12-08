@@ -127,6 +127,38 @@
   background-color: #ec1c37 !important;
 }
 
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0 !important;
+}
+
+::ng-deep .mat-form-field-infix {
+  padding: 0 !important;
+  border-top: 0.84375em solid transparent;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 7px 0 7px 0 !important;
+}
+
+::ng-deep.mat-form-field-label-wrapper {
+  top: 0;
+  padding-top: 0px; 
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
+  top: 3px !important;
+  margin-top: 0px;
+}
+::ng-deep .mat-form-field-infix {
+  display: block;
+  position: relative;
+  flex: auto;
+  min-width: 0;
+  top: -4px !important;
+  width: 180px;
+}
+
 .athlete-row {
   height: 275px;
   overflow: auto;
@@ -191,4 +223,9 @@
 
 .sport-option .checkbox-label, .sport-option .mat-checkbox-layout {
   margin-bottom: 0 !important;
+}
+@media screen and (min-width: 768px) {
+  .col-md-6 {
+    display: inline-block !important;
+  }
 }

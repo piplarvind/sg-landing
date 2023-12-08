@@ -59,9 +59,7 @@ export class FFFComponent implements OnInit {
             },
             email: string = "",
             phone_code: any = "",
-            mobile_phone: any = "",
-            accepted: any = "";
-          accepted = prof.accepted;
+            mobile_phone: any = "";
 
           for (let i = 0; i < prop?.profile_fields.length; i++) {
             if (prop?.profile_fields[i].field) {
@@ -96,6 +94,20 @@ export class FFFComponent implements OnInit {
         console.log(err);
         // this.sharedService.showLoader = false;
       });
+  }
+
+ 
+  inputChanged(e: any) {
+    let s = "";
+    e = e.slice(-10);
+    if (e.length <= 10 && e.length > 0) {
+      const first = e.substring(0, 3);
+      const mid = e.substring(3, 6);
+      const last = e.substring(6, 10);
+      s = "(" + first + ") " + mid + "-" + last;
+      return s;
+    }
+    return "";
   }
 
   public doFilter = (event: Event) => {

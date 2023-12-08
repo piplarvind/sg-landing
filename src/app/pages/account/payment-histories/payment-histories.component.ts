@@ -122,7 +122,7 @@ export class PaymentHistoriesComponent implements OnInit {
         data = res;
 
         this.dataSource.data = data['data'];
-        console.log('this.dataSource', this.dataSource.data);
+        //console.log('this.dataSource', this.dataSource.data);
 
         if (
           this.totalLength === 0 ||
