@@ -16,7 +16,7 @@
         <div class="search-container">
           <mat-form-field appearance="outline">
             <mat-icon matPrefix>search</mat-icon>
-            <mat-label>Search By Name</mat-label>
+            <!-- <mat-label>Search By Name</mat-label> -->
             <input
               matInput
               [(ngModel)]="searchText"
@@ -38,14 +38,18 @@
         </div>
       </div>
     </div>
+    <div>&nbsp;</div>
     <form id="accountForm" [formGroup]="athleteForm" (ngSubmit)="onSubmit()">
       <ng-container>
-        <mat-radio-group name="athlete" formControlName="athlete">
+        <mat-radio-group name="athlete" formControlName="athlete" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
           <div class="row athlete-row">
             <div
               class="col-md-6 sport-option"
               [class.left-col-md-6]="i % 2 === 0"
               *ngFor="let ath of filteredAthleteList; let i = index"
+              fxLayout="row"
+              fxLayout.xs="column"
+              fxLayoutAlign.xs="center center"
             >
               <div class="sport-container">
                 <label class="radio-label">
@@ -65,6 +69,8 @@
           </mat-error>
         </mat-radio-group>
       </ng-container>
+      
+      
       <div class="row mt-2">
         <div class="col-md-12 text-center">
           <button
@@ -97,13 +103,13 @@
             <button
               mat-raised-button
               class="btn btn gray-btn"
-              routerLink="/auth/onboarding/step1"
+              routerLink="/auth/onboarding/step3"
             >
               Previous
             </button>
             &nbsp;
             <button mat-raised-button class="btn btn theme-btn" type="submit">
-              Next
+              That's All
             </button>
           </div>
         </div>

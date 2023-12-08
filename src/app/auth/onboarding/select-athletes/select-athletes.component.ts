@@ -109,7 +109,7 @@ export class SelectAthletesComponent {
         profile_id: localStorage.getItem("userId"),
         child: [athFormData.athlete],
       };
-      console.log("payloadData", payloadData);
+      //console.log("payloadData", payloadData);
       this.onboardingService.saveParentAthletes(payloadData).subscribe(
         (response) => {
           //console.log("Role data saved successfully:", response.data);
@@ -127,7 +127,7 @@ export class SelectAthletesComponent {
       //   "auth/onboarding/do-payment/" + athFormData.plan,
       // ]);
     } else {
-      this.sharedService.showMessage("Please select athlete");
+      this.sharedService.showMessage("Please select & add at least one athlete");
     }
   }
 }
