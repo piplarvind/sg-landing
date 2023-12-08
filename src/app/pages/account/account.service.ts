@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class AccountService {
   changePasswordUrl = "dashboard/change-password";
   athleteParentsUrl = "parent/athlete";
+  athleteFFFUrl = "parent/fff";
   parentAthletesUrl = "parent";
 
   constructor(public http: HttpClient) {}
@@ -48,6 +49,21 @@ export class AccountService {
     });
   }
 
+/**
+   * Get  Friends Family & Fans for the specified athlete user
+   */
+getAthleteFFF(athId: string) {
+  return new Promise((resolve, reject) => {
+    this.http.get(`${this.athleteFFFUrl}/${athId}`).subscribe(
+      (res: any) => {
+        resolve(res);
+      },
+      (err) => {
+        reject(err);
+      }
+    );
+  });
+}
   /**
    * Get athletes for the specified parent user
    */
