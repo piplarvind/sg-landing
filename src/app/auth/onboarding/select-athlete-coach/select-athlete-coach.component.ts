@@ -46,7 +46,7 @@ export class SelectAthleteCoachComponent {
       (response) => {
         this.athleteList = response.data;
         this.applySearchFilter();
-        console.log("athleteList", this.athleteList);
+        //console.log("athleteList", this.athleteList);
       },
       (error) => {
         //console.error("Error saving club data:", error);
@@ -116,26 +116,27 @@ export class SelectAthleteCoachComponent {
       const athFormData = this.athleteCoachForm.value;
       let payloadData = {
         profile_id: localStorage.getItem("userId"),
-        users: [athFormData.athlete],
+        users: athFormData.athlete,
       };
+      //console.log('payloadData', payloadData);return;
       this.onboardingService.saveAthleteCoaches(payloadData).subscribe(
         (response) => {
           this.sharedService.showMessage(response.message);
           // Navigate to the next step
-          console.log('abc', response.data); return;
-          // this.router.navigate(["/auth/onboarding/select-subscription"]);
+          //console.log('abc', response.data); return;
+          this.router.navigate(["/auth/onboarding/select-subscription"]);
         },
         (error) => {
           //console.error("Error saving role data:", error);
           this.sharedService.showMessage(error.error.message);
-          // this.router.navigate(["/auth/onboarding/step3"]);
+          this.router.navigate(["/auth/onboarding/select-athlete-coach"]);
         }
       );
       // this.router.navigate([
       //   "auth/onboarding/do-payment/" + athFormData.plan,
       // ]);
     } else {
-      this.sharedService.showMessage("Please select athlete or coach.");
+      this.sharedService.showMessage("Please select athlete or coach");
     }
   }
 }

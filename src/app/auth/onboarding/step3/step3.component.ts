@@ -67,7 +67,7 @@ export class Step3Component implements OnInit {
           }else if(localStorage.getItem("userType") === 'PAR'){
             this.router.navigate(["/auth/onboarding/select-athletes"]);
           }else if(localStorage.getItem("userType") === 'FFF'){
-            this.router.navigate(["/auth/onboarding/success-screen"]); // need to change this once page is ready
+            this.router.navigate(["/auth/onboarding/select-athlete-coach"]); // need to change this once page is ready
           }else{
             this.router.navigate(["/auth/onboarding/success-screen"]);
           }
