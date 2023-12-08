@@ -24,6 +24,10 @@ export class OnboardingService {
   // get athlets
   private getClubAthletesUrl = "onboard/parent/get-athlete";
   private saveParentAthletesUrl = "onboard/parent/save-athlete";
+  // get athlete coach
+  private getAthleteCoachesUrl = "onboard/get-athlete-coaches";
+  private saveAthleteCoachesUrl = "onboard/save-athlete-coaches";
+  // 
 
   constructor(private http: HttpClient) {}
 
@@ -89,4 +93,13 @@ export class OnboardingService {
   saveParentAthletes(payload: any): Observable<any> {
     return this.http.post(`${this.saveParentAthletesUrl}`, payload);
   }
+  //
+  getAthleteCoaches(payload: any): Observable<any> {
+    return this.http.post(`${this.getAthleteCoachesUrl}`, payload);
+  }
+
+  saveAthleteCoaches(payload: any): Observable<any> {
+    return this.http.post(`${this.saveAthleteCoachesUrl}`, payload);
+  }
+
 }

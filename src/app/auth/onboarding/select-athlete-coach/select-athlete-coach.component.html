@@ -23,56 +23,55 @@
         </div>
       </div>
     </div>
-    <form id="accountForm" [formGroup]="athleteForm" (ngSubmit)="onSubmit()">
+    <form
+      id="accountForm"
+      [formGroup]="athleteCoachForm"
+      (ngSubmit)="onSubmit()"
+    >
       <ng-container>
-        <div formArrayName="selectedAthletes">
+        <div
+          name="athlete"
+          formArrayName="athlete"
+          fxLayout="row"
+          fxLayout.xs="column"
+          fxLayoutAlign="center center"
+        >
           <div class="row athlete-row">
             <div
               class="col-md-6 sport-option"
+              *ngFor="let ath of filteredAthleteList; let i = index"
               [class.left-col-md-6]="i % 2 === 0"
-              *ngFor="let athlete of athleteList; let i = index"
-              (click)="onSportOptionClick(athlete._id)"
+              fxLayout="row"
+              fxLayout.xs="column"
+              fxLayoutAlign.xs="center center"
+              [formControl]="getAthleteControl(ath.id)"
             >
               <div class="sport-container">
                 <label class="checkbox-label">
-                  <input
-                    type="checkbox"
-                    [formControlName]="athlete._id"
+                  <mat-checkbox
                     class="checkbox-button"
-                    (click)="onSportOptionClick(athlete._id)"
-                  />
-                  {{ athlete?.profile_fields[0]?.value }}
-                  {{ athlete?.profile_fields[1]?.value }}
+                    (change)="onCheckboxChange($event, ath._id)"
+                  ></mat-checkbox>
+                  {{ ath?.profile_fields[0]?.value }}
+                  {{ ath?.profile_fields[1]?.value }}
                 </label>
               </div>
             </div>
           </div>
         </div>
       </ng-container>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="button-container text-center mt-1">
-            <div
-              *ngIf="
-                athleteForm?.get('selectedAthletes')?.hasError('required') &&
-                athleteForm?.touched
-              "
-            >
-              At least one athlete must be selected.
-            </div>
-          </div>
-        </div>
-      </div>
+
       <div class="row">
         <div class="col-md-12">
           <div class="button-container text-center mt-1">
             <mat-error
               *ngIf="
-                (athleteForm.get('gender')?.touched || nextButtonClicked) &&
-                athleteForm.get('gender')?.hasError('required')
+                (athleteCoachForm.get('athlete')?.touched ||
+                  nextButtonClicked) &&
+                athleteCoachForm?.get('athlete')?.hasError('required')
               "
             >
-              Team type is required
+              Please select athlete or coach.
             </mat-error>
           </div>
         </div>

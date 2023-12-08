@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
@@ -22,12 +23,11 @@ import { OnboardingService } from "./../onboarding.service";
 })
 export class SelectAthleteCoachComponent {
   searchText: string = "";
-  athleteForm: FormGroup;
+  athleteCoachForm: FormGroup;
+  athleteList: any[] = [];
   filteredAthleteList: any[] = [];
 
   nextButtonClicked = false;
-
-  athleteList: any;
 
   constructor(
     private router: Router,
@@ -42,9 +42,10 @@ export class SelectAthleteCoachComponent {
     let clubPayload = {
       club: localStorage.getItem("clubId"),
     };
-    this.onboardingService.getClubAthletes(clubPayload).subscribe(
+    this.onboardingService.getAthleteCoaches(clubPayload).subscribe(
       (response) => {
         this.athleteList = response.data;
+        this.applySearchFilter();
         console.log("athleteList", this.athleteList);
       },
       (error) => {
@@ -55,60 +56,86 @@ export class SelectAthleteCoachComponent {
   }
 
   initForm(): void {
-    this.athleteForm = this.fb.group({
-      selectedAthletes: this.fb.array([], [Validators.required]),
+    this.athleteCoachForm = this.fb.group({
+      athlete: this.fb.array([], [Validators.required]), // Add validators as needed
     });
   
-    // Initialize form controls dynamically based on athlete IDs
-    this.filteredAthleteList.forEach((athlete) => {
-      this.addAthleteControl(athlete._id);
-    });
-  }
-  
-  addAthleteControl(athleteId: string): void {
-    const formArray = this.athleteForm?.get('selectedAthletes') as FormArray;
-    formArray.push(this.fb.control({ value: false, athleteId }, Validators.required));
+    // this.athleteCoachForm = this.fb.group({
+    //   athlete: this.fb.array([]),
+    // });
   }
 
-  getAthleteControl(athleteId: string): FormControl {
-    return (this.athleteForm?.get('selectedAthletes') as FormArray).controls.find(
+  getAthleteControl(athleteId: string): AbstractControl {
+    return (this.athleteCoachForm.get('athlete') as FormArray).controls.find(
       (control) => control.value === athleteId
-    ) as FormControl;
+    );
   }
 
-  onSportOptionClick(athleteId: string): void {
-    const control = this.getAthleteControl(athleteId);
-    if (control) {
-      control.setValue(!control.value);
+  addSelectedAthlete(): void {
+    // Implement your logic for adding athletes here
+  }
+
+  removeAthlete(athleteId: string): void {
+    const index = (
+      this.athleteCoachForm.get("athlete") as FormArray
+    ).controls.findIndex((control) => control.value === athleteId);
+    if (index !== -1) {
+      (this.athleteCoachForm.get("athlete") as FormArray).removeAt(index);
     }
   }
 
+  getAthleteNameById(athleteId: string): string {
+    // Implement your logic to get athlete name by ID
+    return ""; // Replace with actual implementation
+  }
+
+  onCheckboxChange(event: any, athleteId: string): void {
+    const athleteControl = this.getAthleteControl(athleteId);
+    if (event.checked && !athleteControl) {
+      const newControl = this.fb.control(athleteId);
+      (this.athleteCoachForm.get("athlete") as FormArray).push(newControl);
+    } else if (!event.checked && athleteControl) {
+      const index = (
+        this.athleteCoachForm.get("athlete") as FormArray
+      ).controls.indexOf(athleteControl);
+      (this.athleteCoachForm.get("athlete") as FormArray).removeAt(index);
+    }
+  }
+
+  applySearchFilter(): void {
+    this.filteredAthleteList = this.athleteList.filter(
+      (athlete) =>
+        athlete?.profile_fields[0]?.value.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        athlete?.profile_fields[1]?.value.toLowerCase().includes(this.searchText.toLowerCase())
+    );
+  }
+
   onSubmit() {
-    if (this.athleteForm.valid) {
-      const athFormData = this.athleteForm.value;
+    this.nextButtonClicked = true;
+    if (this.athleteCoachForm.valid) {
+      const athFormData = this.athleteCoachForm.value;
       let payloadData = {
         profile_id: localStorage.getItem("userId"),
-        child: [athFormData.athlete],
+        users: [athFormData.athlete],
       };
-      console.log("payloadData", payloadData);
-      this.onboardingService.saveParentAthletes(payloadData).subscribe(
+      this.onboardingService.saveAthleteCoaches(payloadData).subscribe(
         (response) => {
-          //console.log("Role data saved successfully:", response.data);
           this.sharedService.showMessage(response.message);
           // Navigate to the next step
-          this.router.navigate(["/auth/onboarding/request-sent"]);
+          console.log('abc', response.data); return;
+          // this.router.navigate(["/auth/onboarding/select-subscription"]);
         },
         (error) => {
           //console.error("Error saving role data:", error);
           this.sharedService.showMessage(error.error.message);
-          this.router.navigate(["/auth/onboarding/select-athletes"]);
+          // this.router.navigate(["/auth/onboarding/step3"]);
         }
       );
       // this.router.navigate([
       //   "auth/onboarding/do-payment/" + athFormData.plan,
       // ]);
     } else {
-      this.sharedService.showMessage("Please select athlete");
+      this.sharedService.showMessage("Please select athlete or coach.");
     }
   }
 }
