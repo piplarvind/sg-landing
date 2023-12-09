@@ -44,7 +44,8 @@
   
   .spacer {
     position: relative;
-    top: calc(var(--circle-size) * 1 / 2);
+    // top: calc(var(--circle-size) * 1 / 2);
+    top: 15px !important;
     height: 2px;
     background-color: rgba(0, 0, 0, 0.1);
     flex: 1;

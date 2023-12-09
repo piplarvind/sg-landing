@@ -15,7 +15,7 @@ export class OnboardingComponent implements OnDestroy {
 
   constructor(private dataService: DataService) {
     this.dataSubscription = this.dataService.getData().subscribe((data) => {
-      this.roleType = data;
+      this.roleType = data ? data : localStorage.getItem("userType");
     });
   }
 
