@@ -2,39 +2,41 @@
   <ng-template appStepLabel="step1">Step 1</ng-template>
   <ng-template appStepLabel="step2">Step 2</ng-template>
   <ng-template appStepLabel="step3">Step 3</ng-template>
-  <ng-container *ngIf="roleType === 'ATH'">
+
+  <ng-container *ngIf="roleType === null || roleType ==='undefined'">
     <div *appStepLabel="'step4'">Step 4</div>
   </ng-container>
-  <ng-container *ngIf="roleType === 'ATH'">
+  <ng-container *ngIf="roleType === null || roleType ==='undefined'">
     <div *appStepLabel="'select-subscription'">Step 5</div>
+  </ng-container>
+
+
+  <ng-container *ngIf="roleType === 'ATH'">
+    <div *appStepLabel="'step4'">Step 4</div>
+    <div *appStepLabel="'select-subscription'">Step 5</div>
+    <div *appStepLabel="'do-payment/:plan'">Step 5</div>
   </ng-container>
 
   <ng-container *ngIf="roleType === 'REC'">
     <div *appStepLabel="'university-detail'">Step 4</div>
-  </ng-container>
-  <ng-container *ngIf="roleType === 'REC'">
     <div *appStepLabel="'otp'">Step 5</div>
+    <div *appStepLabel="'success-screen'">Step 5</div>
   </ng-container>
 
   <ng-container *ngIf="roleType === 'PAR'">
     <div *appStepLabel="'select-athletes'">Step 4</div>
-  </ng-container>
-  <ng-container *ngIf="roleType === 'PAR'">
     <div *appStepLabel="'request-sent'">Step 5</div>
   </ng-container>
 
   <ng-container *ngIf="roleType === 'COA' || roleType === 'CAD'">
     <div *appStepLabel="'club-not-here'">Step 4</div>
-  </ng-container>
-  <ng-container *ngIf="roleType === 'COA' || roleType === 'CAD'">
     <div *appStepLabel="'success-screen'">Step 5</div>
   </ng-container>
   
   <ng-container *ngIf="roleType === 'FFF'">
     <div *appStepLabel="'select-athlete-coach'">Step 4</div>
-  </ng-container>
-  <ng-container *ngIf="roleType === 'FFF'">
     <div *appStepLabel="'select-subscription'">Step 5</div>
+    <div *appStepLabel="'success-screen'">Step 5</div>
   </ng-container>
 
   <div class="steps">

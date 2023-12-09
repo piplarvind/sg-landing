@@ -2,11 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-success-reponse-screen",
-  templateUrl: "./success-reponse-screen.component.html",
-  styleUrls: ["./success-reponse-screen.component.scss"],
+  selector: "app-score-screen",
+  templateUrl: "./score-screen.component.html",
+  styleUrls: ["./score-screen.component.scss"],
 })
-export class SuccessReponseScreenComponent implements OnInit {
+export class ScoreScreenComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {

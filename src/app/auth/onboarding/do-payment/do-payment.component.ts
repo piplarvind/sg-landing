@@ -97,12 +97,10 @@ export class DoPaymentComponent {
           this.router.navigate(["/success-screen"]);
         })
         .catch((error) => {
-          console.log(error);
           this.sharedService.showMessage(error?.error.message);
         });
     } else {
       this.sharedService.showMessage("Please fill all required fields");
     }
-    console.log("onSubmit");
   }
 }

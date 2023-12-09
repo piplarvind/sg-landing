@@ -79,7 +79,7 @@
                 clubForm.get('state')?.hasError('required')
               "
             >
-              Stage is required
+              State is required
             </mat-error>
           </mat-form-field>
         </div>
@@ -105,16 +105,30 @@
         <div class="col-md-6">
           <mat-form-field class="example-full-width">
             <input
-              matInput
-              type="tel"
-              placeholder="Mobile no"
-              required
               formControlName="mobile_no"
+              required
+              #ng2TelInput
+              type="tel"
+              matInput
+              ng2TelInput
+              [ng2TelInputOptions]="{
+                initialCountry: initialCountry,
+                autoHideDialCode: false,
+                separateDialCode: true,
+                formatOnDisplay: true,
+                excludeCountries: true
+              }"
+              (hasError)="hasTelError($event)"
+              (ng2TelOutput)="getNumber($event)"
+              (countryChange)="telCountryChange($event)"
+              [value]="mobile_no"
+              (keyup)="formatMobile($event.target.value)"
             />
             <mat-error
               *ngIf="
-                (clubForm.get('mobile_no')?.touched || nextButtonClicked) &&
-                clubForm.get('mobile_no')?.hasError('required')
+                (clubForm.get('mobile_no')?.touched ||
+                  nextButtonClicked) &&
+                  clubForm.get('mobile_no')?.hasError('required')
               "
             >
               Mobile no is required

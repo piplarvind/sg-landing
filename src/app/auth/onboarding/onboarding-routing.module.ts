@@ -18,6 +18,7 @@ import { PaymentService } from "@app/pages/account/make-payment/payment.service"
 import { SelectAthletesComponent } from "./select-athletes/select-athletes.component";
 import { RequestSentComponent } from "./request-sent/request-sent.component";
 import { SelectAthleteCoachComponent } from "./select-athlete-coach/select-athlete-coach.component";
+import { ScoreScreenComponent } from "./score-screen/score-screen.component";
 
 const routes: Routes = [
   {
@@ -54,6 +55,11 @@ const routes: Routes = [
     path: "request-sent",
     component: RequestSentComponent,
     data: { title: extract("Athlete Request Sent") },
+  },
+  {
+    path: "score-screen",
+    component: ScoreScreenComponent,
+    data: { title: extract("Score") },
   },
   {
     path: "select-athlete-coach",

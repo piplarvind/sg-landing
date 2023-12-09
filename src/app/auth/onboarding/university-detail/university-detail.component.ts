@@ -10,7 +10,7 @@ import {
   CountryISO,
   PhoneNumberFormat,
 } from "ngx-intl-tel-input";
-import cbp from "country_by_phone";
+
 
 @Component({
   selector: "app-university-detail",

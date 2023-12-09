@@ -10,10 +10,12 @@ export class RequestSentComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    // localStorage.removeItem("userId");
-    // localStorage.removeItem("sportId");
-    // localStorage.removeItem("genderId");
-    // localStorage.removeItem("clubId");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("sportId");
+    localStorage.removeItem("genderId");
+    localStorage.removeItem("userType");
+    localStorage.removeItem("selectedRoleValue");
+    localStorage.removeItem("clubId");
   }
 
   goToLogin(): void {
