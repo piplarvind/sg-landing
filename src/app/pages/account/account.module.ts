@@ -16,6 +16,7 @@ import { MakePaymentComponent } from './make-payment/make-payment.component';
 import { PaymentHistoriesComponent } from './payment-histories/payment-histories.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FFFComponent } from './my-fff/my-fff.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { FFFComponent } from './my-fff/my-fff.component';
     SubscriptionComponent,
     MakePaymentComponent,
     PaymentHistoriesComponent,
+    UserProfileComponent,
     ChangePasswordComponent
   ]
 })

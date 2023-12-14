@@ -11,6 +11,7 @@ import { MakePaymentComponent } from './make-payment/make-payment.component';
 import { PaymentHistoriesComponent } from './payment-histories/payment-histories.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FFFComponent } from './my-fff/my-fff.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
  
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'payments', component: PaymentHistoriesComponent, data: { title: extract('Payments') } },
   { path: 'subscriptions', component: SubscriptionComponent, data: { title: extract('Subscriptions') } },
   { path: 'make-payment/:plan', component: MakePaymentComponent, data: { title: extract('Make Payment') } },
+  { path: 'profile', component: UserProfileComponent, data: { title: extract('Profile') } },
   { path: 'change-password', component: ChangePasswordComponent, data: { title: extract('Change Password') } },
 
 ];
