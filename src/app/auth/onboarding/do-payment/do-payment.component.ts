@@ -94,7 +94,7 @@ export class DoPaymentComponent {
           const resData = res.data;
           this.sharedService.showMessage(res?.message);
           //this.router.navigate(["account"]);
-          this.router.navigate(["/success-screen"]);
+          this.router.navigate(["/payment-success"]);
         })
         .catch((error) => {
           this.sharedService.showMessage(error?.error.message);

@@ -22,6 +22,7 @@ import { DoPaymentComponent } from "./do-payment/do-payment.component";
 import { SelectAthletesComponent } from "./select-athletes/select-athletes.component";
 import { SelectAthleteCoachComponent } from "./select-athlete-coach/select-athlete-coach.component";
 import { Ng2TelInputModule } from "ng2-tel-input";
+import { HomeService } from "@app/pages/home/home.service";
 
 @NgModule({
   imports: [
@@ -49,5 +50,6 @@ import { Ng2TelInputModule } from "ng2-tel-input";
     SelectAthletesComponent,
     SelectAthleteCoachComponent
   ],
+  providers: [HomeService],
 })
 export class OnboardingModule {}

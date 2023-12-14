@@ -1,0 +1,54 @@
+<section class="section-padding" style="margin-top: 10px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <h5>Payment Success!</h5>
+          <p>
+            Payment done successfuly! Please install the mobile application
+            as per your device
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center banner-text">
+        <!-- <img src="./assets/images/47950-sportbank-basketball.png" alt="" /> -->
+        <ul class="home-ul">
+          <li>
+            <a [href]="ios_app_url" target="_blank"
+              ><img
+                src="./assets/images/appstore.png"
+                class="wow fadeInUp"
+                data-wow-delay="0.4s"
+                alt=""
+            /></a>
+          </li>
+          <li>
+            <a [href]="android_app_url" target="_blank"
+              ><img
+                src="./assets/images/playstore.png"
+                class="wow fadeInUp"
+                data-wow-delay="0.7s"
+                alt=""
+            /></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="button-container text-center mt-3">
+          <button
+            mat-raised-button
+            type="button"
+            (click)="goToLogin()"
+            class="btn btn theme-btn"
+          >
+            Let's Go!
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

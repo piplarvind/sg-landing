@@ -184,3 +184,32 @@ q {
   overflow-x: auto;
   display: block;
 }
+
+
+.banner-text {
+  width: 100%;
+  padding-right: 80px;
+  margin: 50px 0px 0px;
+}
+
+.banner-text p {
+  margin: 40px 0px;
+}
+
+.banner-text ul {
+  list-style: none;
+}
+
+.banner-text ul li {
+  display: inline-block;
+  margin: 0px 10px 10px 0px;
+}
+
+.banner-text ul li a {
+  display: block;
+}
+
+.banner-text ul li a img {
+  width: 150px;
+  border-radius: 7px;
+}

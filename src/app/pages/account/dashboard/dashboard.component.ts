@@ -5,6 +5,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { MatTableDataSource } from "@angular/material/table";
 import { AccountService } from "../account.service";
 import { PaymentService } from "../make-payment/payment.service";
+import { HomeService } from "@app/pages/home/home.service";
 
 @Component({
   selector: "app-dashboard",
@@ -12,6 +13,9 @@ import { PaymentService } from "../make-payment/payment.service";
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
+  
+  android_app_url: string;
+  ios_app_url: string;
   user_role: any;
   keyup: boolean = false;
   tabledataloaded: boolean = false;
@@ -59,6 +63,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private sanitizer: DomSanitizer,
+    private homeService: HomeService,
     private accountService: AccountService,
     private paymentService: PaymentService
   ) {
@@ -78,6 +83,29 @@ export class DashboardComponent implements OnInit {
     }
     this.fetchSuccessfullPayments();
     this.fetchUnSuccessfullPayments();
+    this.getSettingData();
+  }
+
+  getSettingData() {
+    this.homeService
+      .getSettingData()
+      .then((e: any) => {
+        const settingObj = e.data;
+        for (const itemKey in settingObj) {
+          if (settingObj.hasOwnProperty(itemKey)) {
+            const key = settingObj[itemKey].key;
+            if (key === "android_app") {
+              this.android_app_url = settingObj[itemKey].value;
+            }
+            if (key === "ios_app") {
+              this.ios_app_url = settingObj[itemKey].value;
+            }
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   fetchSuccessfullPayments() {
