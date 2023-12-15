@@ -37,6 +37,7 @@ export class UserProfileComponent implements OnInit {
     "position",
     "age",
     "gender",
+    "college_logo"
   ];
 
   user: any;
@@ -66,6 +67,9 @@ export class UserProfileComponent implements OnInit {
       .then((e: any) => {
         const res = e.data;
         this.user = res;
+        this.role = res?.types[0]?.name;
+        this.sport = res?.sport?.sport_name;
+        this.club = res?.club?.club_name;
         this.transformData(this.user.profile_fields);
       })
       .catch((err) => {

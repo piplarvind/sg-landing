@@ -19,6 +19,7 @@ import { SelectAthletesComponent } from "./select-athletes/select-athletes.compo
 import { RequestSentComponent } from "./request-sent/request-sent.component";
 import { SelectAthleteCoachComponent } from "./select-athlete-coach/select-athlete-coach.component";
 import { ScoreScreenComponent } from "./score-screen/score-screen.component";
+import { PaymentSuccessComponent } from "./payment-success/payment-success.component";
 
 const routes: Routes = [
   {
@@ -60,6 +61,11 @@ const routes: Routes = [
     path: "score-screen",
     component: ScoreScreenComponent,
     data: { title: extract("Score") },
+  },
+  {
+    path: "payment-success",
+    component: PaymentSuccessComponent,
+    data: { title: extract("Payment Status") },
   },
   {
     path: "select-athlete-coach",

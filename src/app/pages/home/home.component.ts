@@ -22,6 +22,7 @@ import { FetchThumbnailURLService } from "./fetchThumbnailURL.service";
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
+  userId:any;
   videoId = "882742631";
   thumbnailUrl: string;
   
@@ -104,20 +105,6 @@ export class HomeComponent implements OnInit {
     nav: true,
   };
 
-  /* @HostListener("window:scroll", [])
-  onWindowScroll() {
-    // Check the scroll position to determine if the header should be sticky
-    // this.isSticky = window.scrollY > 50; // Adjust the offset value as needed
-    if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
-    ) {
-      document.getElementById("header-navbar").classList.add("nav-scroll");
-      // document.getElementById("paragraph").classList.add("green");
-    } else {
-      document.getElementById("header-navbar").classList.remove("nav-scroll");
-    }
-  } */
 
   selectedVideo: {
     video_url: SafeResourceUrl;
@@ -134,6 +121,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.userId = localStorage.getItem('user_id');
     this.fetchLanding();
     this.fetchSportsData();
     //this.getSettingData();

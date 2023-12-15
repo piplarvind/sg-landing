@@ -74,8 +74,6 @@ export class MakePaymentComponent implements OnInit {
       .catch((err: any) => {});
   }
 
-  
-
   onSubmit() {
     if (this.paymentProcessService.paymentForm.valid) {
       const paymentFormData = this.paymentProcessService.paymentForm.value;
@@ -96,7 +94,7 @@ export class MakePaymentComponent implements OnInit {
           this.router.navigate(["account"]);
         })
         .catch((error) => {
-          console.log(error);
+          //console.log(error);
           this.sharedService.showMessage(error?.error.message);
         });
     } else {

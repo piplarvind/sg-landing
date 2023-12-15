@@ -20,10 +20,12 @@
                   "In today's fast-paced world, it's essential to find ways to connect with others while enjoying life to the fullest. One of the most effective ways to do this is through play, where you not only have fun but also have the opportunity to score memorable moments and connections that can last a lifetime."
               }}
             </p>
-            <div class="sign-in-wrapper">
-              <a class="btn btn theme-btn" routerLink="/auth/onboarding/step1">Click Here To Register</a>
-              </div>
-            <ul class="home-ul">
+            <div *ngIf="!userId" class="sign-in-wrapper">
+              <a class="btn btn theme-btn" routerLink="/auth/onboarding/step1"
+                >Click Here To Register</a
+              >
+            </div>
+            <ul class="home-ul" *ngIf="userId">
               <li>
                 <a [href]="ios_app_url" target="_blank"
                   ><img
@@ -42,7 +44,7 @@
                     alt=""
                 /></a>
               </li>
-            </ul>            
+            </ul>
           </div>
         </div>
         <div class="col-md-4 col-sm-12">
