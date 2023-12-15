@@ -1,134 +1,40 @@
+<!-- profile.component.html -->
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-4">
         <div class="card card-profile">
-          <div
-            class="card-avatar"
-            (mouseenter)="showCameraIcon = true"
-            (mouseleave)="showCameraIcon = false"
-          >
+          <div class="card-avatar">
             <label for="fileInput" class="image-container">
               <img
                 class="img profile-img"
-                src="/assets/user-default.png"
+                [src]="profile_image || '/assets/user-default.png'"
                 width="128"
                 height="128"
               />
-              <div
-                *ngIf="showCameraIcon"
-                class="camera-icon"
-                (click)="browseImage()"
-              >
-                <i class="fa fa-camera"></i>
-              </div>
             </label>
-            <input
-              type="file"
-              id="fileInput"
-              style="display: none"
-              (change)="onFileSelected($event)"
-            />
           </div>
           <div class="card-body text-center">
+            <h4 class="card-title">{{first_name}} {{ last_name}}</h4>
             <h6 class="card-category text-gray">Athlete</h6>
-            <h4 class="card-title">Alex Davis</h4>
-            <!-- <p class="card-description">
-              Don't be scared of the truth because we need to restart the human
-              foundation in truth And I love you like Kanye loves Kanye I love
-              Rick Owens’ bed design but the back is...
-            </p> -->
           </div>
         </div>
       </div>
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header card-header-danger">
-            <h5 class="card-title mt-2">Edit Profile</h5>
-            <!-- <p class="card-category">Complete your profile</p> -->
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="row">
-                <div class="col-md-5">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Mobile Number" formControlName="phone_number" />
-                  </mat-form-field>
-                </div>
-                <div class="col-md-3">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Username" formControlName="username" />
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email address" type="email" />
-                  </mat-form-field>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-body">
+              <div class="profile-info">
+                <div class="row">
+                  <div *ngFor="let info of profileData" class="col-md-6">
+                    <div class="profile-info-item">
+                      <span class="info-label">{{ info.label }}:</span>
+                      <span class="info-value">{{ info.value }}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Fist Name" type="text" />
-                  </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Last Name" type="text" />
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Adress" type="text" />
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="City" type="text" />
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Country" type="text" />
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Postal Code" type="text" />
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <label>About Me</label>
-                  <mat-form-field class="example-full-width">
-                    <textarea
-                      matInput
-                      placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
-                    ></textarea>
-                  </mat-form-field>
-                  <!-- <div class="form-group">
-
-                                      <div class="form-group">
-                                          <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                                          <textarea class="form-control" rows="5"></textarea>
-                                      </div>
-                                  </div> -->
-                </div>
-              </div>
-              <button
-                mat-raised-button
-                type="submit"
-                class="btn btn-danger pull-right"
-              >
-                Update Profile
-              </button>
-              <div class="clearfix"></div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
