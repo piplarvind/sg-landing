@@ -1,5 +1,5 @@
 // home.component.ts
-import { Component, ElementRef, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, HostListener } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { ScrollService } from "@app/core/scroll.service";
 import { filter } from "rxjs/operators";
@@ -27,6 +27,22 @@ export class HeaderComponent implements OnInit {
       });
   }
 
+  
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    // Check the scroll position to determine if the header should be sticky
+    // this.isSticky = window.scrollY > 50; // Adjust the offset value as needed
+    if (
+      document.body.scrollTop > 50 ||
+      document.documentElement.scrollTop > 50
+    ) {
+      document.getElementById("header-navbar").classList.add("nav-scroll");
+      // document.getElementById("paragraph").classList.add("green");
+    } else {
+      document.getElementById("header-navbar").classList.remove("nav-scroll");
+    }
+  }
+
   private handleScroll(): void {
     this.activatedRoute.fragment.subscribe(fragment => {
       if (fragment) {
@@ -44,19 +60,19 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  // scrollToElement(scrollTarget: string) {
-  //   const padding = 55; // Adjust this value to set the desired padding
-  //   const targetElement = this.el.nativeElement.querySelector(
-  //     "#" + scrollTarget
-  //   );
-  //   if (targetElement) {
-  //     const scrollPosition =
-  //       targetElement.getBoundingClientRect().top + window.scrollY - padding;
-  //     window.scrollTo({ top: scrollPosition, behavior: "smooth" });
-  //   } else {
-  //     console.warn("Element with ID '" + scrollTarget + "' not found.");
-  //   }
-  // }
+  scrollToElement(scrollTarget: string) {
+    const padding = 55; // Adjust this value to set the desired padding
+    const targetElement = this.el.nativeElement.querySelector(
+      "#" + scrollTarget
+    );
+    if (targetElement) {
+      const scrollPosition =
+        targetElement.getBoundingClientRect().top + window.scrollY - padding;
+      window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+    } else {
+      console.warn("Element with ID '" + scrollTarget + "' not found.");
+    }
+  }
 
   handleMenuClick() {
     document.getElementById("navbarSupportedContent").classList.remove("show");

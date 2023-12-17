@@ -28,7 +28,7 @@ export class PublicCmsPageComponent implements OnInit {
      
       this.cmsData = res['data'];
       this.htmlContent = this.sanitizer.bypassSecurityTrustHtml(this.cmsData.content);
-      console.log('res', this.cmsData );
+      //console.log('res', this.cmsData );
     })
     .catch((err: any) => {});
   }

@@ -37,7 +37,7 @@ export class UserProfileComponent implements OnInit {
     "position",
     "age",
     "gender",
-    "college_logo"
+    "college_logo",
   ];
 
   user: any;
@@ -91,18 +91,18 @@ export class UserProfileComponent implements OnInit {
         const { name, label } = item.field;
         let value = item.value;
         // Special handling for the 'profile_image' field
-        if (name === 'profile_image') {
+        if (name === "profile_image") {
           value = this.env.imageUrl + value;
           this.profile_image = value;
         }
-        if (name === 'first_name') {
+        if (name === "first_name") {
           this.first_name = value;
         }
-        if (name === 'last_name') {
+        if (name === "last_name") {
           this.last_name = value;
         }
         return { name, label, value };
       });
-    console.log("this.profileData", this.profileData);
+    //console.log("this.profileData", this.profileData);
   }
 }

@@ -1,26 +1,25 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { CmsPageService } from './cms-page.service';
-import { Router } from '@angular/router';
-import { SharedService } from '../shared/shared.service';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
+import { CmsPageService } from "./cms-page.service";
+import { Router } from "@angular/router";
+import { SharedService } from "../shared/shared.service";
+import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatSlideToggleChange } from "@angular/material/slide-toggle";
 
 @Component({
-  selector: 'app-cms-page',
-  templateUrl: './cms-page.component.html',
-  styleUrls: ['./cms-page.component.scss']
+  selector: "app-cms-page",
+  templateUrl: "./cms-page.component.html",
+  styleUrls: ["./cms-page.component.scss"],
 })
 export class CmsPageComponent implements OnInit {
-
   dataSource = new MatTableDataSource();
   displayedColumns: any = [
-    'page_title',
-    'slug',
+    "page_title",
+    "slug",
     // 'active',
-    'Actions'
+    "Actions",
   ];
   limit: number = 100;
   skip: number = 0;
@@ -29,7 +28,7 @@ export class CmsPageComponent implements OnInit {
   pageIndex: number = 0;
   pageLimit: number[] = [5, 10, 25, 50, 100];
   tabledata: any = [];
-  buttontext:any;
+  buttontext: any;
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -40,12 +39,11 @@ export class CmsPageComponent implements OnInit {
     private cmsPageService: CmsPageService,
     private router: Router,
     public dialog: MatDialog,
-    private sharedService: SharedService,
-    
-  ) { }
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
-    this.buttontext = 'Show Inactive';
+    this.buttontext = "Show Inactive";
     this.getAllCMSPages();
   }
 
@@ -55,25 +53,25 @@ export class CmsPageComponent implements OnInit {
     this.cmsPageService.allPCMSPages(this.skip, this.limit).subscribe(
       (result: any) => {
         this.sharedService.showLoader = false;
-        console.log('result', result);
-        const newres = result.data.map(prop => {
+        //console.log("result", result);
+        const newres = result.data.map((prop) => {
           let created = {
-              fname: '',
-              lname: ''
+              fname: "",
+              lname: "",
             },
-            subscriptions_name: any = '';
+            subscriptions_name: any = "";
 
           if (prop.createdBy) {
             if (prop.createdBy.profile_fields) {
               for (let i = 0; i < prop.createdBy.profile_fields.length; i++) {
                 if (prop.createdBy.profile_fields[i].field) {
                   if (
-                    prop.createdBy.profile_fields[i].field.name === 'first_name'
+                    prop.createdBy.profile_fields[i].field.name === "first_name"
                   ) {
                     created.fname = prop.createdBy.profile_fields[i].value;
                   }
                   if (
-                    prop.createdBy.profile_fields[i].field.name === 'last_name'
+                    prop.createdBy.profile_fields[i].field.name === "last_name"
                   ) {
                     created.lname = prop.createdBy.profile_fields[i].value;
                   }
@@ -81,11 +79,11 @@ export class CmsPageComponent implements OnInit {
               }
             }
           }
-          
+
           return {
             ...prop,
             name: prop.name,
-            createdBy: created.fname + ' ' + created.lname
+            createdBy: created.fname + " " + created.lname,
           };
         });
         this.tabledata = newres;
@@ -94,9 +92,9 @@ export class CmsPageComponent implements OnInit {
 
         data = result;
 
-        this.dataSource.data = data['data'];
-        if (this.totalLength === 0 || this.totalLength !== data['pagination']) {
-          this.totalLength = data['pagination'];
+        this.dataSource.data = data["data"];
+        if (this.totalLength === 0 || this.totalLength !== data["pagination"]) {
+          this.totalLength = data["pagination"];
         }
       },
       (err: any) => {
@@ -107,20 +105,20 @@ export class CmsPageComponent implements OnInit {
 
   getStatus(status: boolean) {
     if (status) {
-      return 'ACTIVE';
+      return "ACTIVE";
     } else {
-      return 'INACTIVE';
+      return "INACTIVE";
     }
   }
 
   ShowAll(event: any) {
-    if (this.buttontext === 'Show Inactive') {
-      this.buttontext = 'Show Active';
+    if (this.buttontext === "Show Inactive") {
+      this.buttontext = "Show Active";
 
       this.getInactiveCMSPages();
     } else {
       this.getAllCMSPages();
-      this.buttontext = 'Show Inactive';
+      this.buttontext = "Show Inactive";
     }
   }
 
@@ -131,9 +129,9 @@ export class CmsPageComponent implements OnInit {
     this.cmsPageService
       .getInactiveCMSPageList(this.skip, this.limit)
       .then((res: any) => {
-        this.dataSource.data = res['data'];
-        if (this.totalLength === 0 || this.totalLength !== res['pagination']) {
-          this.totalLength = res['pagination'];
+        this.dataSource.data = res["data"];
+        if (this.totalLength === 0 || this.totalLength !== res["pagination"]) {
+          this.totalLength = res["pagination"];
         }
 
         this.sharedService.showLoader = false;
@@ -143,8 +141,8 @@ export class CmsPageComponent implements OnInit {
 
   titleSort(event) {
     let value;
-    if (event.direction === 'desc') {
-      value = '-' + event.active;
+    if (event.direction === "desc") {
+      value = "-" + event.active;
     } else {
       value = event.active;
     }
@@ -152,23 +150,23 @@ export class CmsPageComponent implements OnInit {
     this.cmsPageService
       .getSortedCMSPage(this.skip, this.limit, value)
       .subscribe((res: any) => {
-        const newres = res.data.map(prop => {
+        const newres = res.data.map((prop) => {
           let created = {
-              fname: '',
-              lname: ''
+              fname: "",
+              lname: "",
             },
-            subscriptions_name: any = '';
+            subscriptions_name: any = "";
           if (prop.createdBy) {
             if (prop.createdBy.profile_fields) {
               for (let i = 0; i < prop.createdBy.profile_fields.length; i++) {
                 if (prop.createdBy.profile_fields[i].field) {
                   if (
-                    prop.createdBy.profile_fields[i].field.name === 'first_name'
+                    prop.createdBy.profile_fields[i].field.name === "first_name"
                   ) {
                     created.fname = prop.createdBy.profile_fields[i].value;
                   }
                   if (
-                    prop.createdBy.profile_fields[i].field.name === 'last_name'
+                    prop.createdBy.profile_fields[i].field.name === "last_name"
                   ) {
                     created.lname = prop.createdBy.profile_fields[i].value;
                   }
@@ -176,11 +174,11 @@ export class CmsPageComponent implements OnInit {
               }
             }
           }
-    
+
           return {
             ...prop,
             name: prop.name,
-            createdBy: created.fname + ' ' + created.lname
+            createdBy: created.fname + " " + created.lname,
           };
         });
         this.tabledata = newres;
@@ -192,11 +190,11 @@ export class CmsPageComponent implements OnInit {
 
         data = res;
 
-        this.dataSource.data = data['data'];
+        this.dataSource.data = data["data"];
       });
   }
 
-  changePage(event:any) {
+  changePage(event: any) {
     if (
       this.totalLength > this.dataSource.data.length ||
       event.pageSize !== this.limit
@@ -213,26 +211,28 @@ export class CmsPageComponent implements OnInit {
 
   editCMSPage(element: any) {
     sessionStorage.selected_cms_page = JSON.stringify(element);
-    this.router.navigate(['/cms-pages/edit']);
+    this.router.navigate(["/cms-pages/edit"]);
   }
 
-  changeStatus(event: MatSlideToggleChange, row:any) {
+  changeStatus(event: MatSlideToggleChange, row: any) {
     const originalValue = row.active;
     this.sharedService
-      .showDialog('Are you sure you want to change this status?')
-      .subscribe(response => {
-        if (response !== '') {
+      .showDialog("Are you sure you want to change this status?")
+      .subscribe((response) => {
+        if (response !== "") {
           this.sharedService.showLoader = true;
           const reqObj = {
-            active: row.active
+            active: row.active,
           };
-          this.cmsPageService.changeStatusCMSPage(row._id, reqObj).then((e: any) => {
-            this.sharedService.showLoader = false;
-            this.getAllCMSPages();
-            // this.buttontext = 'Show Inactive';
-            this.sharedService.showMessage(e.message);
-          });
-        }else {
+          this.cmsPageService
+            .changeStatusCMSPage(row._id, reqObj)
+            .then((e: any) => {
+              this.sharedService.showLoader = false;
+              this.getAllCMSPages();
+              // this.buttontext = 'Show Inactive';
+              this.sharedService.showMessage(e.message);
+            });
+        } else {
           // Reset the toggle button to its original value
           setTimeout(() => {
             row.active = originalValue;

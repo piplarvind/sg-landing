@@ -1,26 +1,21 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CmsPageService {
+  getCMSPages = "cms-pages/";
+  editCMSPage = "cms-pages/";
+  fetchOneCMSPage = "cms-pages/";
+  changeStatus = "cms-pages/";
+  fetchOneCMSPageBySlug = "public-page/";
 
-  getCMSPages = 'cms-pages/';
-  editCMSPage = 'cms-pages/';
-  fetchOneCMSPage = 'cms-pages/';
-  changeStatus = 'cms-pages/';
-  fetchOneCMSPageBySlug = 'public-page/';
+  constructor(public http: HttpClient) {}
 
-  constructor(public http: HttpClient) { }
-  
-  allPCMSPages(skip, limit) {
+  allPCMSPages(skip: number, limit: number) {
     return this.http.get(
-      this.getCMSPages +
-        '?skip=' +
-        skip +
-        '&limit=' +
-        limit
+      this.getCMSPages + "?skip=" + skip + "&limit=" + limit
     );
   }
 
@@ -42,8 +37,6 @@ export class CmsPageService {
         }
       );
     });
-
-   
   }
 
   updatingCMSPage(credentials: any) {
@@ -56,35 +49,29 @@ export class CmsPageService {
         (res: any) => {
           resolve(res);
         },
-        err => {
+        (err) => {
           reject(err);
         }
       );
     });
   }
 
-  getOneCMSPageBySlug(slug:string) {
+  getOneCMSPageBySlug(slug: string) {
     return new Promise((resolve, reject) => {
       this.http.get(this.fetchOneCMSPageBySlug + slug).subscribe(
         (res: any) => {
           resolve(res);
         },
-        err => {
+        (err) => {
           reject(err);
         }
       );
     });
   }
 
-  getSortedCMSPage(skip, limit, sort) {
+  getSortedCMSPage(skip: number, limit: number, sort: any) {
     return this.http.get(
-      this.getCMSPages +
-        '?skip=' +
-        skip +
-        '&limit=' +
-        limit +
-        '&sort=' +
-        sort
+      this.getCMSPages + "?skip=" + skip + "&limit=" + limit + "&sort=" + sort
     );
   }
 
@@ -95,18 +82,23 @@ export class CmsPageService {
         (res: any) => {
           resolve(res);
         },
-        err => {
+        (err) => {
           reject(err);
         }
       );
     });
   }
 
-  getInactiveCMSPageList(skip, limit) {
+  getInactiveCMSPageList(skip: number, limit: number) {
     return new Promise((resolve, reject) => {
       this.http
         .get(
-          this.getCMSPages + "?" + "active=false&skip=" + skip + "&limit=" + limit
+          this.getCMSPages +
+            "?" +
+            "active=false&skip=" +
+            skip +
+            "&limit=" +
+            limit
         )
         .subscribe(
           (res: any) => {
@@ -118,6 +110,4 @@ export class CmsPageService {
         );
     });
   }
-
-  
 }

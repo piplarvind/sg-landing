@@ -26,7 +26,7 @@ const credentialsKey = "credentials";
 export class AuthenticationService {
   message: any;
   highestRole: any;
-  passwordForgotUrl = 'forgot-password/';
+  passwordForgotUrl = "forgot-password/";
   private _credentials: Credentials | null;
 
   constructor(
@@ -83,57 +83,24 @@ export class AuthenticationService {
 
         this.highestRole = typelist.filter((t) => t.priority === arr[0]);
 
-        // if (
-        //   this.highestRole[0].abbr === `${environment.Super_Admin}` ||
-        //   this.highestRole[0].abbr === `${environment.Platform_Admin}` ||
-        //   this.highestRole[0].abbr === `${environment.Club_Admin}` ||
-        //   this.highestRole[0].abbr === `${environment.Coach}`
-        // ) {
-          loggedIn = true;
+        loggedIn = true;
 
-          data.token = res.token;
-          data.loggedIn = loggedIn;
-          localStorage.token = res.token;
-          localStorage.user_role = this.highestRole[0].abbr;
+        data.token = res.token;
+        data.loggedIn = loggedIn;
+        localStorage.token = res.token;
+        localStorage.user_role = this.highestRole[0].abbr;
 
-          localStorage.role_id = this.highestRole[0]._id;
-          localStorage.user_id = res.data._id;
-          //console.log('res.data.club', res.data.club);return;
-          if (typeof res.data.club !== undefined) {
-            localStorage.club_id = res.data?.club?._id;
-          }
+        localStorage.role_id = this.highestRole[0]._id;
+        localStorage.user_id = res.data._id;
 
-          if (typeof res.data.sport !== undefined) {
-            localStorage.sport_id = res.data?.sport?._id;
-          }
+        const headers = new HttpHeaders({
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        });
 
-          const headers = new HttpHeaders({
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
-          });
+        localStorage.userDetails = JSON.stringify(res.data);
+        window.location.href = "/account";
 
-          localStorage.userDetails = JSON.stringify(res.data);
-          if (
-            this.highestRole[0].abbr === `${environment.Super_Admin}` ||
-            this.highestRole[0].abbr === `${environment.Platform_Admin}` ||
-            this.highestRole[0].abbr === `${environment.Club_Admin}`
-          ) {
-            //this.router.navigate(['/home'], { replaceUrl: true });
-            window.location.href = "/account";
-            //this.router.navigateByUrl('home');
-          } else {
-            // if (   this.highestRole[0].abbr === ' ${ environment.Coach}') {
-            //this.router.navigate(['/coach'], { replaceUrl: true });
-            // window.location.href = "/coach";
-            window.location.href = "/account";
-          }
-          // });
-        // } else {
-        //   this.sharedService.loginDialog(
-        //     "You are not authorized to access this portal"
-        //   );
-        //   this.router.navigateByUrl("/login");
-        // }
         return res;
       },
       (error) => this.sharedService.loginDialog(error?.error?.message)
@@ -142,15 +109,13 @@ export class AuthenticationService {
     return of(data);
   }
 
-
-  
   forgotPassword(username: any) {
     return new Promise((resolve, reject) => {
       this.http.post(this.passwordForgotUrl, username).subscribe(
         (res: any) => {
           resolve(res);
         },
-        err => {
+        (err) => {
           reject(err);
         }
       );

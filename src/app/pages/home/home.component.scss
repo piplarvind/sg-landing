@@ -93,51 +93,6 @@ h6 {
   display: none;
 }
 
-.nav-scroll {
-  /* background: #fff; */
-  background-color: #16191c;
-  /* -webkit-box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.0509803922);
-  box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.0509803922); */
-  -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease;
-}
-
-/* .sticky {
-    background-color: #000;
-    opacity: 0.75;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-} */
-.nav-scroll .navbar-nav>li>a {
-  /* color: #333; */
-  color: #fff;
-}
-
-.nav-scroll .navbar-brand img {
-  -webkit-transform: scale(1.03) !important;
-  transform: scale(1.03) !important;
-}
-
-.nav-scroll .navbar-toggler {
-  cursor: pointer;
-}
-
-.nav-scroll .navbar-toggler span {
-  color: #333;
-}
-
-.nav-scroll .nav-link:hover:after {
-  background-color: #2388ed;
-}
-
-.nav-scroll .active {
-  position: relative;
-}
 
 .banner {
   /* background: #7a60ff; */

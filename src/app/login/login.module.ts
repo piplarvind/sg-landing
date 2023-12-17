@@ -15,6 +15,7 @@ import { PublicCmsPageComponent } from './public-cms-page/public-cms-page.compon
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { LoginService } from './login.service';
 import { FormsModule } from '@angular/forms';
+import { LayoutModule } from '@app/layout/layout.module';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     SharedModule,
     FlexLayoutModule,
     MaterialModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    LayoutModule
   ],
   declarations: [LoginComponent, ForgotPasswordComponent, ResetPasswordComponent, PolicyComponent, PrivacyPolicyComponent, MessageComponent, PublicCmsPageComponent],
   providers: [LoginService]

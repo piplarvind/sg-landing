@@ -17,5 +17,6 @@ import { CommonModule } from "@angular/common";
   ],
   declarations: [LayoutComponent, HeaderComponent, FooterComponent, ContactFormComponent],
   providers: [],
+  exports: [HeaderComponent, FooterComponent],
 })
 export class LayoutModule {}
