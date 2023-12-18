@@ -96,6 +96,7 @@ export class RegisterComponent implements OnInit {
               return;
             }
             localStorage.setItem("userId", error?.error?.data[0]?._id);
+            
             if (error?.error?.data[0]?.completed_steps === 1) {
               this.router.navigate(["/auth/onboarding/step1"]);
             } else if (error?.error?.data[0]?.completed_steps === 2) {
@@ -104,6 +105,7 @@ export class RegisterComponent implements OnInit {
               localStorage.setItem("sportId", error?.error?.data[0]?.sport);
               this.router.navigate(["/auth/onboarding/step3"]);
             } else if (error?.error?.data[0]?.completed_steps === 4) {
+              localStorage.setItem("userType", error?.error?.data[0]?.types[0].abbr);
               //this.router.navigate(["/auth/onboarding/step4"]);
               if(localStorage.getItem("userType") === 'ATH'){
                 this.router.navigate(["/auth/onboarding/step4"]);
