@@ -9,12 +9,15 @@ import { HomeService } from "@app/pages/home/home.service";
   providers: [HomeService]
 })
 export class FooterComponent implements OnInit {
+  userId:any;
   android_app_url: string;
   ios_app_url: string;
   year = new Date().getFullYear();
   constructor(private homeService: HomeService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userId = localStorage.getItem('user_id');
+  }
 
   getSettingData() {
     this.homeService

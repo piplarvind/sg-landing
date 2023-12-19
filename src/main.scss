@@ -294,3 +294,11 @@ mat-cell,
 a:hover{
   text-decoration: none !important;
 }
+
+.mat-snack-bar-handset .mat-snack-bar-container {
+  margin: 8px;
+  max-width: 100%;
+  min-width: 0;
+  width: auto !important;
+  text-align: center;
+}
