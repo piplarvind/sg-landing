@@ -14,10 +14,9 @@
     <form id="accountForm" [formGroup]="step2Form" (ngSubmit)="onSubmit()">
       <ng-container>
         <mat-radio-group name="role" formControlName="role">
-          <div class="row">
+          <div class="row text-center">
             <div
               class="col-md-6 sport-option"
-              [class.left-col-md-6]="i % 2 === 0"
               *ngFor="let role of roles; let i = index"
             >
               <div class="sport-container">
@@ -58,7 +57,6 @@
             </div>
             <div
               class="col-md-6 role-gender"
-              [class.left-col-md-6]="i % 2 === 0"
               *ngFor="let genderItem of genders; let i = index"
             >
             

@@ -21,6 +21,7 @@
   padding: 10px;
   margin: 5px;
   border-radius: 5px;
+  display: inline-block;
 }
 ::ng-deep .sport-container:has(.mat-radio-checked) {
   border: 1px solid #ec1c37 !important;
@@ -40,4 +41,16 @@
 .left-col-md-6 > .sport-container,
 .left-col-md-6 > .role-container {
   float: inline-end !important;
+}
+
+@media screen and (max-width: 768px) {
+  mat-radio-group .text-center {
+    display: contents;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .sport-container {
+    margin: 10px; /* Adjust the margin as needed */
+  }
 }

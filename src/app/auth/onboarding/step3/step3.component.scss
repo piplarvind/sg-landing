@@ -181,3 +181,15 @@
 ::ng-deep .club-card:has(.mat-radio-checked) {
   border: 1px solid #ec1c37 !important;
 }
+
+@media screen and (max-width: 768px) {
+  mat-radio-group .text-center {
+    display: contents;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .sport-container {
+    margin: 10px; /* Adjust the margin as needed */
+  }
+}

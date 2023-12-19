@@ -7,6 +7,19 @@
     background-color: #6c757d;
     color: #fff;
   }
+
+  @media screen and (max-width: 768px) {
+    mat-radio-group .text-center {
+      display: contents;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .sport-container {
+      margin: 10px; /* Adjust the margin as needed */
+    }
+  }
+  
 // .form-group {
 //   & + & {
 //     margin-top: 1rem;
@@ -41,3 +54,4 @@
 //   font-size: 1rem;
 //   cursor: pointer;
 // }
+

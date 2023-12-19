@@ -20,10 +20,9 @@
     <form id="clubForm" [formGroup]="step3Form" (ngSubmit)="onSubmit()" class="role-form">
       <ng-container>
         <mat-radio-group name="role" formControlName="club">
-          <div class="row">
+          <div class="row text-center">
             <div
               class="col-md-3 club-option"
-              [class.left-col-md-6]="i % 2 === 0"
               *ngFor="let clb of clubs; let i = index"
             >
               <mat-card class="club-card" (click)="selectClub(clb)">
