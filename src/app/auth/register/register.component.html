@@ -54,6 +54,7 @@
               placeholder="Username"
               required
               formControlName="user_name"
+              appLowercaseFirstChar
             />
             <mat-error
               *ngIf="
@@ -91,6 +92,7 @@
               placeholder="Email"
               required
               formControlName="email"
+              appLowercaseFirstChar
             />
             <mat-error
               *ngIf="
@@ -188,8 +190,7 @@
               [checked]="checked"
               [disabled]="disabled"
               formControlName="acceptTerms"
-            >
-            I agree to the SportGrit, LLC
+            >I agree to the SportGrit, LLC
               <a routerLink="/cms-page/terms-conditions" target="_blank"
                 >Terms of Use</a
               >

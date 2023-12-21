@@ -12,6 +12,7 @@ import { OnboardingModule } from '@app/auth/onboarding/onboarding.module';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { StepperModule } from '@app/stepper/stepper.module';
 import { RegisterComponent } from './register/register.component';
+import { LowercaseFirstCharDirective } from '@app/lowercase-first-char.directive';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { RegisterComponent } from './register/register.component';
     RegisterComponent,
     OnboardingComponent,
     AuthLeftSectionComponent,
-    LoginComponent
+    LoginComponent,
+    LowercaseFirstCharDirective
   ]
 })
 export class AuthModule {}

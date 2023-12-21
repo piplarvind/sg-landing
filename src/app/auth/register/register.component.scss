@@ -2,3 +2,12 @@
   background: #ec1c37;
   color: #fff;
 }
+::ng-deep .mat-slide-toggle-content {
+  white-space: break-spaces !important;
+  font-size: 12px !important;
+}
+
+::ng-deep .mat-slide-toggle-content a {
+  color: #ec1c37 !important;
+  font-size: 14px !important;
+}
