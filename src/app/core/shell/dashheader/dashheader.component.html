@@ -1,6 +1,16 @@
 <mat-toolbar class="header" fxFill>
   <div fxFill fxLayout="row" class="head-container">
+    <!-- Toggler Button -->
+    <!-- <button mat-icon-button (click)="toggleLeftMenu()" >
+      <mat-icon>menu</mat-icon>
+    </button> -->
     <div fxFlex="15" class="select-dropdowns">
+      <div fxFlex="30">
+        <button mat-icon-button (click)="toggleLeftMenu()" >
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div fxHide.gt-sm>&nbsp;&nbsp;&nbsp;</div>
       <div fxFlex="30">
         <span class="page-title">{{ title }}</span>
       </div>

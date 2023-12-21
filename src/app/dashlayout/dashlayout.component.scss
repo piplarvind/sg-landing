@@ -6,6 +6,10 @@
   flex: 1;
 }
 
+.main-content {
+  height: 100% !important;
+}
+
 .faded {
   background: $primary;
 }
@@ -88,4 +92,26 @@
 
 .content div:nth-child(2) form .mat-expansion-panel-header-description {
   margin: 0px !important;
+}
+
+/* Add a class for styling the left menu */
+.left-menu {
+  width: 250px; /* Adjust the width as needed */
+}
+
+/* Add a transition for a smoother effect */
+.mat-sidenav-content, .left-menu {
+  transition: margin-left 0.3s;
+}
+
+/* Adjust the content margin when the left menu is open */
+.mat-sidenav-content.mat-drawer-opened {
+  margin-left: 250px; /* Should match the width of the left menu */
+}
+
+
+@media only screen and (min-width: 600px) {
+  mat-toolbar {
+    height: 60px; /* Adjust the height for desktop screens */
+  }
 }

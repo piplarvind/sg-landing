@@ -1,4 +1,6 @@
-import { Component, HostListener } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, HostListener, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-dashlayout',
@@ -6,11 +8,29 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./dashlayout.component.scss']
 })
 export class DashlayoutComponent {
+  @ViewChild('leftMenu') leftMenu: MatSidenav;
+  isSmallScreen: boolean;
 
-  constructor() { }
+  constructor(private breakpointObserver: BreakpointObserver) { }
+  ngAfterViewInit() {
+    this.initializeScreenMode();
+  }
 
-  ngOnInit() {
-   
+  initializeScreenMode() {
+    this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.Handset]).subscribe(result => {
+      this.isSmallScreen = result.matches;
+    });
+  }
+
+  toggleLeftMenu() {
+    this.leftMenu.toggle();
+  }
+
+  onMenuItemClick() {
+    // Close the left menu when a menu item is clicked on a small screen
+    if (this.isSmallScreen) {
+      this.leftMenu.close();
+    }
   }
 
   @HostListener("window:scroll", [])
@@ -32,5 +52,5 @@ export class DashlayoutComponent {
     t.scrollTo(0, 0);
     window.scroll(0, 0);
   }
-  
+
 }

@@ -1,5 +1,5 @@
 import { Title } from "@angular/platform-browser";
-import { Component, OnInit, Input, AfterViewInit } from "@angular/core";
+import { Component, OnInit, Input, AfterViewInit, Output, EventEmitter } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { MatSidenav } from "@angular/material/sidenav";
 
@@ -21,6 +21,8 @@ let ref = null;
   styleUrls: ["./dashheader.component.scss"],
 })
 export class DashheaderComponent implements OnInit {
+  @Output() toggleLeftMenuClick = new EventEmitter<void>();
+
   user_role: any;
   storedVal: any;
   apiUrl: string;
@@ -60,6 +62,10 @@ export class DashheaderComponent implements OnInit {
     ref = this;
     
     this.apiUrl = environment.imageUrl;
+  }
+
+  toggleLeftMenu() {
+    this.toggleLeftMenuClick.emit();
   }
 
   public changeLogo(logo: string, club_id) {
