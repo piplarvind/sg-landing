@@ -4,6 +4,7 @@
 }
 .mat-card {
   padding: 10px;
+  flex:inherit !important;
 }
 .logo {
   width: 150px;
@@ -19,7 +20,8 @@ q {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: normal;
+  justify-content: center;
+  flex-direction:row !important;
 }
 
 .column {
@@ -130,6 +132,7 @@ q {
 
 .m-table-container {
   gap: 10px;
+  overflow-x: auto;
 }
 
 /* styles.css or your component's CSS file */
@@ -188,7 +191,6 @@ q {
 
 .banner-text {
   width: 100%;
-  padding-right: 80px;
   margin: 50px 0px 0px;
 }
 
@@ -213,3 +215,116 @@ q {
   width: 150px;
   border-radius: 7px;
 }
+
+@media screen and (max-width: 768px) {
+  .banner-text h4{
+    font-size: 1.5rem;
+    margin-bottom:1rem;
+  }
+  .card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap:nowrap;
+    justify-content:space-evenly;
+  }
+
+  .card-item {
+    flex: 0 0 48%; /* Adjust the width as needed */
+    margin-bottom: 20px;
+  }
+
+  .user-count {
+    font-size: 24px;
+  }
+
+  .card-label {
+    font-size: 18px;
+  }
+
+  .new-mat-card {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .m-table-container {
+    overflow-x: auto;
+  }
+
+  .m-table-header {
+    font-size: 14px;
+  }
+
+  .m-pointer {
+    cursor: pointer;
+  }
+
+  .head-right-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .mt-3 {
+      margin-top: 10px;
+    }
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .new-mat-card {
+    width: 100%;
+  }
+
+  .m-table-container {
+    overflow-x: auto;
+  }
+
+  .m-table-header {
+    font-size: 14px;
+  }
+
+  .m-pointer {
+    cursor: pointer;
+  }
+
+  .head-right-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .mt-3 {
+      margin-top: 10px;
+    }
+  }
+}
+
+/* Larger screens */
+@media (min-width: 769px) {
+  .new-mat-card {
+    width: 48%; /* Adjust the width as needed */
+  }
+
+  .m-table-container {
+    overflow: hidden;
+  }
+
+  .m-table-header {
+    font-size: 18px;
+  }
+
+  .m-pointer {
+    cursor: pointer;
+  }
+
+  .head-right-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .mt-3 {
+      margin-top: 20px;
+    }
+  }
+}
+
