@@ -41,20 +41,13 @@ export class SelectSubscriptionComponent {
   }
 
   betaTesting() {
-
-    if (this.paymentProcessService.paymentForm.valid) {
-      const paymentFormData = this.paymentProcessService.paymentForm.value;
-      paymentFormData.planId = localStorage.getItem("selectedPlan");
-      paymentFormData.payer = localStorage.getItem("user_id");
-      paymentFormData.clubId = localStorage.getItem("club_id");
-      paymentFormData.sportId = localStorage.getItem("sport_id");
-      paymentFormData.is_event_transaction = false;
-      paymentFormData.transaction_for = "subscription";
-      paymentFormData.ccexp =
-        paymentFormData.exp_month + paymentFormData.exp_year;
-      //console.log("paymentFormData", paymentFormData);
+    if (this.subscriptionForm.valid) {
+      const subscriptionFormData = { payer: "" };
+      subscriptionFormData.payer =
+        localStorage.getItem("userId") || localStorage.getItem("user_id");
+      //console.log("subscriptionFormData", subscriptionFormData);return;
       this.paymentService
-        .subscribeBeta(paymentFormData)
+        .subscribeBeta(subscriptionFormData)
         .then((res: any) => {
           const resData = res.data;
           this.sharedService.showMessage(res?.message);
@@ -62,7 +55,7 @@ export class SelectSubscriptionComponent {
           this.router.navigate(["score-screen"]);
         })
         .catch((error) => {
-          console.log(error);
+          //console.log(error);
           this.sharedService.showMessage(error?.error.message);
         });
     } else {
@@ -74,12 +67,13 @@ export class SelectSubscriptionComponent {
     if (this.onboardingProcessService.subscriptionForm.valid) {
       const subscriptionFormData =
         this.onboardingProcessService.subscriptionForm.value;
-      //console.log("subscriptionFormData", subscriptionFormData);
-      localStorage.setItem('selectedPlan', subscriptionFormData.plan);
-      this.router.navigate(["auth/onboarding/do-payment/"+subscriptionFormData.plan]);
+      // console.log("subscriptionFormData", subscriptionFormData);return;
+      localStorage.setItem("selectedPlan", subscriptionFormData.plan);
+      this.router.navigate([
+        "auth/onboarding/do-payment/" + subscriptionFormData.plan,
+      ]);
     } else {
       this.sharedService.showMessage("Please select subscription");
     }
-    
   }
 }

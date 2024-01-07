@@ -89,9 +89,10 @@ export class AuthenticationService {
         data.loggedIn = loggedIn;
         localStorage.token = res.token;
         localStorage.user_role = this.highestRole[0].abbr;
-
         localStorage.role_id = this.highestRole[0]._id;
         localStorage.user_id = res.data._id;
+        localStorage.club_id = res.data?.club._id;
+        localStorage.sport_id = res.data?.sport._id;
 
         const headers = new HttpHeaders({
           "Content-Type": "application/json",

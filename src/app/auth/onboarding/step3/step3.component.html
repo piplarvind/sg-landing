@@ -22,14 +22,13 @@
         <mat-radio-group name="role" formControlName="club">
           <div class="row text-center">
             <div
-              class="col-md-3 club-option"
+              class="col-md-3 col-6 club-option"
               *ngFor="let clb of clubs; let i = index"
             >
               <mat-card class="club-card" (click)="selectClub(clb)">
                 <mat-radio-button [value]="clb._id" class="hidden-radio"></mat-radio-button>
-                <div class="club-container">
+                <div class="club-container d-flex flex-column align-items-center justify-content-center">
                   <img [src]="env.imageUrl + clb.logo || './assets/images/clubv.png'" alt="{{ clb.club_name }}" class="club-image" />
-                  <br/>
                   <label class="radio-label">
                     {{ clb.club_name }}
                   </label>
@@ -39,6 +38,8 @@
           </div>
         </mat-radio-group>
       </ng-container>
+      
+      
       <div class="row">
         <div class="col-md-12">
           <div class="button-container text-center mt-1">
