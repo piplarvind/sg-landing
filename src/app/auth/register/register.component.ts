@@ -100,13 +100,16 @@ export class RegisterComponent implements OnInit {
             if (error?.error?.data[0]?.completed_steps === 1) {
               this.router.navigate(["/auth/onboarding/step1"]);
             } else if (error?.error?.data[0]?.completed_steps === 2) {
+              localStorage.setItem("sportId", error?.error?.data[0]?.sport);
               this.router.navigate(["/auth/onboarding/step2"]);
             } else if (error?.error?.data[0]?.completed_steps === 3) {
-              localStorage.setItem("sportId", error?.error?.data[0]?.sport);
+              localStorage.setItem("sportId", error?.error?.data[0]?.sport);              
+              localStorage.setItem("userType", error?.error?.data[0]?.types[0].abbr);
               this.router.navigate(["/auth/onboarding/step3"]);
             } else if (error?.error?.data[0]?.completed_steps === 4) {
+              localStorage.setItem("sportId", error?.error?.data[0]?.sport);
+              localStorage.setItem("clubId", error?.error?.data[0]?.club);
               localStorage.setItem("userType", error?.error?.data[0]?.types[0].abbr);
-              //this.router.navigate(["/auth/onboarding/step4"]);
               if(localStorage.getItem("userType") === 'ATH'){
                 this.router.navigate(["/auth/onboarding/step4"]);
               }else if(localStorage.getItem("userType") === 'REC'){
@@ -114,7 +117,7 @@ export class RegisterComponent implements OnInit {
               }else if(localStorage.getItem("userType") === 'PAR'){
                 this.router.navigate(["/auth/onboarding/select-athletes"]);
               }else if(localStorage.getItem("userType") === 'FFF'){
-                this.router.navigate(["/auth/onboarding/select-athlete-coach"]); // need to change this once page is ready
+                this.router.navigate(["/auth/onboarding/select-athlete-coach"]);
               }else{
                 this.router.navigate(["/auth/onboarding/score-screen"]);
               }
