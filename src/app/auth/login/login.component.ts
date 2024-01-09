@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { SharedService } from '@app/shared/shared.service';
-import { environment } from '@env/environment';
-import { AuthenticationService } from '@app/core';
-import { LoginService } from '@app/login/login.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import {
+  UntypedFormGroup,
+  UntypedFormBuilder,
+  Validators,
+} from "@angular/forms";
+import { SharedService } from "@app/shared/shared.service";
+import { environment } from "@env/environment";
+import { AuthenticationService } from "@app/core";
+import { LoginService } from "@app/login/login.service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  providers: [LoginService]
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
+  providers: [LoginService],
 })
 export class LoginComponent implements OnInit {
   version: string = environment.version;
@@ -32,7 +36,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.message = sessionStorage && sessionStorage.loginErrMessage ? JSON.parse(sessionStorage.loginErrMessage) : '';
+    this.authenticationService.logout().subscribe(() => {});
+    this.message =
+      sessionStorage && sessionStorage.loginErrMessage
+        ? JSON.parse(sessionStorage.loginErrMessage)
+        : "";
   }
 
   login() {
@@ -40,7 +48,7 @@ export class LoginComponent implements OnInit {
       (e: any) => {
         console.log(e);
       },
-      err => {
+      (err) => {
         console.log(err);
       }
     );
@@ -48,9 +56,9 @@ export class LoginComponent implements OnInit {
 
   private createForm() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      remember: true
+      username: ["", Validators.required],
+      password: ["", Validators.required],
+      remember: true,
     });
   }
 
@@ -69,8 +77,8 @@ export class LoginComponent implements OnInit {
       this.invalidUsername = true;
     }
   }
-  register(){
-    this.router.navigateByUrl('/auth/register');
+  register() {
+    this.router.navigateByUrl("/auth/register");
   }
   // forgorPassword() {
   //   this.router.navigateByUrl('/forgot');

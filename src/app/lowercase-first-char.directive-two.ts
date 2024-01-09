@@ -2,9 +2,9 @@
 import { Directive, HostListener, ElementRef } from "@angular/core";
 
 @Directive({
-  selector: "[appLowercaseFirstChar]",
+  selector: "[appLowercaseFirstCharTwo]",
 })
-export class LowercaseFirstCharDirective {
+export class LowercaseFirstCharDirectiveTwo {
   constructor(private el: ElementRef) {}
 
   @HostListener("input", ["$event.target.value"])

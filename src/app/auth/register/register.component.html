@@ -16,6 +16,8 @@
               placeholder="First name"
               required
               formControlName="first_name"
+              autocomplete="off"
+              class="large-font"
             />
             <mat-error
               *ngIf="
@@ -35,6 +37,7 @@
               placeholder="Last name"
               required
               formControlName="last_name"
+              autocomplete="off"
             />
             <mat-error
               *ngIf="
@@ -55,6 +58,7 @@
               required
               formControlName="user_name"
               appLowercaseFirstChar
+              autocomplete="off"
             />
             <mat-error
               *ngIf="
@@ -74,6 +78,7 @@
               placeholder="Mobile"
               required
               formControlName="mobile_phone"
+              autocomplete="off"
             />
             <mat-error
               *ngIf="
@@ -93,6 +98,7 @@
               required
               formControlName="email"
               appLowercaseFirstChar
+              autocomplete="off"
             />
             <mat-error
               *ngIf="
@@ -120,6 +126,7 @@
               placeholder="Password"
               required
               formControlName="password"
+              autocomplete="off"
             />
             <button
                 mat-icon-button
@@ -149,6 +156,7 @@
               placeholder="Confirm password"
               required
               formControlName="cPassword"
+              autocomplete="off"
             />
             <button
                 mat-icon-button

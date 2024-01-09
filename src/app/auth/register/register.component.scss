@@ -2,12 +2,21 @@
   background: #ec1c37;
   color: #fff;
 }
+
+::ng-deep input {
+  font-size: 20px !important; /* Adjust the font size as needed */
+}
+::ng-deep .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label {
+  font-size: 22px !important; /* Adjust the font size as needed */
+}
+
 ::ng-deep .mat-slide-toggle-content {
   white-space: break-spaces !important;
-  font-size: 12px !important;
+  font-size: 16px !important;
 }
 
 ::ng-deep .mat-slide-toggle-content a {
   color: #ec1c37 !important;
-  font-size: 14px !important;
+  font-size: 18px !important;
 }
+
