@@ -58,7 +58,9 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    localStorage.removeItem('stepperCurrentStepIndex');
+  }
 
   togglePasswordVisibility(controlName: string): void {
     if (controlName === "password") {

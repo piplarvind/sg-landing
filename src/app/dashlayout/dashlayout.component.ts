@@ -13,6 +13,7 @@ export class DashlayoutComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) { }
   ngAfterViewInit() {
+    localStorage.removeItem('stepperCurrentStepIndex');
     this.initializeScreenMode();
   }
 
