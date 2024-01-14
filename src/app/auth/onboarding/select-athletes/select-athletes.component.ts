@@ -1,12 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { SharedService } from "@app/shared/shared.service";
 import { DomSanitizer } from "@angular/platform-browser";
 
-//
-import { SubscriptionService } from "@app/pages/account/subscription/subscription.service";
-import { OnboardingProcessService } from "../onboarding.process.service";
 import { OnboardingService } from "./../onboarding.service";
 
 @Component({
@@ -14,7 +11,7 @@ import { OnboardingService } from "./../onboarding.service";
   templateUrl: "./select-athletes.component.html",
   styleUrls: ["./select-athletes.component.scss"],
 })
-export class SelectAthletesComponent {
+export class SelectAthletesComponent implements OnInit {
   athleteForm: FormGroup;
   searchText: string = "";
   selectedAthlete: string | null = null;
@@ -22,14 +19,12 @@ export class SelectAthletesComponent {
   nextButtonClicked = false;
 
   athleteList: any;
-  roles:any;
+  roles: any;
   constructor(
     private router: Router,
     private fb: FormBuilder,
     public _DomSanitizationService: DomSanitizer,
-    private onboardingProcessService: OnboardingProcessService,
     private onboardingService: OnboardingService,
-    private subscriptionService: SubscriptionService,
     public sharedService: SharedService
   ) {
     this.athleteForm = this.fb.group({
@@ -44,10 +39,8 @@ export class SelectAthletesComponent {
     this.onboardingService.getClubAthletes(clubPayload).subscribe(
       (response) => {
         this.athleteList = response.data;
-        console.log("athleteList", this.athleteList);
       },
       (error) => {
-        //console.error("Error saving club data:", error);
         this.sharedService.showMessage(error.error.message);
       }
     );
@@ -65,7 +58,7 @@ export class SelectAthletesComponent {
 
   get filteredAthleteList() {
     return this.athleteList.filter(
-      (athlete) =>
+      (athlete: any) =>
         athlete.profile_fields[0].value
           .toLowerCase()
           .includes(this.searchText.toLowerCase()) ||
@@ -127,7 +120,9 @@ export class SelectAthletesComponent {
       //   "auth/onboarding/do-payment/" + athFormData.plan,
       // ]);
     } else {
-      this.sharedService.showMessage("Please select & add at least one athlete");
+      this.sharedService.showMessage(
+        "Please select & add at least one athlete"
+      );
     }
   }
 }

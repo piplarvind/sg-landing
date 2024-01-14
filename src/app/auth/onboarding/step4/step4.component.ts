@@ -31,11 +31,11 @@ export class Step4Component {
     let gender = localStorage.getItem("genderId");
     this.onboardingService.getGenderAges(gender).subscribe(
       (response) => {
-        //console.log("ages data:", response);
         this.ages = response.data;
+        // Sort the ages array based on a property (assuming a property like 'name' is used for sorting)
+        this.ages.sort((a, b) => (a.name < b.name) ? 1 : -1);
       },
       (error) => {
-        //console.error("Error getting ages data:", error);
         this.sharedService.showMessage(error.error.message);
       }
     );

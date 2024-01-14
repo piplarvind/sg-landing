@@ -95,7 +95,7 @@ export class AuthenticationService {
             this.sharedService.loginDialog(res.message);
           }
 
-          return of(data);
+          //return of(data);
         }
         if (res.token) {
           loggedIn = true;
