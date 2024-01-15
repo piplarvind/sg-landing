@@ -108,7 +108,7 @@
               Previous
             </button>
             &nbsp;
-            <button mat-raised-button class="btn btn theme-btn" type="submit">
+            <button mat-raised-button [disabled]="athleteFormArray.value.length <= 0" class="btn btn theme-btn" type="submit">
               That's All
             </button>
           </div>
