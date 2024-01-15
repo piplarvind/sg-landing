@@ -39,6 +39,7 @@ export class StepperComponent implements AfterContentInit {
   ngAfterContentInit(): void {
     // Initialize stepIndex using saved state or default to 0
     const savedIndex = this.getSavedStepIndex();
+    // console.log('savedIndex', savedIndex);
     this.stepIndex$.next(savedIndex);
 
     // Combine observables to calculate stepIndex
@@ -57,14 +58,17 @@ export class StepperComponent implements AfterContentInit {
     );
 
     // Subscribe to calculatedStepIndex$ to update stepIndex$
-    calculatedStepIndex$.subscribe((index) => {
-      this.stepIndex$.next(index);
-      this.saveStepIndex(index); // Save the current step index to localStorage
-    });
+    calculatedStepIndex$.subscribe((index) => this.stepIndex$.next(index));
 
     // Complete the contentInit$
     this.contentInit$.next();
     this.contentInit$.complete();
+  }
+
+  // Update step index and save it in localStorage
+  updateStepIndex(index: number): void {
+    this.stepIndex$.next(index);
+    this.saveStepIndex(index);
   }
 
   // Get the saved step index from localStorage

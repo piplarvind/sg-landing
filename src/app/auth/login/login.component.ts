@@ -41,6 +41,8 @@ export class LoginComponent implements OnInit {
       sessionStorage && sessionStorage.loginErrMessage
         ? JSON.parse(sessionStorage.loginErrMessage)
         : "";
+
+    localStorage.removeItem("stepperCurrentStepIndex");
   }
 
   login() {
