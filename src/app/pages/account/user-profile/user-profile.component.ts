@@ -45,6 +45,7 @@ export class UserProfileComponent implements OnInit {
   last_name: string;
   profile_image: string;
   role: string;
+  roles: [];
   sport: string;
   club: string;
 
@@ -66,8 +67,10 @@ export class UserProfileComponent implements OnInit {
       .getProfile(userId)
       .then((e: any) => {
         const res = e.data;
+        //console.log('res', res);
         this.user = res;
-        this.role = res?.types[0]?.name;
+        //this.role = res?.types[0]?.name;
+        this.roles = res?.types;
         this.sport = res?.sport?.sport_name;
         this.club = res?.club?.club_name;
         this.transformData(this.user.profile_fields);
@@ -82,10 +85,10 @@ export class UserProfileComponent implements OnInit {
     this.profileData = profileFields
       .filter(
         (item) =>
-          !this.filteredNames.includes(item.field.name) &&
+          !this.filteredNames.includes(item.field?.name) &&
           item.value !== null && // Check for null values
           typeof item.value === "string" && // Check if the value is a string
-          item.value.trim() !== "" // Check if the trimmed value is not an empty string
+          item.value.trim() !== " " // Check if the trimmed value is not an empty string
       )
       .map((item) => {
         const { name, label } = item.field;

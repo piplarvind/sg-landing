@@ -1,5 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  Validators,
+  FormGroup,
+} from "@angular/forms";
 import { Router } from "@angular/router";
 import { SharedService } from "@app/shared/shared.service";
 import { DomSanitizer } from "@angular/platform-browser";
@@ -13,6 +19,7 @@ import { OnboardingService } from "./../onboarding.service";
 })
 export class SelectAthletesComponent implements OnInit {
   athleteForm: FormGroup;
+  athleteCoachForm: FormGroup;
   searchText: string = "";
   selectedAthlete: string | null = null;
 
@@ -33,8 +40,10 @@ export class SelectAthletesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initForm();
     let clubPayload = {
-      club: localStorage.getItem("clubId"),
+      club: "6501cfe8a783f64b951ea60c", //localStorage.getItem("clubId"),
+      type:'Athlete'
     };
     this.onboardingService.getClubAthletes(clubPayload).subscribe(
       (response) => {
@@ -46,12 +55,27 @@ export class SelectAthletesComponent implements OnInit {
     );
   }
 
+  initForm(): void {
+    this.athleteCoachForm = this.fb.group({
+      athlete: this.fb.array([], [Validators.required]), // Add validators as needed
+    });
+
+    // this.athleteCoachForm = this.fb.group({
+    //   athlete: this.fb.array([]),
+    // });
+  }
+
   atLeastOneAthleteValidator() {
     return (formArray: FormArray) => {
       return formArray.length > 0 ? null : { atLeastOneAthlete: true };
     };
   }
 
+  getAthleteControl(athleteId: string): AbstractControl {
+    return (this.athleteCoachForm.get("athlete") as FormArray).controls.find(
+      (control) => control.value === athleteId
+    );
+  }
   get athleteFormArray() {
     return this.athleteForm.get("athlete") as FormArray;
   }
@@ -95,14 +119,27 @@ export class SelectAthletesComponent implements OnInit {
       : "";
   }
 
+  onCheckboxChange(event: any, athleteId: string): void {
+    const athleteControl = this.getAthleteControl(athleteId);
+    if (event.checked && !athleteControl) {
+      const newControl = this.fb.control(athleteId);
+      (this.athleteCoachForm.get("athlete") as FormArray).push(newControl);
+    } else if (!event.checked && athleteControl) {
+      const index = (
+        this.athleteCoachForm.get("athlete") as FormArray
+      ).controls.indexOf(athleteControl);
+      (this.athleteCoachForm.get("athlete") as FormArray).removeAt(index);
+    }
+  }
+
   onSubmit() {
-    if (this.athleteForm.valid) {
-      const athFormData = this.athleteForm.value;
+    if (this.athleteCoachForm.valid) {
+      const athFormData = this.athleteCoachForm.value;
       let payloadData = {
         profile_id: localStorage.getItem("userId"),
         child: [athFormData.athlete],
       };
-      //console.log("payloadData", payloadData);
+      //console.log("payloadData", payloadData);      return;
       this.onboardingService.saveParentAthletes(payloadData).subscribe(
         (response) => {
           //console.log("Role data saved successfully:", response.data);
@@ -120,9 +157,7 @@ export class SelectAthletesComponent implements OnInit {
       //   "auth/onboarding/do-payment/" + athFormData.plan,
       // ]);
     } else {
-      this.sharedService.showMessage(
-        "Please select & add at least one athlete"
-      );
+      this.sharedService.showMessage("Please select at-least one athlete");
     }
   }
 }

@@ -1,13 +1,13 @@
 :host {
   display: block;
   --circle-size: clamp(1.5rem, 5vw, 3rem);
-  --spacing: clamp(0.25rem, 2vw, 0.5rem);
+  --spacing: clamp(0.05rem, 2vw, 0.1rem);
 }
 
 ol {
   display: flex;
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 20px;
+  padding-right: 20px;
   justify-content: center;
   gap: var(--spacing); /* Use gap for spacing between steps */
 }
