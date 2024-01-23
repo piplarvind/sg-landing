@@ -50,6 +50,8 @@
             <input
               matInput
               placeholder="Username"
+              minlength="3"
+              (keydown.space)="$event.preventDefault()"
               required
               formControlName="user_name"
             />
@@ -167,7 +169,7 @@
                 subscriptionForm.get('cPassword')?.hasError('passwordMismatch')
               "
             >
-              Passsword and Confirm Password didn't match.
+              Password and Confirm Password didn't match.
             </mat-error>
           </mat-form-field>
         </div>

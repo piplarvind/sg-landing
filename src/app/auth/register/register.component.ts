@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ThemePalette } from "@angular/material/core";
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -57,6 +58,8 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
+
+  
 
   ngOnInit() {
     localStorage.removeItem('stepperCurrentStepIndex');
@@ -160,6 +163,7 @@ export class RegisterComponent implements OnInit {
         this.registerForm.get("first_name")?.hasError("required") ||
         this.registerForm.get("last_name")?.hasError("required") ||
         this.registerForm.get("user_name")?.hasError("required") ||
+        this.registerForm.get("user_name")?.hasError("minlength") || 
         this.registerForm.get("email")?.hasError("required") ||
         this.registerForm.get("email")?.hasError("email") ||
         this.registerForm.get("password")?.hasError("required") ||
@@ -169,7 +173,7 @@ export class RegisterComponent implements OnInit {
         this.sharedService.showMessage("Please fill all required fields");
       } else {
         this.sharedService.showMessage(
-          "Please agree to the terms of usage & privacy policy"
+          "Please check error message and fill all required fields"
         );
       }
     }

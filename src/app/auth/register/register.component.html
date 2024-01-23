@@ -56,18 +56,19 @@
               matInput
               placeholder="Username"
               required
+              minlength="3"
+              (keydown.space)="$event.preventDefault()"
               formControlName="user_name"
               appLowercaseFirstChar
               autocomplete="off"
             />
-            <mat-error
-              *ngIf="
-                (registerForm.get('user_name')?.touched ||
-                  submitButtonClicked) &&
-                registerForm.get('user_name')?.hasError('required')
-              "
-            >
-              Username is required
+            <mat-error *ngIf="(registerForm.get('user_name')?.touched ||
+            submitButtonClicked) && registerForm.get('user_name').hasError('required')">
+              Username is required.
+            </mat-error>
+            <mat-error *ngIf="(registerForm.get('user_name')?.touched ||
+            submitButtonClicked) && registerForm.get('user_name').hasError('minlength')">
+              Username must be at least 3 characters long.
             </mat-error>
           </mat-form-field>
         </div>
@@ -183,7 +184,7 @@
                 registerForm?.get('cPassword')?.errors?.confirmPasswordValidator
               "
             >
-              Passsword and confirm dassword don't match
+              Password and confirm password don't match
             </mat-error>
           </mat-form-field>
         </div>

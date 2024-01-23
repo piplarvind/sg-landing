@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: "forgot-password",
     component: ForgotPasswordComponent,
-    data: { title: extract("Reset Passsword") },
+    data: { title: extract("Reset Password") },
   },
   {
     path: "reset-password/:token",
