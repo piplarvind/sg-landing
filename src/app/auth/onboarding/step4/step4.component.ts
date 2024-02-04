@@ -29,11 +29,10 @@ export class Step4Component {
 
   getSportClubs() {
     let gender = localStorage.getItem("genderId");
-    this.onboardingService.getGenderAges(gender).subscribe(
+    let club = localStorage.getItem("clubId");
+    this.onboardingService.getClubGenderAges(club, gender).subscribe(
       (response) => {
         this.ages = response.data;
-        // Sort the ages array based on a property (assuming a property like 'name' is used for sorting)
-        this.ages.sort((a, b) => (a.name < b.name) ? 1 : -1);
       },
       (error) => {
         this.sharedService.showMessage(error.error.message);

@@ -48,7 +48,7 @@ export class Step2Component implements OnInit {
     this.onboardingService.getRoles().subscribe(
       (response) => {
         this.roles = response.data;
-        console.log("roles data:", response);
+        //console.log("roles data:", response);
       },
       (error) => {
         //console.error("Error getting roles data:", error);
@@ -61,7 +61,7 @@ export class Step2Component implements OnInit {
     this.onboardingService.getGenders().subscribe(
       (response) => {
         this.genders = response.data;
-        console.log("gender data:", response.data);
+        //console.log("gender data:", response.data);
       },
       (error) => {
         //console.error("Error getting gender data:", error);
@@ -84,13 +84,19 @@ export class Step2Component implements OnInit {
     // Perform form validation
     if (this.onboardingProcessService.step2Form.valid) {
       const roleFormData = this.onboardingProcessService.step2Form.value;
+      //console.log('roleFormData', roleFormData);return;
       // set gender to local storage
       localStorage.setItem("genderId", roleFormData.gender);
       localStorage.setItem("selectedRoleValue", roleFormData.role);
       let roleData = {
         profile_id: localStorage.getItem("userId"),
         roles: [roleFormData.role],
+        profile_fields_data:[{
+          field:"gender",
+          value:roleFormData.gender
+        }]
       };
+      //console.log('roleData',roleData);return;
       this.onboardingService.saveRoleData(roleData).subscribe(
         (response) => {
           //console.log("Role data saved successfully:", response.data);

@@ -12,6 +12,7 @@ import { AuthenticationService } from "@app/core";
   styleUrls: ["./forgot-password.component.scss"],
 })
 export class ForgotPasswordComponent implements OnInit {
+  submitButtonClicked = false;
   fpForm: UntypedFormGroup;
   error: string;
   isLoading = false;
@@ -38,6 +39,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     //  this.req=false;
     this.activeRouteSubscriber = this.activateRoute.queryParams.subscribe(
       (param) => {
@@ -67,6 +69,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   submitForgotPassword() {
+    this.submitButtonClicked = true;
     this.authenticationService
       .forgotPassword(this.fpForm.value)
       .then((res: any) => {

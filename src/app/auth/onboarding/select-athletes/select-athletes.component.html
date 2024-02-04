@@ -16,7 +16,6 @@
         <div class="search-container">
           <mat-form-field appearance="outline">
             <mat-icon matPrefix>search</mat-icon>
-            <!-- <mat-label>Search By Name</mat-label> -->
             <input
               matInput
               [(ngModel)]="searchText"
@@ -26,9 +25,13 @@
         </div>
       </div>
     </div>
-    
+
     <div>&nbsp;</div>
-    <form id="accountForm" [formGroup]="athleteCoachForm" (ngSubmit)="onSubmit()">
+    <form
+      id="accountForm"
+      [formGroup]="athleteCoachForm"
+      (ngSubmit)="onSubmit()"
+    >
       <ng-container>
         <div
           name="athlete"
@@ -53,16 +56,15 @@
                     class="checkbox-button"
                     (change)="onCheckboxChange($event, ath._id)"
                   ></mat-checkbox>
-                  {{ ath?.profile_fields[0]?.value }}
-                  {{ ath?.profile_fields[1]?.value }}
+                  {{ ath?.first_name }}
+                  {{ ath?.last_name }}
                 </label>
               </div>
             </div>
           </div>
         </div>
       </ng-container>
-      
-    
+
       <div class="row">
         <div class="col-md-12">
           <div class="button-container text-center mt-1">

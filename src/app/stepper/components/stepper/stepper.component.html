@@ -1,5 +1,5 @@
 <ng-container *ngIf="data$ | async as data">
-  <ol>
+  <ol class="stepper">
     <ng-container *ngFor="let label of data.labels; let i = index; let last = last">
       <li [class.done]="i < data.stepIndex" [class.active]="i === data.stepIndex">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">

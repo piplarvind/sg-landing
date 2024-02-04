@@ -53,7 +53,7 @@ export class OTPComponent implements OnInit {
           this.sharedService.showMessage(response.message);
           // Navigate to the next step
           if (response?.status === "Success") {
-            this.router.navigate(["/success-screen"]);
+            this.router.navigate(["/auth/onboarding/success-screen"]);
           }
         },
         (error) => {

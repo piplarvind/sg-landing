@@ -1,30 +1,24 @@
 <section class="section-padding" style="margin-top: 10px">
-  <div class="container">
+  <div class="container">    
     <div class="row">
-      <div class="col-md-12">
-        <div class="text-center">
-          <h5>Score!</h5>
-          <p>Well done! You have completed the initial Onboarding steps</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <img src="./assets/images/47950-sportbank-basketball.png" alt="" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="button-container text-center mt-3">
-          <button
-            mat-raised-button
-            type="button"
-            (click)="goToLogin()"
-            class="btn btn theme-btn"
-          >
-            Let's Go!
-          </button>
-        </div>
+      <div class="col-md-12 no-pad">
+        <h5 class="text-center">You're Almost There</h5>
+        <ol>
+          <li>
+            An email has been sent to you with a summary of information you marked while onboarding including your username and password for reference.
+          </li>
+          <li>
+            Download the SportGrit App from the links below.
+          </li>
+          <li>
+            LOGIN to the app using your new username and password.
+          </li>          
+        </ol>
+        <h5 class="text-center">Get the App and Log In!</h5>        
+        <ul class="text-center app-icon">
+          <li><a [href]="iosApp"><img src="https://sportgrit.com/assets/images/app-store.jpeg" alt="ios" /></a></li>               
+          <li><a [href]="androidApp"><img src="https://sportgrit.com/assets/images/play-store.jpeg" alt="android" /></a></li>
+        </ul>
       </div>
     </div>
   </div>

@@ -52,7 +52,7 @@ export class SelectSubscriptionComponent {
           const resData = res.data;
           this.sharedService.showMessage(res?.message);
           //this.router.navigate(["login"]);
-          this.router.navigate(["score-screen"]);
+          this.router.navigate(["auth/onboarding/score-screen"]);
         })
         .catch((error) => {
           //console.log(error);

@@ -93,28 +93,38 @@ export class RegisterComponent implements OnInit {
         },
         (error) => {
           if (error.status === 409) {
-            if (error?.error?.data[0]?.is_onboarding_done) {
+            console.log('error', error);
+            if (error?.error?.data?.is_onboarding_done) {
               this.sharedService.showMessage(
                 "You have already registered, please login"
               );
               this.router.navigate(["/login"]);
               return;
             }
-            localStorage.setItem("userId", error?.error?.data[0]?._id);
+            localStorage.setItem("userId", error?.error?.data?._id);
+
+            //This code will be used on step 4
+            for (let i = 0; i < error?.error?.data?.profile_fields.length; i++) {
+              if (error?.error?.data?.profile_fields[i].field) {
+                if (error?.error?.data?.profile_fields[i].field.name === "gender") {
+                  localStorage.setItem("genderId", error?.error?.data?.profile_fields[i].value);
+                }                
+              }
+            }
             
-            if (error?.error?.data[0]?.completed_steps === 1) {
+            if (error?.error?.data?.completed_steps === 1) {
               this.router.navigate(["/auth/onboarding/step1"]);
-            } else if (error?.error?.data[0]?.completed_steps === 2) {
-              localStorage.setItem("sportId", error?.error?.data[0]?.sport);
+            } else if (error?.error?.data?.completed_steps === 2) {
+              localStorage.setItem("sportId", error?.error?.data?.sport);
               this.router.navigate(["/auth/onboarding/step2"]);
-            } else if (error?.error?.data[0]?.completed_steps === 3) {
-              localStorage.setItem("sportId", error?.error?.data[0]?.sport);              
-              localStorage.setItem("userType", error?.error?.data[0]?.types[0].abbr);
+            } else if (error?.error?.data?.completed_steps === 3) {
+              localStorage.setItem("sportId", error?.error?.data?.sport);              
+              localStorage.setItem("userType", error?.error?.data?.types[0].abbr);
               this.router.navigate(["/auth/onboarding/step3"]);
-            } else if (error?.error?.data[0]?.completed_steps === 4) {
-              localStorage.setItem("sportId", error?.error?.data[0]?.sport);
-              localStorage.setItem("clubId", error?.error?.data[0]?.club);
-              localStorage.setItem("userType", error?.error?.data[0]?.types[0].abbr);
+            } else if (error?.error?.data?.completed_steps === 4) {
+              localStorage.setItem("sportId", error?.error?.data?.sport);
+              localStorage.setItem("clubId", error?.error?.data?.club);
+              localStorage.setItem("userType", error?.error?.data?.types[0].abbr);
               if(localStorage.getItem("userType") === 'ATH'){
                 this.router.navigate(["/auth/onboarding/step4"]);
               }else if(localStorage.getItem("userType") === 'REC'){
@@ -128,9 +138,9 @@ export class RegisterComponent implements OnInit {
               }
             } else {
               //console.error("User already exist:", error);
-              //console.log('error?.error?.data[0]?.types.abbr', error?.error?.data[0]?.types[0].abbr);
-              if (error?.error?.data[0]?.types[0].abbr === "REC") {
-                if (error?.error?.data[0]?.is_mobile_verified === false) {
+              //console.log('error?.error?.data?.types.abbr', error?.error?.data?.types[0].abbr);
+              if (error?.error?.data?.types[0].abbr === "REC") {
+                if (error?.error?.data?.is_mobile_verified === false) {
                   this.router.navigate(["/auth/onboarding/university-detail"]);
                 }
               } else {

@@ -48,7 +48,7 @@ export class StepLabelDirective {
       idx = 2;
     } else if (currentRoute == 'step4' || currentRoute == 'university-detail' || currentRoute == 'select-athletes' || currentRoute == 'club-not-here' || currentRoute == 'select-athlete-coach') {
       idx = 3;
-    } else if (currentRoute == 'step5' || currentRoute == 'select-subscription' || currentRoute == 'otp' || currentRoute == 'request-sent' || currentRoute == 'success-screen' || currentRoute == 'select-subscription') {
+    } else if (currentRoute == 'step5' || currentRoute == 'select-subscription' || currentRoute == 'otp' || currentRoute == 'request-sent' || currentRoute == 'success-screen' || currentRoute == 'score-screen' || currentRoute == 'select-subscription') {
       idx = 4;
     }
     localStorage.setItem('stepperCurrentStepIndex', idx.toString());

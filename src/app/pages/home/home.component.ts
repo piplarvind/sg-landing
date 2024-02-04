@@ -12,7 +12,7 @@ import { VimeoService } from "./vimeo.service";
 import { OwlOptions } from "ngx-owl-carousel-o";
 import { HomeService } from "./home.service";
 import { environment } from "../../../environments/environment";
-import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { Title, Meta, DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { FetchThumbnailURLService } from "./fetchThumbnailURL.service";
 
 @Component({
@@ -113,7 +113,8 @@ export class HomeComponent implements OnInit {
   } | null = null;
 
   constructor(
-    
+    private titleService: Title, 
+    private metaService: Meta,
     public _DomSanitizationService: DomSanitizer,
     private homeService: HomeService,
     private vimeoService: VimeoService,
@@ -121,6 +122,8 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.titleService.setTitle('SportGrit App - Home');
+  this.metaService.addTag({ name: 'description', content: 'SportGrit, Sport Grit, SportGrit App, Sport Grit App, sportgrit app, sport grit app, sport' });
     this.userId = localStorage.getItem('user_id');
     this.fetchLanding();
     this.fetchSportsData();

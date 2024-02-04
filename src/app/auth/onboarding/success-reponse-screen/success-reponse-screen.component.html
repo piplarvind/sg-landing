@@ -14,40 +14,25 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12 text-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="150"
-          height="150"
-          viewBox="0 0 230 230"
-          fill="none"
-        >
-          <circle opacity="0.1" cx="115" cy="115" r="115" fill="#2380E7" />
-          <circle opacity="0.2" cx="115" cy="115" r="96.0309" fill="#2380E7" />
-          <circle opacity="0.2" cx="115" cy="115" r="77.0619" fill="#2380E7" />
-          <circle cx="115" cy="115" r="55.7216" fill="#2380E7" />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M142.839 95.4767C144.455 97.1018 144.448 99.7291 142.823 101.345L108.244 135.726C106.625 137.336 104.011 137.336 102.392 135.726L87.1774 120.599C85.5523 118.983 85.5447 116.355 87.1606 114.73C88.7764 113.105 91.4037 113.098 93.0288 114.713L105.318 126.932L136.971 95.4599C138.596 93.8441 141.224 93.8516 142.839 95.4767Z"
-            fill="white"
-          />
-        </svg>
+      <div class="col-md-12 no-pad">
+        <h5 class="text-center">You're Almost There</h5>
+        <ol>
+          <li>
+            An email has been sent to you with a summary of information you marked while onboarding including your username and password for reference.
+          </li>
+          <li>
+            Download the SportGrit App from the links below.
+          </li>
+          <li>
+            LOGIN to the app using your new username and password.
+          </li>          
+        </ol>
+        <h5 class="text-center">Get the App and Log In!</h5>        
+        <ul class="text-center app-icon">
+          <li><a [href]="iosApp"><img src="https://sportgrit.com/assets/images/app-store.jpeg" alt="ios" /></a></li>               
+          <li><a [href]="androidApp"><img src="https://sportgrit.com/assets/images/play-store.jpeg" alt="android" /></a></li>
+        </ul>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="button-container text-center mt-3">
-          <button
-            mat-raised-button
-            type="button"
-            (click)="goToLogin()"
-            class="btn btn theme-btn"
-          >
-            Go Back To Login
-          </button>
-        </div>
-      </div>
-    </div>
+    </div>    
   </div>
 </section>

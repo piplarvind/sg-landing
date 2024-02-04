@@ -42,12 +42,65 @@ export class SelectAthletesComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     let clubPayload = {
-      club: "6501cfe8a783f64b951ea60c", //localStorage.getItem("clubId"),
+      club: localStorage.getItem("clubId"),
       type:'Athlete'
     };
     this.onboardingService.getClubAthletes(clubPayload).subscribe(
       (response) => {
-        this.athleteList = response.data;
+        //this.athleteList = response.data;
+
+        const newres = response.data.map((prop) => {
+          let fname = "",
+            lname = "",
+            user_name = "",
+            email = "",
+            phone_code = "",
+            moblino: "",
+            types: any = [];
+
+          for (let i = 0; i < prop?.profile_fields.length; i++) {
+            if (prop.profile_fields[i].field) {
+              if (prop.profile_fields[i].field.name === "first_name") {
+                fname = prop.profile_fields[i].value;
+              }
+              if (prop.profile_fields[i].field.name === "last_name") {
+                lname = prop.profile_fields[i].value;
+              }
+
+              if (prop.profile_fields[i].field.name === "user_name") {
+                user_name = prop.profile_fields[i].value;
+              }
+              if (prop.profile_fields[i].field.name === "email") {
+                email = prop.profile_fields[i].value;
+              }
+              if (prop.profile_fields[i].field.name === "phone_code") {
+                phone_code = prop.profile_fields[i].value;
+              }
+              if (prop.profile_fields[i].field.name === "mobile_phone") {
+                moblino = prop.profile_fields[i].value;
+              }
+            }
+          }
+
+          for (let i = 0; i < prop.types.length; i++) {
+            const ty = prop.types[i].name;
+            types = types.concat(ty);
+          }
+
+          return {
+            ...prop,
+            first_name: fname,
+            last_name: lname,
+            type: types,
+            user_name: user_name,
+            phone_code: phone_code,
+            phone: moblino,
+            email: email,
+            created_on: prop.created_on,
+          };
+        });
+
+        this.athleteList = newres;
       },
       (error) => {
         this.sharedService.showMessage(error.error.message);
@@ -76,21 +129,11 @@ export class SelectAthletesComponent implements OnInit {
       (control) => control.value === athleteId
     );
   }
-  get athleteFormArray() {
-    return this.athleteForm.get("athlete") as FormArray;
-  }
 
-  get filteredAthleteList() {
-    return this.athleteList.filter(
-      (athlete: any) =>
-        athlete.profile_fields[0].value
-          .toLowerCase()
-          .includes(this.searchText.toLowerCase()) ||
-        athlete.profile_fields[1].value
-          .toLowerCase()
-          .includes(this.searchText.toLowerCase())
-    );
-  }
+ 
+
+  
+  
 
   onRadioChange(athleteId: string) {
     this.selectedAthlete = athleteId;
@@ -115,7 +158,7 @@ export class SelectAthletesComponent implements OnInit {
   getAthleteNameById(athleteId: string): string {
     const athlete = this.athleteList.find((a) => a._id === athleteId);
     return athlete
-      ? `${athlete.profile_fields[0].value} ${athlete.profile_fields[1].value}`
+      ? `${athlete.first_name} ${athlete.last_name}`
       : "";
   }
 
@@ -159,5 +202,21 @@ export class SelectAthletesComponent implements OnInit {
     } else {
       this.sharedService.showMessage("Please select at-least one athlete");
     }
+  }
+
+  get filteredAthleteList() {
+    return this.athleteList.filter(
+      (athlete: any) =>
+        athlete.first_name
+          .toLowerCase()
+          .includes(this.searchText.toLowerCase().trim()) ||
+        athlete.last_name
+          .toLowerCase()
+          .includes(this.searchText.toLowerCase().trim())
+    );
+  }
+  
+  get athleteFormArray() {
+    return this.athleteForm.get("athlete") as FormArray;
   }
 }

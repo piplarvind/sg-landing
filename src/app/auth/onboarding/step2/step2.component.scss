@@ -59,7 +59,7 @@
 }
 
 .role-container {
-  width: 200px;
+  width: auto;
   background-color: #f0f0f0; /* Light gray background color */
   padding: 10px;
   margin: 5px;
@@ -153,7 +153,10 @@
   border-color: #fff !important;
 }
 .team-type{
-  padding-top: 20px;
+  padding: 20px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
 }
 
 ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
@@ -161,6 +164,7 @@
 }
 .role-gender{
   text-align: center;
+
 }
 
 @media screen and (max-width: 768px) {
@@ -173,4 +177,14 @@
   .sport-container {
     margin: 10px; /* Adjust the margin as needed */
   }
+}
+
+.role-gender {
+  display: inline-block;
+  flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+}
+
+.role-container {
+  flex: 1; /* Distribute available space equally among items */
+  margin: 5px; /* Add margin between items for better spacing */
 }

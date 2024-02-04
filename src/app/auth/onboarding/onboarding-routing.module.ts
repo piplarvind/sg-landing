@@ -100,7 +100,7 @@ const routes: Routes = [
   {
     path: "success-screen",
     component: SuccessReponseScreenComponent,
-    data: { title: extract("Onboaring Done") },
+    data: { title: extract("Onboarding Done") },
   },
   // { path: 'account/onboarding', redirectTo: 'auth/onboarding/step1', pathMatch: 'full' },
 ];

@@ -1,39 +1,58 @@
 .theme-btn {
-    background: #ec1c37;
-    color: #fff;
+  background: #ec1c37;
+  color: #fff;
+}
+
+.no-pad {
+  padding: 0 !important;
+}
+
+.app-icon img {
+  height: 45px;
+}
+
+/* Container Styles */
+.row {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Styles */
+h1 {
+  color: #333;
+}
+
+/* List Styles */
+ol {
+  padding: 0 0 10px 20px;
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+ol li {
+  margin: 10px 0;
+}
+
+/* App Links Styles */
+ul {
+  padding: 0;
+}
+
+ul li {
+  display: inline-block;
+  margin: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+::ng-deep .stepper{
+  display: none !important;
+}
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+  .col-md-12 {
+    text-align: left;
   }
-  
-// .form-group {
-//   & + & {
-//     margin-top: 1rem;
-//   }
-// }
-
-// label {
-//   display: block;
-// }
-
-// input,
-// textarea {
-//   padding: 0.5rem;
-//   border-radius: 0.25rem;
-//   border: 1px solid #ccc;
-//   font-size: 1rem;
-//   width: 100%;
-//   box-sizing: border-box;
-// }
-
-// .navigation {
-//   margin-top: 1rem;
-//   text-align: end;
-// }
-
-// button {
-//   background-color: #007bff;
-//   color: #fff;
-//   padding: 0.5rem 1rem;
-//   border: none;
-//   border-radius: 0.25rem;
-//   font-size: 1rem;
-//   cursor: pointer;
-// }
+}

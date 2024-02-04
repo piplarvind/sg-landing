@@ -1,12 +1,12 @@
 <div class="m-container">
   <div class="row">
     <div class="banner-text text-center">
-      <h4>Install our mobile application for more functionality</h4>
+      <h5>Install our mobile application for more functionality</h5>
       <ul class="home-ul">
         <li>
           <a [href]="ios_app_url" target="_blank"
             ><img
-              src="./assets/images/appstore.png"
+              src="./assets/images/app-store.jpeg"
               class="wow fadeInUp"
               data-wow-delay="0.4s"
               alt=""
@@ -15,7 +15,7 @@
         <li>
           <a [href]="android_app_url" target="_blank"
             ><img
-              src="./assets/images/playstore.png"
+              src="./assets/images/play-store.jpeg"
               class="wow fadeInUp"
               data-wow-delay="0.7s"
               alt=""
@@ -24,7 +24,60 @@
       </ul>
     </div>
   </div>
+
   <div class="card-container main-static" fxLayout="column" fxLayout.xs="row">
+
+    <!-- Parents Card -->
+    <mat-card class="card-item" *ngIf="user_role === 'ATH'" fxFlex="100" fxFlex.xs="100">
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div fxLayout="column" fxLayoutAlign="start start">
+            <div class="user-count">{{ parentCount }}</div>
+            <div class="card-label">Parents</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  
+    <!-- Athletes Card -->
+    <mat-card class="card-item" *ngIf="user_role === 'PAR'" fxFlex="100" fxFlex.xs="100">
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div fxLayout="column" fxLayoutAlign="start start">
+            <div class="user-count">{{ athleteCount }}</div>
+            <div class="card-label">Athletes</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  
+    <!-- Friends Family Fans Card -->
+    <mat-card class="card-item" *ngIf="user_role === 'FFF'" fxFlex="100" fxFlex.xs="100">
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div fxLayout="column" fxLayoutAlign="start start">
+            <div class="user-count">{{ fffCount }}</div>
+            <div class="card-label">Friends Family Fans</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  
+    <!-- Payments Card (for ATH and FFF) -->
+    <mat-card class="card-item" *ngIf="user_role === 'ATH' || user_role === 'FFF'" fxFlex="100" fxFlex.xs="100">
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div fxLayout="column" fxLayoutAlign="start start">
+            <div class="user-count">{{ successfullPayment }}</div>
+            <div class="card-label">Payments</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  
+  <!-- <div class="card-container main-static" fxLayout="column" fxLayout.xs="row">
     <mat-card
       class="card-item"
       *ngIf="user_role === 'ATH'"
@@ -88,7 +141,7 @@
         </div>
       </mat-card-content>
     </mat-card>
-  </div>
+  </div> -->
 
   <div fxLayout.xs="column" fxLayout.gt-xs="row" fxLayoutAlign="start stretch" fxLayoutGap="16px">
     <mat-card fxFlex="100%" class="new-mat-card" *ngIf="user_role === 'PAR'">

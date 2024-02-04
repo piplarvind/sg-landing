@@ -16,6 +16,7 @@ export class OnboardingService {
   private getSportClubsUrl = "clubs/api-sport-clubs";
   private saveClubUrl = "onboard/save-club";
   private getGenderAgesUrl = "lookup/age";
+  private getClubGenderAgesUrl = "age-categories/get-club-gender-ages";
   private saveAgeUrl = "onboard/save-age";
   private saveClubNotHereUrl = "leads";
   private saveUniversityUrl = "onboard/enter-university-detail";
@@ -65,6 +66,10 @@ export class OnboardingService {
 
   getGenderAges(gender: string): Observable<any> {
     return this.http.get(`${this.getGenderAgesUrl}?filter=${gender}`);
+  }
+
+  getClubGenderAges(club:any, gender: any): Observable<any> {
+    return this.http.post(`${this.getClubGenderAgesUrl}`, {club, gender});
   }
 
   saveAgeData(ageData: any): Observable<any> {

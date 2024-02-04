@@ -7,7 +7,7 @@ import { HomeComponent } from "@app/pages/home/home.component";
 
 const routes: Routes = [
   // { path: "", redirectTo: "/home", pathMatch: "full" },
-  { path: "home", component: HomeComponent, data: { title: extract("Home") } },
+  { path: "home", component: HomeComponent, data: { title: extract("SportGrit App - Home") } },
   { path: "", redirectTo: "/home", pathMatch: "full" },
   // { path: "", component: HomeComponent, data: { title: extract("Home") } },
 ];

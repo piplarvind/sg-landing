@@ -3,11 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="text-center">
-          <h5>Select Your Role</h5>
-          <p>
-            Are you the Athlete signing up? Or are you a parent, coach,
-            recruiter, etc.?
-          </p>
+          <h5>Select Your Role</h5>          
         </div>
       </div>
     </div>
@@ -49,17 +45,16 @@
       </div>
       <ng-container *ngIf="selectedrole === 'ATH'">
         <mat-radio-group name="gender" formControlName="gender">
-          <div class="row team-type">
+          <div class="team-type">
             <div class="col-md-12">
               <div class="text-center">
-                <h5>Please Select Team Type</h5>                
-              </div>              
+                <h5>Select Team Type</h5>
+              </div>
             </div>
             <div
-              class="col-md-6 role-gender"
+              class="role-gender"
               *ngFor="let genderItem of genders; let i = index"
             >
-            
               <div class="role-container">
                 <label class="radio-label">
                   <mat-radio-button
@@ -73,6 +68,7 @@
           </div>
         </mat-radio-group>
       </ng-container>
+      
       <div class="row">
         <div class="col-md-12">
           <div class="button-container text-center mt-1">

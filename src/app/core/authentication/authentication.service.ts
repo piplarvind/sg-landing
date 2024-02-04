@@ -62,7 +62,7 @@ export class AuthenticationService {
     };
     this.http.post(url, cred).subscribe(
       (res: any) => {
-        //console.log('res', res);
+        console.log('res', res);
         if(res?.data?.is_onboarding_done === false){
 
           localStorage.setItem("userId", res?.data?._id);
@@ -95,7 +95,7 @@ export class AuthenticationService {
             this.sharedService.loginDialog(res.message);
           }
 
-          //return of(data);
+          return of(data);
         }
         if (res.token) {
           loggedIn = true;
@@ -136,7 +136,7 @@ export class AuthenticationService {
 
         localStorage.userDetails = JSON.stringify(res.data);
         window.location.href = "/account";
-
+        //return of(data);
         return res;
       },
       (error) => this.sharedService.loginDialog(error?.error?.message)

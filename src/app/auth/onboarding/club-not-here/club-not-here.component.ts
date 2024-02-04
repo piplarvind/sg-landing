@@ -122,7 +122,7 @@ export class ClubNotHereComponent implements OnInit {
           localStorage.setItem("userId", response?.data?._id);
           // Navigate to the next step
           if (response?.status === "Success") {
-            this.router.navigate(["/score-screen"]);
+            this.router.navigate(["/auth/onboarding/score-screen"]);
           }
         },
         (error) => {

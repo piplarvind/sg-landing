@@ -91,7 +91,7 @@ h6 {
 }
 
 .navbar .navbar-toggler span {
-  color: #fff;
+  color: #fff !important;
 }
 
 .navbar-style2 .active:after,
@@ -101,7 +101,7 @@ h6 {
 
 .nav-scroll {
   /* background: #fff; */
-  background-color: #16191c;
+  // background-color: #323232;
   /* -webkit-box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.0509803922);
     box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.0509803922); */
   -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -602,7 +602,7 @@ input {
   top: 48px;
   left: calc(50% - 143.5px);
   font-size: 36px;
-  color: #16191c;
+  color: #323232;
 }
 
 .group-inner {
@@ -696,7 +696,7 @@ input {
     top: 38px !important;
     left: calc(50% - 143.5px);
     font-size: 36px;
-    color: #16191c;
+    color: #323232;
   }
 
   .group-inner {
@@ -773,7 +773,7 @@ input {
     left: calc(49% - 50px) !important;
     /* left: calc(44% - 45px) !important; */
     font-size: var(--font-size-base) !important;
-    color: #16191c;
+    color: #323232;
   }
 
   .video {
@@ -783,7 +783,7 @@ input {
       // left: calc(49% - 50px) !important;
       left: calc(44% - 50px) !important;
       font-size: var(--font-size-base) !important;
-      color: #16191c;
+      color: #323232;
     }
 
     .group-inner {
@@ -973,7 +973,7 @@ input {
     top: 15px !important;
     left: calc(50% - 68.5px) !important;
     font-size: 16px;
-    color: #16191c;
+    color: #323232;
     /* text-align: unset; */
     vertical-align: middle;
   }
@@ -1052,4 +1052,12 @@ input {
   .signin_btn {
     margin-left: 0 !important;
   }
+}
+.navbar-toggler {
+  padding: .25rem .75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: #00000061;
+  border: 1px solid #00000061;
+  border-radius: .25rem;
 }
