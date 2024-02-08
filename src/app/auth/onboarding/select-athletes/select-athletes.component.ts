@@ -131,10 +131,6 @@ export class SelectAthletesComponent implements OnInit {
   }
 
  
-
-  
-  
-
   onRadioChange(athleteId: string) {
     this.selectedAthlete = athleteId;
   }
@@ -186,7 +182,7 @@ export class SelectAthletesComponent implements OnInit {
       this.onboardingService.saveParentAthletes(payloadData).subscribe(
         (response) => {
           //console.log("Role data saved successfully:", response.data);
-          this.sharedService.showMessage(response.message);
+          //this.sharedService.showMessage(response.message);
           // Navigate to the next step
           this.router.navigate(["/auth/onboarding/request-sent"]);
         },
@@ -200,7 +196,7 @@ export class SelectAthletesComponent implements OnInit {
       //   "auth/onboarding/do-payment/" + athFormData.plan,
       // ]);
     } else {
-      this.sharedService.showMessage("Please select at-least one athlete");
+      //this.sharedService.showMessage("Please select at-least one athlete");
     }
   }
 

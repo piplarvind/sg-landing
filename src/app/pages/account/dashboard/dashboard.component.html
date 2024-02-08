@@ -1,5 +1,5 @@
 <div class="m-container">
-  <div class="row">
+  <!-- <div class="row">
     <div class="banner-text text-center">
       <h5>Install our mobile application for more functionality</h5>
       <ul class="home-ul">
@@ -23,17 +23,16 @@
         </li>
       </ul>
     </div>
-  </div>
+  </div> -->
 
   <div class="card-container main-static" fxLayout="column" fxLayout.xs="row">
-
     <!-- Parents Card -->
     <mat-card class="card-item" *ngIf="user_role === 'ATH'" fxFlex="100" fxFlex.xs="100">
       <mat-card-content>
         <div fxLayout="row" fxLayoutAlign="space-between">
           <div fxLayout="column" fxLayoutAlign="start start">
             <div class="user-count">{{ parentCount }}</div>
-            <div class="card-label">Parents</div>
+            <div class="card-label">Parent</div>
           </div>
         </div>
       </mat-card-content>
@@ -45,7 +44,7 @@
         <div fxLayout="row" fxLayoutAlign="space-between">
           <div fxLayout="column" fxLayoutAlign="start start">
             <div class="user-count">{{ athleteCount }}</div>
-            <div class="card-label">Athletes</div>
+            <div class="card-label">Athlete</div>
           </div>
         </div>
       </mat-card-content>
@@ -150,7 +149,7 @@
         fxLayoutGap="8px"
         fxLayoutAlign="start center"
       >
-        <span style="flex: 1">My Athletes</span>
+        <span style="flex: 1">My Athlete</span>
 
         <div class="m-title" fxLayout="row" fxLayoutAlign="end">
           <div class="head-right-div">
@@ -201,7 +200,7 @@
         fxLayoutGap="8px"
         fxLayoutAlign="start center"
       >
-        <span style="flex: 1">My Parents</span>
+        <span style="flex: 1">My Parent</span>
 
         <div class="m-title" fxLayout="row" fxLayoutAlign="end">
           <div class="head-right-div">

@@ -20,6 +20,8 @@ import { RequestSentComponent } from "./request-sent/request-sent.component";
 import { SelectAthleteCoachComponent } from "./select-athlete-coach/select-athlete-coach.component";
 import { ScoreScreenComponent } from "./score-screen/score-screen.component";
 import { PaymentSuccessComponent } from "./payment-success/payment-success.component";
+import { SuccessCoachScreenComponent } from "./success-coach-screen/success-coach-screen.component";
+import { ClubNotSuccessScreenComponent } from "./club-not-success-screen/club-not-success-screen.component";
 
 const routes: Routes = [
   {
@@ -102,6 +104,17 @@ const routes: Routes = [
     component: SuccessReponseScreenComponent,
     data: { title: extract("Onboarding Done") },
   },
+  {
+    path: "success-coach",
+    component: SuccessCoachScreenComponent,
+    data: { title: extract("Onboarding Done") },
+  },
+  {
+    path: "club-not-success",
+    component: ClubNotSuccessScreenComponent,
+    data: { title: extract("Thanks For The Club Info") },
+  },
+  
   // { path: 'account/onboarding', redirectTo: 'auth/onboarding/step1', pathMatch: 'full' },
 ];
 

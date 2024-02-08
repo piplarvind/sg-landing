@@ -2,11 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-request-sent",
-  templateUrl: "./request-sent.component.html",
-  styleUrls: ["./request-sent.component.scss"],
+  selector: "app-club-not-success-screen",
+  templateUrl: "./club-not-success-screen.component.html",
+  styleUrls: ["./club-not-success-screen.component.scss"],
 })
-export class RequestSentComponent implements OnInit {
+export class ClubNotSuccessScreenComponent implements OnInit {
+  androidApp: any = "";
+  iosApp: any = "";
   constructor(private router: Router) {}
 
   ngOnInit() {
@@ -18,7 +20,7 @@ export class RequestSentComponent implements OnInit {
     localStorage.removeItem("clubId");
   }
 
-  goToScoreScreen(): void {
-    this.router.navigateByUrl("/auth/onboarding/score-screen");
+  goToLogin(): void {
+    this.router.navigateByUrl("/login");
   }
 }

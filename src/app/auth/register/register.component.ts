@@ -93,11 +93,9 @@ export class RegisterComponent implements OnInit {
         },
         (error) => {
           if (error.status === 409) {
-            console.log('error', error);
+   
             if (error?.error?.data?.is_onboarding_done) {
-              this.sharedService.showMessage(
-                "You have already registered, please login"
-              );
+              this.sharedService.showMessage("You have already registered, please login");
               this.router.navigate(["/login"]);
               return;
             }
@@ -169,7 +167,7 @@ export class RegisterComponent implements OnInit {
     } else {
       // If the form is invalid, show an error or handle it accordingly
       //console.log("Please fill in all required fields in Step 1.");
-      if (
+      /*if (
         this.registerForm.get("first_name")?.hasError("required") ||
         this.registerForm.get("last_name")?.hasError("required") ||
         this.registerForm.get("user_name")?.hasError("required") ||
@@ -182,10 +180,8 @@ export class RegisterComponent implements OnInit {
       ) {
         this.sharedService.showMessage("Please fill all required fields");
       } else {
-        this.sharedService.showMessage(
-          "Please check error message and fill all required fields"
-        );
-      }
+        this.sharedService.showMessage("Please check error message and fill all required fields");
+      }*/
     }
   }
 

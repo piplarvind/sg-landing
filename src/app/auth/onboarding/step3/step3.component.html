@@ -4,13 +4,20 @@
       <div class="col-md-12">
         <div class="text-center">
           <h3>Select Your Club</h3>
+          <p>If you don't see your club listed,<a routerLink="/auth/onboarding/club-not-here"> CLICK HERE</a> to request that we add your club.</p>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         <div class="text-center">
-          <input type="text" placeholder="Search Club" class="form-control" />
+          <input
+          type="text"
+          placeholder="Search Club"
+          class="form-control"
+          [(ngModel)]="searchText"
+          (input)="filterClubs(searchText)"
+        />
         </div>
       </div>
     </div>
@@ -20,14 +27,14 @@
           <div class="row text-center">
             <div
               class="col-md-3 col-6 club-option"
-              *ngFor="let clb of clubs; let i = index"
+              *ngFor="let clb of filteredClubs; let i = index"
             >
               <mat-card class="club-card" (click)="selectClub(clb)">
                 <mat-radio-button [value]="clb._id" class="hidden-radio"></mat-radio-button>
                 <div class="club-container d-flex flex-column align-items-center justify-content-center">
                   <img [src]="env.imageUrl + clb.logo || './assets/images/clubv.png'" alt="{{ clb.club_name }}" class="club-image" />
                   <label class="radio-label">
-                    {{ clb.club_name }}
+                    {{ truncateClubName(clb.club_name) }}
                   </label>
                 </div>
               </mat-card>
@@ -35,8 +42,6 @@
           </div>
         </mat-radio-group>
       </ng-container>
-      
-      
       <div class="row">
         <div class="col-md-12">
           <div class="button-container text-center mt-1">
@@ -49,13 +54,6 @@
             Club is required
           </mat-error>
         </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="text-center">
-            Don't see your club listed? Make a request here. <a routerLink="/auth/onboarding/club-not-here">Here</a>
-          </div>
         </div>
       </div>
       <div class="row">

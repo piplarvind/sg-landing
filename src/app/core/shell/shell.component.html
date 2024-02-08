@@ -179,7 +179,7 @@
     <span>Payments</span>
   </a>
   <a
-    *ngIf="(user_role === 'ATH' || user_role === 'FFF') && userDetails.is_active_subscription === false"
+    *ngIf="(user_role === 'ATH' || user_role === 'FFF')"
     mat-list-item
     routerLink="/account/subscriptions"
     routerLinkActive="active"

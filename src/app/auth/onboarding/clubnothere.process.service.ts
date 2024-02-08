@@ -15,6 +15,12 @@ export class ClubnothereProcessService {
     club_name: new FormControl("", {
       validators: [Validators.required],
     }),
+    club_contac_person: new FormControl("", {
+      validators: [Validators.required],
+    }),
+    club_email: new FormControl("", {
+      validators: [Validators.required, Validators.email],
+    }),
     club_address: new FormControl("", {
       validators: [Validators.required],
     }),
@@ -31,6 +37,15 @@ export class ClubnothereProcessService {
       validators: [Validators.required],
     }),
     mobile_no: new FormControl("", {
+      validators: [Validators.required],
+    }),
+    your_name: new FormControl("", {
+      validators: [Validators.required],
+    }),
+    your_phone_code: new FormControl("1", {
+      validators: [Validators.required],
+    }),   
+    your_mobile_no: new FormControl("", {
       validators: [Validators.required],
     }),
   });

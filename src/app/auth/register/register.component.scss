@@ -20,3 +20,7 @@
   font-size: 18px !important;
 }
 
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: 10px 0 !important;
+}
+

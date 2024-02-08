@@ -9,11 +9,17 @@ import { I18nService } from "@app/core/i18n.service";
 // import { ClubsService } from "@app/clubs/clubs.service";
 import { SharedService } from "@app/shared/shared.service";
 
-import { environment } from "../../../../environments/environment";
+import { environment } from "@env/environment";
 // import { GenderService } from "@app/gender/gender.service";
 import { ThemeService } from "theme.service";
 
 let ref = null;
+
+// profile.interface.ts
+export interface ProfileInfo {
+  name: string;
+  value: any;
+}
 
 @Component({
   selector: "app-dashheader",
@@ -43,6 +49,11 @@ export class DashheaderComponent implements OnInit {
   selectedSport = "";
   selectedSeason = "";
   selectedGender = "";
+  profile_image: string;
+  env: any = environment;
+
+  profileData: ProfileInfo[] = [];
+
   // selectedClub = localStorage.super_cur_clubName ? localStorage.super_cur_clubName : '';
 
   constructor(
@@ -58,10 +69,40 @@ export class DashheaderComponent implements OnInit {
 
   ngOnInit() {
     const obj = JSON.parse(localStorage.userDetails);
+    console.log('obj', obj);
+    this.transformData(obj.profile_fields);
     this.id = obj._id;
     ref = this;
     
     this.apiUrl = environment.imageUrl;
+  }
+
+
+  async transformData(profileFields) {
+    this.profileData = await Promise.all(
+      profileFields
+        .filter(
+          (item) =>
+            item.value !== null &&
+            typeof item.value === "string" &&
+            item.value.trim() !== ""
+        )
+        .map(async (item) => {
+          if (item?.field) {
+            const { name, label } = item.field;
+            let value = item.value;
+
+            if (name === "profile_image") {
+              value = this.env.imageUrl + value;
+              this.profile_image = value?value:'assets/user.png';
+            }
+       
+            
+
+            return { name, label, value };
+          }
+        })
+    );
   }
 
   toggleLeftMenu() {

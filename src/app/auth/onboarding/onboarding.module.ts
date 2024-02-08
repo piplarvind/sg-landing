@@ -23,6 +23,7 @@ import { SelectAthletesComponent } from "./select-athletes/select-athletes.compo
 import { SelectAthleteCoachComponent } from "./select-athlete-coach/select-athlete-coach.component";
 import { Ng2TelInputModule } from "ng2-tel-input";
 import { HomeService } from "@app/pages/home/home.service";
+import { SuccessCoachScreenComponent } from "./success-coach-screen/success-coach-screen.component";
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { HomeService } from "@app/pages/home/home.service";
     UniversityDetailComponent,
     OTPComponent,
     SuccessReponseScreenComponent,
+    SuccessCoachScreenComponent,
     SelectAthletesComponent,
     SelectAthleteCoachComponent
   ],

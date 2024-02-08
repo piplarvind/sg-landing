@@ -62,7 +62,7 @@ export class AuthenticationService {
     };
     this.http.post(url, cred).subscribe(
       (res: any) => {
-        console.log('res', res);
+        //console.log('res', res);
         if(res?.data?.is_onboarding_done === false){
 
           localStorage.setItem("userId", res?.data?._id);

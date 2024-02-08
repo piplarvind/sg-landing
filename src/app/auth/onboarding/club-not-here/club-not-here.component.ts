@@ -37,11 +37,14 @@ export class ClubNotHereComponent implements OnInit {
   
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild("ng2TelInput", { static: true }) ng2TelInput: ElementRef<HTMLInputElement>;
+  @ViewChild("ng2TelInput", { static: true }) ng2TelInputTwo: ElementRef<HTMLInputElement>;
 
 
   initialCountry: string = "us";
   phone_code: string = "1";
   mobile_no: any = "";
+  your_phone_code: string = "1";
+  your_mobile_no: any = "";
 
   constructor(
     private router: Router,
@@ -57,12 +60,23 @@ export class ClubNotHereComponent implements OnInit {
     this.phone_code = country.dialCode;
   }
 
+  telCountryChange2(country: any) {
+    this.your_phone_code = country.dialCode;
+  }
+
   getNumber(e: any) {
     const dialCode = this.phone_code;
     const numberWithoutDialCode = e.startsWith(dialCode)
       ? e.slice(dialCode.length)
       : e;
     this.mobile_no = numberWithoutDialCode;
+  }
+  getNumber2(e: any) {
+    const dialCode = this.your_phone_code;
+    const numberWithoutDialCode = e.startsWith(dialCode)
+      ? e.slice(dialCode.length)
+      : e;
+    this.your_mobile_no = numberWithoutDialCode;
   }
 
   hasTelError(event: any) {
@@ -81,6 +95,18 @@ export class ClubNotHereComponent implements OnInit {
       }
     }
   }
+  formatMobile2(event: any) {
+    if (event) {
+      let new_value = event.replace(/\D/g, "");
+      new_value = new_value.slice(-10);
+      if (new_value.length <= 10 && new_value) {
+        this.your_mobile_no = this.inputChanged(new_value);
+      }
+      if (new_value.length === 0) {
+        this.your_mobile_no = "";
+      }
+    }
+  }
 
   inputChanged(e: any) {
     let s = "";
@@ -95,17 +121,8 @@ export class ClubNotHereComponent implements OnInit {
     return "";
   }
 
-  plainMobileNumber(e: any) {
-    let s = "";
-    e = e.slice(-10);
-    if (e.length <= 10 && e.length > 0) {
-      const first = e.substring(0, 3);
-      const mid = e.substring(3, 6);
-      const last = e.substring(6, 10);
-      s = first + mid + last; // Remove parentheses and hyphen
-      return s;
-    }
-    return "";
+  plainMobileNumber(phoneNumber: any) {
+    return phoneNumber.replace(/[\s()-]/g, '');
   }
 
   onSubmit(): void {
@@ -115,14 +132,17 @@ export class ClubNotHereComponent implements OnInit {
       let clubData = this.clubnothereProcessService.clubForm.value;
       clubData.phone_code = this.phone_code;
       clubData.mobile_no = this.plainMobileNumber(this.mobile_no);
+      clubData.your_phone_code = this.your_phone_code;
+      clubData.your_mobile_no = this.plainMobileNumber(this.your_mobile_no);
       clubData.profile_id = localStorage.getItem("userId");
-      
+      //console.log('clubData', clubData);
       this.onboardingService.saveClubNotHereData(clubData).subscribe(
         (response) => {
           localStorage.setItem("userId", response?.data?._id);
           // Navigate to the next step
           if (response?.status === "Success") {
-            this.router.navigate(["/auth/onboarding/score-screen"]);
+            //this.sharedService.showMessage(response.message);
+            this.router.navigate(["/auth/onboarding/club-not-success"]);
           }
         },
         (error) => {
@@ -143,14 +163,14 @@ export class ClubNotHereComponent implements OnInit {
             }
           } else {
             //console.error("User already exist:", error);
-            this.sharedService.showMessage("Please fill all required fields");
-            this.router.navigate(["/auth/onboarding/step1"]);
+            this.sharedService.showMessage("Something went wrong, please try again");
+            this.router.navigate(["/auth/onboarding/club-not-here"]);
           }
         }
       );
     } else {
       // If the form is invalid, show an error or handle it accordingly
-      this.sharedService.showMessage("Please fill all required fields");
+      //this.sharedService.showMessage("Please fill all required fields");
     }
   }
 }

@@ -116,7 +116,7 @@ export class UniversityDetailComponent implements OnInit {
       //console.log('convertedData',convertedData);return;
       this.onboardingService.saveUniversityData(convertedData).subscribe(
         (response) => {
-          this.sharedService.showMessage(response.message);
+          //this.sharedService.showMessage(response.message);
           if (response.status === "Success") {
             localStorage.setItem("userId", response.data._id);
             localStorage.setItem("phone_code", response.data.phone_code);
@@ -136,7 +136,7 @@ export class UniversityDetailComponent implements OnInit {
         }
       );
     } else {
-      this.sharedService.showMessage("Please fill required fields");
+      //this.sharedService.showMessage("Please fill required fields");
     }
   }
 

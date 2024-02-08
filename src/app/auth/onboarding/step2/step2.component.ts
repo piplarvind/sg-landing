@@ -100,20 +100,20 @@ export class Step2Component implements OnInit {
       this.onboardingService.saveRoleData(roleData).subscribe(
         (response) => {
           //console.log("Role data saved successfully:", response.data);
-          this.sharedService.showMessage(response.message);
+          //this.sharedService.showMessage(response.message);
           // Navigate to the next step
           this.router.navigate(["/auth/onboarding/step3"]);
         },
         (error) => {
           //console.error("Error saving role data:", error);
-          this.sharedService.showMessage(error.error.message);
+          //this.sharedService.showMessage(error.error.message);
           this.router.navigate(["/auth/onboarding/step1"]);
         }
       );
     } else {
       // If the form is invalid, show an error or handle it accordingly
       //console.log("Please fill in all required fields in Step 3.");
-      this.sharedService.showMessage("Please fill all required fields");
+      //this.sharedService.showMessage("Please fill all required fields");
     }
   }
 }

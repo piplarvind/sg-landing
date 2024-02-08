@@ -54,7 +54,7 @@ export class Step1Component implements OnInit {
       this.onboardingService.saveSportData(sportData).subscribe(
         (response) => {
           //console.log("Sport data saved successfully:", response.data);
-          this.sharedService.showMessage(response.message);
+          //this.sharedService.showMessage(response.message);
           // Navigate to the next step
           this.router.navigate(["/auth/onboarding/step2"]);
         },
@@ -67,7 +67,7 @@ export class Step1Component implements OnInit {
     } else {
       // If the form is invalid, show an error or handle it accordingly
       //console.log("Please fill in all required fields in Step 2.");
-      this.sharedService.showMessage("Please select required field");
+      //this.sharedService.showMessage("Please select required field");
     }
   }
 }

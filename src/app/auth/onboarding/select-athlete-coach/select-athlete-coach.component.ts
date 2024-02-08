@@ -180,7 +180,7 @@ export class SelectAthleteCoachComponent {
       //console.log('payloadData', payloadData);return;
       this.onboardingService.saveAthleteCoaches(payloadData).subscribe(
         (response) => {
-          this.sharedService.showMessage(response.message);
+          //this.sharedService.showMessage(response.message);
           // Navigate to the next step
           //console.log('abc', response.data); return;
           this.router.navigate(["/auth/onboarding/select-subscription"]);
@@ -195,7 +195,7 @@ export class SelectAthleteCoachComponent {
       //   "auth/onboarding/do-payment/" + athFormData.plan,
       // ]);
     } else {
-      this.sharedService.showMessage("Please select athlete or coach");
+      //this.sharedService.showMessage("Please select athlete or coach");
     }
   }
 }

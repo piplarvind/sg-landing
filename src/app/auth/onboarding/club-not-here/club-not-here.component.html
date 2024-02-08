@@ -32,7 +32,76 @@
           <mat-form-field class="example-full-width">
             <input
               matInput
-              placeholder="Street address"
+              placeholder="Club contact person"
+              required
+              formControlName="club_contac_person"
+            />
+            <mat-error
+              *ngIf="
+                (clubForm.get('club_contac_person')?.touched || nextButtonClicked) &&
+                clubForm.get('club_contac_person')?.hasError('required')
+              "
+            >
+              Club contact person is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              type="email"
+              placeholder="Club contact email"
+              formControlName="club_email"
+            />
+            <mat-error
+              *ngIf="
+                (clubForm.get('club_email')?.touched || nextButtonClicked) &&
+                clubForm.get('club_email')?.hasError('required')
+              "
+            >
+              Club email is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input
+              formControlName="mobile_no"
+              required
+              #ng2TelInput
+              type="tel"
+              matInput
+              ng2TelInput
+              [ng2TelInputOptions]="{
+                initialCountry: initialCountry,
+                autoHideDialCode: false,
+                separateDialCode: true,
+                formatOnDisplay: true,
+                excludeCountries: true
+              }"
+              (hasError)="hasTelError($event)"
+              (ng2TelOutput)="getNumber($event)"
+              (countryChange)="telCountryChange($event)"
+              [value]="mobile_no"
+              (keyup)="formatMobile($event.target.value)"
+            />
+            <mat-error
+              *ngIf="
+                (clubForm.get('mobile_no')?.touched ||
+                  nextButtonClicked) &&
+                  clubForm.get('mobile_no')?.hasError('required')
+              "
+            >
+              Club mobile no is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="Club street address"
               required
               formControlName="club_address"
             />
@@ -42,7 +111,7 @@
                 clubForm.get('club_address')?.hasError('required')
               "
             >
-              Street address is required
+              Club street address is required
             </mat-error>
           </mat-form-field>
         </div>
@@ -105,9 +174,27 @@
         <div class="col-md-6">
           <mat-form-field class="example-full-width">
             <input
-              formControlName="mobile_no"
+              matInput
+              placeholder="Your name"
               required
-              #ng2TelInput
+              formControlName="your_name"
+            />
+            <mat-error
+              *ngIf="
+                (clubForm.get('your_name')?.touched || nextButtonClicked) &&
+                clubForm.get('your_name')?.hasError('required')
+              "
+            >
+              Your name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input
+              formControlName="your_mobile_no"
+              required
+              #ng2TelInputTwo
               type="tel"
               matInput
               ng2TelInput
@@ -119,29 +206,30 @@
                 excludeCountries: true
               }"
               (hasError)="hasTelError($event)"
-              (ng2TelOutput)="getNumber($event)"
-              (countryChange)="telCountryChange($event)"
-              [value]="mobile_no"
-              (keyup)="formatMobile($event.target.value)"
+              (ng2TelOutput)="getNumber2($event)"
+              (countryChange)="telCountryChange2($event)"
+              [value]="your_mobile_no"
+              (keyup)="formatMobile2($event.target.value)"
             />
             <mat-error
               *ngIf="
-                (clubForm.get('mobile_no')?.touched ||
+                (clubForm.get('your_mobile_no')?.touched ||
                   nextButtonClicked) &&
-                  clubForm.get('mobile_no')?.hasError('required')
+                  clubForm.get('your_mobile_no')?.hasError('required')
               "
             >
-              Mobile no is required
+              Your mobile no is required
             </mat-error>
           </mat-form-field>
         </div>
+        
       </div>
       
       <div class="row">
         <div class="col-md-12">
           <div class="button-container text-center mt-3">
             <button mat-raised-button type="submit" class="btn btn theme-btn">
-              Next
+              Submit
             </button>
           </div>
         </div>

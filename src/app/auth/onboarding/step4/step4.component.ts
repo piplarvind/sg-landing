@@ -59,7 +59,7 @@ export class Step4Component {
       this.onboardingService.saveAgeData(ageData).subscribe(
         (response) => {
           //console.log("Age data saved successfully:", response.data);
-          this.sharedService.showMessage(response.message);
+          //this.sharedService.showMessage(response.message);
           // Navigate to the next step
           if (localStorage.getItem("userType") === "ATH" || localStorage.getItem("userType") === "FFF") {
             // Navigate to the next step
@@ -81,7 +81,7 @@ export class Step4Component {
     } else {
       // If the form is invalid, show an error or handle it accordingly
       //console.log("Please fill in all required fields in Step 5.");
-      this.sharedService.showMessage("Please select required field");
+      //this.sharedService.showMessage("Please select required field");
     }
   }
 }

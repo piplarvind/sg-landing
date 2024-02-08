@@ -14,6 +14,14 @@ export interface ProfileInfo {
   value: any;
 }
 
+interface CountryDataResponse {
+  data: {
+    label: string;
+    // Other properties in the response
+  };
+  // Other properties in the response
+}
+
 @Component({
   selector: "app-user-profile",
   templateUrl: "./user-profile.component.html",
@@ -67,7 +75,7 @@ export class UserProfileComponent implements OnInit {
       .getProfile(userId)
       .then((e: any) => {
         const res = e.data;
-        //console.log('res', res);
+        // console.log('res', res);
         this.user = res;
         //this.role = res?.types[0]?.name;
         this.roles = res?.types;
@@ -81,31 +89,64 @@ export class UserProfileComponent implements OnInit {
       });
   }
 
-  transformData(profileFields): void {
-    this.profileData = profileFields
-      .filter(
-        (item) =>
-          !this.filteredNames.includes(item.field?.name) &&
-          item.value !== null && // Check for null values
-          typeof item.value === "string" && // Check if the value is a string
-          item.value.trim() !== " " // Check if the trimmed value is not an empty string
-      )
-      .map((item) => {
-        const { name, label } = item.field;
-        let value = item.value;
-        // Special handling for the 'profile_image' field
-        if (name === "profile_image") {
-          value = this.env.imageUrl + value;
-          this.profile_image = value;
-        }
-        if (name === "first_name") {
-          this.first_name = value;
-        }
-        if (name === "last_name") {
-          this.last_name = value;
-        }
-        return { name, label, value };
-      });
-    //console.log("this.profileData", this.profileData);
+  async transformData(profileFields) {
+    this.profileData = await Promise.all(
+      profileFields
+        .filter(
+          (item) =>
+            !this.filteredNames.includes(item?.field?.name) &&
+            item.value !== null &&
+            typeof item.value === "string" &&
+            item.value.trim() !== ""
+        )
+        .map(async (item) => {
+          if (item?.field) {
+            const { name, label } = item.field;
+            let value = item.value;
+
+            if (name === "profile_image") {
+              value = this.env.imageUrl + value;
+              this.profile_image = value;
+            }
+            if (name === "first_name") {
+              this.first_name = value;
+            }
+            if (name === "last_name") {
+              this.last_name = value;
+            }
+            if (name === "mobile_phone") {              
+              value = this.formateMobile(value);
+            }
+            if (name === "country") {
+              const res = (await this.service.getCountryData(value)) as {
+                data: { label: string };
+              };
+              value = res.data?.label;
+            }
+
+            if (name === "state") {
+              const res = (await this.service.getStateData(value)) as {
+                data: { label: string };
+              };
+              value = res.data?.label;
+            }
+
+            return { name, label, value };
+          }
+        })
+    );
   }
+
+  formateMobile(e: any) {
+    let s = "";
+    e = e.slice(-10);
+    if (e.length <= 10 && e.length > 0) {
+      const first = e.substring(0, 3);
+      const mid = e.substring(3, 6);
+      const last = e.substring(6, 10);
+      s = "(" + first + ") " + mid + "-" + last;
+      return s;
+    }
+  }
+
 }

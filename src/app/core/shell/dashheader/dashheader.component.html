@@ -19,37 +19,14 @@
       <div style="line-height: 10px">
         <div class="user-dropdown">
           <div class="button" (click)="showDropdown()">
-            <span class="m-pointer m-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="42"
-                height="42"
-                viewBox="0 0 42 42"
-                fill="none"
-              >
-                <defs>
-                  <clipPath id="circle-clip">
-                    <circle cx="21" cy="21" r="18" />
-                  </clipPath>
-                </defs>
-                <circle
-                  cx="21"
-                  cy="21"
-                  r="20"
-                  fill="white"
-                  stroke="#A93141"
-                  stroke-linecap="round"
-                  stroke-dasharray="3 3"
-                />
-                <image
-                  x="3"
-                  y="3"
-                  width="36"
-                  height="36"
-                  href="/assets/user.png"
-                  clip-path="url(#circle-clip)"
-                />
-              </svg>
+            <span class="m-pointer m-icon image-container">
+              <img
+                class="img profile-img"
+                [src]="profile_image || '/assets/user.png'"
+                onError="/assets/user.png"
+                width="50"
+                height="50"
+              />
             </span>
           </div>
           <div class="dropdown" (click)="showDropdown()">

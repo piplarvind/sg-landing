@@ -221,11 +221,18 @@
   border: 1px solid #ec1c37 !important;
 }
 
+
 .sport-option .checkbox-label, .sport-option .mat-checkbox-layout {
   margin-bottom: 0 !important;
 }
 @media screen and (min-width: 768px) {
   .col-md-6 {
     display: inline-block !important;
+  }
+}
+
+@media screen and (max-width: 768px) {  
+  .sport-container {
+    margin: 5px; /* Adjust the margin as needed */
   }
 }

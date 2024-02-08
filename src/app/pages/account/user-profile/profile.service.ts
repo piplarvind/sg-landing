@@ -7,6 +7,9 @@ export class ProfileService {
   uploadImageUrl = "upload-image";
   getProfileUrl = "profiles/api";
   updateProfileUrl = "profiles/update";
+  getCountryUrl = "lookup/country";
+  getStateUrl = "lookup/state";
+
 
   constructor(public http: HttpClient) {}
 
@@ -25,7 +28,6 @@ export class ProfileService {
     });
   }
 
-
   updateProfile(data:any) {
     return new Promise((resolve, reject) => {
       this.http
@@ -41,5 +43,34 @@ export class ProfileService {
     });
   }
 
+  getCountryData(id: any) {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(`${this.getCountryUrl}/${id}`)
+        .subscribe(
+          (res: any) => {
+            resolve(res);
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
+  }
+
+  getStateData(id: any) {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(`${this.getStateUrl}/${id}`)
+        .subscribe(
+          (res: any) => {
+            resolve(res);
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
+  }
   
 }

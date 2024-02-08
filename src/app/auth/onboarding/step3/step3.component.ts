@@ -11,10 +11,12 @@ import { SharedService } from "@app/shared/shared.service";
 })
 export class Step3Component implements OnInit {
   env: any = environment;
-
+  searchText:string="";
   nextButtonClicked = false;
 
   clubs: any = [];
+  filteredClubs: any = [];
+
 
   step3Form = this.onboardingProcessService.step3Form;
 
@@ -37,12 +39,25 @@ export class Step3Component implements OnInit {
       (response) => {
         //console.log("club data:", response);
         this.clubs = response.data;
+        this.filteredClubs = this.clubs; // Set filteredClubs initially
       },
       (error) => {
         //console.error("Error getting gender data:", error);
         this.sharedService.showMessage(error.error.message);
       }
     );
+  }
+  
+  filterClubs(searchText: string): void {
+    this.filteredClubs = this.clubs.filter((club) =>
+      club.club_name.toLowerCase().includes(searchText.toLowerCase())
+    );
+  }
+  
+
+  truncateClubName(clubName: string): string {
+    const maxLength = 50;
+    return clubName.length > maxLength ? clubName.substring(0, maxLength) + '...' : clubName;
   }
 
   onSubmit(): void {
@@ -59,7 +74,7 @@ export class Step3Component implements OnInit {
       this.onboardingService.saveClubData(clubData).subscribe(
         (response) => {
           // console.log("Club data saved successfully:", response.data);
-          this.sharedService.showMessage(response.message);
+          //this.sharedService.showMessage(response.message);
           if(localStorage.getItem("userType") === 'ATH'){
             this.router.navigate(["/auth/onboarding/step4"]);
           }else if(localStorage.getItem("userType") === 'REC'){
@@ -68,9 +83,11 @@ export class Step3Component implements OnInit {
             this.router.navigate(["/auth/onboarding/select-athletes"]);
           }else if(localStorage.getItem("userType") === 'FFF'){
             this.router.navigate(["/auth/onboarding/select-athlete-coach"]); // need to change this once page is ready
+          }else if(localStorage.getItem("userType") === 'COA' || localStorage.getItem("userType") === 'CAD'){
+            this.router.navigate(["/auth/onboarding/success-coach"]); // need to change this once page is ready
           }else{
             this.router.navigate(["/auth/onboarding/success-screen"]);
-          }
+          }          
         },
         (error) => {
           //console.error("Error saving club data:", error);
@@ -81,7 +98,7 @@ export class Step3Component implements OnInit {
     } else {
       // If the form is invalid, show an error or handle it accordingly
       //console.log("Please fill in all required fields in Step 4.");
-      this.sharedService.showMessage("Please select required field");
+      //this.sharedService.showMessage("Please select required field");
     }
   }
 
