@@ -1,15 +1,28 @@
 .theme-btn {
-    background: #ec1c37;
-    color: #fff;
-  }
+  background: #ec1c37;
+  color: #fff;
+}
 
-  ::ng-deep input {
-    font-size: 20px !important; /* Adjust the font size as needed */
-  }
-  ::ng-deep .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label {
-    font-size: 22px !important; /* Adjust the font size as needed */
-  }
-  
-  ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
-    padding: 10px 0 !important;
-  }
+::ng-deep input {
+  font-size: 20px !important;
+  /* Adjust the font size as needed */
+}
+
+::ng-deep .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+.mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label {
+  font-size: 22px !important;
+  /* Adjust the font size as needed */
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: 10px 0 !important;
+}
+
+
+::ng-deep .mobile_no_lbl {
+  margin-left: 75px;
+}
+
+::ng-deep .mat-form-field.mat-focused .mobile_no_lbl {
+  margin-left: 0px;
+}

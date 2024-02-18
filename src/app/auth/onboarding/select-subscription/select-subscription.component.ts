@@ -50,7 +50,7 @@ export class SelectSubscriptionComponent {
         .subscribeBeta(subscriptionFormData)
         .then((res: any) => {
           const resData = res.data;
-          this.sharedService.showMessage(res?.message);
+          //this.sharedService.showMessage(res?.message);
           //this.router.navigate(["login"]);
           this.router.navigate(["auth/onboarding/score-screen"]);
         })

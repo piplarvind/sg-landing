@@ -21,7 +21,8 @@
               "src/favicon.ico",
               "src/robots.txt",
               "src/manifest.json",
-              "src/privacy.html"
+              "src/privacy.html",
+              "src/terms-conditions.html"
             ],
             "styles": [
               "src/main.scss",

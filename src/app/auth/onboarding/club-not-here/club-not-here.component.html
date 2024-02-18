@@ -32,8 +32,7 @@
           <mat-form-field class="example-full-width">
             <input
               matInput
-              placeholder="Club contact person"
-              required
+              placeholder="Club contact person"              
               formControlName="club_contac_person"
             />
             <mat-error
@@ -60,17 +59,18 @@
                 clubForm.get('club_email')?.hasError('required')
               "
             >
-              Club email is required
+              Club contact email is required
             </mat-error>
           </mat-form-field>
         </div>
         <div class="col-md-6">
           <mat-form-field class="example-full-width">
+            <mat-placeholder class="mobile_no_lbl">Club contact phone</mat-placeholder>
             <input
-              formControlName="mobile_no"
-              required
+              formControlName="mobile_no"              
               #ng2TelInput
               type="tel"
+              autocomplete="off"
               matInput
               ng2TelInput
               [ng2TelInputOptions]="{
@@ -93,7 +93,7 @@
                   clubForm.get('mobile_no')?.hasError('required')
               "
             >
-              Club mobile no is required
+              Club contact phone is required
             </mat-error>
           </mat-form-field>
         </div>
@@ -101,8 +101,7 @@
           <mat-form-field class="example-full-width">
             <input
               matInput
-              placeholder="Club street address"
-              required
+              placeholder="Club street address"              
               formControlName="club_address"
             />
             <mat-error
@@ -157,8 +156,7 @@
             <input
               matInput
               type="tel"
-              placeholder="Zip code"
-              required
+              placeholder="Zip code"              
               formControlName="zip"
             />
             <mat-error
@@ -191,6 +189,7 @@
         </div>
         <div class="col-md-6">
           <mat-form-field class="example-full-width">
+            <mat-placeholder class="mobile_no_lbl">Your phone</mat-placeholder>
             <input
               formControlName="your_mobile_no"
               required
@@ -218,7 +217,7 @@
                   clubForm.get('your_mobile_no')?.hasError('required')
               "
             >
-              Your mobile no is required
+              Your phone is required
             </mat-error>
           </mat-form-field>
         </div>

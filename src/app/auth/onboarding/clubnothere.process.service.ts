@@ -16,13 +16,13 @@ export class ClubnothereProcessService {
       validators: [Validators.required],
     }),
     club_contac_person: new FormControl("", {
-      validators: [Validators.required],
+      validators: [],
     }),
     club_email: new FormControl("", {
-      validators: [Validators.required, Validators.email],
+      validators: [Validators.email],
     }),
     club_address: new FormControl("", {
-      validators: [Validators.required],
+      validators: [],
     }),
     city: new FormControl("", {
       validators: [Validators.required],
@@ -31,13 +31,13 @@ export class ClubnothereProcessService {
       validators: [Validators.required],
     }),
     zip: new FormControl("", {
-      validators: [Validators.required],
+      validators: [],
     }),
     phone_code: new FormControl("1", {
-      validators: [Validators.required],
+      validators: [],
     }),
     mobile_no: new FormControl("", {
-      validators: [Validators.required],
+      validators: [],
     }),
     your_name: new FormControl("", {
       validators: [Validators.required],
