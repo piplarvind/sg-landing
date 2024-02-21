@@ -19,6 +19,6 @@ export class RequestSentComponent implements OnInit {
   }
 
   goToScoreScreen(): void {
-    this.router.navigateByUrl("/auth/onboarding/score-screen");
+    this.router.navigateByUrl("/auth/onboarding/parent-score-screen");
   }
 }

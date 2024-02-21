@@ -25,8 +25,6 @@
         </div>
       </div>
     </div>
-
-    <div>&nbsp;</div>
     <form
       id="accountForm"
       [formGroup]="athleteCoachForm"
@@ -50,16 +48,27 @@
               fxLayoutAlign.xs="center center"
               [formControl]="getAthleteControl(ath.id)"
             >
-              <div class="sport-container">
-                <label class="checkbox-label">
-                  <mat-checkbox
-                    class="checkbox-button"
-                    (change)="onCheckboxChange($event, ath._id)"
-                  ></mat-checkbox>
-                  {{ ath?.first_name }}
-                  {{ ath?.last_name }}
-                </label>
-              </div>
+            <div class="sport-container">
+              <label class="checkbox-label">
+                <mat-checkbox
+                  class="checkbox-button"
+                  (change)="onCheckboxChange($event, ath._id)"
+                ></mat-checkbox>
+                <div class="athlete-info">
+                  <div class="name-container">
+                    <span>{{ ath?.first_name }} {{ ath?.last_name }}</span>
+                  </div>
+                  <div class="details-container">
+                    <span>{{ath?.age}}</span>
+                    <span *ngIf="ath?.position"> * {{ath?.position}}</span>
+                    <span *ngIf="ath?.teams.length"> * {{ath?.teams[0].name}}</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+            
+            
+            
             </div>
           </div>
         </div>

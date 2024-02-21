@@ -53,10 +53,14 @@ export class SelectAthletesComponent implements OnInit {
           let fname = "",
             lname = "",
             user_name = "",
+            age="",
+            position="",
             email = "",
             phone_code = "",
             moblino: "",
+            teams:any = [],
             types: any = [];
+            
 
           for (let i = 0; i < prop?.profile_fields.length; i++) {
             if (prop.profile_fields[i].field) {
@@ -79,6 +83,12 @@ export class SelectAthletesComponent implements OnInit {
               if (prop.profile_fields[i].field.name === "mobile_phone") {
                 moblino = prop.profile_fields[i].value;
               }
+              if (prop.profile_fields[i].field.name === "age") {
+                age = prop.profile_fields[i].value;
+              }
+              if (prop.profile_fields[i].field.name === "position") {
+                position = prop.profile_fields[i].value;
+              }
             }
           }
 
@@ -91,12 +101,15 @@ export class SelectAthletesComponent implements OnInit {
             ...prop,
             first_name: fname,
             last_name: lname,
+            age:age,
+            position:position,
             type: types,
             user_name: user_name,
             phone_code: phone_code,
             phone: moblino,
             email: email,
             created_on: prop.created_on,
+            teams:prop.teams
           };
         });
 

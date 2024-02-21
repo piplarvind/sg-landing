@@ -22,6 +22,7 @@ import { ScoreScreenComponent } from "./score-screen/score-screen.component";
 import { PaymentSuccessComponent } from "./payment-success/payment-success.component";
 import { SuccessCoachScreenComponent } from "./success-coach-screen/success-coach-screen.component";
 import { ClubNotSuccessScreenComponent } from "./club-not-success-screen/club-not-success-screen.component";
+import { ParentScoreScreenComponent } from "./parent-score-screen/parent-score-screen.component";
 
 const routes: Routes = [
   {
@@ -62,6 +63,11 @@ const routes: Routes = [
   {
     path: "score-screen",
     component: ScoreScreenComponent,
+    data: { title: extract("Score") },
+  },
+  {
+    path: "parent-score-screen",
+    component: ParentScoreScreenComponent,
     data: { title: extract("Score") },
   },
   {

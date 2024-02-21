@@ -2,6 +2,7 @@
   background: #ec1c37;
   color: #fff;
 }
+
 .gray-btn {
   background-color: #6c757d;
   color: #fff;
@@ -24,16 +25,20 @@
 }
 
 .radio-button {
-  margin-right: 8px; /* Adjust the margin as needed */
+  margin-right: 8px;
+  /* Adjust the margin as needed */
 }
 
 .sport-container {
-  width: 300px;
-  background-color: #f0f0f0; /* Light gray background color */
-  padding: 10px;
+  // width: 300px;
+  width: 100%;
+  background-color: #f0f0f0;
+  /* Light gray background color */
+  padding: 8px 10px;
   margin: 5px;
   border-radius: 5px;
 }
+
 ::ng-deep .sport-container:has(.mat-radio-checked) {
   border: 1px solid #ec1c37 !important;
 }
@@ -50,7 +55,8 @@
 }
 
 .radio-button {
-  margin-right: 18px; /* Adjust the value to increase or decrease space */
+  margin-right: 18px;
+  /* Adjust the value to increase or decrease space */
 }
 
 .button-container {
@@ -59,7 +65,8 @@
 
 .role-container {
   width: 200px;
-  background-color: #f0f0f0; /* Light gray background color */
+  background-color: #f0f0f0;
+  /* Light gray background color */
   padding: 10px;
   margin: 5px;
   border-radius: 100px;
@@ -70,40 +77,26 @@
   color: #fff !important;
 }
 
-::ng-deep
-  .role-container
-  > .mat-radio-button.mat-accent.mat-radio-checked
-  .mat-radio-outer-circle {
+::ng-deep .role-container>.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
   border-color: #ffffff !important;
 }
 
-::ng-deep
-  .role-container
-  > .mat-radio-button.mat-accent
-  .mat-radio-inner-circle,
-::ng-deep
-  .role-container
-  > .mat-radio-button.mat-accent
-  .mat-radio-ripple
-  .mat-ripple-element:not(.mat-radio-persistent-ripple),
-::ng-deep
-  .role-container
-  > .mat-radio-button.mat-accent.mat-radio-checked
-  .mat-radio-persistent-ripple,
-::ng-deep
-  .role-container
-  > .mat-radio-button.mat-accent:active
-  .mat-radio-persistent-ripple {
+::ng-deep .role-container>.mat-radio-button.mat-accent .mat-radio-inner-circle,
+::ng-deep .role-container>.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+::ng-deep .role-container>.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+::ng-deep .role-container>.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
   background-color: #ff4081 !important;
 }
 
 .radio-button {
-  margin-right: 5px; /* Adjust the margin between the radio button and label */
-  transform: scale(0.8); /* Adjust the scale to make the radio button smaller */
+  margin-right: 5px;
+  /* Adjust the margin between the radio button and label */
+  transform: scale(0.8);
+  /* Adjust the scale to make the radio button smaller */
 }
 
-.left-col-md-6 > .sport-container,
-.left-col-md-6 > .role-container {
+.left-col-md-6>.sport-container,
+.left-col-md-6>.role-container {
   float: inline-end !important;
 }
 
@@ -111,17 +104,12 @@
   text-align: center;
 }
 
-::ng-deep
-  .team-type
-  .mat-radio-button.mat-accent.mat-radio-checked
-  .mat-radio-outer-circle {
+::ng-deep .team-type .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
   border-color: #fff !important;
 }
 
 ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle,
-.mat-radio-button.mat-accent
-  .mat-radio-ripple
-  .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
 .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
   background-color: #ec1c37 !important;
@@ -143,13 +131,14 @@
 
 ::ng-deep.mat-form-field-label-wrapper {
   top: 0;
-  padding-top: 0px; 
+  padding-top: 0px;
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
   top: 3px !important;
   margin-top: 0px;
 }
+
 ::ng-deep .mat-form-field-infix {
   display: block;
   position: relative;
@@ -163,6 +152,7 @@
   height: 275px;
   overflow: auto;
 }
+
 /**
 * Custom scrollbar
 */
@@ -182,6 +172,7 @@
   background-clip: content-box;
   background-color: #878a99;
 }
+
 /**
 * Custom scrollbar
 */
@@ -209,7 +200,8 @@
   background-color: #ddd;
   text-align: center;
   line-height: 18px;
-  border: 1px solid #333; /* Add this line for a circular border */
+  border: 1px solid #333;
+  /* Add this line for a circular border */
 }
 
 .mat-raised-button .mat-button-wrapper {
@@ -221,17 +213,46 @@
   border: 1px solid #ec1c37 !important;
 }
 
-.sport-option .checkbox-label, .sport-option .mat-checkbox-layout {
+.sport-option .checkbox-label,
+.sport-option .mat-checkbox-layout {
   margin-bottom: 0 !important;
 }
+
 @media screen and (min-width: 768px) {
   .col-md-6 {
     display: inline-block !important;
   }
 }
 
-@media screen and (max-width: 768px) {  
+@media screen and (max-width: 768px) {
   .sport-container {
-    margin: 5px; /* Adjust the margin as needed */
+    margin: 5px;
   }
+
+  
+
+
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-button {
+  margin-top: 10px;
+}
+
+.athlete-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name-container {
+  white-space: nowrap;
+}
+
+.details-container {
+  display: inline-block;
+  flex-direction: column;
 }
