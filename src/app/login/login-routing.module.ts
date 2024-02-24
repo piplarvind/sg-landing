@@ -7,6 +7,7 @@ import { ResetPasswordComponent } from "./reset-password/reset-password.componen
 import { MessageComponent } from "./message/message.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { PublicCmsPageComponent } from "./public-cms-page/public-cms-page.component";
+import { ResetPasswordSuccessComponent } from "./reset-password-success/reset-password-success.component";
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
     path: "reset-password/:token",
     component: ResetPasswordComponent,
     data: { title: extract("Reset Password") },
+  },
+  {
+    path:"reset-pass-success",
+    component: ResetPasswordSuccessComponent,
+    data: { title: extract("Password Reset Successfully") },
   },
   { path: 'cms-page/:slug', component: PublicCmsPageComponent, data: { title: extract('CMS Page') } },
 ];

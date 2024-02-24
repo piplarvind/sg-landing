@@ -1,17 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-import { environment } from '@env/environment';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
 @Injectable()
 export class LoginService {
-  passwordForgot = 'forget/';
-  resetEmail = 'password/';
-  resetPassword = 'change-password/';
+  passwordForgot = "forget/";
+  resetPassword = "change-password/";
 
   constructor(public http: HttpClient) {}
 
@@ -21,7 +14,7 @@ export class LoginService {
         (res: any) => {
           resolve(res);
         },
-        err => {
+        (err) => {
           reject(err);
         }
       );
@@ -35,7 +28,7 @@ export class LoginService {
         (res: any) => {
           resolve(res);
         },
-        err => {
+        (err) => {
           reject(err);
         }
       );

@@ -21,11 +21,7 @@
 //   top: 18px !important;
 // }
 
-::ng-deep
-  .login
-  .mat-form-field-appearance-outline
-  .mat-focused
-  .mat-form-field-label:not(.mat-form-field-empty) {
+::ng-deep .login .mat-form-field-appearance-outline .mat-focused .mat-form-field-label:not(.mat-form-field-empty) {
   top: 30px !important;
   margin-top: -0.25em;
 }
@@ -40,11 +36,9 @@
   margin: 2px 0px 8px 5px !important;
 }
 
-::ng-deep
-  .login
-  .mat-form-field-appearance-outline
-  // .mat-focused
-  .mat-form-field-label {
+::ng-deep .login .mat-form-field-appearance-outline // .mat-focused
+
+.mat-form-field-label {
   // padding: 12px 0 !important;
   margin-top: -0.25em;
   color: #ccc;
@@ -101,6 +95,7 @@
   margin-top: 50%;
   // margin-top: 250px;
 }
+
 .right-section {
   height: 100%;
   padding: 20px;
@@ -185,6 +180,7 @@
 }
 
 ::ng-deep body.dark .login {
+
   .mat-form-field-appearance-outline .mat-form-field-prefix,
   .mat-form-field-appearance-outline .mat-form-field-suffix {
     top: 0.32em !important;
@@ -195,25 +191,13 @@
   color: #ffffff;
 }
 
-::ng-deep body:not(.dark) .login {
-  .mat-form-field-appearance-outline .mat-form-field-prefix,
-  .mat-form-field-appearance-outline .mat-form-field-suffix {
-    top: -6px !important;
-  }
-  .mat-form-field-appearance-outline .mat-form-field-infix {
-    top: -11px !important;
-  }
-}
-.login .mat-form-field-appearance-outline .mat-form-field-infix {
-  padding: 15px 0 1em 0 !important;
-}
+
 
 ::ng-deep .login .mat-form-field-flex {
   display: inline-flex;
   align-items: baseline;
   box-sizing: border-box;
   width: 100%;
-  height: 48px !important;
 }
 
 input:-webkit-autofill,
@@ -224,24 +208,25 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: $black !important;
 }
 
-.input-container {
-  padding-bottom: 10px !important;
-}
-.mat-form-field-wrapper {
-  padding-bottom: 0px !important;
+.login_logo{
+  text-align: center;
+  display: block;
+  margin-bottom: 20px
 }
 
 @media all and (max-width: 480px) {
- 
+
   .login {
-    .mat-form-field-appearance-outline, .submit-btn {
+
+    .mat-form-field-appearance-outline,
+    .submit-btn {
       width: 300px !important;
     }
   }
 }
 
 @media only screen and (max-width: 481px) and (max-width: 767px) {
-  .left-section{
+  .left-section {
     display: none !important;
   }
 }

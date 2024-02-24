@@ -17,6 +17,7 @@ import { LoginService } from "./login.service";
 import { FormsModule } from "@angular/forms";
 import { LayoutModule } from "@app/layout/layout.module";
 import { LowercaseFirstCharDirectiveTwo } from "@app/lowercase-first-char.directive-two";
+import { ResetPasswordSuccessComponent } from "./reset-password-success/reset-password-success.component";
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { LowercaseFirstCharDirectiveTwo } from "@app/lowercase-first-char.direct
     LoginComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    ResetPasswordSuccessComponent,
     PolicyComponent,
     PrivacyPolicyComponent,
     MessageComponent,

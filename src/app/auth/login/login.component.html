@@ -21,6 +21,11 @@
       style="background: #ffffff"
     >
       <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
+        <div class="login_logo">
+          <a class="navbar-brand navbar-logo" routerLink="/home">
+            <img src="./assets/images/sg-rounded-logo.png" alt="sport grit logo" class="logo-1" />
+          </a>
+        </div>
         <a routerLink="/home"><p class="main-title">Login To SportGrit</p></a>
         <div class="login-error" [hidden]="!error || isLoading">
           Username or password incorrect.

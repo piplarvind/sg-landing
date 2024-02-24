@@ -5,11 +5,11 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { environment } from "environments/environment";
 import { NgForm } from "@angular/forms";
 @Component({
-  selector: "app-reset-password",
-  templateUrl: "./reset-password.component.html",
-  styleUrls: ["./reset-password.component.scss"],
+  selector: "app-reset-password-success",
+  templateUrl: "./reset-password-success.component.html",
+  styleUrls: ["./reset-password-success.component.scss"],
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordSuccessComponent implements OnInit {
   newPassword: string = "";
   reNewPassword: string = "";
   passwordMismatch: boolean = false;
@@ -18,8 +18,8 @@ export class ResetPasswordComponent implements OnInit {
   activeRouteSubscriber: any;
   token: any;
   req: any;
+  pathurl: any;
   currentYear = new Date().getFullYear();
-
   constructor(
     private loginService: LoginService,
     public sharedService: SharedService,
@@ -30,9 +30,15 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit() {
     this.activeRouteSubscriber = this.activateRoute.params.subscribe(
       (params) => {
-        this.token = params.token;        
+        this.token = params.token;
+        this.getPath();
       }
     );
+  }
+
+  getPath() {
+    let path = window.location.href;
+    this.pathurl = path.split("?");
   }
 
   updatepassword() {
@@ -44,6 +50,11 @@ export class ResetPasswordComponent implements OnInit {
       .changePassword(token, this.reqObj)
       .then((res: any) => {
         this.sharedService.showMessage(res.message);
+        // if (this.pathurl[0] === `${environment.resetpasswordurl}`) {
+        //   this.router.navigateByUrl('/login');
+        // } else {
+        //   this.router.navigateByUrl('/message');
+        // }
         this.router.navigateByUrl("/reset-pass-success");
       })
       .catch((err: any) => {
