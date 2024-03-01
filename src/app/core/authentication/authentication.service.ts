@@ -63,8 +63,10 @@ export class AuthenticationService {
     this.http.post(url, cred).subscribe(
       (res: any) => {
         //console.log('res', res);
-        if(res?.data?.is_onboarding_done === false){
-
+        if (
+          res?.data?.is_onboarding_done === false &&
+          res?.data?.completed_steps <= 4
+        ) {
           localStorage.setItem("userId", res?.data?._id);
 
           if (res?.data?.completed_steps === 1) {
@@ -73,28 +75,28 @@ export class AuthenticationService {
             localStorage.setItem("sportId", res?.data?.sport._id);
             this.router.navigate(["/auth/onboarding/step2"]);
           } else if (res?.data?.completed_steps === 3) {
-            localStorage.setItem("sportId", res?.data?.sport._id);              
+            localStorage.setItem("sportId", res?.data?.sport._id);
             localStorage.setItem("userType", res?.data?.types[0].abbr);
             this.router.navigate(["/auth/onboarding/step3"]);
           } else if (res?.data?.completed_steps === 4) {
             localStorage.setItem("sportId", res?.data?.sport._id);
             localStorage.setItem("clubId", res?.data?.club._id);
             localStorage.setItem("userType", res?.data?.types[0].abbr);
-            if(localStorage.getItem("userType") === 'ATH'){
+            if (localStorage.getItem("userType") === "ATH") {
               this.router.navigate(["/auth/onboarding/step4"]);
-            }else if(localStorage.getItem("userType") === 'REC'){
+            } else if (localStorage.getItem("userType") === "REC") {
               this.router.navigate(["/auth/onboarding/university-detail"]);
-            }else if(localStorage.getItem("userType") === 'PAR'){
+            } else if (localStorage.getItem("userType") === "PAR") {
               this.router.navigate(["/auth/onboarding/select-athletes"]);
-            }else if(localStorage.getItem("userType") === 'FFF'){
+            } else if (localStorage.getItem("userType") === "FFF") {
               this.router.navigate(["/auth/onboarding/select-athlete-coach"]);
-            }else{
+            } else {
               this.router.navigate(["/auth/onboarding/score-screen"]);
             }
           } else {
             this.sharedService.loginDialog(res.message);
+            return of(data);
           }
-
           return of(data);
         }
         if (res.token) {

@@ -57,7 +57,6 @@
               placeholder="Email"
               required
               formControlName="email"
-              appLowercaseFirstChar
               autocomplete="off"
             />
             <mat-error
@@ -87,7 +86,6 @@
               minlength="3"
               (keydown.space)="$event.preventDefault()"
               formControlName="user_name"
-              appLowercaseFirstChar
               autocomplete="off"
             />
             <mat-error *ngIf="(registerForm.get('user_name')?.touched ||

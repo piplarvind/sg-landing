@@ -6,3 +6,11 @@
 .loader{
   position:absolute;
 }
+::ng-deep .mat-form-field-infix {
+  display: block;
+  position: relative;
+  flex: auto;
+  min-width: 0;
+  top: -2px !important;
+  width: 180px;
+}

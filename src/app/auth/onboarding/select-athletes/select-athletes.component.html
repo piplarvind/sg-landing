@@ -59,16 +59,13 @@
                     <span>{{ ath?.first_name }} {{ ath?.last_name }}</span>
                   </div>
                   <div class="details-container">
-                    <span>{{ath?.age}}</span>
-                    <span *ngIf="ath?.position"> * {{ath?.position}}</span>
+                    <span>{{ath?.age?.display_value}}</span>
+                    <span *ngIf="ath?.position?.display_value"> * {{ath?.position?.display_value}}</span>
                     <span *ngIf="ath?.teams.length"> * {{ath?.teams[0].name}}</span>
                   </div>
                 </div>
               </label>
-            </div>
-            
-            
-            
+            </div>            
             </div>
           </div>
         </div>

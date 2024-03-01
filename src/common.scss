@@ -60,6 +60,7 @@
   // margin-top: 20px;
   margin-top: 0px !important;
   margin-bottom: 15px !important;
+
   mat-header-row {
     background: $primary;
 
@@ -365,6 +366,7 @@ mat-card.new-mat-card {
     display: none;
   }
 }
+
 .input-container:last-child {
   padding-bottom: 10px;
 }
@@ -380,29 +382,78 @@ mat-card.new-mat-card {
   .mat-form-field {
     width: 100% !important;
   }
+
   .user-image {
     background: #000;
   }
 }
 
 .mat-raised-button[disabled] {
-  background-color: #9a9797 !important; /* Set your desired gray color */
-  color: #ffffff !important; /* Set your desired text color */
+  background-color: #9a9797 !important;
+  /* Set your desired gray color */
+  color: #ffffff !important;
+  /* Set your desired text color */
 }
 
 .mt-1 {
   margin-top: 1px;
 }
+
 .mt-2 {
   margin-top: 2px;
 }
+
 .mt-3 {
   margin-top: 3px;
 }
+
 .mt-4 {
   margin-top: 4px;
 }
+
 .mt-5 {
   margin-top: 5px;
 }
 
+::ng-deep .mat-form-field-prefix .mat-icon,
+.mat-form-field-suffix .mat-icon {
+  font-size: 24px !important;
+  line-height: 24px !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-prefix,
+.mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: 2px !important;
+}
+
+::ng-deep .mat-form-field-prefix .mat-icon,
+.mat-form-field-suffix .mat-icon {
+  font-size: 24px !important;
+  line-height: 24px !important;
+}
+mat-form-field-prefix,
+  .mat-form-field-suffix {
+    // Allow icons in a prefix or suffix to adapt to the correct size.
+    .mat-icon {
+      font-size: 24px !important;
+      line-height: 24px !important;
+    }
+  }
+
+::ng-deep .mat-form-field-prefix, input.mat-input-element {
+  margin-top: -6px !important;
+  line-height: 24px !important;
+}
+
+::ng-deep .mat-form-field-infix {
+  display: block;
+  position: relative;
+  flex: auto;
+  min-width: 0;
+  top: -2px !important;
+  width: 180px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 15px 10px !important;
+}

@@ -93,12 +93,13 @@ export class RegisterComponent implements OnInit {
         },
         (error) => {
           if (error.status === 409) {
-   
-            if (error?.error?.data?.is_onboarding_done) {
+            
+            /*if (error?.error?.data?.is_onboarding_done) {
               this.sharedService.showMessage("You have already registered, please login");
               this.router.navigate(["/login"]);
               return;
             }
+            */
             localStorage.setItem("userId", error?.error?.data?._id);
 
             //This code will be used on step 4
