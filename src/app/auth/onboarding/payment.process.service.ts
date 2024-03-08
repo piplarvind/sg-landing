@@ -10,7 +10,8 @@ import {
   providedIn: "root",
 })
 export class PaymentProcessService {
-  paymentForm = new FormGroup({
+    paymentForm = new FormGroup({
+    promoCode: new FormControl(""),
     payer: new FormControl(""),
     behalf: new FormControl(""),
     planId: new FormControl(""),
