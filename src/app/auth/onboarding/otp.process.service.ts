@@ -15,7 +15,7 @@ export class OTPProcessService {
     otp: new FormControl("", {
       validators: [Validators.required],
     }),  
-    country_code: new FormControl("1", {
+    phone_code: new FormControl("US", {
       validators: [Validators.required],
     }),
     phone_number: new FormControl("", {

@@ -41,7 +41,7 @@ export class PaymentService {
     });
   }
 
-  makeAUestPayment(data: any) {
+  makeAGuestPayment(data: any) {
     return new Promise((resolve, reject) => {
       this.http.post(this.makeAGusetPaymentURL, data).subscribe(
         (res: any) => {

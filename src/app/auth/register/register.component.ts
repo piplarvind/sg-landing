@@ -59,10 +59,8 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  
-
   ngOnInit() {
-    localStorage.removeItem('stepperCurrentStepIndex');
+    localStorage.removeItem("stepperCurrentStepIndex");
   }
 
   togglePasswordVisibility(controlName: string): void {
@@ -93,7 +91,6 @@ export class RegisterComponent implements OnInit {
         },
         (error) => {
           if (error.status === 409) {
-            
             /*if (error?.error?.data?.is_onboarding_done) {
               this.sharedService.showMessage("You have already registered, please login");
               this.router.navigate(["/login"]);
@@ -103,41 +100,65 @@ export class RegisterComponent implements OnInit {
             localStorage.setItem("userId", error?.error?.data?._id);
 
             //This code will be used on step 4
-            for (let i = 0; i < error?.error?.data?.profile_fields.length; i++) {
+            for (
+              let i = 0;
+              i < error?.error?.data?.profile_fields.length;
+              i++
+            ) {
               if (error?.error?.data?.profile_fields[i].field) {
-                if (error?.error?.data?.profile_fields[i].field.name === "gender") {
-                  localStorage.setItem("genderId", error?.error?.data?.profile_fields[i].value);
-                }                
+                if (
+                  error?.error?.data?.profile_fields[i].field.name === "gender"
+                ) {
+                  localStorage.setItem(
+                    "genderId",
+                    error?.error?.data?.profile_fields[i].value
+                  );
+                }
               }
             }
-            
+
             if (error?.error?.data?.completed_steps === 1) {
               this.router.navigate(["/auth/onboarding/step1"]);
             } else if (error?.error?.data?.completed_steps === 2) {
               localStorage.setItem("sportId", error?.error?.data?.sport);
               this.router.navigate(["/auth/onboarding/step2"]);
             } else if (error?.error?.data?.completed_steps === 3) {
-              localStorage.setItem("sportId", error?.error?.data?.sport);              
-              localStorage.setItem("userType", error?.error?.data?.types[0].abbr);
+              localStorage.setItem("sportId", error?.error?.data?.sport);
+              localStorage.setItem(
+                "userType",
+                error?.error?.data?.types[0].abbr
+              );
               this.router.navigate(["/auth/onboarding/step3"]);
             } else if (error?.error?.data?.completed_steps === 4) {
               localStorage.setItem("sportId", error?.error?.data?.sport);
               localStorage.setItem("clubId", error?.error?.data?.club);
-              localStorage.setItem("userType", error?.error?.data?.types[0].abbr);
-              if(localStorage.getItem("userType") === 'ATH'){
+              localStorage.setItem(
+                "userType",
+                error?.error?.data?.types[0].abbr
+              );
+              if (localStorage.getItem("userType") === "ATH") {
                 this.router.navigate(["/auth/onboarding/step4"]);
-              }else if(localStorage.getItem("userType") === 'REC'){
+              } else if (localStorage.getItem("userType") === "REC") {
                 this.router.navigate(["/auth/onboarding/university-detail"]);
-              }else if(localStorage.getItem("userType") === 'PAR'){
+              } else if (localStorage.getItem("userType") === "PAR") {
                 this.router.navigate(["/auth/onboarding/select-athletes"]);
-              }else if(localStorage.getItem("userType") === 'FFF'){
+              } else if (localStorage.getItem("userType") === "FFF") {
                 this.router.navigate(["/auth/onboarding/select-athlete-coach"]);
-              }else{
+              } else {
                 this.router.navigate(["/auth/onboarding/score-screen"]);
               }
             } else {
               //console.error("User already exist:", error);
               //console.log('error?.error?.data?.types.abbr', error?.error?.data?.types[0].abbr);
+              if (error?.error?.status === "Failure") {
+                this.sharedService
+                  .showDialog(`${error?.error?.message}`)
+                  .subscribe((response) => {
+                    if (response === "") {
+                      this.router.navigateByUrl("/auth/register");
+                    }
+                  });
+              }
               if (error?.error?.data?.types[0].abbr === "REC") {
                 if (error?.error?.data?.is_mobile_verified === false) {
                   this.router.navigate(["/auth/onboarding/university-detail"]);
@@ -186,7 +207,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  convertData(inputData:any) {
+  convertData(inputData: any) {
     const profileFieldsData = [
       { field: "first_name", value: inputData.first_name },
       { field: "last_name", value: inputData.last_name },

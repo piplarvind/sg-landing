@@ -38,8 +38,8 @@ export class UniversityDetailComponent implements OnInit {
   color: ThemePalette = "accent";
   checked = false;
   disabled = false;
-  initialCountry: string = "us";
-  phone_code: string = "1";
+  initialCountry: string = "US";
+  phone_code: string = "US";
   mobile_phone: any = "";
 
   constructor(
@@ -52,7 +52,8 @@ export class UniversityDetailComponent implements OnInit {
   ngOnInit() {}
 
   telCountryChange(country: any) {
-    this.phone_code = country.dialCode;
+    //this.phone_code = country.dialCode;
+    this.phone_code = country.iso2.toUpperCase();
   }
 
   getNumber(e: any) {
@@ -94,6 +95,7 @@ export class UniversityDetailComponent implements OnInit {
   }
 
   plainMobileNumber(e: any) {
+    /*
     let s = "";
     e = e.slice(-10);
     if (e.length <= 10 && e.length > 0) {
@@ -104,6 +106,8 @@ export class UniversityDetailComponent implements OnInit {
       return s;
     }
     return "";
+    */
+    return e.replace(/[()\s-]/g, '');
   }
 
   onSubmit(): void {
@@ -121,8 +125,9 @@ export class UniversityDetailComponent implements OnInit {
             localStorage.setItem("userId", response.data._id);
             localStorage.setItem("phone_code", response.data.phone_code);
             localStorage.setItem("mobile_phone", response.data.mobile_phone);
-            localStorage.setItem("otp", response.data.otp);
-            this.router.navigate(["/otp"]);
+            localStorage.setItem("user_email", response.data.email);
+            //localStorage.setItem("otp", response.data.otp);
+            this.router.navigate(["/auth/onboarding/otp"]);
           }
         },
         (error) => {

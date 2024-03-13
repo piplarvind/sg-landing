@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" *ngIf="plan?.package_amount >= 1">
           <mat-form-field class="example-full-width">
             <input
               matInput
@@ -41,7 +41,7 @@
             >
           </mat-form-field>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" *ngIf="plan?.package_amount >= 1">
           <mat-form-field class="example-full-width">
             <input
               matInput
@@ -62,7 +62,7 @@
             >
           </mat-form-field>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" *ngIf="plan?.package_amount >= 1">
           <mat-form-field class="example-full-width">
             <mat-label>Expiry Month</mat-label>
             <mat-select formControlName="exp_month" required>
@@ -80,7 +80,7 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" *ngIf="plan?.package_amount >= 1">
           <mat-form-field class="example-full-width">
             <mat-label>Expiry Year</mat-label>
             <mat-select formControlName="exp_year" required>

@@ -16,6 +16,7 @@ export class OTPComponent implements OnInit {
   otp: any;
   country_code: any;
   phone_number:any;
+  user_email:any;
   profile_id:any;
   color: ThemePalette = "accent";
   checked = false;
@@ -32,8 +33,9 @@ export class OTPComponent implements OnInit {
     this.otp = localStorage.getItem('otp');
     this.country_code = localStorage.getItem('phone_code');
     this.phone_number = localStorage.getItem('mobile_phone');
+    this.user_email = localStorage.getItem('user_email');
     this.profile_id = localStorage.getItem('userId');
-    console.log('profile_id', this.phone_number);
+    //console.log('profile_id', this.phone_number);
     // this.otpForm.addControl('profile_id', this.profile_id);
     // this.otpForm.addControl('country_code', this.country_code);
     // this.otpForm.addControl('phone_number', this.phone_number);
@@ -44,9 +46,9 @@ export class OTPComponent implements OnInit {
     // Perform form validation
     if (this.otpProcessService.otpForm.valid) {
       const otpData = this.otpProcessService.otpForm.value;
-      otpData.country_code = localStorage.getItem("phone_code");
+      otpData.phone_code = localStorage.getItem("phone_code");
       otpData.phone_number = localStorage.getItem("mobile_phone");
-      this.otp = localStorage.getItem("otp");
+      //this.otp = localStorage.getItem("otp");
       this.onboardingService.verifyOTPData(otpData).subscribe(
         (response) => {
           //console.log("University data saved successfully:", response);
@@ -92,14 +94,14 @@ export class OTPComponent implements OnInit {
   resndOTP() {
     const otpData = this.otpProcessService.otpForm.value;
     otpData.profile_id = localStorage.getItem("userId");
-    otpData.country_code = localStorage.getItem("phone_code");
+    otpData.phone_code = localStorage.getItem("phone_code");
     otpData.phone_number = localStorage.getItem("mobile_phone");
-    this.onboardingService.verifyOTPData(otpData).subscribe(
+    this.onboardingService.resendOTPData(otpData).subscribe(
       (response) => {
         this.sharedService.showMessage(response.message);
         if (response?.status === "Success") {
           this.otp = response?.data[0]?.otp;
-          this.router.navigate(["/otp"]);
+          this.router.navigate(["/auth/onboarding/otp"]);
         }
       },
       (error) => {
