@@ -62,34 +62,40 @@ export class AuthenticationService {
     };
     this.http.post(url, cred).subscribe(
       (res: any) => {
-        //console.log('res', res);
+        //console.log('res', res);return;
         if (
           res?.data?.is_onboarding_done === false &&
           res?.data?.completed_steps <= 4
         ) {
           localStorage.setItem("userId", res?.data?._id);
 
-          if (res?.data?.completed_steps === 1) {
+          if (res?.data?.completed_steps === 0) {
             this.router.navigate(["/auth/onboarding/step1"]);
-          } else if (res?.data?.completed_steps === 2) {
+          } else if (res?.data?.completed_steps === 1) {
             localStorage.setItem("sportId", res?.data?.sport._id);
             this.router.navigate(["/auth/onboarding/step2"]);
-          } else if (res?.data?.completed_steps === 3) {
+          } else if (res?.data?.completed_steps === 2) {
             localStorage.setItem("sportId", res?.data?.sport._id);
             localStorage.setItem("userType", res?.data?.types[0].abbr);
             this.router.navigate(["/auth/onboarding/step3"]);
+          } else if (res?.data?.completed_steps === 3) {
+            localStorage.setItem("sportId", res?.data?.sport._id);
+            localStorage.setItem("clubId", res?.data?.club._id);
+            localStorage.setItem("userType", res?.data?.types[0].abbr);
           } else if (res?.data?.completed_steps === 4) {
             localStorage.setItem("sportId", res?.data?.sport._id);
             localStorage.setItem("clubId", res?.data?.club._id);
             localStorage.setItem("userType", res?.data?.types[0].abbr);
+            localStorage.setItem("selectedRoleValue", res?.data?.types[0]._id);
+
             if (localStorage.getItem("userType") === "ATH") {
-              this.router.navigate(["/auth/onboarding/step4"]);
+              this.router.navigate(["/auth/onboarding/select-subscription"]);
             } else if (localStorage.getItem("userType") === "REC") {
               this.router.navigate(["/auth/onboarding/university-detail"]);
             } else if (localStorage.getItem("userType") === "PAR") {
-              this.router.navigate(["/auth/onboarding/select-athletes"]);
+              this.router.navigate(["/auth/onboarding/score-screen"]);
             } else if (localStorage.getItem("userType") === "FFF") {
-              this.router.navigate(["/auth/onboarding/select-athlete-coach"]);
+              this.router.navigate(["/auth/onboarding/select-subscription"]);
             } else {
               this.router.navigate(["/auth/onboarding/score-screen"]);
             }
@@ -125,6 +131,7 @@ export class AuthenticationService {
         data.token = res.token;
         data.loggedIn = loggedIn;
         localStorage.token = res.token;
+        localStorage.temp_token = res?.data?.temp_token;
         localStorage.user_role = this.highestRole[0].abbr;
         localStorage.role_id = this.highestRole[0]._id;
         localStorage.user_id = res.data._id;

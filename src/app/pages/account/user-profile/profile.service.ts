@@ -9,7 +9,9 @@ export class ProfileService {
   updateProfileUrl = "profiles/update";
   getCountryUrl = "lookup/country";
   getStateUrl = "lookup/state";
-
+  getStatusUrl = "lookup/status";
+  getHnadedUrl = "lookup/handed";
+  getUniformSizeUrl = "uniform-sizes";
 
   constructor(public http: HttpClient) {}
 
@@ -72,5 +74,52 @@ export class ProfileService {
         );
     });
   }
+
+  getStatusData(id: any) {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(`${this.getStatusUrl}/${id}`)
+        .subscribe(
+          (res: any) => {
+            resolve(res);
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
+  }
+
+  getHandedData(id: any) {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(`${this.getHnadedUrl}/${id}`)
+        .subscribe(
+          (res: any) => {
+            resolve(res);
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
+  }
+
+  getUniformSizeData(id: any) {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(`${this.getUniformSizeUrl}/${id}`)
+        .subscribe(
+          (res: any) => {
+            resolve(res);
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
+  }
+
+  
   
 }

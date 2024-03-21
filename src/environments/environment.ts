@@ -22,8 +22,8 @@ export const environment = {
 
   //Local
   serverUrl: 'http://localhost:8000/api/v2/',
-  //imageUrl: 'http://localhost:8000/',
-  imageUrl: 'https://prodapi.sportgrit.com/',
+  imageUrl: 'http://localhost:8000/',
+  //imageUrl: 'https://prodapi.sportgrit.com/',
   resetpasswordurl: 'https://prodapi.sportgrit.com/manage/forgotPassword',
   
   Platform_Admin: 'PLA',

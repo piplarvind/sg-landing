@@ -51,7 +51,7 @@
     "i": "^0.3.7",
     "intl-tel-input": "^17.0.3",
     "jquery": "^3.7.1",
-    "libphonenumber-js": "^1.10.49",
+    "libphonenumber-js": "^1.10.58",
     "lodash": "^4.17.11",
     "material-design-icons-iconfont": "^3.0.3",
     "moment": "^2.22.2",

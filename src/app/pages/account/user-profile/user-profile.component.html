@@ -1,8 +1,8 @@
-<!-- profile.component.html -->
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-4">
+        <!-- Changed col-md-4 to col-md-8 -->
         <div class="card card-profile">
           <div class="card-avatar">
             <label for="fileInput" class="image-container">
@@ -17,29 +17,211 @@
           </div>
           <div class="card-body text-center">
             <h4 class="card-title">{{ first_name }} {{ last_name }}</h4>
-            <!-- <h5 class="card-category text-gray" *ngFor="let role of roles">{{ role.name }}</h5> -->
             <h5 class="card-category text-gray">
-            <ng-container *ngFor="let role of roles; let last = last">
-              <span>{{ role?.name }}</span>
-              <span *ngIf="!last">, </span>
-            </ng-container>
-          </h5>
-            <h6 class="card-category text-gray">{{ club }} / {{ sport }}</h6>
+              <ng-container *ngFor="let role of roles; let last = last">
+                <span>{{ role?.name }}</span>
+                <span *ngIf="!last">, </span>
+              </ng-container>
+            </h5>
+            <h6>{{ age }}* {{ user?.sport?.sport_name }} * {{ position }}</h6>
+            <h6 class="card-category text-gray">
+              {{ user?.club?.club_name }} / {{ user?.teams[0]?.name }}
+            </h6>
           </div>
         </div>
       </div>
       <div class="col-md-8">
+        <!-- Changed col-md-8 -->
         <div class="card">
           <div class="card-body">
             <div class="profile-info">
               <div class="row">
-                <div *ngFor="let info of profileData" class="col-md-6">
-                  <div
-                    class="profile-info-item"
-                    *ngIf="info?.name != 'profile_image'"
-                  >
-                    <span class="info-label">{{ info?.label }}:</span>
-                    <span class="info-value">{{ info?.value }}</span>
+                <div class="col-md-6">
+                  <!-- First column -->
+                  <div class="profile-info-item">
+                    <span class="info-label">First Name:</span>
+                    <span class="info-value">{{ first_name }}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">Last Name:</span>
+                    <span class="info-value">{{ last_name }}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">Username:</span>
+                    <span class="info-value">{{ username }}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value">{{ email }}</span>
+                  </div>                 
+                  <div class="profile-info-item">
+                    <span class="info-label">Mobile No:</span>
+                    <span class="info-value" *ngIf="mobile_phone"> + {{ phone_code }} {{ mobile_phone}}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">Address:</span>
+                    <span class="info-value">{{ address }}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">City:</span>
+                    <span class="info-value">{{ city }}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">State:</span>
+                    <span class="info-value">{{ state }}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">Zip:</span>
+                    <span class="info-value">{{ zip }}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">Country:</span>
+                    <span class="info-value">{{ country }}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">Grad Year:</span>
+                    <span class="info-value">{{ grad_year }}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">School Name:</span>
+                    <span class="info-value">{{ school_name }}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">GPA:</span>
+                    <span class="info-value">{{ gpa }}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">ACT Score:</span>
+                    <span class="info-value">{{ act_score }}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">SAT Math Score:</span>
+                    <span class="info-value">{{ sat_math_score }}</span>
+                  </div>
+                  <div class="profile-info-item">
+                    <span class="info-label">SAT Verbal Score:</span>
+                    <span class="info-value">{{ sat_verbal_score }}</span>
+                  </div>
+                  <div class="profile-info-item" *ngIf="school_img">
+                    <span class="info-label">School Logo:</span>
+                    <span class="info-value"> <img
+                      class="img profile-img"
+                      [src]="school_img || '/assets/user.png'"
+                      onError="/assets/user.png"
+                      width="128"
+                      height="128"
+                    /></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <!-- Second column -->
+                  
+                  
+
+                  
+
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Position:</span>
+                    <span class="info-value">{{ position }}</span>
+                  </div>
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Jersey #:</span>
+                    <span class="info-value">{{ jersey_no }}</span>
+                  </div>
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Handed:</span>
+                    <span class="info-value">{{ handed }}</span>
+                  </div>
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Captain:</span>
+                    <span class="info-value">{{ captain }}</span>
+                  </div>
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Approach:</span>
+                    <span class="info-value">{{ approach }}</span>
+                  </div>
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Reach:</span>
+                    <span class="info-value">{{ reach }}</span>
+                  </div>
+
+                  
+
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Height:</span>
+                    <span class="info-value">{{ height_feets }}' {{ height_inch }}''</span>
+                  </div>
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Honors:</span>
+                    <span class="info-value">{{ honors }}</span>
+                  </div>
+
+                  <div class="profile-info-item">
+                    <span class="info-label">USAV #:</span>
+                    <span class="info-value">{{ usav_no }}</span>
+                  </div>
+
+                  <div class="profile-info-item">
+                    <span class="info-label">AAU #:</span>
+                    <span class="info-value">{{ aau_no }}</span>
+                  </div>
+
+
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Jersey:</span>
+                    <span class="info-value">{{ jersey }}</span>
+                  </div>
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Game Shorts:</span>
+                    <span class="info-value">{{ shorts }}</span>
+                  </div>
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Sweat Top:</span>
+                    <span class="info-value">{{ sweat_jacket }}</span>
+                  </div>
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Sweat Bottoms:</span>
+                    <span class="info-value">{{ sweat_pants }}</span>
+                  </div>
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Spandex:</span>
+                    <span class="info-value">{{ spandex }}</span>
+                  </div>
+
+
+
+
+                  <div class="profile-info-item">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value">{{ status?.label }}</span>
+                  </div>
+
+                  <div class="profile-info-item">
+                    <span class="info-label">College Name:</span>
+                    <span class="info-value">{{ college_name }}</span>
+                  </div>
+                  <div class="profile-info-item" *ngIf="college_img">
+                    <span class="info-label">College Logo:</span>
+                    <span class="info-value"> <img
+                      class="img profile-img"
+                      [src]="college_img || '/assets/user.png'"
+                      onError="/assets/user.png"
+                      width="128"
+                      height="128"
+                    /></span>
                   </div>
                 </div>
               </div>

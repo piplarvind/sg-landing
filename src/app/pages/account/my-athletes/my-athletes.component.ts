@@ -94,6 +94,9 @@ export class MyAthletesComponent implements OnInit {
             accepted_at: prof.accepted_at,
           };
         });
+
+        // Sort the array by the "accepted" field
+        newresult.sort((a, b) => (a.accepted > b.accepted ? 1 : -1));
         this.dataSource.data = newresult;
       })
       .catch((err) => {

@@ -83,9 +83,9 @@ export class RegisterComponent implements OnInit {
           //console.log("User data saved successfully:", response);
           localStorage.setItem("userId", response?.data?._id);
           // Navigate to the next step
-          if (response?.data?.completed_steps === 1) {
+          if (response?.data?.completed_steps === 0) {
             this.router.navigate(["/auth/onboarding/step1"]);
-          } else if (response?.data?.completed_steps === 2) {
+          } else if (response?.data?.completed_steps === 1) {
             this.router.navigate(["/auth/onboarding/step2"]);
           }
         },
@@ -117,18 +117,25 @@ export class RegisterComponent implements OnInit {
               }
             }
 
-            if (error?.error?.data?.completed_steps === 1) {
+            if (error?.error?.data?.completed_steps === 0) {
               this.router.navigate(["/auth/onboarding/step1"]);
-            } else if (error?.error?.data?.completed_steps === 2) {
+            } else if (error?.error?.data?.completed_steps === 1) {
               localStorage.setItem("sportId", error?.error?.data?.sport);
               this.router.navigate(["/auth/onboarding/step2"]);
-            } else if (error?.error?.data?.completed_steps === 3) {
+            } else if (error?.error?.data?.completed_steps === 2) {
               localStorage.setItem("sportId", error?.error?.data?.sport);
               localStorage.setItem(
                 "userType",
                 error?.error?.data?.types[0].abbr
               );
               this.router.navigate(["/auth/onboarding/step3"]);
+            } else if (error?.error?.data?.completed_steps === 3) {
+              localStorage.setItem("sportId", error?.error?.data?.sport);
+              localStorage.setItem("clubId", error?.error?.data?.club);
+              localStorage.setItem(
+                "userType",
+                error?.error?.data?.types[0].abbr
+              );
             } else if (error?.error?.data?.completed_steps === 4) {
               localStorage.setItem("sportId", error?.error?.data?.sport);
               localStorage.setItem("clubId", error?.error?.data?.club);
@@ -136,14 +143,19 @@ export class RegisterComponent implements OnInit {
                 "userType",
                 error?.error?.data?.types[0].abbr
               );
+              localStorage.setItem(
+                "selectedRoleValue",
+                error?.error?.data?.types[0]._id
+              );
+
               if (localStorage.getItem("userType") === "ATH") {
-                this.router.navigate(["/auth/onboarding/step4"]);
+                this.router.navigate(["/auth/onboarding/select-subscription"]);
               } else if (localStorage.getItem("userType") === "REC") {
                 this.router.navigate(["/auth/onboarding/university-detail"]);
               } else if (localStorage.getItem("userType") === "PAR") {
-                this.router.navigate(["/auth/onboarding/select-athletes"]);
+                this.router.navigate(["/auth/onboarding/score-screen"]);
               } else if (localStorage.getItem("userType") === "FFF") {
-                this.router.navigate(["/auth/onboarding/select-athlete-coach"]);
+                this.router.navigate(["/auth/onboarding/select-subscription"]);
               } else {
                 this.router.navigate(["/auth/onboarding/score-screen"]);
               }

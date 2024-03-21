@@ -25,6 +25,17 @@
     </div>
   </div> -->
 
+  <div class="row" *ngIf="isMobile">
+    <div class="banner-text text-center">
+      <ul class="home-ul">
+        <li>
+          <a class="mat-flat-button mat-warn" [href]="safeURL" target="_blank"
+            >Login To App</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <div class="card-container main-static" fxLayout="column" fxLayout.xs="row">
     <!-- Parents Card -->
     <mat-card class="card-item" *ngIf="user_role === 'ATH'" fxFlex="100" fxFlex.xs="100">

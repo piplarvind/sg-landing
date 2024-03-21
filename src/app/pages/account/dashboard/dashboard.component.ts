@@ -3,6 +3,7 @@ import { finalize, map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MatTableDataSource } from "@angular/material/table";
+import { Platform } from '@angular/cdk/platform';
 import { AccountService } from "../account.service";
 import { PaymentService } from "../make-payment/payment.service";
 import { HomeService } from "@app/pages/home/home.service";
@@ -59,19 +60,29 @@ export class DashboardComponent implements OnInit {
     { name: "No. of Coachs", userCount: 0 },
     // Add more states with user count
   ];
+  isMobile: boolean=false;
+  temp_token:string="";
+  user_id:string="";
+  safeURL:any="";
 
   constructor(
     private router: Router,
     private sanitizer: DomSanitizer,
     private homeService: HomeService,
     private accountService: AccountService,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private platform: Platform
   ) {
     this.user_role = localStorage.user_role;
+    this.isMobile = this.platform.ANDROID || this.platform.IOS;
   }
 
   ngOnInit() {
-  
+    this.temp_token = localStorage.temp_token;
+    this.user_id=localStorage.user_id;
+    if(this.isMobile){
+      this.safeURL = this.sanitizer.bypassSecurityTrustUrl("sportgrit://Auth/" + this.temp_token+"/"+this.user_id);
+    }
     if (this.user_role === "PAR" || this.user_role === "FFF") {
       this.fetchMyAthletes();
     }
