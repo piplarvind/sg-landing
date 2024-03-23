@@ -39,11 +39,11 @@
               </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 {{
-                  (element.phone_code ? "+" + element.phone_code : "") +
-                    " " +
-                    (element.mobile_phone
-                      ? inputChanged(element.mobile_phone)
-                      : "-")
+                  element.mobile_phone
+                    ? "+" +
+                      element.phone_code +
+                      inputChanged(element.mobile_phone)
+                    : ""
                 }}
               </mat-cell>
             </ng-container>

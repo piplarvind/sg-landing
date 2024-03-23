@@ -13,6 +13,7 @@ import { ChangePasswordComponent } from "./change-password/change-password.compo
 import { FFFComponent } from "./my-fff/my-fff.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { AuthGuard } from "@app/core/authentication/auth.guard";
+import { MyFanOfComponent } from "./my-fan-of/my-fan-of.component";
 
 const routes: Routes = [
   {
@@ -32,6 +33,12 @@ const routes: Routes = [
     component: MyParentsComponent,
     canActivate: [AuthGuard],
     data: { title: extract("My Parents") },
+  },
+  {
+    path: "my-fan-of",
+    component: MyFanOfComponent,
+    canActivate: [AuthGuard],
+    data: { title: extract("Fan Of") },
   },
   {
     path: "my-fff",

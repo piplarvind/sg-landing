@@ -31,7 +31,7 @@ interface CountryDataResponse {
 })
 export class UserProfileComponent implements OnInit {
   showCameraIcon = false;
-
+  isLoading = false;
   showOldPassword: boolean = false;
   showNewPassword: boolean = false;
   showConfirmPassword: boolean = false;
@@ -57,7 +57,7 @@ export class UserProfileComponent implements OnInit {
   handedList: any;
   uniforSizeList: any;
   StatusList: any = [];
-  status:any;
+  status: any;
   invalidNumber: boolean;
   type: any;
   length: any;
@@ -128,6 +128,12 @@ export class UserProfileComponent implements OnInit {
   honors: string;
   usav_no: string;
   aau_no: string;
+  fan_of: string;
+  club_title: string;
+  recruiter_title: string;
+  official_email: string;
+  program_website_url: string;
+  university_name: string;
 
   jersey: string;
   shorts: string;
@@ -145,13 +151,18 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     let userId = localStorage.user_id;
+    this.role = localStorage.user_role;
     this.getMyProfile(userId);
   }
 
-  getMyProfile(userId:any) {
+  getMyProfile(userId: any) {
+    this.sharedService.showLoader = true;
+    this.isLoading = true;
     this.service
       .getProfile(userId)
       .then(async (e: any) => {
+        this.isLoading = false;
+        this.sharedService.showLoader = false;
         const res = e.data;
         // console.log('res', res);
         this.user = res;
@@ -180,7 +191,9 @@ export class UserProfileComponent implements OnInit {
               this.phone_code = getCountryCallingCode(iso2);
             }
             if (res?.profile_fields[i].field.name === "mobile_phone") {
-              this.mobile_phone = this.formateMobile(res?.profile_fields[i].value);
+              this.mobile_phone = this.formateMobile(
+                res?.profile_fields[i].value
+              );
             }
             if (res?.profile_fields[i].field.name === "age") {
               this.age = res?.profile_fields[i].value?.display_value;
@@ -194,18 +207,24 @@ export class UserProfileComponent implements OnInit {
 
             if (res?.profile_fields[i].field.name === "country") {
               const country_id = res?.profile_fields[i].value;
-              const country = (await this.service.getCountryData(country_id)) as {
-                data: { label: string };
-              };
-              this.country = country.data?.label;
+              if (country_id) {
+                const country = (await this.service.getCountryData(
+                  country_id
+                )) as {
+                  data: { label: string };
+                };
+                this.country = country.data?.label;
+              }
             }
 
             if (res?.profile_fields[i].field.name === "state") {
               const state_id = res?.profile_fields[i].value;
-              const state = (await this.service.getStateData(state_id)) as {
-                data: { label: string };
-              };
-              this.state = state.data?.label;
+              if (state_id) {
+                const state = (await this.service.getStateData(state_id)) as {
+                  data: { label: string };
+                };
+                this.state = state.data?.label;
+              }
             }
 
             if (res?.profile_fields[i].field.name === "street_address") {
@@ -220,31 +239,34 @@ export class UserProfileComponent implements OnInit {
               this.zip = res?.profile_fields[i].value;
             }
 
-
             if (res?.profile_fields[i].field.name === "jersey_no") {
               this.jersey_no = res?.profile_fields[i].value;
             }
 
             if (res?.profile_fields[i].field.name === "handed") {
               const handed_id = res?.profile_fields[i].value;
-              const handed = (await this.service.getHandedData(handed_id)) as {
-                data: { label: string };
-              };
-              this.handed = handed.data?.label;
+              if (handed_id) {
+                const handed = (await this.service.getHandedData(
+                  handed_id
+                )) as {
+                  data: { label: string };
+                };
+                this.handed = handed.data?.label;
+              }
             }
 
             if (res?.profile_fields[i].field.name === "captain") {
-              this.captain = res?.profile_fields[i].value?'Yes':'No';
+              this.captain = res?.profile_fields[i].value ? "Yes" : "No";
             }
 
             if (res?.profile_fields[i].field.name === "approach_touch") {
               let a = res?.profile_fields[i].value.split(":");
-              this.approach = a[0]+"' "+a[1]+'"';
+              this.approach = a[0] + "' " + a[1] + '"';
             }
 
             if (res?.profile_fields[i].field.name === "reach") {
               let a = res?.profile_fields[i].value.split(":");
-              this.reach = a[0]+"' "+a[1]+'"';
+              this.reach = a[0] + "' " + a[1] + '"';
             }
 
             if (res?.profile_fields[i].field.name === "honors") {
@@ -257,47 +279,65 @@ export class UserProfileComponent implements OnInit {
               this.aau_no = res?.profile_fields[i].value;
             }
 
-            
             if (res?.profile_fields[i].field.name === "jersey") {
               const jersey_id = res?.profile_fields[i].value;
-              const jersey = (await this.service.getUniformSizeData(jersey_id)) as {
-                data: { uniform_size: string };
-              };
-              this.jersey = jersey.data?.uniform_size;
+              if (jersey_id) {
+                const jersey = (await this.service.getUniformSizeData(
+                  jersey_id
+                )) as {
+                  data: { uniform_size: string };
+                };
+                this.jersey = jersey.data?.uniform_size;
+              }
             }
 
             if (res?.profile_fields[i].field.name === "shorts") {
               const shorts_id = res?.profile_fields[i].value;
-              const shorts = (await this.service.getUniformSizeData(shorts_id)) as {
-                data: { uniform_size: string };
-              };
-              this.shorts = shorts.data?.uniform_size;
+              if (shorts_id) {
+                const shorts = (await this.service.getUniformSizeData(
+                  shorts_id
+                )) as {
+                  data: { uniform_size: string };
+                };
+                this.shorts = shorts.data?.uniform_size;
+              }
             }
 
             if (res?.profile_fields[i].field.name === "sweat_jacket") {
               const sweat_jacket_id = res?.profile_fields[i].value;
-              const sweat_jacket = (await this.service.getUniformSizeData(sweat_jacket_id)) as {
-                data: { uniform_size: string };
-              };
-              this.sweat_jacket = sweat_jacket.data?.uniform_size;
+              if (sweat_jacket_id) {
+                const sweat_jacket = (await this.service.getUniformSizeData(
+                  sweat_jacket_id
+                )) as {
+                  data: { uniform_size: string };
+                };
+                this.sweat_jacket = sweat_jacket.data?.uniform_size;
+              }
             }
 
             if (res?.profile_fields[i].field.name === "sweat_pants") {
               const sweat_pants_id = res?.profile_fields[i].value;
-              const sweat_pants = (await this.service.getUniformSizeData(sweat_pants_id)) as {
-                data: { uniform_size: string };
-              };
-              this.sweat_pants = sweat_pants.data?.uniform_size;
+              if (sweat_pants_id) {
+                const sweat_pants = (await this.service.getUniformSizeData(
+                  sweat_pants_id
+                )) as {
+                  data: { uniform_size: string };
+                };
+                this.sweat_pants = sweat_pants.data?.uniform_size;
+              }
             }
 
             if (res?.profile_fields[i].field.name === "spandex") {
               const spandex_id = res?.profile_fields[i].value;
-              const spandex = (await this.service.getUniformSizeData(spandex_id)) as {
-                data: { uniform_size: string };
-              };
-              this.spandex = spandex.data?.uniform_size;
+              if (spandex_id) {
+                const spandex = (await this.service.getUniformSizeData(
+                  spandex_id
+                )) as {
+                  data: { uniform_size: string };
+                };
+                this.spandex = spandex.data?.uniform_size;
+              }
             }
-
 
             if (res?.profile_fields[i].field.name === "grad_year") {
               this.grad_year = res?.profile_fields[i].value;
@@ -322,17 +362,18 @@ export class UserProfileComponent implements OnInit {
             }
 
             if (res?.profile_fields[i].field.name === "profile_image") {
-              this.profile_image =
-                `${res?.profile_fields[i].value}`
-                  ? `${environment.imageUrl}${res?.profile_fields[i].value}`
-                  : 'assets/user-192x192.png';
+              this.profile_image = `${res?.profile_fields[i].value}`
+                ? `${environment.imageUrl}${res?.profile_fields[i].value}`
+                : "assets/user-192x192.png";
             }
             if (res?.profile_fields[i].field.name === "school_logo") {
               this.school_img = `${environment.imageUrl}${res?.profile_fields[i].value}`;
             }
-            
+
             if (res?.profile_fields[i].field.name === "status") {
-              this.statusData(res?.profile_fields[i].value);
+              if (res?.profile_fields[i].value) {
+                this.statusData(res?.profile_fields[i].value);
+              }
             }
             if (res?.profile_fields[i].field.name === "college_name") {
               this.college_name = res?.profile_fields[i].value;
@@ -347,6 +388,20 @@ export class UserProfileComponent implements OnInit {
               this.height_feets = a[0];
               this.height_inch = a[1];
             }
+
+            //recruiter
+            if (res?.profile_fields[i].field.name === "recruiter_title") {
+              this.recruiter_title = res?.profile_fields[i].value;
+            }
+            if (res?.profile_fields[i].field.name === "official_email") {
+              this.official_email = res?.profile_fields[i].value;
+            }
+            if (res?.profile_fields[i].field.name === "program_website_url") {
+              this.program_website_url = res?.profile_fields[i].value;
+            }
+            if (res?.profile_fields[i].field.name === "university_name") {
+              this.university_name = res?.profile_fields[i].value;
+            }
           }
         }
 
@@ -356,8 +411,9 @@ export class UserProfileComponent implements OnInit {
         this.club = res?.club?.club_name;
       })
       .catch((err) => {
-        console.log(err);
-        // this.sharedService.showLoader = false;
+        //console.log(err);
+        this.isLoading = false;
+        this.sharedService.showLoader = false;
       });
   }
 

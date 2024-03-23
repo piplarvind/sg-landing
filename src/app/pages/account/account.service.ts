@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class AccountService {
   changePasswordUrl = "dashboard/change-password";
   athleteParentsUrl = "parent/athlete";
+  athleteFanOfUrl = "dashboard/get-recruiter-athlete-list";
   athleteFFFUrl = "parent/fff";
   parentAthletesUrl = "parent";
 
@@ -39,6 +40,22 @@ export class AccountService {
   getAthleteParents(athId: string) {
     return new Promise((resolve, reject) => {
       this.http.get(`${this.athleteParentsUrl}/${athId}`).subscribe(
+        (res: any) => {
+          resolve(res);
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    });
+  }
+
+  /**
+   * Get fan of for the recruoter
+   */
+  getFanOf(athId: string) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${this.athleteFanOfUrl}`,{recruiter_id:athId}).subscribe(
         (res: any) => {
           resolve(res);
         },

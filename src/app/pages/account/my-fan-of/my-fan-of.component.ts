@@ -7,11 +7,11 @@ import { AccountService } from "../account.service";
 import { CountryCode, getCountryCallingCode } from "libphonenumber-js";
 
 @Component({
-  selector: "app-my-fff",
-  templateUrl: "./my-fff.component.html",
-  styleUrls: ["./my-fff.component.scss"],
+  selector: "app-my-fan-of",
+  templateUrl: "./my-fan-of.component.html",
+  styleUrls: ["./my-fan-of.component.scss"],
 })
-export class FFFComponent implements OnInit {
+export class MyFanOfComponent implements OnInit {
   keyup: boolean = false;
   tabledataloaded: boolean = false;
   limit: number = 25;
@@ -42,17 +42,17 @@ export class FFFComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fetchMyFFF();
+    this.fetchMyFanOf();
   }
 
-  fetchMyFFF() {
+  fetchMyFanOf() {
     let userId = localStorage.user_id;
     this.service
-      .getAthleteFFF(userId)
+      .getFanOf(userId)
       .then((e: any) => {
         const res = e.data;
 
-        const newresult = res[0]?.fan_of.map((prof) => {
+        const newresult = res?.recruiter_athletes.map((prof:any) => {
           const prop = prof;
           let name: any = {
               fname: "",
@@ -73,6 +73,7 @@ export class FFFComponent implements OnInit {
               if (prop?.profile_fields[i].field.name === "email") {
                 email = prop?.profile_fields[i].value;
               }
+              
               if (prop.profile_fields[i].field.name === "phone_code") {
                 const iso2: CountryCode = prop.profile_fields[i].value
                   ? prop.profile_fields[i].value
@@ -100,20 +101,6 @@ export class FFFComponent implements OnInit {
       });
   }
 
- 
-  inputChanged(e: any) {
-    let s = "";
-    e = e.slice(-10);
-    if (e.length <= 10 && e.length > 0) {
-      const first = e.substring(0, 3);
-      const mid = e.substring(3, 6);
-      const last = e.substring(6, 10);
-      s = "(" + first + ") " + mid + "-" + last;
-      return s;
-    }
-    return "";
-  }
-
   public doFilter = (event: Event) => {
     if (event['keyCode'] === 13) {
       //  value can't be send with white space in url
@@ -133,5 +120,17 @@ export class FFFComponent implements OnInit {
       this.keyup = true;
     }
   };
+  inputChanged(e: any) {
+    let s = "";
+    e = e.slice(-10);
+    if (e.length <= 10 && e.length > 0) {
+      const first = e.substring(0, 3);
+      const mid = e.substring(3, 6);
+      const last = e.substring(6, 10);
+      s = "(" + first + ") " + mid + "-" + last;
+      return s;
+    }
+    return "";
+  }
   
 }

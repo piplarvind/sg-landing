@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MatTableDataSource } from "@angular/material/table";
 import { AccountService } from "../account.service";
+import { CountryCode, getCountryCallingCode } from "libphonenumber-js";
 
 @Component({
   selector: "app-my-athletes",
@@ -13,12 +14,12 @@ import { AccountService } from "../account.service";
 export class MyAthletesComponent implements OnInit {
   keyup: boolean = false;
   tabledataloaded: boolean = false;
-  limit: number = 100;
+  limit: number = 25;
   skip: number = 0;
   totalLength: number = 0;
   previousindex: number = 0;
   pageIndex: number = 0;
-  pageLimit: number[] = [5, 10, 25, 50, 100];
+  pageLimit: number[] = [25, 50, 100];
   tabledata: any = [];
   dataSource = new MatTableDataSource();
   displayedColumns: any = [
@@ -76,8 +77,11 @@ export class MyAthletesComponent implements OnInit {
               if (prop?.profile_fields[i].field.name === "email") {
                 email = prop?.profile_fields[i].value;
               }
-              if (prop?.profile_fields[i].field.name === "phone_code") {
-                phone_code = prop?.profile_fields[i].value;
+              if (prop.profile_fields[i].field.name === "phone_code") {
+                const iso2: CountryCode = prop.profile_fields[i].value
+                  ? prop.profile_fields[i].value
+                  : "US";
+                phone_code = getCountryCallingCode(iso2);
               }
               if (prop?.profile_fields[i].field.name === "mobile_phone") {
                 mobile_phone = prop?.profile_fields[i].value;

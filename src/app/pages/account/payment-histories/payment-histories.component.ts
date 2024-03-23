@@ -6,6 +6,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { AccountService } from "../account.service";
 import { PaymentService } from "../make-payment/payment.service";
 import { SharedService } from "@app/shared/shared.service";
+import { CountryCode, getCountryCallingCode } from "libphonenumber-js";
 
 @Component({
   selector: "app-payment-histories",
@@ -15,14 +16,16 @@ import { SharedService } from "@app/shared/shared.service";
 export class PaymentHistoriesComponent implements OnInit {
   keyup: boolean = false;
   tabledataloaded: boolean = false;
-  limit: number = 100;
+  limit: number = 25;
   skip: number = 0;
   totalLength: number = 0;
   previousindex: number = 0;
   pageIndex: number = 0;
-  pageLimit: number[] = [5, 10, 25, 50, 100];
+  pageLimit: number[] = [25, 50, 100];
   tabledata: any = [];
   dataSource = new MatTableDataSource();
+  parent_athletes: any = [];
+  user_role: any;
   displayedColumns: any = [
     'date',
     'payer',
@@ -43,20 +46,52 @@ export class PaymentHistoriesComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private service: AccountService,
     private paymentService: PaymentService,
-    public sharedService: SharedService
+    public sharedService: SharedService,
+    private accountService: AccountService
   ) {
-    // console.log('localStorage.user_role', localStorage.user_role);
+    this.user_role = localStorage.user_role;
   }
 
   ngOnInit() {
+    if (this.user_role === "PAR") {
+      this.fetchMyAthletes();
+    }
     this.fetchPaymentHistories();
   }
 
+  fetchMyAthletes() {
+    this.sharedService.showLoader = true;
+    let userId = localStorage.user_id;
+    // let url = `${userId}?limit=${5}`;
+    let url = `${userId}`;
+    this.accountService
+      .getParentAthletes(url)
+      .then((e: any) => {
+        this.sharedService.showLoader = false;
+        const res = e.data;
+
+        const newresult = res?.child.map((prof) => {
+          const prop = prof?.profile_id;
+          this.parent_athletes.push(prop._id);
+          if (this.user_role === "PAR") {
+            this.fetchPaymentHistories();
+          }
+          
+        });
+        
+      })
+      .catch((err) => {
+        console.log(err);
+        this.sharedService.showLoader = false;
+      });
+  }
+  
   fetchPaymentHistories() {
     this.sharedService.showLoader = true;
     let data:any;
     let userId = localStorage.user_id;
     const postData = {
+      athlete: this.parent_athletes,
       payer: userId,
     };
     this.paymentService
@@ -84,7 +119,8 @@ export class PaymentHistoriesComponent implements OnInit {
 
           let Afname = '',
             Alname = '',
-            Amoblie = '';
+            Amoblie = '',
+            phone_code = '';
           if (prop.behalf) {
             for (let i = 0; i < prop.behalf.profile_fields.length; i++) {
               if (prop.behalf.profile_fields) {
@@ -95,6 +131,12 @@ export class PaymentHistoriesComponent implements OnInit {
                 }
                 if (prop.behalf.profile_fields[i].field.name === 'last_name') {
                   Alname = prop.behalf.profile_fields[i].value;
+                }
+                if (prop.profile_fields[i].field.name === "phone_code") {
+                  const iso2: CountryCode = prop.profile_fields[i].value
+                    ? prop.profile_fields[i].value
+                    : "US";
+                  phone_code = getCountryCallingCode(iso2);
                 }
                 if (
                   prop.behalf.profile_fields[i].field.name === 'mobile_phone'
@@ -110,7 +152,7 @@ export class PaymentHistoriesComponent implements OnInit {
             date: new Date(prop.created_on),
             card: prop.ccnum,
             athlete: Afname + ' ' + Alname,
-            contact_no_athlete: Amoblie,
+            contact_no_athlete: phone_code + Amoblie,
             payer: name.fname + ' ' + name.lname,
             contact_no_payer: name.moblie
           };
@@ -158,4 +200,16 @@ export class PaymentHistoriesComponent implements OnInit {
       this.keyup = true;
     }
   };
+  inputChanged(e: any) {
+    let s = "";
+    e = e.slice(-10);
+    if (e.length <= 10 && e.length > 0) {
+      const first = e.substring(0, 3);
+      const mid = e.substring(3, 6);
+      const last = e.substring(6, 10);
+      s = "(" + first + ") " + mid + "-" + last;
+      return s;
+    }
+    return "";
+  }
 }

@@ -17,6 +17,7 @@ import { PaymentHistoriesComponent } from './payment-histories/payment-histories
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FFFComponent } from './my-fff/my-fff.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MyFanOfComponent } from './my-fan-of/my-fan-of.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     DashboardComponent,
     MyAthletesComponent,
     MyParentsComponent,
+    MyFanOfComponent,
     FFFComponent,
     SubscriptionComponent,
     MakePaymentComponent,
