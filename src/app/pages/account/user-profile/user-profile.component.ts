@@ -43,13 +43,14 @@ export class UserProfileComponent implements OnInit {
   country: string = "";
   state: string = "";
   city: string = "";
-  address: string = "";
+  street_address: string = "";
   zip: string = "";
   phone_code: string = "US";
   mobile_phone: any = "";
   signed_senior: boolean = false;
   clgarr: any = [];
   GenderList: any = [];
+  gender: string;
   selectedAthletePosition: any = [];
   position: string;
   home: any = "";
@@ -184,6 +185,9 @@ export class UserProfileComponent implements OnInit {
             if (res?.profile_fields[i].field.name === "age") {
               this.age = res?.profile_fields[i].value?.display_value;
             }
+            if (res?.profile_fields[i].field.name === "gender") {
+              this.gender = res?.profile_fields[i].value?.display_value;
+            }
             if (res?.profile_fields[i].field.name === "position") {
               this.position = res?.profile_fields[i].value?.display_value;
             }
@@ -204,8 +208,8 @@ export class UserProfileComponent implements OnInit {
               this.state = state.data?.label;
             }
 
-            if (res?.profile_fields[i].field.name === "address") {
-              this.address = res?.profile_fields[i].value;
+            if (res?.profile_fields[i].field.name === "street_address") {
+              this.street_address = res?.profile_fields[i].value;
             }
 
             if (res?.profile_fields[i].field.name === "city") {
@@ -350,7 +354,6 @@ export class UserProfileComponent implements OnInit {
         this.roles = res?.types;
         this.sport = res?.sport?.sport_name;
         this.club = res?.club?.club_name;
-        this.transformData(this.user.profile_fields);
       })
       .catch((err) => {
         console.log(err);
@@ -362,56 +365,6 @@ export class UserProfileComponent implements OnInit {
     this.service.getStatusData(status_id).then((res: any) => {
       this.status = res.data;
     });
-  }
-
-  
-
-  async transformData(profileFields) {
-    this.profileData = await Promise.all(
-      profileFields
-        .filter(
-          (item) =>
-            !this.filteredNames.includes(item?.field?.name) &&
-            item.value !== null &&
-            typeof item.value === "string" &&
-            item.value.trim() !== ""
-        )
-        .map(async (item) => {
-          if (item?.field) {
-            const { name, label } = item.field;
-            let value = item.value;
-
-            if (name === "profile_image") {
-              value = this.env.imageUrl + value;
-              this.profile_image = value;
-            }
-            if (name === "first_name") {
-              this.first_name = value;
-            }
-            if (name === "last_name") {
-              this.last_name = value;
-            }
-            if (name === "mobile_phone") {
-              value = this.formateMobile(value);
-            }
-            if (name === "country") {
-              const res = (await this.service.getCountryData(value)) as {
-                data: { label: string };
-              };
-              value = res.data?.label;
-            }
-
-            if (name === "state") {
-              const res = (await this.service.getStateData(value)) as {
-                data: { label: string };
-              };
-              value = res.data?.label;
-            }
-
-            return { name, label, value };
-          }
-        })
-    );
   }
 
   formateMobile(e: any) {
