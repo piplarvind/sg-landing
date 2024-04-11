@@ -12,6 +12,7 @@ import { VgBufferingModule } from "@videogular/ngx-videogular/buffering";
 import { SharedModule } from "@app/shared";
 import { MaterialModule } from "@app/material.module";
 import { PagesRoutingModule } from "./pages-routing.module";
+import { GetInTouchComponent } from './get-in-touch/get-in-touch.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,9 @@ import { PagesRoutingModule } from "./pages-routing.module";
     VgOverlayPlayModule,
     VgBufferingModule,
   ],
-  declarations: [],
+  declarations: [
+    GetInTouchComponent
+  ],
   providers: [],
 })
 export class PagesModule {}
