@@ -14,6 +14,13 @@
         <!-- Changed col-md-4 to col-md-8 -->
         <div class="card card-profile">
           <div class="card-avatar">
+            <!-- <span class="sport-logo">
+              <img
+                class="img"
+                [src]="sport_logo || '/assets/user.png'"
+                onError="/assets/user.png"
+              />
+            </span> -->
             <label for="fileInput" class="image-container">
               <img
                 class="img profile-img"
@@ -23,6 +30,13 @@
                 height="128"
               />
             </label>
+            <span class="club-logo">
+              <img
+                class="img"
+                [src]="club_logo || '/assets/user.png'"
+                onError="/assets/user.png"
+              />
+            </span>
           </div>
           <div class="card-body text-center">
             <h4 class="card-title">{{ first_name }} {{ last_name }}</h4>
@@ -30,22 +44,78 @@
               <ng-container *ngFor="let role of roles; let last = last">
                 <span>{{ role?.name }}</span>
                 <span *ngIf="!last">, </span>
+                <span *ngIf="role?.abbr === 'PAR'"> of </span>
+                <div *ngIf="role?.abbr === 'PAR'">
+                  <div *ngFor="let athlete of ath_data" class="athlete-info">
+                    <div class="ath-profile-img">
+                      <img
+                        class="img ath-profile-img"
+                        [src]="athlete.ath_profile_image || '/assets/user.png'"
+                        onError="/assets/user.png"
+                        width="50"
+                        height="50"
+                      />
+                    </div>
+                    <div class="athlete-details">
+                      <div class="name">
+                        <span>{{ athlete.name }}</span>
+                      </div>
+                      <div>
+                        <span>
+                          <ng-container *ngIf="athlete.ath_club">
+                            <span style="font-weight: bold">
+                              {{ athlete.ath_sport }}
+                            </span>
+                          </ng-container>
+                        </span>
+                        <span>
+                          <ng-container *ngIf="athlete.ath_sport">
+                            <sub class="star">*</sub> <span style="font-weight: bold"> {{
+                              athlete.ath_club
+                            }}</span>
+                          </ng-container>
+                        </span>
+                      </div>
+                      <div>
+                        <span>
+                          <ng-container *ngIf="athlete.ath_age">
+                            {{ athlete.ath_age }}
+                          </ng-container>
+                        </span>
+                        <span>
+                          <ng-container *ngIf="athlete.ath_team">
+                            <sub class="star">*</sub> {{ athlete.ath_team }}
+                          </ng-container>
+                        </span>
+                        <span>
+                          <ng-container *ngIf="athlete.ath_position">
+                            <sub class="star">*</sub> {{ athlete.ath_position }}
+                          </ng-container>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </ng-container>
             </h5>
-            <h6>
-              <ng-container *ngIf="age">{{ age + "*" }}</ng-container>
-              <ng-container *ngIf="user?.sport?.sport_name">{{
-                user.sport.sport_name
-              }}</ng-container>
-              <ng-container *ngIf="position">{{ "*" + position }}</ng-container>
+            <h6 *ngIf="role !== 'PAR'">
+              <ng-container *ngIf="age">{{ age + " * " }}</ng-container>
+              <ng-container *ngIf="user?.teams && user.teams.length > 0">
+                <sub class="star">*</sub>{{ user?.teams[0]?.name }}
+              </ng-container>
+              <ng-container *ngIf="position">
+                <sub class="star">*</sub>{{ position }}
+              </ng-container>
             </h6>
-            <h6 class="card-category text-gray">
-              <ng-container *ngIf="user?.club?.club_name">{{
-                user.club.club_name
-              }}</ng-container>
-              <ng-container *ngIf="user?.teams && user.teams.length > 0">{{
-                "/" + user.teams[0].name
-              }}</ng-container>
+            <h6 *ngIf="role !== 'PAR'" class="card-category text-gray">
+              <ng-container *ngIf="user?.sport?.sport_name">
+                <span style="font-weight: bold">
+                  {{ user.sport.sport_name }}
+                </span>
+              </ng-container>
+              <ng-container *ngIf="user?.club?.club_name">
+                <sub class="star">*</sub>{{ user?.club?.club_name }}
+              </ng-container>
             </h6>
           </div>
         </div>

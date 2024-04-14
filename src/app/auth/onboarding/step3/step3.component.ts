@@ -13,7 +13,7 @@ export class Step3Component implements OnInit {
   env: any = environment;
   searchText:string="";
   nextButtonClicked = false;
-
+  userType = localStorage.getItem("userType");
   clubs: any = [];
   filteredClubs: any = [];
 

@@ -8,6 +8,7 @@ import { SharedService } from "@app/shared/shared.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ProfileService } from "./profile.service";
 import { CountryCode, getCountryCallingCode } from "libphonenumber-js";
+import { AccountService } from "../account.service";
 
 // profile.interface.ts
 export interface ProfileInfo {
@@ -51,6 +52,7 @@ export class UserProfileComponent implements OnInit {
   clgarr: any = [];
   GenderList: any = [];
   gender: string;
+  ath_gender: string;
   selectedAthletePosition: any = [];
   position: string;
   home: any = "";
@@ -86,6 +88,7 @@ export class UserProfileComponent implements OnInit {
   school_image_logo: any = "";
   regionsList: Array<any> = [];
   profile_image: any = "assets/user-192x192.png";
+  ath_profile_image: any = "assets/user-192x192.png";
   tempFile: any;
   finalData: any = [];
   name: any = [];
@@ -106,13 +109,21 @@ export class UserProfileComponent implements OnInit {
 
   user: any;
   first_name: string;
+  ath_first_name: string;
   last_name: string;
+  ath_last_name: string;
   email: string;
   age: string;
+  ath_age: string;
   role: string;
   roles: [];
   sport: string;
+  sport_logo: string = "";
+  club_logo: string = "";
+  ath_sport: string;
   club: string;
+  ath_club: string;
+  ath_team: string;
   grad_year: string;
   school_name: string;
   gpa: string;
@@ -141,18 +152,24 @@ export class UserProfileComponent implements OnInit {
   sweat_pants: string;
   spandex: string;
 
+  ath_data: any = [];
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
     public _DomSanitizationService: DomSanitizer,
     public sharedService: SharedService,
-    private service: ProfileService
+    private service: ProfileService,
+    private accountService: AccountService
   ) {}
 
   ngOnInit() {
     let userId = localStorage.user_id;
     this.role = localStorage.user_role;
     this.getMyProfile(userId);
+    if (this.role === "PAR") {
+      this.fetchMyAthletes();
+    }
   }
 
   getMyProfile(userId: any) {
@@ -408,12 +425,93 @@ export class UserProfileComponent implements OnInit {
         //this.role = res?.types[0]?.name;
         this.roles = res?.types;
         this.sport = res?.sport?.sport_name;
+        this.sport_logo = `${environment.imageUrl}${res?.sport?.sg_sport_logo}`;
         this.club = res?.club?.club_name;
+        this.club_logo = `${environment.imageUrl}${res?.club?.logo}`;
       })
       .catch((err) => {
         //console.log(err);
         this.isLoading = false;
         this.sharedService.showLoader = false;
+      });
+  }
+
+  fetchMyAthletes() {
+    let userId = localStorage.user_id;
+    this.accountService
+      .getParentAthletes(userId)
+      .then((e: any) => {
+        const res = e.data;
+        this.ath_data = res?.child
+          ?.filter((prof: any) => prof?.accepted === 'accepted')
+          .map((prof:any) => {
+            const prop = prof?.profile_id;
+            let name: any = {
+                fname: "",
+                lname: "",
+              },
+              ath_sport: string = prop?.sport?.sport_name,
+              ath_club: string = prop?.club?.club_name,
+              ath_team: string = prop?.teams[0]?.name,
+              ath_profile_image:string = "",
+              ath_age: string = "",
+              ath_gender: string = "",
+              ath_position: string = "",
+              email: string = "",
+              phone_code: any = "",
+              mobile_phone: any = "",
+              accepted: any = "";
+            accepted = prof.accepted;
+
+
+
+            for (let i = 0; i < prop?.profile_fields.length; i++) {
+              if (prop?.profile_fields[i].field) {
+                if (prop?.profile_fields[i].field.name === "first_name") {
+                  name.fname = prop?.profile_fields[i].value;
+                }
+                if (prop?.profile_fields[i].field.name === "last_name") {
+                  name.lname = prop?.profile_fields[i].value;
+                }
+                
+                if (prop?.profile_fields[i].field.name === "profile_image") {
+                  ath_profile_image = `${prop?.profile_fields[i].value}`
+                    ? `${environment.imageUrl}${prop?.profile_fields[i].value}`
+                    : "assets/user-192x192.png";
+                }
+                if (prop?.profile_fields[i].field.name === "age") {
+                  ath_age = prop?.profile_fields[i].value?.display_value;
+                }
+                if (prop?.profile_fields[i].field.name === "gender") {
+                  ath_gender = prop?.profile_fields[i].value?.display_value;
+                }
+                if (prop?.profile_fields[i].field.name === "position") {
+                  ath_position = prop?.profile_fields[i].value?.display_value;
+                }
+              }
+            }
+            return {
+              ...prop, 
+              ath_sport: ath_sport,
+              ath_club: ath_club,
+              ath_team: ath_team,
+              name: name.fname + " " + name.lname,
+              ath_profile_image: ath_profile_image,
+              ath_age: ath_age,
+              ath_gender: ath_gender,  
+              ath_position: ath_position,        
+              accepted: accepted,
+              accepted_at: prof.accepted_at,
+            };
+          });
+
+        // Sort the array by the "accepted" field
+        this.ath_data.sort((a, b) => (a.accepted > b.accepted ? 1 : -1));
+        console.log('ath_data', this.ath_data);
+      })
+      .catch((err) => {
+        console.log(err);
+        // this.sharedService.showLoader = false;
       });
   }
 

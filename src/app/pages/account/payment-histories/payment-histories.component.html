@@ -52,7 +52,7 @@
                 <span class="m-table-header"> Card# </span>
               </mat-header-cell>
               <mat-cell *matCellDef="let element" class="textCenter">
-                {{ element.card }}
+                {{ maskCardNumber(element.card) }}
               </mat-cell>
             </ng-container>
 

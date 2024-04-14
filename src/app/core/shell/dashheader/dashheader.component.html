@@ -22,14 +22,13 @@
             <span class="m-pointer m-icon image-container">
               <img
                 class="img profile-img"
-                [src]="profile_image || '/assets/user-192x192.png'"
+                [src]="sport_image || '/assets/user-192x192.png'"
                 onError="/assets/user-192x192.png"
-                width="60"
-                height="60"
+                width="150"
               />
             </span>
           </div>
-          <div class="dropdown" (click)="showDropdown()">
+          <!-- <div class="dropdown" (click)="showDropdown()">
             <mat-card>
               <div class="menu-item" routerLink="/account">
                 <svg
@@ -130,7 +129,7 @@
                 Logout
               </div>
             </mat-card>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

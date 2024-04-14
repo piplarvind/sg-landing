@@ -9,10 +9,7 @@
         <div class="col-md-12">
           <div class="text-center">
             <h5>Enter Details</h5>
-            <p>
-              Enter University details and add your phone number to receive the
-              authentication code
-            </p>
+            <p>Enter University Details</p>
           </div>
         </div>
       </div>
@@ -21,9 +18,12 @@
           <mat-form-field class="example-full-width">
             <input
               matInput
+              type="email"
+              autocomplete="off"
               placeholder="Official email"
               required
               formControlName="official_email"
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
             />
             <mat-error
               *ngIf="
@@ -43,6 +43,11 @@
             >
               Official email must be a valid email address
             </mat-error>
+            <mat-error
+              *ngIf="universityForm.get('official_email')?.hasError('pattern')"
+            >
+              Please enter a valid email address
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="col-md-6">
@@ -51,6 +56,7 @@
               matInput
               placeholder="Recruiter title"
               required
+              autocomplete="off"
               formControlName="recruiter_title"
             />
             <mat-error
@@ -68,9 +74,12 @@
           <mat-form-field class="example-full-width">
             <input
               matInput
+              type="url"
               placeholder="Program website URL"
               required
+              autocomplete="off"
               formControlName="program_website_url"
+              pattern="^(https?:\/\/)?(www\.)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$"
             />
             <mat-error
               *ngIf="
@@ -81,6 +90,13 @@
             >
               Program website URL is required
             </mat-error>
+            <mat-error
+              *ngIf="
+                universityForm.get('program_website_url')?.hasError('pattern')
+              "
+            >
+              Please enter a valid URL
+            </mat-error>
           </mat-form-field>
         </div>
 
@@ -90,6 +106,7 @@
               matInput
               placeholder="University name"
               required
+              autocomplete="off"
               formControlName="university_name"
             />
             <mat-error
@@ -110,6 +127,7 @@
               matInput
               placeholder="Street address"
               required
+              autocomplete="off"
               formControlName="street_address"
             />
             <mat-error
@@ -129,6 +147,7 @@
               matInput
               placeholder="City"
               required
+              autocomplete="off"
               formControlName="city"
             />
             <mat-error
@@ -148,6 +167,7 @@
               matInput
               placeholder="State"
               required
+              autocomplete="off"
               formControlName="state"
             />
             <mat-error
@@ -167,6 +187,7 @@
               type="tel"
               placeholder="Zip code"
               required
+              autocomplete="off"
               formControlName="zip"
             />
             <mat-error
@@ -181,12 +202,16 @@
         </div>
         <div class="col-md-6">
           <mat-form-field class="example-full-width">
-            <mat-placeholder class="mobile_no_lbl">Contact phone</mat-placeholder>
+            <mat-placeholder class="mobile_no_lbl"
+              >Contact phone</mat-placeholder
+            >
             <input
               formControlName="mobile_phone"
               required
               #ng2TelInput
               type="tel"
+              autocomplete="off"
+              max="10"
               matInput
               ng2TelInput
               [ng2TelInputOptions]="{
@@ -209,10 +234,10 @@
                 universityForm.get('mobile_phone')?.hasError('required')
               "
             >
-            Contact phone is required
+              Contact phone is required
             </mat-error>
           </mat-form-field>
-        </div>        
+        </div>
       </div>
       <div class="row">
         <div class="col-md-12">

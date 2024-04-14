@@ -4,7 +4,8 @@
       <div class="col-md-12">
         <div class="text-center">
           <h3>Select Your Club</h3>
-          <p>If you don't see your club listed,<a routerLink="/auth/onboarding/club-not-here"> CLICK HERE</a> to request that we add your club.</p>
+          <p *ngIf="userType !== 'REC'">If you don't see your club listed,<a routerLink="/auth/onboarding/club-not-here"> CLICK HERE</a> to request that we add your club.</p>
+          <p *ngIf="userType === 'REC'">Select ANY club where you have an Athlete of Interest (In the app you will be able to see ALL Clubs)</p>
         </div>
       </div>
     </div>

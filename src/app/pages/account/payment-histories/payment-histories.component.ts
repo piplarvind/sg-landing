@@ -212,4 +212,16 @@ export class PaymentHistoriesComponent implements OnInit {
     }
     return "";
   }
+
+  maskCardNumber(cardNumber: string): string {
+    // Extract first four and last four digits
+    const firstFour = cardNumber.slice(0, 4);
+    const lastFour = cardNumber.slice(-4);
+  
+    // Mask the middle digits with 'X'
+    const middleDigits = cardNumber.slice(4, -4).replace(/\d/g, 'X');
+  
+    // Combine the masked middle digits with the first and last four digits
+    return firstFour + middleDigits + lastFour;
+  }
 }

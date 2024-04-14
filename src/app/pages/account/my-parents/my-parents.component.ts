@@ -54,50 +54,52 @@ export class MyParentsComponent implements OnInit {
       .then((e: any) => {
         const res = e.data;
 
-        const newresult = res[0]?.parents.map((prof) => {
-          const prop = prof?.profile_id;
-          let name: any = {
-              fname: "",
-              lname: "",
-            },
-            email: string = "",
-            phone_code: any = "",
-            mobile_phone: any = "",
-            accepted: any = "";
-          accepted = prof.accepted;
+        const newresult = res[0]
+          ?.filter((prof: any) => prof?.accepted === "accepted")
+          .parents.map((prof: any) => {
+            const prop = prof?.profile_id;
+            let name: any = {
+                fname: "",
+                lname: "",
+              },
+              email: string = "",
+              phone_code: any = "",
+              mobile_phone: any = "",
+              accepted: any = "";
+            accepted = prof.accepted;
 
-          for (let i = 0; i < prop?.profile_fields.length; i++) {
-            if (prop?.profile_fields[i].field) {
-              if (prop?.profile_fields[i].field.name === "first_name") {
-                name.fname = prop?.profile_fields[i].value;
-              }
-              if (prop?.profile_fields[i].field.name === "last_name") {
-                name.lname = prop?.profile_fields[i].value;
-              }
-              if (prop?.profile_fields[i].field.name === "email") {
-                email = prop?.profile_fields[i].value;
-              }
-              if (prop.profile_fields[i].field.name === "phone_code") {
-                const iso2: CountryCode = prop.profile_fields[i].value
-                  ? prop.profile_fields[i].value
-                  : "US";
-                phone_code = getCountryCallingCode(iso2);
-              }
-              if (prop?.profile_fields[i].field.name === "mobile_phone") {
-                mobile_phone = prop?.profile_fields[i].value;
+            for (let i = 0; i < prop?.profile_fields.length; i++) {
+              if (prop?.profile_fields[i].field) {
+                if (prop?.profile_fields[i].field.name === "first_name") {
+                  name.fname = prop?.profile_fields[i].value;
+                }
+                if (prop?.profile_fields[i].field.name === "last_name") {
+                  name.lname = prop?.profile_fields[i].value;
+                }
+                if (prop?.profile_fields[i].field.name === "email") {
+                  email = prop?.profile_fields[i].value;
+                }
+                if (prop.profile_fields[i].field.name === "phone_code") {
+                  const iso2: CountryCode = prop.profile_fields[i].value
+                    ? prop.profile_fields[i].value
+                    : "US";
+                  phone_code = getCountryCallingCode(iso2);
+                }
+                if (prop?.profile_fields[i].field.name === "mobile_phone") {
+                  mobile_phone = prop?.profile_fields[i].value;
+                }
               }
             }
-          }
-          return {
-            ...prop,
-            name: name.fname + " " + name.lname,
-            email: email,
-            phone_code: phone_code,
-            mobile_phone: mobile_phone,
-            accepted: accepted,
-            accepted_at: prof.accepted_at,
-          };
-        });
+            return {
+              ...prop,
+              name: name.fname + " " + name.lname,
+              email: email,
+              phone_code: phone_code,
+              mobile_phone: mobile_phone,
+              accepted: accepted,
+              accepted_at: prof.accepted_at,
+            };
+          });
         this.dataSource.data = newresult;
       })
       .catch((err) => {
@@ -107,11 +109,11 @@ export class MyParentsComponent implements OnInit {
   }
 
   public doFilter = (event: Event) => {
-    if (event['keyCode'] === 13) {
+    if (event["keyCode"] === 13) {
       //  value can't be send with white space in url
-      let value = event.target['value'];
-      value = value.split(' ').join('_');
-      let url = '?searchBy=club_name&values=';
+      let value = event.target["value"];
+      value = value.split(" ").join("_");
+      let url = "?searchBy=club_name&values=";
 
       let data;
       // this.service.getfilterClub(url + value).then((res: any) => {
@@ -125,7 +127,7 @@ export class MyParentsComponent implements OnInit {
       this.keyup = true;
     }
   };
-  
+
   inputChanged(e: any) {
     let s = "";
     e = e.slice(-10);

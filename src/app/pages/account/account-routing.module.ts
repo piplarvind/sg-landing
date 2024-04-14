@@ -26,13 +26,13 @@ const routes: Routes = [
     path: "my-athletes",
     component: MyAthletesComponent,
     canActivate: [AuthGuard],
-    data: { title: extract("My Athletes") },
+    data: { title: extract("My Athlete") },
   },
   {
     path: "my-parents",
     component: MyParentsComponent,
     canActivate: [AuthGuard],
-    data: { title: extract("My Parents") },
+    data: { title: extract("My Parent") },
   },
   {
     path: "my-fan-of",
@@ -68,7 +68,7 @@ const routes: Routes = [
     path: "profile",
     component: UserProfileComponent,
     canActivate: [AuthGuard],
-    data: { title: extract("Profile") },
+    data: { title: extract("My Profile") },
   },
   {
     path: "change-password",

@@ -101,9 +101,9 @@ export class DashboardComponent implements OnInit {
     if (this.user_role === "REC") {
       this.fetchMyFanOf();
     }
-    if (this.user_role === "ATH" || this.user_role === "FFF") {
+    if (this.user_role === "ATH" || this.user_role === "PAR" || this.user_role === "FFF") {
       this.fetchSuccessfullPayments();
-      this.fetchUnSuccessfullPayments();
+      //this.fetchUnSuccessfullPayments();
     }
     this.getSettingData();
   }

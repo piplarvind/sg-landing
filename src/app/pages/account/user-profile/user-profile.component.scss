@@ -10,6 +10,12 @@
   border-radius: 50%;
 }
 
+.ath-profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
 .card-avatar {
   position: relative;
   overflow: hidden;
@@ -47,7 +53,7 @@
   box-sizing: border-box;
 }
 .card-body{
-  padding: 0px 10px 10px !important;
+  padding: 10px 10px 10px !important;
 }
 /* Media query for smaller screens (up to 767px) */
 @media (max-width: 767px) {
@@ -119,3 +125,46 @@
   text-align: center;
 }
 
+.athlete-info {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid;
+  margin: 5px 0;
+  padding: 5px 0;
+  width: 100%; /* Set width to 100% */
+}
+
+.profile-img {
+  margin-right: 10px;
+}
+
+.athlete-details {
+  font-size: 13px;
+  padding-left: 10px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.sport-logo{
+  position: absolute;
+  left: 6px;
+}
+.sport-logo img{
+  width: 100px;
+}
+.club-logo{
+  position: absolute;
+  left: 45%;
+  top: 110px;
+}
+.club-logo img{
+  width: 30px;
+  border-radius: 50%;
+}
+
+.star{
+  font-size: 15px;
+}

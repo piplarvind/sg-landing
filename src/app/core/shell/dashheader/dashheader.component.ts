@@ -50,6 +50,7 @@ export class DashheaderComponent implements OnInit {
   selectedSeason = "";
   selectedGender = "";
   profile_image: string;
+  sport_image: string;
   env: any = environment;
 
   profileData: ProfileInfo[] = [];
@@ -69,7 +70,8 @@ export class DashheaderComponent implements OnInit {
 
   ngOnInit() {
     const obj = JSON.parse(localStorage.userDetails);
-    console.log('obj', obj);
+    //console.log('obj', obj);
+    this.sport_image = this.env.imageUrl + obj.sport.sg_sport_logo;
     this.transformData(obj.profile_fields);
     this.id = obj._id;
     ref = this;

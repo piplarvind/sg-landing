@@ -37,7 +37,6 @@ export class MyAthletesComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private sanitizer: DomSanitizer,
     private service: AccountService
   ) {
     // console.log('localStorage.user_role', localStorage.user_role);
@@ -53,51 +52,52 @@ export class MyAthletesComponent implements OnInit {
       .getParentAthletes(userId)
       .then((e: any) => {
         const res = e.data;
+        const newresult = res?.child
+          ?.filter((prof: any) => prof?.accepted === 'accepted')
+          .map((prof:any) => {
+            const prop = prof?.profile_id;
+            let name: any = {
+                fname: "",
+                lname: "",
+              },
+              email: string = "",
+              phone_code: any = "",
+              mobile_phone: any = "",
+              accepted: any = "";
+            accepted = prof.accepted;
 
-        const newresult = res?.child?.map((prof) => {
-          const prop = prof?.profile_id;
-          let name: any = {
-              fname: "",
-              lname: "",
-            },
-            email: string = "",
-            phone_code: any = "",
-            mobile_phone: any = "",
-            accepted: any = "";
-          accepted = prof.accepted;
-
-          for (let i = 0; i < prop?.profile_fields.length; i++) {
-            if (prop?.profile_fields[i].field) {
-              if (prop?.profile_fields[i].field.name === "first_name") {
-                name.fname = prop?.profile_fields[i].value;
-              }
-              if (prop?.profile_fields[i].field.name === "last_name") {
-                name.lname = prop?.profile_fields[i].value;
-              }
-              if (prop?.profile_fields[i].field.name === "email") {
-                email = prop?.profile_fields[i].value;
-              }
-              if (prop.profile_fields[i].field.name === "phone_code") {
-                const iso2: CountryCode = prop.profile_fields[i].value
-                  ? prop.profile_fields[i].value
-                  : "US";
-                phone_code = getCountryCallingCode(iso2);
-              }
-              if (prop?.profile_fields[i].field.name === "mobile_phone") {
-                mobile_phone = prop?.profile_fields[i].value;
+            for (let i = 0; i < prop?.profile_fields.length; i++) {
+              if (prop?.profile_fields[i].field) {
+                if (prop?.profile_fields[i].field.name === "first_name") {
+                  name.fname = prop?.profile_fields[i].value;
+                }
+                if (prop?.profile_fields[i].field.name === "last_name") {
+                  name.lname = prop?.profile_fields[i].value;
+                }
+                if (prop?.profile_fields[i].field.name === "email") {
+                  email = prop?.profile_fields[i].value;
+                }
+                if (prop.profile_fields[i].field.name === "phone_code") {
+                  const iso2: CountryCode = prop.profile_fields[i].value
+                    ? prop.profile_fields[i].value
+                    : "US";
+                  phone_code = getCountryCallingCode(iso2);
+                }
+                if (prop?.profile_fields[i].field.name === "mobile_phone") {
+                  mobile_phone = prop?.profile_fields[i].value;
+                }
               }
             }
-          }
-          return {
-            ...prop,
-            name: name.fname + " " + name.lname,
-            email: email,
-            phone_code: phone_code,
-            mobile_phone: mobile_phone,
-            accepted: accepted,
-            accepted_at: prof.accepted_at,
-          };
-        });
+            return {
+              ...prop,
+              name: name.fname + " " + name.lname,
+              email: email,
+              phone_code: phone_code,
+              mobile_phone: mobile_phone,
+              accepted: accepted,
+              accepted_at: prof.accepted_at,
+            };
+          });
 
         // Sort the array by the "accepted" field
         newresult.sort((a, b) => (a.accepted > b.accepted ? 1 : -1));

@@ -11,7 +11,7 @@
   }
 
   ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
-    padding: 10px 0 !important;
+    padding: 15px 0 !important;
   }
 
   ::ng-deep .mobile_no_lbl {
@@ -21,3 +21,11 @@
   ::ng-deep .mat-form-field.mat-focused .mobile_no_lbl {
     margin-left: 0px;
   }
+
+  ::ng-deep .iti__flag-container {
+    position: absolute;
+    top: -10px !important;
+    bottom: 5px;
+    right: 0;
+    padding: 0px;
+}
