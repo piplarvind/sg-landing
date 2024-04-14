@@ -1,0 +1,215 @@
+<section class="section-padding" style="margin-top: 20px; margin-bottom: 20px;">
+    <div class="container">
+      <form id="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center">
+              <h5>Personal Information</h5>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="First name"
+                required
+                formControlName="first_name"
+                autocomplete="off"
+                class="large-font"
+              />
+              <mat-error
+                *ngIf="
+                  (registerForm.get('first_name')?.touched ||
+                    submitButtonClicked) &&
+                  registerForm.get('first_name')?.hasError('required')
+                "
+              >
+                First name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Last name"
+                required
+                formControlName="last_name"
+                autocomplete="off"
+              />
+              <mat-error
+                *ngIf="
+                  (registerForm.get('last_name')?.touched ||
+                    submitButtonClicked) &&
+                  registerForm.get('last_name')?.hasError('required')
+                "
+              >
+                Last name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                type="email"
+                matInput
+                placeholder="Email"
+                required
+                formControlName="email"
+                autocomplete="off"
+              />
+              <mat-error
+                *ngIf="
+                  (registerForm.get('email')?.touched || submitButtonClicked) &&
+                  registerForm.get('email')?.hasError('required')
+                "
+              >
+                Email is required
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  (registerForm.get('email')?.touched || submitButtonClicked) &&
+                  registerForm.get('email')?.hasError('email')
+                "
+              >
+                Email must be a valid email address
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Mobile"
+                required
+                formControlName="mobile_phone"
+                autocomplete="off"
+              />
+              <mat-error
+                *ngIf="
+                  (registerForm.get('mobile_phone')?.touched || submitButtonClicked) &&
+                  registerForm.get('mobile_phone')?.hasError('required')
+                "
+              >
+                Mobile number is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                type="{{ showPassword ? 'text' : 'password' }}"
+                placeholder="Password"
+                required
+                formControlName="password"
+                autocomplete="off"
+              />
+              <button
+                  mat-icon-button
+                  matSuffix
+                  type="button"
+                  (click)="togglePasswordVisibility('password')"
+                  [attr.aria-label]="'Toggle ' + (showPassword ? 'Hide' : 'Show') + ' password'"
+                >
+                  <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+              <mat-error
+                *ngIf="
+                  (registerForm.get('password')?.touched ||
+                    submitButtonClicked) &&
+                  registerForm.get('password')?.hasError('required')
+                "
+              >
+                Password is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                type="{{ showConfirmPassword ? 'text' : 'password' }}"
+                placeholder="Confirm password"
+                required
+                formControlName="cPassword"
+                autocomplete="off"
+              />
+              <button
+                  mat-icon-button
+                  matSuffix
+                  type="button"
+                  (click)="togglePasswordVisibility('cPassword')"
+                  [attr.aria-label]="'Toggle ' + (showConfirmPassword ? 'Hide' : 'Show') + ' password'"
+                >
+                  <mat-icon>{{ showConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+              <mat-error
+                *ngIf="
+                  (registerForm.get('cPassword')?.touched ||
+                    submitButtonClicked) &&
+                  registerForm.get('cPassword')?.hasError('required')
+                "
+              >
+                Confirm password is required
+              </mat-error>            
+              <mat-error
+                *ngIf="
+                  (registerForm.get('cPassword')?.touched ||
+                    submitButtonClicked) &&
+                  registerForm?.get('cPassword')?.errors?.confirmPasswordValidator
+                "
+              >
+                Password and confirm password don't match
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div>&nbsp;</div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center mt-2">
+              <mat-slide-toggle
+                class="terms-service"
+                [color]="color"
+                [checked]="checked"
+                [disabled]="disabled"
+                formControlName="acceptTerms"
+              >I agree to the SportGrit, LLC
+                <a routerLink="/cms-page/terms-conditions" target="_blank"
+                  >Terms of Use</a
+                >
+                and
+                <a routerLink="/cms-page/privacy-policy" target="_blank"
+                  >Privacy Policy</a
+                >
+              </mat-slide-toggle>
+              <mat-error
+                *ngIf="
+                  (registerForm.get('acceptTerms')?.touched ||
+                    submitButtonClicked) &&
+                  registerForm.get('acceptTerms')?.hasError('required')
+                "
+              >
+              Please agree to the terms of usage & privacy policy
+              </mat-error>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="button-container text-center mt-3">
+              <button mat-raised-button type="submit" class="btn btn theme-btn">
+                <!-- (click)="nextButtonClick()" -->
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  
