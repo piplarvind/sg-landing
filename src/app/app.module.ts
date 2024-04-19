@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TranslateModule } from "@ngx-translate/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ToastrModule } from 'ngx-toastr';
 import { VgCoreModule } from "@videogular/ngx-videogular/core";
 import { VgControlsModule } from "@videogular/ngx-videogular/controls";
 import { VgOverlayPlayModule } from "@videogular/ngx-videogular/overlay-play";
@@ -34,6 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
     TranslateModule.forRoot(),
     CarouselModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     MaterialModule,
     VgCoreModule,
     VgControlsModule,
