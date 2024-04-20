@@ -179,16 +179,21 @@
           </mat-form-field>
         </div>
         <div class="col-md-6">
-          <button type="button" mat-raised-button (click)="fileInput.click()">
-            Choose File
-          </button>
-          <input
-            hidden
-            (change)="onFileSelected($event)"
-            #fileInput
-            type="file"
-          />
-          <span class="file-name">{{ selectedFile?.name }}</span>
+          <div>
+            <button type="button" mat-raised-button (click)="fileInput.click()">
+              Choose File
+            </button>
+            <input
+              hidden
+              (change)="onFileSelected($event)"
+              #fileInput
+              type="file"
+            />
+            <span class="file-name">{{ selectedFile?.name }}</span>
+          </div>
+          <div *ngIf="inquiryForm.get('logo')?.errors?.invalidFileType" class="error-message" style="color: #f44336;">
+            <div *ngIf="inquiryForm.get('logo')?.errors?.invalidFileType">Invalid file type. Please upload an image (JPEG/PNG).</div>
+          </div>
         </div>
 
         <div class="col-md-12">

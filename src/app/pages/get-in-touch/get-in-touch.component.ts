@@ -59,7 +59,7 @@ export class GetInTouchComponent implements OnInit {
         sport: ["", Validators.required],
         club: ["", Validators.required],
         website: ["", Validators.required],
-        logo: [null, Validators.required],
+        logo: [null, this.fileValidator],
         message: ["", Validators.required],
       }
     );
@@ -69,10 +69,27 @@ export class GetInTouchComponent implements OnInit {
     localStorage.removeItem("stepperCurrentStepIndex");
   }
 
+  fileValidator(control: any): { [key: string]: any } | null {
+    const file = control.value;
+    if (file && !['image/jpeg', 'image/png', 'image/gif'].includes(file.type)) {
+      return { 'invalidFileType': true };
+    }
+    return null;
+  }
+
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0] ?? null;
     // Update the form control value
     this.inquiryForm.patchValue({ logo: this.selectedFile });
+  }
+
+  clearFileInput(): void {
+    // Reset the selectedFile and clear the file input
+    this.selectedFile = null;
+    const fileInput: HTMLInputElement | null = document.getElementById('fileInput') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = ''; // Reset the value of the file input
+    }
   }
 
   onSubmit(): void {
@@ -86,37 +103,20 @@ export class GetInTouchComponent implements OnInit {
       // Submit form data
       this.getInTouchService.submitInquiry(formData).subscribe(response => {
         // Handle response from server
-        console.log(response);
+        // console.log(response);
         this.toastr.success(response.message, 'Success');
         this.inquiryForm.reset();
-      }, () => {
-        this.toastr.warning('Something went wrong, please try again.', 'Info');
+        this.clearFileInput(); // Clear the file input
+      }, (err) => {
+        // this.toastr.warning('Something went wrong, please try again.', 'Info');
+        this.toastr.warning(err?.error?.message, 'Info');
       });
-      /* const formData: FormData = new FormData();
-      formData.append('first_name', this.inquiryForm.get('first_name').value);
-      formData.append('last_name', this.inquiryForm.get('last_name').value);
-      formData.append('email', this.inquiryForm.get('email').value);
-      formData.append('mobile_phone', this.inquiryForm.get('mobile_phone').value);
-      formData.append('role', this.inquiryForm.get('role').value);
-      formData.append('sport', this.inquiryForm.get('sport').value);
-      formData.append('club', this.inquiryForm.get('club').value);
-      formData.append('website', this.inquiryForm.get('website').value);
-      // formData.append('logo', this.inquiryForm.get('file').value);
-      const fileControl = this.inquiryForm.get('file');
-      if (fileControl && fileControl.value) {
-        formData.append('logo', fileControl.value);
-        console.log('File Data:', fileControl.value); // Log file data separately
-      }
-      formData.append('message', this.inquiryForm.get('message').value);
 
-      // Append more form data as needed
-
-      // You can now send formData to your backend for further processing
-      console.log('formData', formData); */
     } else {
       // Handle form validation errors
       // You can display error messages to the user
-      console.log('this.inquiryForm.valid', this.inquiryForm.valid);
+      console.log('this.inquiryForm', this.inquiryForm);
+      // console.log('this.inquiryForm.valid', this.inquiryForm.valid);
     }
   }
 
