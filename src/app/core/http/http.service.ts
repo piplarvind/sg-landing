@@ -48,7 +48,7 @@ export class HttpService extends HttpClient {
     return this.removeInterceptor(ErrorHandlerInterceptor);
   }
 
-  request(method?: any, url?: any, options?: any): any {
+  override request(method?: any, url?: any, options?: any): any {
     const handler = this.interceptors.reduceRight(
       (next, interceptor) => new HttpInterceptorHandler(next, interceptor),
       this.httpHandler

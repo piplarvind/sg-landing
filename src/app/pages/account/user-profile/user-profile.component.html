@@ -99,12 +99,12 @@
               </ng-container>
             </h5>
             <h6 *ngIf="role !== 'PAR'">
-              <ng-container *ngIf="age">{{ age + " * " }}</ng-container>
+              <ng-container *ngIf="age">{{ age }}</ng-container>
               <ng-container *ngIf="user?.teams && user.teams.length > 0">
-                <sub class="star">*</sub>{{ user?.teams[0]?.name }}
+                <sub class="star"> * </sub>{{ user?.teams[0]?.name }}
               </ng-container>
               <ng-container *ngIf="position">
-                <sub class="star">*</sub>{{ position }}
+                <sub class="star"> * </sub>{{ position }}
               </ng-container>
             </h6>
             <h6 *ngIf="role !== 'PAR'" class="card-category text-gray">
@@ -114,7 +114,7 @@
                 </span>
               </ng-container>
               <ng-container *ngIf="user?.club?.club_name">
-                <sub class="star">*</sub>{{ user?.club?.club_name }}
+                <sub class="star"> * </sub>{{ user?.club?.club_name }}
               </ng-container>
             </h6>
           </div>

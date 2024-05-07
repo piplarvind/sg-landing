@@ -28,6 +28,7 @@ import { LoginModule } from "@app/login/login.module";
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -52,11 +53,11 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    NgwWowModule,
+    // NgwWowModule,
     LayoutModule,
     DashlayoutModule,
   ],
-  declarations: [AppComponent],
+
   providers: [
     ThemeService,
     MessagingService,
@@ -66,4 +67,4 @@ import { MatIconModule } from '@angular/material/icon';
 
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
