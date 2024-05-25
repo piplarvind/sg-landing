@@ -168,3 +168,14 @@
 .star{
   font-size: 15px;
 }
+
+::ng-deep .mat-expansion-indicator::after {
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  content: "";
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  vertical-align: middle;
+  color: white !important;
+}
